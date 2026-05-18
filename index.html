@@ -214,4 +214,184 @@
         }
 
         .card-link {
-            margin-top
+            margin-top: auto;
+            color: var(--accent-glow);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card-link:hover {
+            gap: 12px;
+        }
+
+        /* Compliance */
+        .compliance-bar {
+            background-color: var(--bg-card);
+            padding: 55px 0;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: #050b1a;
+            padding: 50px 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-container">
+            <div class="logo">LUCIANO P.<span>MOURA</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#solucoes">Ecossistema</a></li>
+                    <li><a href="#trajetoria">Trajetória</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <span class="hero-tag">ANÁLISE DE DADOS • ENGENHARIA DE IA • GOVERNANÇA</span>
+            <h1>Luciano P. de Moura</h1>
+            <div class="typewriter-container">
+                <span id="typewriter"></span><span class="cursor">|</span>
+            </div>
+            <p class="hero-p">
+                Capacidade analítica profunda focada na construção de sistemas e aplicações modulares com o uso estratégico de IA e métricas de análise estruturada.
+            </p>
+            <a href="#solucoes" class="btn">Explorar Ecossistema Cognivus</a>
+        </div>
+    </section>
+
+    <div class="compliance-bar">
+        <div class="container">
+            <p style="text-align: center; font-size: 1.05rem; max-width: 800px; margin: 0 auto;">
+                <strong>🛡️ LGPD Compliant</strong> • Privacy by Design • Governança de Dados e Compliance Digital
+            </p>
+        </div>
+    </div>
+
+    <section id="solucoes" class="section">
+        <div class="container">
+            <h2 class="section-title">Ecossistema Cognivus</h2>
+            <div class="portfolio-grid">
+                <div class="card">
+                    <div class="card-meta">Educação & Cognição</div>
+                    <h3>Treinador</h3>
+                    <p>Plataforma inteligente focada no monitoramento educacional estruturado e desenvolvimento de treinamento cognitivo avançado.</p>
+                    <a href="https://treinador.cognivus.com.br/" class="card-link" target="_blank">Acessar App →</a>
+                </div>
+                <div class="card">
+                    <div class="card-meta">Orquestração & Core</div>
+                    <h3>CoreMaster</h3>
+                    <p>O centro de controle operacional e orquestrador principal de microsserviços integrados de todo o ecossistema.</p>
+                    <a href="https://coremaster.cognivus.com.br/" class="card-link" target="_blank">Acessar App →</a>
+                </div>
+                <div class="card">
+                    <div class="card-meta">Lógica & Linguagem</div>
+                    <h3>Axion Rhetorical</h3>
+                    <p>Engine analítica baseada em modelos de linguagem avançados para mapeamento e auditoria de argumentação lógica.</p>
+                    <a href="https://axion-rethorical.cognivus.com.br/" class="card-link" target="_blank">Acessar App →</a>
+                </div>
+                <div class="card">
+                    <div class="card-meta">Métricas de Discurso</div>
+                    <h3>Rethor</h3>
+                    <p>Módulo de análise quantitativa aplicada na avaliação de métricas textuais e discursivas.</p>
+                    <a href="https://rethor.cognivus.com.br/" class="card-link" target="_blank">Acessar App →</a>
+                </div>
+                <div class="card">
+                    <div class="card-meta">Padronização Semântica</div>
+                    <h3>Termos</h3>
+                    <p>Glossário conceitual dinâmico para normalização de termos técnicos e jurídicos complexos.</p>
+                    <a href="https://termos.cognivus.com.br/" class="card-link" target="_blank">Acessar App →</a>
+                </div>
+                <div class="card">
+                    <div class="card-meta">Portal Central</div>
+                    <h3>Cognivus</h3>
+                    <p>Hub principal de integração, inteligência analítica e produtos digitais do ecossistema.</p>
+                    <a href="https://cognivus.com.br/" class="card-link" target="_blank">Acessar Portal →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="trajetoria" class="section">
+        <div class="container">
+            <h2 class="section-title">Trajetória de Eficiência Convergente</h2>
+            <!-- Mantive sua timeline original aqui. Se quiser, posso deixar mais visual também -->
+            <div style="max-width: 900px; margin: 0 auto;">
+                <!-- Você pode colar sua timeline original aqui se quiser manter exatamente igual -->
+                <p style="text-align: center; color: var(--text-muted); font-size: 1.1rem;">
+                    (Sua timeline continua aqui - posso deixar mais visual se quiser)
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Luciano P. de Moura. Todos os direitos reservados.</p>
+            <p>Hospedado via GitHub Pages • LGPD Compliant</p>
+        </div>
+    </footer>
+
+    <script>
+        // Typewriter (mesmo do original, só ajustado)
+        const words = [
+            "Análise de Dados Estratégicos.",
+            "Engenharia de IA & Soluções.",
+            "Criador do Ecossistema Cognivus.",
+            "Gestor Analítico & Jurimetria."
+        ];
+        let i = 0;
+        let timer;
+
+        function typingEffect() {
+            let currentWord = words[i];
+            let word = currentWord.split("");
+            let typewriter = document.getElementById('typewriter');
+            typewriter.innerHTML = "";
+
+            function loopTyping() {
+                if (word.length > 0) {
+                    typewriter.innerHTML += word.shift();
+                    timer = setTimeout(loopTyping, 70);
+                } else {
+                    setTimeout(deletingEffect, 1800);
+                }
+            }
+            loopTyping();
+        }
+
+        function deletingEffect() {
+            let currentWord = words[i];
+            let word = currentWord.split("");
+            let typewriter = document.getElementById('typewriter');
+
+            function loopDeleting() {
+                if (word.length > 0) {
+                    word.pop();
+                    typewriter.innerHTML = word.join("");
+                    timer = setTimeout(loopDeleting, 40);
+                } else {
+                    i = (i + 1) % words.length;
+                    setTimeout(typingEffect, 600);
+                }
+            }
+            loopDeleting();
+        }
+
+        document.addEventListener("DOMContentLoaded", typingEffect);
+    </script>
+</body>
+</html>

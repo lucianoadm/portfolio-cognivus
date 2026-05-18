@@ -3,84 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luciano P. de Moura | Inteligência Jurídica & Legal Analytics</title>
-    <!-- CSS Incorporado para garantir portabilidade e consistência visual -->
+    <title>Luciano P. de Moura | Análise de Dados & Engenharia de IA</title>
     <style>
-        /* ==========================================================================
-           ESTILOS GERAIS & VARIÁVEIS (Tema: Futurismo Realista / Data-Driven)
-           ========================================================================== */
         :root {
-            --bg-deep: #0a0f1d;       /* Fundo escuro profundo / Slate Navy */
-            --bg-card: #131c31;       /* Fundo dos blocos e cards */
-            --accent-glow: #00f0ff;   /* Azul Ciano Elétrico / Tecnologia e IA */
-            --accent-muted: #1e3a8a;  /* Azul Marinho Institucional / Direito */
-            --text-main: #f3f4f6;     /* Branco puro/cinza muito claro para leitura */
-            --text-muted: #9ca3af;    /* Cinza médio para descrições secundárias */
-            --border-color: #243354;  /* Bordas sutis de malha de dados */
-            --success: #10b981;       /* Verde para Compliance e Segurança */
+            --bg-deep: #0a1425;     /* Fundo mais claro que o anterior */
+            --bg-card: #13223d;
+            --bg-tile: #1e2f52;
+            --accent-glow: #38bdf8;
+            --text-main: #f1f5f9;
+            --text-muted: #a3b4cc;
+            --border-color: #1e2f52;
         }
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            scroll-behavior: smooth;
         }
 
         body {
             background-color: var(--bg-deep);
             color: var(--text-main);
-            line-height: 1.6;
+            line-height: 1.7;
             overflow-x: hidden;
         }
 
-        a {
-            color: var(--accent-glow);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        a:hover {
-            text-shadow: 0 0 8px var(--accent-glow);
-        }
-
-        /* Container padrão de alinhamento */
         .container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1180px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        /* ==========================================================================
-           CABEÇALHO PADRÃO (HEADER)
-           ========================================================================== */
+        /* HEADER */
         header {
-            background-color: rgba(10, 15, 29, 0.9);
+            background-color: rgba(19, 34, 61, 0.92);
             border-bottom: 1px solid var(--border-color);
             position: fixed;
             width: 100%;
             top: 0;
-            left: 0;
             z-index: 1000;
             backdrop-filter: blur(10px);
         }
-
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 70px;
+            height: 75px;
         }
-
         .logo {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             font-weight: 700;
             letter-spacing: 2px;
-            color: var(--text-main);
         }
-
         .logo span {
             color: var(--accent-glow);
         }
@@ -88,590 +64,154 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 30px;
+            gap: 32px;
         }
-
         nav a {
             color: var(--text-muted);
-            font-size: 0.95rem;
+            text-decoration: none;
             font-weight: 500;
+            transition: 0.3s;
         }
-
         nav a:hover, nav a.active {
             color: var(--accent-glow);
         }
 
-        /* ==========================================================================
-           SEÇÃO HERO (IMPACTO INICIAL)
-           ========================================================================== */
+        /* HERO */
         .hero {
-            padding: 160px 0 100px 0;
-            background: radial-gradient(circle at 80% 20%, rgba(30, 58, 138, 0.3) 0%, transparent 50%);
-            min-height: 85vh;
+            padding: 180px 0 120px 0;
+            min-height: 90vh;
             display: flex;
             align-items: center;
+            background: radial-gradient(circle at 85% 25%, rgba(56, 189, 248, 0.18) 0%, transparent 55%);
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent, rgba(10, 20, 37, 0.6));
+            pointer-events: none;
         }
 
         .hero-content {
-            max-width: 800px;
+            max-width: 820px;
+            position: relative;
         }
-
         .hero-tag {
             display: inline-block;
-            padding: 6px 14px;
-            background-color: rgba(0, 240, 255, 0.1);
-            border: 1px solid rgba(0, 240, 255, 0.3);
+            padding: 8px 20px;
+            background: rgba(56, 189, 248, 0.12);
+            border: 1px solid rgba(56, 189, 248, 0.3);
             color: var(--accent-glow);
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 600;
-            border-radius: 4px;
+            border-radius: 50px;
             margin-bottom: 20px;
-            letter-spacing: 1px;
         }
-
         .hero h1 {
-            font-size: 3.2rem;
+            font-size: 3.8rem;
             font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 15px;
-            letter-spacing: -1px;
+            line-height: 1.1;
+            margin-bottom: 20px;
         }
-
-        /* Efeito de digitação e alternância dinâmico via JS */
         .typewriter-container {
-            font-size: 1.5rem;
+            font-size: 1.65rem;
             color: var(--text-muted);
-            margin-bottom: 30px;
-            height: 35px;
+            min-height: 55px;
+            margin: 25px 0;
         }
-
         .cursor {
             color: var(--accent-glow);
-            animation: blink 0.7s infinite;
+            animation: blink 0.8s infinite;
         }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
+        @keyframes blink { 50% { opacity: 0; } }
 
         .hero-p {
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             color: var(--text-muted);
+            max-width: 680px;
             margin-bottom: 40px;
-            max-width: 650px;
         }
 
         .btn {
             display: inline-block;
-            background: linear-gradient(135deg, var(--accent-muted) 0%, #1d4ed8 100%);
+            background: linear-gradient(135deg, #1e2f52, #13223d);
             color: white;
-            padding: 12px 30px;
-            border-radius: 4px;
+            padding: 16px 36px;
+            border-radius: 8px;
             font-weight: 600;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 15px rgba(29, 78, 216, 0.3);
+            border: 1px solid rgba(56, 189, 248, 0.4);
             transition: all 0.3s ease;
         }
-
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 240, 255, 0.4);
+            background: rgba(56, 189, 248, 0.15);
             border-color: var(--accent-glow);
-            color: white;
-            text-shadow: none;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.3);
         }
 
-        /* ==========================================================================
-           SEÇÃO DE COMPLIANCE & SEGURANÇA (MANDATÓRIO)
-           ========================================================================== */
-        .compliance-bar {
-            background-color: var(--bg-card);
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-            padding: 50px 0;
-            position: relative;
-        }
-
-        .compliance-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-        }
-
-        @media(min-width: 768px) {
-            .compliance-grid {
-                grid-template-columns: 1fr 2fr;
-                align-items: center;
-            }
-        }
-
-        .compliance-title {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            color: var(--success);
-            font-size: 1.4rem;
-            font-weight: 700;
-        }
-
-        .compliance-icon {
-            font-size: 2rem;
-        }
-
-        .compliance-text p {
-            color: var(--text-muted);
-            font-size: 1rem;
-        }
-
-        /* ==========================================================================
-           SEÇÕES PADRÃO (TÍTULOS E GRIDS)
-           ========================================================================== */
+        /* SEÇÕES */
         .section {
-            padding: 100px 0;
+            padding: 110px 0;
             border-bottom: 1px solid var(--border-color);
         }
-
         .section-title {
-            font-size: 2rem;
-            margin-bottom: 50px;
+            font-size: 2.4rem;
+            margin-bottom: 60px;
             position: relative;
             display: inline-block;
         }
-
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -12px;
             left: 0;
-            width: 50px;
-            height: 3px;
-            background-color: var(--accent-glow);
-            box-shadow: 0 0 8px var(--accent-glow);
+            width: 65px;
+            height: 4px;
+            background: var(--accent-glow);
+            border-radius: 2px;
         }
 
-        /* Cards do Portfólio (LexOS) */
         .portfolio-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-        }
-
-        @media(min-width: 768px) {
-            .portfolio-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 28px;
         }
 
         .card {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 30px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 3px;
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.4s ease;
             height: 100%;
-            background-color: var(--accent-muted);
-            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
-
         .card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 240, 255, 0.3);
-            box-shadow: 0 10px 30px rgba(10, 15, 29, 0.5);
+            transform: translateY(-8px);
+            border-color: var(--accent-glow);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
-
-        .card:hover::before {
-            background-color: var(--accent-glow);
-            box-shadow: 0 0 10px var(--accent-glow);
-        }
-
-        .card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            color: var(--text-main);
-        }
-
-        .card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-        }
-
         .card-meta {
-            font-size: 0.8rem;
             color: var(--accent-glow);
+            font-size: 0.85rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
+            margin-bottom: 12px;
         }
-
-        /* ==========================================================================
-           LINHA DO TEMPO DA EFICIÊNCIA (TIMELINE)
-           ========================================================================== */
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 0;
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 16px;
         }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            width: 2px;
-            background-color: var(--border-color);
-            top: 0;
-            bottom: 0;
-            left: 20px;
-        }
-
-        @media(min-width: 768px) {
-            .timeline::before {
-                left: 50%;
-                margin-left: -1px;
-            }
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 50px;
-            padding-left: 50px;
-        }
-
-        @media(min-width: 768px) {
-            .timeline-item {
-                padding-left: 0;
-                width: 50%;
-                margin-bottom: 40px;
-            }
-            .timeline-item-left {
-                left: 0;
-                padding-right: 40px;
-                text-align: right;
-            }
-            .timeline-item-right {
-                left: 50%;
-                padding-left: 40px;
-            }
-        }
-
-        .timeline-dot {
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            background-color: var(--bg-deep);
-            border: 3px solid var(--accent-muted);
-            border-radius: 50%;
-            left: 13px;
-            top: 5px;
-            z-index: 10;
-            transition: all 0.3s ease;
-        }
-
-        .timeline-item:hover .timeline-dot {
-            border-color: var(--accent-glow);
-            box-shadow: 0 0 10px var(--accent-glow);
-            background-color: var(--accent-glow);
-        }
-
-        @media(min-width: 768px) {
-            .timeline-item-left .timeline-dot {
-                left: auto;
-                right: -8px;
-            }
-            .timeline-item-right .timeline-dot {
-                left: -8px;
-            }
-        }
-
-        .timeline-date {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--accent-glow);
-            margin-bottom: 5px;
-            letter-spacing: 1px;
-        }
-
-        .timeline-content h3 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-
-        .timeline-content p {
+        .card p {
             color: var(--text-muted);
-            font-size: 0.95rem;
+            flex-grow: 1;
         }
 
-        /* ==========================================================================
-           RODAPÉ PADRÃO (FOOTER)
-           ========================================================================== */
-        footer {
-            background-color: #060a14;
-            border-top: 1px solid var(--border-color);
-            padding: 40px 0;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        .footer-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            align-items: center;
-            text-align: center;
-        }
-
-        @media(min-width: 768px) {
-            .footer-container {
-                flex-direction: row;
-                justify-content: space-between;
-                text-align: left;
-            }
-        }
-
-        .footer-info p {
-            margin-bottom: 5px;
-        }
-
-        .footer-info span {
-            color: var(--text-main);
-            font-weight: 500;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 20px;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- ==========================================================================
-         CABEÇALHO (HEADER)
-         ========================================================================== -->
-    <header>
-        <div class="container header-container">
-            <div class="logo">LUCIANO P.<span>MOURA</span></div>
-            <nav>
-                <ul>
-                    <li><a href="#home" class="active">Home</a></li>
-                    <li><a href="#solucoes">Soluções</a></li>
-                    <li><a href="#trajetoria">Trajetória</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- ==========================================================================
-         SEÇÃO HERO
-         ========================================================================== -->
-    <section id="home" class="hero">
-        <div class="container hero-content">
-            <span class="hero-tag">CONTEÚDO CONTEMPORÂNEO & ASSISTIDO POR IA</span>
-            <h1>Luciano P. de Moura</h1>
-            <div class="typewriter-container">
-                <span id="typewriter"></span><span class="cursor">|</span>
-            </div>
-            <p class="hero-p">
-                Unindo a exatidão da Administração e Auditoria de Processos à inovação analítica da Jurimetria e do Direito Digital. Desenvolvedor de ecossistemas focados na máxima eficiência e redução drástica do Time-to-Market.
-            </p>
-            <a href="#solucoes" class="btn">Explorar Soluções</a>
-        </div>
-    </section>
-
-    <!-- ==========================================================================
-         SEÇÃO DE COMPLIANCE & SEGURANÇA
-         ========================================================================== -->
-    <div class="compliance-bar">
-        <div class="container compliance-grid">
-            <div class="compliance-title">
-                <span class="compliance-icon">🛡️</span>
-                <h2>Data Governance & Compliance</h2>
-            </div>
-            <div class="compliance-text">
-                <p>
-                    Toda arquitetura e soluções web desenvolvidas por mim operam sob estrita observância das normas legais da <strong>LGPD (Lei Geral de Proteção de Dados)</strong> e princípios de Compliance Digital. Isso assegura a higienização completa de dados sensíveis, mitigação ativa de vieses em algoritmos analíticos e adoção nativa do <em>Privacy by Design</em>.
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <!-- ==========================================================================
-         SEÇÃO DE SOLUÇÕES (PORTFÓLIO)
-         ========================================================================== -->
-    <section id="solucoes" class="section">
-        <div class="container">
-            <h2 class="section-title">Ecossistema de Soluções Inteligentes</h2>
-            <div class="portfolio-grid">
-                
-                <div class="card">
-                    <h3>LexOS Ecosystem</h3>
-                    <p>Suíte modular de inteligência e analytics voltada à otimização e governança de fluxos de trabalho jurídicos. Desenvolvida para apoiar tomadas de decisões críticas com base em volumes massivos de dados.</p>
-                    <div class="card-meta">Python • Streamlit • Cloud Databases</div>
-                </div>
-
-                <div class="card">
-                    <h3>LexMetric & LexRhetorical</h3>
-                    <p>Módulos avançados do ecossistema focados em Jurimetria profunda e estruturação lógica de argumentações. Reduz drasticamente o tempo de entrega mantendo auditoria e consistência analítica.</p>
-                    <div class="card-meta">AI-Augmented Engineering • Analytics</div>
-                </div>
-
-                <div class="card">
-                    <h3>Otimização de Sites & Aplicações</h3>
-                    <p>Criação e engenharia de páginas web responsivas, extremamente velozes, seguras e com código auditado por ferramentas avançadas de IA para garantir escalabilidade.</p>
-                    <div class="card-meta">HTML5 • CSS3 • JavaScript • Jamstack</div>
-                </div>
-
-                <div class="card">
-                    <h3>Data Science & Automações Industriais</h3>
-                    <p>Legado técnico estruturado na transformação de fluxos operacionais analógicos e de suprimentos em processos ágeis, integrados e inteligentes.</p>
-                    <div class="card-meta">BI • Process Optimization • AI Integration</div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- ==========================================================================
-         SEÇÃO DA TRAJETÓRIA (TIMELINE DE EFICIÊNCIA)
-         ========================================================================== -->
-    <section id="trajetoria" class="section">
-        <div class="container">
-            <h2 class="section-title">Trajetória de Eficiência Convergente</h2>
-            <div class="timeline">
-
-                <!-- Item 1 -->
-                <div class="timeline-item timeline-item-left">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">FUNDAÇÃO OPERACIONAL</div>
-                    <div class="timeline-content">
-                        <h3>Qualidade, SMT, PCP & Suprimentos</h3>
-                        <p>Atuação sólida em auditoria de documentação, controle de estoque em almoxarifados e planejamento de processos complexos. A base da mentalidade analítica de eliminação de gargalos.</p>
-                    </div>
-                </div>
-
-                <!-- Item 2 -->
-                <div class="timeline-item timeline-item-right">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">ESTRUTURA DE NEGÓCIOS</div>
-                    <div class="timeline-content">
-                        <h3>Administração & MBA</h3>
-                        <p>Graduação em Administração de Empresas e MBA focado em Gestão de Negócios e Marketing. Visão holística corporativa, governança e alinhamento de soluções aos objetivos de mercado.</p>
-                    </div>
-                </div>
-
-                <!-- Item 3 -->
-                <div class="timeline-item timeline-item-left">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">PRESENTE (2026)</div>
-                    <div class="timeline-content">
-                        <h3>Direito & Pós-Graduação em Jurimetria</h3>
-                        <p>Graduação em Direito (Anhanguera Taubaté) e Especialização em Jurimetria em andamento. Fusão definitiva de tecnologia, ciência de dados e o universo jurídico.</p>
-                    </div>
-                </div>
-
-                <!-- Item 4 -->
-                <div class="timeline-item timeline-item-right">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">ESTÁGIO ESTRATÉGICO (2026)</div>
-                    <div class="timeline-content">
-                        <h3>Procuradoria Geral do Estado (PGE)</h3>
-                        <p>Ingresso no programa de estágio da advocacia pública. Aplicação prática de conceitos contemporâneos na otimização, triagem e análise preditiva do contencioso de alta relevância.</p>
-                    </div>
-                </div>
-
-                <!-- Item 5 -->
-                <div class="timeline-item timeline-item-left">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">VISÃO DIGITAL 2032</div>
-                    <div class="timeline-content">
-                        <h3>Expansão Acadêmica Contínua</h3>
-                        <p>Planejamento estratégico de conclusão de mais duas formações até 2032. Cultura <em>Lifelong Learning</em> voltada para liderança tecnológica e de governança.</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- ==========================================================================
-         RODAPÉ (FOOTER)
-         ========================================================================== -->
-    <footer>
-        <div class="container footer-container">
-            <div class="footer-info">
-                <p>&copy; 2026 <span>Luciano P. de Moura</span>. Todos os direitos reservados.</p>
-                <p>Hospedado via GitHub Pages sob o ecossistema <span>Cognivus</span>.</p>
-            </div>
-            <div class="footer-links">
-                <span>Compliance: LGPD Compliant</span>
-                <span>•</span>
-                <span>Segurança: HTTPS Active</span>
-            </div>
-        </div>
-    </footer>
-
-    <!-- ==========================================================================
-         SCRIPT JAVASCRIPT (Efeito de Digitação Dinâmico)
-         ========================================================================== -->
-    <script>
-        const words = [
-            "Gestor de Processos & Qualidade.",
-            "Cientista de Dados Jurídicos.",
-            "Futuro Procurador Ultra-Tecnológico.",
-            "Criador do Ecossistema LexOS."
-        ];
-        let i = 0;
-        let timer;
-
-        function typingEffect() {
-            let word = words[i].split("");
-            var loopTyping = function() {
-                if (word.length > 0) {
-                    document.getElementById('typewriter').innerHTML += word.shift();
-                } else {
-                    setTimeout(deletingEffect, 2000);
-                    return false;
-                }
-                timer = setTimeout(loopTyping, 60);
-            };
-            loopTyping();
-        }
-
-        function deletingEffect() {
-            let word = words[i].split("");
-            var loopDeleting = function() {
-                if (word.length > 0) {
-                    word.pop();
-                    document.getElementById('typewriter').innerHTML = word.join("");
-                } else {
-                    if (words.length > (i + 1)) {
-                        i++;
-                    } else {
-                        i = 0;
-                    }
-                    setTimeout(typingEffect, 500);
-                    return false;
-                }
-                timer = setTimeout(loopDeleting, 30);
-            };
-            loopDeleting();
-        }
-
-        // Inicializar o efeito ao carregar a página
-        document.addEventListener("DOMContentLoaded", function() {
-            typingEffect();
-        });
-    </script>
-</body>
-</html>
+        .card-link {
+            margin-top

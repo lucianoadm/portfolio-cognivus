@@ -4,59 +4,104 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luciano P. de Moura | Análise de Dados & Engenharia de IA</title>
+    <!-- Importação do FontAwesome para os ícones modernos e dinâmicos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
+        /* ==========================================================================
+           DESIGN SYSTEM: SUAVE OCEAN BLUE EDITION (CLARO, CONTRASTANTE E SEDUTOR)
+           ========================================================================== */
         :root {
-            --bg-deep: #0a1425;     /* Fundo mais claro que o anterior */
-            --bg-card: #13223d;
-            --bg-tile: #1e2f52;
-            --accent-glow: #38bdf8;
-            --text-main: #f1f5f9;
-            --text-muted: #a3b4cc;
-            --border-color: #1e2f52;
+            --bg-deep: #0d1e36;       /* Fundo marítimo relaxante e mais claro */
+            --bg-gradient: linear-gradient(135deg, #091322 0%, #112543 50%, #18335c 100%);
+            --bg-card: rgba(21, 41, 74, 0.75); /* Card translúcido com fundo oceano */
+            --bg-tile: #1e3a64;       /* Azul oceano médio para divisores e tags */
+            --accent-glow: #38bdf8;   /* Azul ciano de tecnologia */
+            --accent-glow-secondary: #22d3ee; /* Azul turquesa complementar */
+            --text-main: #f8fafc;     /* Branco Soft para leitura confortável */
+            --text-muted: #cbd5e1;    /* Slate acinzentado claro e legível */
+            --border-color: rgba(56, 189, 248, 0.3); /* Borda inicial contrastante */
+            --border-hover: rgba(56, 189, 248, 0.85); /* Borda brilhante no hover */
+            --success: #0ea5e9;       /* Azul governação */
+            
+            /* Badges de Cores Alternadas para Contraste */
+            --badge-edu: #a78bfa;     /* Roxo suave */
+            --badge-core: #f43f5e;    /* Coral moderno */
+            --badge-log: #10b981;     /* Esmeralda */
+            --badge-dat: #f59e0b;     /* Âmbar brilhante */
+            --badge-sem: #ec4899;     /* Rosa chic */
+            --badge-hub: #3b82f6;     /* Azul elétrico */
         }
 
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg-deep);
+            background: var(--bg-gradient);
+            background-attachment: fixed;
             color: var(--text-main);
-            line-height: 1.7;
+            line-height: 1.6;
             overflow-x: hidden;
+        }
+
+        a {
+            color: var(--accent-glow);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            text-shadow: 0 0 10px var(--accent-glow);
         }
 
         .container {
             width: 100%;
-            max-width: 1180px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        /* HEADER */
+        /* ==========================================================================
+           CABEÇALHO (HEADER)
+           ========================================================================== */
         header {
-            background-color: rgba(19, 34, 61, 0.92);
+            background-color: rgba(13, 30, 54, 0.9);
             border-bottom: 1px solid var(--border-color);
             position: fixed;
             width: 100%;
             top: 0;
+            left: 0;
             z-index: 1000;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
         }
+
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 75px;
+            height: 70px;
         }
+
         .logo {
-            font-size: 1.4rem;
+            font-size: 1.25rem;
             font-weight: 700;
             letter-spacing: 2px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
+
+        .logo i {
+            color: var(--accent-glow);
+            text-shadow: 0 0 8px var(--accent-glow);
+        }
+
         .logo span {
             color: var(--accent-glow);
         }
@@ -64,191 +109,531 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 32px;
+            gap: 30px;
         }
+
         nav a {
             color: var(--text-muted);
-            text-decoration: none;
-            font-weight: 500;
-            transition: 0.3s;
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 5px 0;
+            position: relative;
         }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent-glow);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after, nav a.active::after {
+            width: 100%;
+        }
+
         nav a:hover, nav a.active {
             color: var(--accent-glow);
         }
 
-        /* HERO */
+        /* ==========================================================================
+           SEÇÃO HERO
+           ========================================================================== */
         .hero {
-            padding: 180px 0 120px 0;
+            padding: 200px 0 120px 0;
+            background: radial-gradient(circle at 85% 30%, rgba(56, 189, 248, 0.15) 0%, transparent 65%),
+                        radial-gradient(circle at 15% 80%, rgba(34, 211, 238, 0.08) 0%, transparent 50%);
             min-height: 90vh;
             display: flex;
             align-items: center;
-            background: radial-gradient(circle at 85% 25%, rgba(56, 189, 248, 0.18) 0%, transparent 55%);
-            position: relative;
-        }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(180deg, transparent, rgba(10, 20, 37, 0.6));
-            pointer-events: none;
         }
 
         .hero-content {
-            max-width: 820px;
-            position: relative;
+            max-width: 850px;
         }
+
         .hero-tag {
-            display: inline-block;
-            padding: 8px 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
             background: rgba(56, 189, 248, 0.12);
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            color: var(--accent-glow);
-            font-size: 0.9rem;
-            font-weight: 600;
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            color: var(--text-main);
+            font-size: 0.85rem;
+            font-weight: 700;
             border-radius: 50px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            letter-spacing: 1.5px;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.1);
         }
+
+        .hero-tag i {
+            color: var(--accent-glow);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
         .hero h1 {
             font-size: 3.8rem;
             font-weight: 800;
-            line-height: 1.1;
+            line-height: 1.15;
             margin-bottom: 20px;
+            letter-spacing: -1.5px;
+            background: linear-gradient(135deg, var(--text-main) 30%, var(--accent-glow-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
+
         .typewriter-container {
-            font-size: 1.65rem;
-            color: var(--text-muted);
-            min-height: 55px;
-            margin: 25px 0;
-        }
-        .cursor {
+            font-size: 1.7rem;
             color: var(--accent-glow);
-            animation: blink 0.8s infinite;
+            margin-bottom: 35px;
+            height: 45px;
+            font-weight: 600;
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
         }
-        @keyframes blink { 50% { opacity: 0; } }
+
+        .cursor {
+            color: var(--text-main);
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
 
         .hero-p {
             font-size: 1.2rem;
             color: var(--text-muted);
-            max-width: 680px;
-            margin-bottom: 40px;
+            margin-bottom: 45px;
+            max-width: 750px;
+            font-weight: 400;
         }
 
         .btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #1e2f52, #13223d);
-            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
+            color: var(--text-main);
             padding: 16px 36px;
             border-radius: 8px;
-            font-weight: 600;
-            border: 1px solid rgba(56, 189, 248, 0.4);
-            transition: all 0.3s ease;
-        }
-        .btn:hover {
-            background: rgba(56, 189, 248, 0.15);
-            border-color: var(--accent-glow);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.3);
+            font-weight: 700;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 25px rgba(29, 78, 216, 0.4);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* SEÇÕES */
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.4);
+            border-color: var(--accent-glow);
+            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+        }
+
+        /* ==========================================================================
+           COMPLIANCE & PRIVACY BY DESIGN
+           ========================================================================== */
+        .compliance-bar {
+            background-color: rgba(17, 37, 67, 0.85);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 60px 0;
+            box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .compliance-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        @media(min-width: 768px) {
+            .compliance-grid {
+                grid-template-columns: 1fr 2.5fr;
+                align-items: center;
+            }
+        }
+
+        .compliance-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--accent-glow-secondary);
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .compliance-icon {
+            font-size: 2.2rem;
+            filter: drop-shadow(0 0 10px rgba(34, 211, 238, 0.4));
+        }
+
+        .compliance-text p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        /* ==========================================================================
+           SEÇÕES DE CONTEÚDO (CARDS & PORTFÓLIO)
+           ========================================================================== */
         .section {
-            padding: 110px 0;
+            padding: 120px 0;
             border-bottom: 1px solid var(--border-color);
         }
+
         .section-title {
             font-size: 2.4rem;
             margin-bottom: 60px;
             position: relative;
             display: inline-block;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
         }
+
         .section-title::after {
             content: '';
             position: absolute;
             bottom: -12px;
             left: 0;
-            width: 65px;
+            width: 70px;
             height: 4px;
-            background: var(--accent-glow);
             border-radius: 2px;
+            background-color: var(--accent-glow);
+            box-shadow: 0 0 15px var(--accent-glow);
         }
 
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 28px;
+            grid-template-columns: 1fr;
+            gap: 30px;
         }
 
+        @media(min-width: 768px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .portfolio-grid-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* CARDS MULTI-DETALHADOS COM CONTRASTE AMPLIADO */
         .card {
             background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--border-color); /* Moldura mais espessa e contrastante */
             border-radius: 16px;
-            padding: 32px;
-            transition: all 0.4s ease;
-            height: 100%;
+            padding: 35px;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            backdrop-filter: blur(8px);
         }
-        .card:hover {
-            transform: translateY(-8px);
-            border-color: var(--accent-glow);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+
+        /* Glow de Fundo no Card */
+        .card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, transparent 60%);
+            z-index: 0;
+            transition: all 0.4s ease;
+            pointer-events: none;
         }
-        .card-meta {
+
+        .card-header-area {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-icon-box {
+            font-size: 2.2rem;
             color: var(--accent-glow);
-            font-size: 0.85rem;
-            font-weight: 600;
+            filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.3));
+        }
+
+        /* BADGES COLORIDOS E EXCLUSIVOS POR PRODUTO */
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            border-radius: 50px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
-        .card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 16px;
-        }
-        .card p {
-            color: var(--text-muted);
+
+        .badge-edu  { background: rgba(167, 139, 250, 0.15); border: 1px solid var(--badge-edu); color: #c4b5fd; }
+        .badge-core { background: rgba(244, 63, 94, 0.15); border: 1px solid var(--badge-core); color: #fda4af; }
+        .badge-log  { background: rgba(16, 185, 129, 0.15); border: 1px solid var(--badge-log); color: #6ee7b7; }
+        .badge-dat  { background: rgba(245, 158, 11, 0.15); border: 1px solid var(--badge-dat); color: #fde047; }
+        .badge-sem  { background: rgba(236, 72, 153, 0.15); border: 1px solid var(--badge-sem); color: #fbcfe8; }
+        .badge-hub  { background: rgba(59, 130, 246, 0.15); border: 1px solid var(--badge-hub); color: #93c5fd; }
+
+        .card-body-area {
+            position: relative;
+            z-index: 2;
             flex-grow: 1;
         }
 
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
         .card-link {
-            margin-top: auto;
-            color: var(--accent-glow);
-            font-weight: 600;
-            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-main);
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            padding: 10px 20px;
+            border-radius: 8px;
+            background: rgba(13, 30, 54, 0.6);
+            align-self: flex-start;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* EFEITO DE HOVER NOS CARDS - EXTREMAMENTE SEDUTOR */
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--border-hover);
+            box-shadow: 0 15px 35px rgba(56, 189, 248, 0.25);
+        }
+
+        .card:hover::after {
+            top: -30%;
+            right: -30%;
+            background: radial-gradient(circle, rgba(34, 211, 238, 0.15) 0%, transparent 70%);
+        }
+
+        .card:hover .card-link {
+            background: var(--accent-glow);
+            color: #091322;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+            border-color: var(--accent-glow);
+        }
+
+        /* ==========================================================================
+           LINHA DO TEMPO DA EFICIÊNCIA (TIMELINE)
+           ========================================================================== */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: var(--border-color);
+            top: 0;
+            bottom: 0;
+            left: 20px;
+        }
+
+        @media(min-width: 768px) {
+            .timeline::before {
+                left: 50%;
+                margin-left: -1px;
+            }
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 60px;
+            padding-left: 50px;
+        }
+
+        @media(min-width: 768px) {
+            .timeline-item {
+                padding-left: 0;
+                width: 50%;
+                margin-bottom: 50px;
+            }
+            .timeline-item-left {
+                left: 0;
+                padding-right: 45px;
+                text-align: right;
+            }
+            .timeline-item-right {
+                left: 50%;
+                padding-left: 45px;
+            }
+        }
+
+        .timeline-dot {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background-color: var(--bg-deep);
+            border: 4px solid var(--accent-glow);
+            border-radius: 50%;
+            left: 13px;
+            top: 6px;
+            z-index: 10;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+        }
+
+        .timeline-item:hover .timeline-dot {
+            background-color: var(--accent-glow-secondary);
+            border-color: var(--text-main);
+            box-shadow: 0 0 15px rgba(34, 211, 238, 0.8);
+            transform: scale(1.2);
+        }
+
+        @media(min-width: 768px) {
+            .timeline-item-left .timeline-dot {
+                left: auto;
+                right: -8px;
+            }
+            .timeline-item-right .timeline-dot {
+                left: -8px;
+            }
+        }
+
+        .timeline-date {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-glow-secondary);
+            margin-bottom: 8px;
+            letter-spacing: 1.5px;
             display: inline-flex;
             align-items: center;
             gap: 8px;
         }
-        .card-link:hover {
-            gap: 12px;
+
+        @media(min-width: 768px) {
+            .timeline-item-left .timeline-date {
+                flex-direction: row-reverse;
+            }
         }
 
-        /* Compliance */
-        .compliance-bar {
+        .timeline-content {
             background-color: var(--bg-card);
-            padding: 55px 0;
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
         }
 
-        /* FOOTER */
-        footer {
-            background-color: #050b1a;
-            padding: 50px 0;
-            text-align: center;
+        .timeline-item:hover .timeline-content {
+            border-color: var(--accent-glow);
+            box-shadow: 0 15px 35px rgba(56, 189, 248, 0.15);
+        }
+
+        .timeline-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+
+        .timeline-content p {
             color: var(--text-muted);
+            font-size: 0.98rem;
+            line-height: 1.6;
+        }
+
+        /* ==========================================================================
+           RODAPÉ (FOOTER)
+           ========================================================================== */
+        footer {
+            background-color: #060d18;
+            border-top: 1px solid var(--border-color);
+            padding: 50px 0;
             font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .footer-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+            text-align: center;
+        }
+
+        @media(min-width: 768px) {
+            .footer-container {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
+        }
+
+        .footer-info p {
+            margin-bottom: 5px;
+        }
+
+        .footer-info span {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 25px;
+            font-weight: 600;
+        }
+
+        .footer-links i {
+            color: var(--accent-glow-secondary);
         }
     </style>
 </head>
 <body>
 
+    <!-- ==========================================================================
+         CABEÇALHO (HEADER)
+         ========================================================================== -->
     <header>
         <div class="container header-container">
-            <div class="logo">LUCIANO P.<span>MOURA</span></div>
+            <div class="logo">
+                <i class="fa-solid fa-layer-group"></i>
+                LUCIANO P.<span>MOURA</span>
+            </div>
             <nav>
                 <ul>
                     <li><a href="#home" class="active">Home</a></li>
@@ -259,139 +644,300 @@
         </div>
     </header>
 
+    <!-- ==========================================================================
+         SEÇÃO HERO
+         ========================================================================== -->
     <section id="home" class="hero">
         <div class="container hero-content">
-            <span class="hero-tag">ANÁLISE DE DADOS • ENGENHARIA DE IA • GOVERNANÇA</span>
+            <div class="hero-tag">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <span>CONTEÚDO CONTEMPORÂNEO &amp; ASSISTIDO POR IA</span>
+            </div>
             <h1>Luciano P. de Moura</h1>
             <div class="typewriter-container">
                 <span id="typewriter"></span><span class="cursor">|</span>
             </div>
             <p class="hero-p">
-                Capacidade analítica profunda focada na construção de sistemas e aplicações modulares com o uso estratégico de IA e métricas de análise estruturada.
+                Capacidade analítica profunda focada na construção de sistemas e aplicações modulares com o uso estratégico de IA e métricas de análise estruturada. Desenvolvimento focado em engenharia de software ágil de alto impacto e máxima geração de valor na entrega de serviços e produtos tecnológicos.
             </p>
-            <a href="#solucoes" class="btn">Explorar Ecossistema Cognivus</a>
+            <a href="#solucoes" class="btn">
+                <span>Explorar Ecossistema</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
         </div>
     </section>
 
+    <!-- ==========================================================================
+         SEÇÃO DE COMPLIANCE & SEGURANÇA
+         ========================================================================== -->
     <div class="compliance-bar">
-        <div class="container">
-            <p style="text-align: center; font-size: 1.05rem; max-width: 800px; margin: 0 auto;">
-                <strong>🛡️ LGPD Compliant</strong> • Privacy by Design • Governança de Dados e Compliance Digital
-            </p>
-        </div>
-    </div>
-
-    <section id="solucoes" class="section">
-        <div class="container">
-            <h2 class="section-title">Ecossistema Cognivus</h2>
-            <div class="portfolio-grid">
-                <div class="card">
-                    <div class="card-meta">Educação & Cognição</div>
-                    <h3>Treinador</h3>
-                    <p>Plataforma inteligente focada no monitoramento educacional estruturado e desenvolvimento de treinamento cognitivo avançado.</p>
-                    <a href="https://treinador.cognivus.com.br/" class="card-link" target="_blank">Acessar App →</a>
-                </div>
-                <div class="card">
-                    <div class="card-meta">Orquestração & Core</div>
-                    <h3>CoreMaster</h3>
-                    <p>O centro de controle operacional e orquestrador principal de microsserviços integrados de todo o ecossistema.</p>
-                    <a href="https://coremaster.cognivus.com.br/" class="card-link" target="_blank">Acessar App →</a>
-                </div>
-                <div class="card">
-                    <div class="card-meta">Lógica & Linguagem</div>
-                    <h3>Axion Rhetorical</h3>
-                    <p>Engine analítica baseada em modelos de linguagem avançados para mapeamento e auditoria de argumentação lógica.</p>
-                    <a href="https://axion-rethorical.cognivus.com.br/" class="card-link" target="_blank">Acessar App →</a>
-                </div>
-                <div class="card">
-                    <div class="card-meta">Métricas de Discurso</div>
-                    <h3>Rethor</h3>
-                    <p>Módulo de análise quantitativa aplicada na avaliação de métricas textuais e discursivas.</p>
-                    <a href="https://rethor.cognivus.com.br/" class="card-link" target="_blank">Acessar App →</a>
-                </div>
-                <div class="card">
-                    <div class="card-meta">Padronização Semântica</div>
-                    <h3>Termos</h3>
-                    <p>Glossário conceitual dinâmico para normalização de termos técnicos e jurídicos complexos.</p>
-                    <a href="https://termos.cognivus.com.br/" class="card-link" target="_blank">Acessar App →</a>
-                </div>
-                <div class="card">
-                    <div class="card-meta">Portal Central</div>
-                    <h3>Cognivus</h3>
-                    <p>Hub principal de integração, inteligência analítica e produtos digitais do ecossistema.</p>
-                    <a href="https://cognivus.com.br/" class="card-link" target="_blank">Acessar Portal →</a>
-                </div>
+        <div class="container compliance-grid">
+            <div class="compliance-title">
+                <span class="compliance-icon"><i class="fa-solid fa-shield-halved"></i></span>
+                <h2>Data Governance &amp; Compliance</h2>
             </div>
-        </div>
-    </section>
-
-    <section id="trajetoria" class="section">
-        <div class="container">
-            <h2 class="section-title">Trajetória de Eficiência Convergente</h2>
-            <!-- Mantive sua timeline original aqui. Se quiser, posso deixar mais visual também -->
-            <div style="max-width: 900px; margin: 0 auto;">
-                <!-- Você pode colar sua timeline original aqui se quiser manter exatamente igual -->
-                <p style="text-align: center; color: var(--text-muted); font-size: 1.1rem;">
-                    (Sua timeline continua aqui - posso deixar mais visual se quiser)
+            <div class="compliance-text">
+                <p>
+                    Toda arquitetura e soluções web desenvolvidas por mim operam sob estrita observância das normas legais da <strong>LGPD (Lei Geral de Proteção de Dados)</strong> e princípios de Compliance Digital. Isso assegura a higienização completa de dados sensíveis, mitigação ativa de vieses em algoritmos analíticos e adoção nativa do <em>Privacy by Design</em>.
                 </p>
             </div>
         </div>
+    </div>
+
+    <!-- ==========================================================================
+         SEÇÃO DE SOLUÇÕES (CARDS DO ECOSSISTEMA COGNIVUS)
+         ========================================================================== -->
+    <section id="solucoes" class="section">
+        <div class="container">
+            <h2 class="section-title">Ecossistema Cognivus</h2>
+            <div class="portfolio-grid portfolio-grid-3">
+                
+                <!-- Card 1: Treinador -->
+                <div class="card">
+                    <div class="card-header-area">
+                        <div class="card-icon-box"><i class="fa-solid fa-graduation-cap"></i></div>
+                        <span class="badge badge-edu">Cognição</span>
+                    </div>
+                    <div class="card-body-area">
+                        <h3>Treinador</h3>
+                        <p>Plataforma inteligente focada no monitoramento educacional estruturado e desenvolvimento de treinamento cognitivo avançado.</p>
+                    </div>
+                    <a href="https://treinador.cognivus.com.br/" class="card-link" target="_blank">
+                        <span>Acessar App</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
+
+                <!-- Card 2: CoreMaster -->
+                <div class="card">
+                    <div class="card-header-area">
+                        <div class="card-icon-box"><i class="fa-solid fa-circle-nodes"></i></div>
+                        <span class="badge badge-core">Núcleo</span>
+                    </div>
+                    <div class="card-body-area">
+                        <h3>CoreMaster</h3>
+                        <p>O centro de controle operacional e orquestrador principal de microsserviços integrados de todo o ecossistema Cognivus.</p>
+                    </div>
+                    <a href="https://coremaster.cognivus.com.br/" class="card-link" target="_blank">
+                        <span>Acessar App</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
+
+                <!-- Card 3: Axion Rhetorical -->
+                <div class="card">
+                    <div class="card-header-area">
+                        <div class="card-icon-box"><i class="fa-solid fa-brain"></i></div>
+                        <span class="badge badge-log">Lógica</span>
+                    </div>
+                    <div class="card-body-area">
+                        <h3>Axion Rhetorical</h3>
+                        <p>Engine analítica baseada em modelos de linguagem avançados para mapeamento, estruturação e auditoria de argumentação lógica.</p>
+                    </div>
+                    <a href="https://axion-rethorical.cognivus.com.br/" class="card-link" target="_blank">
+                        <span>Acessar App</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
+
+                <!-- Card 4: Rethor -->
+                <div class="card">
+                    <div class="card-header-area">
+                        <div class="card-icon-box"><i class="fa-solid fa-chart-pie"></i></div>
+                        <span class="badge badge-dat">Análise</span>
+                    </div>
+                    <div class="card-body-area">
+                        <h3>Rethor</h3>
+                        <p>Módulo de análise quantitativa e inteligência de dados aplicada diretamente na avaliação de métricas textuais e discursivas.</p>
+                    </div>
+                    <a href="https://rethor.cognivus.com.br/" class="card-link" target="_blank">
+                        <span>Acessar App</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
+
+                <!-- Card 5: Termos -->
+                <div class="card">
+                    <div class="card-header-area">
+                        <div class="card-icon-box"><i class="fa-solid fa-book-bookmark"></i></div>
+                        <span class="badge badge-sem">Semântica</span>
+                    </div>
+                    <div class="card-body-area">
+                        <h3>Termos</h3>
+                        <p>Glossário conceitual dinâmico desenvolvido para normalização e padronização analítica de termos técnicos e jurídicos complexos.</p>
+                    </div>
+                    <a href="https://termos.cognivus.com.br/" class="card-link" target="_blank">
+                        <span>Acessar App</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
+
+                <!-- Card 6: Cognivus Hub -->
+                <div class="card">
+                    <div class="card-header-area">
+                        <div class="card-icon-box"><i class="fa-solid fa-network-wired"></i></div>
+                        <span class="badge badge-hub">Portal</span>
+                    </div>
+                    <div class="card-body-area">
+                        <h3>Cognivus.com.br</h3>
+                        <p>O ecossistema principal unificado. O hub de integração de marcas, inteligência analítica e produtos digitais corporativos.</p>
+                    </div>
+                    <a href="https://cognivus.com.br/" class="card-link" target="_blank">
+                        <span>Acessar Portal</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
     </section>
 
-    <footer>
+    <!-- ==========================================================================
+         SEÇÃO DA TRAJETÓRIA (TIMELINE)
+         ========================================================================== -->
+    <section id="trajetoria" class="section">
         <div class="container">
-            <p>&copy; 2026 Luciano P. de Moura. Todos os direitos reservados.</p>
-            <p>Hospedado via GitHub Pages • LGPD Compliant</p>
+            <h2 class="section-title">Trajetória de Eficiência Convergente</h2>
+            <div class="timeline">
+
+                <!-- Item 1 -->
+                <div class="timeline-item timeline-item-left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">
+                        <i class="fa-solid fa-industry"></i>
+                        <span>FUNDAÇÃO OPERACIONAL</span>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Qualidade, SMT, PCP &amp; Suprimentos</h3>
+                        <p>Atuação sólida em auditoria de documentação, controle de estoque em almoxarifados e planejamento de processos industriais complexos. A base da mentalidade analítica de eliminação de gargalos aplicada diretamente ao software.</p>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="timeline-item timeline-item-right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">
+                        <i class="fa-solid fa-briefcase"></i>
+                        <span>ESTRUTURA DE NEGÓCIOS</span>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Administração &amp; MBA</h3>
+                        <p>Graduação em Administração de Empresas e MBA focado em Gestão de Negócios e Marketing. Fornecimento da visão holística corporativa, governança estratégica e foco real no valor de entrega ao mercado de produtos.</p>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="timeline-item timeline-item-left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                        <span>PRESENTE (2026)</span>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Direito &amp; Pós-Graduação em Jurimetria</h3>
+                        <p>Graduação em Direito (Anhanguera Taubaté) e Especialização em Jurimetria em andamento. Fusão conceitual estruturada entre o universo regulatório normativo e a modelagem matemática de dados.</p>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="timeline-item timeline-item-right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">
+                        <i class="fa-solid fa-terminal"></i>
+                        <span>ENGENHARIA &amp; PROGRAMAÇÃO (2026)</span>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Arquitetura de Dados &amp; Engenharia de Soluções IA</h3>
+                        <p>Desenvolvimento ativo de pipelines analíticos, engenharia de prompts estruturados, gerenciamento de bancos de dados em nuvem e automação ágil de softwares integrados assistidos por IA.</p>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="timeline-item timeline-item-left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">
+                        <i class="fa-solid fa-infinity"></i>
+                        <span>VISÃO DIGITAL 2032</span>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Expansão Acadêmica Contínua &amp; Lifelong Learning</h3>
+                        <p>Planejamento estratégico estruturado para a conclusão de mais duas formações avançadas até 2032, consolidando liderança técnica sólida frente a mercados disruptivos.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         RODAPÉ (FOOTER)
+         ========================================================================== -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-info">
+                <p>&copy; 2026 <span>Luciano P. de Moura</span>. Todos os direitos reservados.</p>
+                <p>Hospedado via GitHub Pages sob o ecossistema <span>Cognivus</span>.</p>
+            </div>
+            <div class="footer-links">
+                <span><i class="fa-solid fa-circle-check"></i> LGPD Compliant</span>
+                <span>•</span>
+                <span><i class="fa-solid fa-lock"></i> SSL Active</span>
+            </div>
         </div>
     </footer>
 
+    <!-- ==========================================================================
+         SCRIPT JAVASCRIPT (Efeito de Digitação)
+         ========================================================================== -->
     <script>
-        // Typewriter (mesmo do original, só ajustado)
         const words = [
             "Análise de Dados Estratégicos.",
-            "Engenharia de IA & Soluções.",
-            "Criador do Ecossistema Cognivus.",
-            "Gestor Analítico & Jurimetria."
+            "Engenharia de Software Assistida por IA.",
+            "Desenvolvedor do Ecossistema Cognivus.",
+            "Gestor de Processos &amp; Qualidade Analítica."
         ];
         let i = 0;
         let timer;
 
         function typingEffect() {
-            let currentWord = words[i];
+            let currentWord = words[i].replace(/&amp;/g, '&'); // Corrige escape HTML para digitação
             let word = currentWord.split("");
-            let typewriter = document.getElementById('typewriter');
-            typewriter.innerHTML = "";
-
-            function loopTyping() {
+            var loopTyping = function() {
                 if (word.length > 0) {
-                    typewriter.innerHTML += word.shift();
-                    timer = setTimeout(loopTyping, 70);
+                    document.getElementById('typewriter').innerHTML += word.shift();
                 } else {
-                    setTimeout(deletingEffect, 1800);
+                    setTimeout(deletingEffect, 2000);
+                    return false;
                 }
-            }
+                timer = setTimeout(loopTyping, 60);
+            };
             loopTyping();
         }
 
         function deletingEffect() {
-            let currentWord = words[i];
+            let currentWord = words[i].replace(/&amp;/g, '&');
             let word = currentWord.split("");
-            let typewriter = document.getElementById('typewriter');
-
-            function loopDeleting() {
+            var loopDeleting = function() {
                 if (word.length > 0) {
                     word.pop();
-                    typewriter.innerHTML = word.join("");
-                    timer = setTimeout(loopDeleting, 40);
+                    document.getElementById('typewriter').innerHTML = word.join("");
                 } else {
-                    i = (i + 1) % words.length;
-                    setTimeout(typingEffect, 600);
+                    if (words.length > (i + 1)) {
+                        i++;
+                    } else {
+                        i = 0;
+                    }
+                    setTimeout(typingEffect, 500);
+                    return false;
                 }
-            }
+                timer = setTimeout(loopDeleting, 30);
+            };
             loopDeleting();
         }
 
-        document.addEventListener("DOMContentLoaded", typingEffect);
+        document.addEventListener("DOMContentLoaded", function() {
+            typingEffect();
+        });
     </script>
 </body>
 </html>

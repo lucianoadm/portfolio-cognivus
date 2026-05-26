@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* ==========================================================================
-           DESIGN SYSTEM: SUAVE OCEAN BLUE (FUTURISTA, FLUIDO E COMPLIANT)
+           DESIGN SYSTEM: SUAVE OCEAN BLUE EDITION (FUTURISTA E DATA-DRIVEN)
            ========================================================================== */
         :root {
             --bg-deep: #0a1322;
             --bg-gradient: linear-gradient(135deg, #060b14 0%, #0d1e36 50%, #132543 100%);
-            --bg-card: rgba(19, 35, 61, 0.75);
+            --bg-card: rgba(19, 35, 61, 0.8);
             --accent-glow: #38bdf8;
             --accent-glow-secondary: #22d3ee;
             --text-main: #f8fafc;
@@ -46,7 +46,7 @@
         }
 
         /* ==========================================================================
-           CABEÇALHO
+           HEADER (APENAS COM ACESSO AO DASHBOARD)
            ========================================================================== */
         header {
             background-color: rgba(6, 11, 20, 0.85);
@@ -106,11 +106,11 @@
         }
 
         /* ==========================================================================
-           SEÇÃO HERO (MAIS AMPLA E RESPONSIVA)
+           HERO SECTION (CORREÇÃO DE SUPORTE VISUAL E COMPREENSÃO DE TELA)
            ========================================================================== */
         .hero {
             min-height: 100vh;
-            padding: 120px 0 60px 0;
+            padding: 140px 0 60px 0;
             display: flex;
             align-items: center;
             background: radial-gradient(circle at 85% 30%, rgba(56, 189, 248, 0.12) 0%, transparent 60%);
@@ -208,7 +208,7 @@
             margin-bottom: 35px;
         }
 
-        /* CONTAINER EXCLUSIVO DO VÍDEO (RESOLVE PROBLEMAS DE RENDERIZAÇÃO) */
+        /* RESOLUÇÃO DA TELA DO VÍDEO E COMPATIBILIDADE NATIVA HTML5 */
         .hero-visual-side {
             display: flex;
             justify-content: center;
@@ -219,12 +219,13 @@
         .hero-visual-wrapper {
             position: relative;
             width: 100%;
-            max-width: 500px; /* Tela expandida */
-            aspect-ratio: 16 / 9; /* Força proporção correta */
+            max-width: 540px; /* Expansão da área útil */
+            aspect-ratio: 16 / 9; /* Mantém proporção correta widescreen */
             border-radius: 16px;
             padding: 4px;
             background: linear-gradient(135deg, rgba(56, 189, 248, 0.5) 0%, rgba(34, 211, 238, 0.1) 100%);
             box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 25px rgba(56, 189, 248, 0.15);
+            background-color: #060b14;
         }
 
         .hero-video-loop {
@@ -233,15 +234,15 @@
             display: block;
             border-radius: 12px;
             object-fit: cover;
-            background-color: var(--bg-deep); /* Fallback visual */
         }
 
         /* ==========================================================================
-           GRID DOS ECOSSISTEMAS / APLICATIVOS (LEXOS)
+           GRID DE APLICATIVOS (ECOSSISTEMA LEXOS)
            ========================================================================== */
         .apps-section {
             padding: 80px 0;
             border-top: 1px solid var(--border-color);
+            background: rgba(6, 11, 20, 0.3);
         }
 
         .section-title {
@@ -249,17 +250,10 @@
             font-weight: 700;
             margin-bottom: 40px;
             text-align: center;
-            position: relative;
         }
 
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: var(--accent-glow);
-            margin: 10px auto 0 auto;
-            border-radius: 2px;
+        .section-title span {
+            color: var(--accent-glow);
         }
 
         .apps-grid {
@@ -272,7 +266,7 @@
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 14px;
-            padding: 24px;
+            padding: 28px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -287,23 +281,25 @@
         }
 
         .app-icon {
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: var(--accent-glow);
             margin-bottom: 15px;
         }
 
         .app-name {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             color: var(--text-main);
+            letter-spacing: 0.5px;
         }
 
         .app-desc {
-            font-size: 0.92rem;
+            font-size: 0.95rem;
             color: var(--text-muted);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             flex-grow: 1;
+            line-height: 1.5;
         }
 
         .app-link {
@@ -315,6 +311,8 @@
             color: var(--accent-glow);
             text-decoration: none;
             transition: color 0.2s;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 15px;
         }
 
         .app-link:hover {
@@ -322,7 +320,7 @@
         }
 
         /* ==========================================================================
-           BARRA DE PRIVACIDADE E COMPLIANCE
+           FOOTER COMPLIANCE
            ========================================================================== */
         .compliance-bar {
             background-color: rgba(6, 11, 20, 0.9);
@@ -415,7 +413,7 @@
 
                     <div style="display: flex; gap: 15px; flex-wrap: wrap;">
                         <a href="dashboard.html" class="nav-btn-dashboard" style="padding: 14px 28px; font-size: 1rem;">
-                            <i class="fa-solid fa-chart-line"></i> Analisar Matriz de Competências
+                            <i class="fa-solid fa-chart-line"></i> Analizar Matriz de Competências
                         </a>
                     </div>
                 </div>
@@ -424,7 +422,7 @@
                     <div class="hero-visual-wrapper">
                         <video class="hero-video-loop" autoplay loop muted playsinline preload="auto">
                             <source src="dreamina-2026-05-25-5656.mp4" type="video/mp4">
-                            Seu navegador não suporta vídeos HTML5.
+                            Seu navegador não suporta vídeos HTML5 nativos.
                         </video>
                     </div>
                 </div>
@@ -435,43 +433,43 @@
 
     <section class="apps-section">
         <div class="container">
-            <h2 class="section-title">Ecossistema LexOS (Cognivus)</h2>
+            <h2 class="section-title">Ecossistema <span>LexOS (Cognivus)</span></h2>
             <div class="apps-grid">
                 
                 <div class="app-card">
                     <div>
                         <div class="app-icon"><i class="fa-solid fa-chart-bar"></i></div>
                         <div class="app-name">LexMetric</div>
-                        <div class="app-desc">Plataforma analítica voltada para Jurimetria estatística de alto desempenho, modelagem de dados processuais e inteligência preditiva em tribunais.</div>
+                        <div class="app-desc">Plataforma analítica corporativa dedicada à Jurimetria estatística de alto nível, modelagem quantitativa de dados processuais e inteligência preditiva estruturada.</div>
                     </div>
-                    <a href="https://lexmetric.cognivus.com.br" target="_blank" class="app-link">Acessar App <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    <a href="https://lexmetric.cognivus.com.br" target="_blank" class="app-link">Acessar Hub de Dados <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 </div>
 
                 <div class="app-card">
                     <div>
                         <div class="app-icon"><i class="fa-solid fa-scale-balanced"></i></div>
                         <div class="app-name">LexRhetorical</div>
-                        <div class="app-desc">Módulo especializado em análise retórica computacional e Engenharia de Prompts voltada para a otimização de argumentos e peças jurídicas complexas.</div>
+                        <div class="app-desc">Módulo de inteligência artificial especializada em análise retórica computacional e Engenharia de Prompts para otimização argumentativa de alta complexidade.</div>
                     </div>
-                    <a href="https://lexrhetorical.cognivus.com.br" target="_blank" class="app-link">Acessar App <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    <a href="https://lexrhetorical.cognivus.com.br" target="_blank" class="app-link">Acessar Ambiente IA <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 </div>
 
                 <div class="app-card">
                     <div>
                         <div class="app-icon"><i class="fa-solid fa-file-word"></i></div>
                         <div class="app-name">LexWord</div>
-                        <div class="app-desc">Processador semântico de linguagem natural (PLN) para varredura estrutural, extração de entidades correlatas e automação documental ágil.</div>
+                        <div class="app-desc">Processador de Processamento de Linguagem Natural (PLN) para varredura semântica estrutural, extração ágil de entidades e auditoria documental em larga escala.</div>
                     </div>
-                    <a href="https://lexword.cognivus.com.br" target="_blank" class="app-link">Acessar App <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    <a href="https://lexword.cognivus.com.br" target="_blank" class="app-link">Abrir Processador <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 </div>
 
                 <div class="app-card">
                     <div>
                         <div class="app-icon"><i class="fa-solid fa-network-wired"></i></div>
                         <div class="app-name">NeuroOS</div>
-                        <div class="app-desc">O núcleo de orquestração cognitiva do ecossistema, gerenciando a integração entre os barramentos de dados externos e os modelos fundacionais de IA (LLMs).</div>
+                        <div class="app-desc">Orquestrador cognitivo central responsável pela integração entre barramentos de microsserviços, automação de fluxos inteligentes e modelos de LLMs.</div>
                     </div>
-                    <a href="https://neuroos.cognivus.com.br" target="_blank" class="app-link">Acessar App <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    <a href="https://neuroos.cognivus.com.br" target="_blank" class="app-link">Conectar Orquestrador <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                 </div>
 
             </div>
@@ -481,11 +479,11 @@
     <footer class="compliance-bar">
         <div class="container compliance-container">
             <div>
-                <p><strong>Segurança & Conformidade:</strong> Este portfólio digital atua sob os pilares de <i>Privacy by Design</i>.</p>
-                <p>Nenhum dado pessoal sensível é coletado ou armazenado sem consentimento expresso.</p>
+                <p><strong>Segurança & Conformidade:</strong> Este ecossistema digital atua sob os pilares estritos de <i>Privacy by Design</i>.</p>
+                <p>Nenhum dado pessoal ou metadado confidencial é retido sem as devidas permissões corporativas.</p>
             </div>
             <div>
-                <p>© 2026 Luciano P. de Moura. Todos os direitos reservados no ecossistema Cognivus.</p>
+                <p>© 2026 Luciano P. de Moura. Todos os direitos reservados à iniciativa Cognivus.</p>
             </div>
         </div>
     </footer>

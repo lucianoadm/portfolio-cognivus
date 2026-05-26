@@ -3,23 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luciano P. de Moura | Inteligência Jurídica & Engenharia de IA</title>
+    <title>Luciano P. de Moura | Inteligência Jurídica & Legal Analytics</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* ==========================================================================
-           DESIGN SYSTEM: SUAVE OCEAN BLUE EDITION (FUTURISTA E DATA-DRIVEN)
+           DESIGN SYSTEM: SUAVE OCEAN BLUE EDITION (CLARO, CONTRASTANTE E SEDUTOR)
            ========================================================================== */
         :root {
-            --bg-deep: #0a1322;
-            --bg-gradient: linear-gradient(135deg, #060b14 0%, #0d1e36 50%, #132543 100%);
-            --bg-card: rgba(19, 35, 61, 0.8);
-            --accent-glow: #38bdf8;
-            --accent-glow-secondary: #22d3ee;
-            --text-main: #f8fafc;
-            --text-muted: #cbd5e1;
-            --border-color: rgba(56, 189, 248, 0.25);
-            --border-hover: rgba(56, 189, 248, 0.8);
-            --success: #10b981;
+            --bg-deep: #0d1e36;       /* Fundo marítimo relaxante e mais claro */
+            --bg-gradient: linear-gradient(135deg, #091322 0%, #112543 50%, #18335c 100%);
+            --bg-card: rgba(21, 41, 74, 0.75); /* Card translúcido com fundo oceano */
+            --bg-tile: #1e3a64;       /* Azul oceano médio para divisores e tags */
+            --accent-glow: #38bdf8;   /* Azul ciano de tecnologia */
+            --accent-glow-secondary: #22d3ee; /* Azul turquesa complementar */
+            --text-main: #f8fafc;     /* Branco Soft para leitura confortável */
+            --text-muted: #cbd5e1;    /* Slate acinzetado claro e legível */
+            --border-color: rgba(56, 189, 248, 0.3); /* Borda inicial contrastante */
+            --border-hover: rgba(56, 189, 248, 0.85); /* Borda brilhante no hover */
+            --success: #10b981;       /* Verde governança */
+            
+            /* Badges de Cores Alternadas para Contraste */
+            --badge-edu: #a78bfa;     
+            --badge-core: #f43f5e;    
+            --badge-log: #10b981;     
+            --badge-dat: #f59e0b;     
+            --badge-sem: #ec4899;     
+            --badge-hub: #3b82f6;     
         }
 
         * {
@@ -38,18 +47,28 @@
             overflow-x: hidden;
         }
 
+        a {
+            color: var(--accent-glow);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+
         .container {
             width: 100%;
-            max-width: 1300px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 20px;
         }
 
         /* ==========================================================================
-           HEADER (APENAS COM ACESSO AO DASHBOARD)
+           HEADER (CABEÇALHO)
            ========================================================================== */
         header {
-            background-color: rgba(6, 11, 20, 0.85);
+            background-color: rgba(13, 30, 54, 0.9);
             border-bottom: 1px solid var(--border-color);
             position: fixed;
             width: 100%;
@@ -57,19 +76,21 @@
             left: 0;
             z-index: 1000;
             backdrop-filter: blur(12px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
         }
 
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 80px;
+            height: 70px;
         }
 
         .logo {
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             font-weight: 700;
             letter-spacing: 2px;
+            color: var(--text-main);
             display: flex;
             align-items: center;
             gap: 10px;
@@ -77,56 +98,86 @@
 
         .logo i {
             color: var(--accent-glow);
-            text-shadow: 0 0 10px var(--accent-glow);
+            text-shadow: 0 0 8px var(--accent-glow);
         }
 
         .logo span {
             color: var(--accent-glow);
         }
 
-        .nav-btn-dashboard {
-            background: rgba(56, 189, 248, 0.12);
-            border: 1px solid var(--accent-glow);
-            padding: 8px 18px;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            color: var(--accent-glow);
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-flex;
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
             align-items: center;
-            gap: 8px;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent-glow);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after, nav a.active::after {
+            width: 100%;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--accent-glow);
+        }
+
+        .nav-btn-dashboard {
+            background: rgba(56, 189, 248, 0.15);
+            border: 1px solid var(--accent-glow);
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 0.88rem;
+            color: var(--accent-glow) !important;
+            font-weight: 700;
+            transition: all 0.3s ease;
         }
 
         .nav-btn-dashboard:hover {
             background: var(--accent-glow);
-            color: var(--bg-deep);
+            color: #091322 !important;
             box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
         }
 
         /* ==========================================================================
-           HERO SECTION (CORREÇÃO DE SUPORTE VISUAL E COMPREENSÃO DE TELA)
+           HERO SECTION (PROPORÇÕES CORRIGIDAS)
            ========================================================================== */
         .hero {
-            min-height: 100vh;
-            padding: 140px 0 60px 0;
+            padding: 150px 0 100px 0;
+            background: radial-gradient(circle at 85% 30%, rgba(56, 189, 248, 0.15) 0%, transparent 65%),
+                        radial-gradient(circle at 15% 80%, rgba(34, 211, 238, 0.08) 0%, transparent 50%);
+            min-height: 95vh;
             display: flex;
             align-items: center;
-            background: radial-gradient(circle at 85% 30%, rgba(56, 189, 248, 0.12) 0%, transparent 60%);
         }
 
         .hero-layout {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 50px;
+            gap: 40px;
             align-items: center;
-            width: 100%;
         }
 
         @media(min-width: 992px) {
             .hero-layout {
-                grid-template-columns: 1.1fr 0.9fr;
+                grid-template-columns: 1.2fr 0.8fr;
             }
         }
 
@@ -135,39 +186,34 @@
             align-items: center;
             gap: 8px;
             padding: 8px 16px;
-            background: rgba(56, 189, 248, 0.1);
-            border: 1px solid rgba(56, 189, 248, 0.3);
+            background: rgba(56, 189, 248, 0.12);
+            border: 1px solid rgba(56, 189, 248, 0.4);
             color: var(--text-main);
             font-size: 0.85rem;
             font-weight: 700;
             border-radius: 50px;
             margin-bottom: 25px;
-            letter-spacing: 1px;
-        }
-
-        .hero-tag i {
-            color: var(--success);
+            letter-spacing: 1.5px;
         }
 
         .action-connect-bar {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
 
         .btn-sm {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 8px 16px;
+            padding: 8px 18px;
             border-radius: 6px;
-            font-size: 0.85rem;
+            font-size: 0.88rem;
             font-weight: 600;
             border: 1px solid var(--border-color);
-            background: rgba(13, 25, 47, 0.6);
+            background: rgba(19, 28, 49, 0.6);
             color: var(--text-muted);
-            text-decoration: none;
             cursor: pointer;
             transition: all 0.3s ease;
         }
@@ -175,24 +221,25 @@
         .btn-sm:hover {
             border-color: var(--accent-glow);
             color: var(--text-main);
-            background: rgba(19, 37, 67, 0.5);
+            background: rgba(30, 58, 100, 0.4);
         }
 
         .hero h1 {
-            font-size: 3.2rem;
+            font-size: 3.5rem;
             font-weight: 800;
-            line-height: 1.2;
+            line-height: 1.15;
             margin-bottom: 20px;
-            background: linear-gradient(135deg, var(--text-main) 40%, var(--accent-glow-secondary) 100%);
+            letter-spacing: -1.5px;
+            background: linear-gradient(135deg, var(--text-main) 30%, var(--accent-glow-secondary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .typewriter-container {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: var(--accent-glow);
-            margin-bottom: 30px;
-            height: 40px;
+            margin-bottom: 35px;
+            height: 45px;
             font-weight: 600;
         }
 
@@ -203,12 +250,12 @@
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
         .hero-p {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: var(--text-muted);
-            margin-bottom: 35px;
+            margin-bottom: 40px;
         }
 
-        /* RESOLUÇÃO DA TELA DO VÍDEO E COMPATIBILIDADE NATIVA HTML5 */
+        /* CONTAINER ROBUSTO DO VÍDEO COGNIVUS.MP4 */
         .hero-visual-side {
             display: flex;
             justify-content: center;
@@ -219,12 +266,12 @@
         .hero-visual-wrapper {
             position: relative;
             width: 100%;
-            max-width: 540px; /* Expansão da área útil */
-            aspect-ratio: 16 / 9; /* Mantém proporção correta widescreen */
-            border-radius: 16px;
-            padding: 4px;
-            background: linear-gradient(135deg, rgba(56, 189, 248, 0.5) 0%, rgba(34, 211, 238, 0.1) 100%);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 25px rgba(56, 189, 248, 0.15);
+            max-width: 460px;
+            aspect-ratio: 16 / 9;
+            border-radius: 20px;
+            padding: 5px;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.4) 0%, rgba(34, 211, 238, 0.1) 100%);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 30px rgba(56, 189, 248, 0.15);
             background-color: #060b14;
         }
 
@@ -232,105 +279,314 @@
             width: 100%;
             height: 100%;
             display: block;
-            border-radius: 12px;
+            border-radius: 16px;
             object-fit: cover;
         }
 
         /* ==========================================================================
-           GRID DE APLICATIVOS (ECOSSISTEMA LEXOS)
+           GRID DE ECOSSISTEMAS (OS 6 CARDS ORIGINAIS)
            ========================================================================== */
-        .apps-section {
-            padding: 80px 0;
-            border-top: 1px solid var(--border-color);
-            background: rgba(6, 11, 20, 0.3);
+        .ecosystem {
+            padding: 100px 0;
+            position: relative;
         }
 
-        .section-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 40px;
+        .section-header {
             text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px auto;
         }
 
-        .section-title span {
-            color: var(--accent-glow);
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--text-main) 50%, var(--accent-glow) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .apps-grid {
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .grid-ecosystem {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
         }
 
-        .app-card {
-            background: var(--bg-card);
+        .card-eco {
+            background-color: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 28px;
+            border-radius: 16px;
+            padding: 35px;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
             backdrop-filter: blur(8px);
         }
 
-        .app-card:hover {
+        .card-eco::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            transition: background 0.3s ease;
+        }
+
+        .card-eco:hover {
             transform: translateY(-5px);
             border-color: var(--border-hover);
-            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.15);
+            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.15);
         }
 
-        .app-icon {
-            font-size: 2.2rem;
+        .card-eco.edu:hover::before { background: var(--badge-edu); }
+        .card-eco.core:hover::before { background: var(--badge-core); }
+        .card-eco.log:hover::before { background: var(--badge-log); }
+        .card-eco.dat:hover::before { background: var(--badge-dat); }
+        .card-eco.sem:hover::before { background: var(--badge-sem); }
+        .card-eco.hub:hover::before { background: var(--badge-hub); }
+
+        .card-header-eco {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .badge-eco {
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 6px 12px;
+            border-radius: 4px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .badge-eco.edu { background: rgba(167, 139, 250, 0.15); color: var(--badge-edu); }
+        .badge-eco.core { background: rgba(244, 63, 94, 0.15); color: var(--badge-core); }
+        .badge-eco.log { background: rgba(16, 185, 129, 0.15); color: var(--badge-log); }
+        .badge-eco.dat { background: rgba(245, 158, 11, 0.15); color: var(--badge-dat); }
+        .badge-eco.sem { background: rgba(236, 72, 153, 0.15); color: var(--badge-sem); }
+        .badge-eco.hub { background: rgba(59, 130, 246, 0.15); color: var(--badge-hub); }
+
+        .icon-eco {
+            font-size: 1.8rem;
             color: var(--accent-glow);
-            margin-bottom: 15px;
         }
 
-        .app-name {
-            font-size: 1.3rem;
+        .card-eco h3 {
+            font-size: 1.4rem;
             font-weight: 700;
             margin-bottom: 12px;
             color: var(--text-main);
-            letter-spacing: 0.5px;
         }
 
-        .app-desc {
-            font-size: 0.95rem;
+        .card-eco p {
             color: var(--text-muted);
+            font-size: 0.98rem;
             margin-bottom: 25px;
             flex-grow: 1;
-            line-height: 1.5;
         }
 
-        .app-link {
+        .card-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 20px;
+        }
+
+        .status-pill {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .status-pill.online i { color: var(--success); }
+        .status-pill.dev i { color: var(--badge-dat); }
+
+        .btn-card-link {
             font-size: 0.9rem;
             font-weight: 700;
             color: var(--accent-glow);
-            text-decoration: none;
-            transition: color 0.2s;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 15px;
-        }
-
-        .app-link:hover {
-            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         /* ==========================================================================
-           FOOTER COMPLIANCE
+           TRAJETÓRIA PROFISSIONAL & ACADÊMICA
+           ========================================================================== */
+        .timeline-section {
+            padding: 100px 0;
+            background-color: rgba(6, 11, 20, 0.3);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: var(--border-color);
+            top: 0;
+            bottom: 0;
+            left: 30px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: transparent;
+            margin-bottom: 40px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            left: 21px;
+            top: 15px;
+            background-color: var(--bg-deep);
+            border: 3px solid var(--accent-glow);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-content {
+            padding: 25px 30px;
+            background-color: var(--bg-card);
+            position: relative;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .timeline-date {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-glow);
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .timeline-institution {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .timeline-content p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        /* ==========================================================================
+           AUTORIDADE: BANNER DE COMPLIANCE, SEGURANÇA & LGPD
            ========================================================================== */
         .compliance-bar {
-            background-color: rgba(6, 11, 20, 0.9);
+            background-color: rgba(17, 37, 67, 0.85);
             border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 60px 0;
+            box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .compliance-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        @media(min-width: 768px) {
+            .compliance-grid {
+                grid-template-columns: 1fr 2.5fr;
+                align-items: center;
+            }
+        }
+
+        .compliance-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--accent-glow);
+        }
+
+        .compliance-title i {
+            font-size: 2.5rem;
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .compliance-title h2 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: 0.5px;
+        }
+
+        .compliance-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .badge-comp {
+            background-color: rgba(13, 25, 47, 0.6);
+            border: 1px solid var(--border-color);
+            padding: 15px 20px;
+            border-radius: 8px;
+            flex: 1 1 200px;
+        }
+
+        .badge-comp h4 {
+            color: var(--text-main);
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .badge-comp h4 i { color: var(--success); }
+        .badge-comp p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.4; }
+
+        /* ==========================================================================
+           RODAPÉ PADRÃO (FOOTER)
+           ========================================================================== */
+        footer.main-footer {
+            background-color: #060b14;
             padding: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
             font-size: 0.88rem;
             color: var(--text-muted);
         }
 
-        .compliance-container {
+        .footer-container {
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -339,7 +595,7 @@
         }
 
         @media(min-width: 768px) {
-            .compliance-container {
+            .footer-container {
                 flex-direction: row;
                 justify-content: space-between;
                 text-align: left;
@@ -372,19 +628,24 @@
             <div class="logo">
                 <i class="fa-solid fa-brain"></i> LUCIANO <span>P. DE MOURA</span>
             </div>
-            <a href="dashboard.html" class="nav-btn-dashboard">
-                <i class="fa-solid fa-chart-pie"></i> Ver Dashboard
-            </a>
+            <nav>
+                <ul>
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#ecossistema">Ecossistema</a></li>
+                    <li><a href="#trajetoria">Trajetória</a></li>
+                    <li><a href="dashboard.html" class="nav-btn-dashboard"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
-    <section class="hero">
+    <section id="home" class="hero">
         <div class="container">
             <div class="hero-layout">
                 
                 <div class="hero-content">
                     <div class="hero-tag">
-                        <i class="fa-solid fa-cookie-bite"></i> AMBIENTE COOKIE-LESS & COMPLIANT LGPD
+                        <i class="fa-solid fa-shield-halved"></i> AMBIENTE 100% COMPLIANT & COOKIE-LESS
                     </div>
 
                     <div class="action-connect-bar">
@@ -406,14 +667,14 @@
                     </div>
 
                     <p class="hero-p">
-                        Desenvolvimento de soluções estratégicas orientadas a dados no ecossistema 
-                        <strong>Cognivus (LexOS)</strong>. Unindo Jurimetria, Analytics Avançado e IA Generativa 
-                        sob rigorosos frameworks de Governança de TI e <i>Privacy by Design</i>.
+                        Desenvolvimento de soluções estratégicas e aplicações orientadas a dados no ecossistema 
+                        <strong>Cognivus (LexOS)</strong>. Unindo Ciência de Dados, Business Intelligence e 
+                        Inteligência Artificial Generativa sob rígidos padrões de Governança corporativa e LGPD.
                     </p>
 
                     <div style="display: flex; gap: 15px; flex-wrap: wrap;">
                         <a href="dashboard.html" class="nav-btn-dashboard" style="padding: 14px 28px; font-size: 1rem;">
-                            <i class="fa-solid fa-chart-line"></i> Analizar Matriz de Competências
+                            <i class="fa-solid fa-chart-line"></i> Analisar Matriz de Competências
                         </a>
                     </div>
                 </div>
@@ -421,8 +682,8 @@
                 <div class="hero-visual-side">
                     <div class="hero-visual-wrapper">
                         <video class="hero-video-loop" autoplay loop muted playsinline preload="auto">
-                            <source src="dreamina-2026-05-25-5656.mp4" type="video/mp4">
-                            Seu navegador não suporta vídeos HTML5 nativos.
+                            <source src="cognivus.mp4" type="video/mp4">
+                            Seu navegador não suporta a execução de vídeos nativos.
                         </video>
                     </div>
                 </div>
@@ -431,56 +692,178 @@
         </div>
     </section>
 
-    <section class="apps-section">
+    <section id="ecossistema" class="ecosystem">
         <div class="container">
-            <h2 class="section-title">Ecossistema <span>LexOS (Cognivus)</span></h2>
-            <div class="apps-grid">
-                
-                <div class="app-card">
+            <div class="section-header">
+                <h2>Arquitetura do Ecossistema LexOS</h2>
+                <p>Aplicações modulares integradas para inteligência jurídica, análise preditiva e governança de dados estruturados.</p>
+            </div>
+            
+            <div class="grid-ecosystem">
+                <div class="card-eco core">
                     <div>
-                        <div class="app-icon"><i class="fa-solid fa-chart-bar"></i></div>
-                        <div class="app-name">LexMetric</div>
-                        <div class="app-desc">Plataforma analítica corporativa dedicada à Jurimetria estatística de alto nível, modelagem quantitativa de dados processuais e inteligência preditiva estruturada.</div>
+                        <div class="card-header-eco">
+                            <span class="badge-eco core">Core System</span>
+                            <div class="icon-eco"><i class="fa-solid fa-cubes"></i></div>
+                        </div>
+                        <h3>LexOS</h3>
+                        <p>O ecossistema operacional unificado. Infraestrutura centralizada que serve como base de integração estável para todos os sub-módulos e barramentos analíticos.</p>
                     </div>
-                    <a href="https://lexmetric.cognivus.com.br" target="_blank" class="app-link">Acessar Hub de Dados <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    <div class="card-actions">
+                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Em Produção</span>
+                        <a href="https://lexos.cognivus.com.br" target="_blank" class="btn-card-link">Acessar <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
                 </div>
 
-                <div class="app-card">
+                <div class="card-eco hub">
                     <div>
-                        <div class="app-icon"><i class="fa-solid fa-scale-balanced"></i></div>
-                        <div class="app-name">LexRhetorical</div>
-                        <div class="app-desc">Módulo de inteligência artificial especializada em análise retórica computacional e Engenharia de Prompts para otimização argumentativa de alta complexidade.</div>
+                        <div class="card-header-eco">
+                            <span class="badge-eco hub">Analytics</span>
+                            <div class="icon-eco"><i class="fa-solid fa-chart-bar"></i></div>
+                        </div>
+                        <h3>LexMetric</h3>
+                        <p>Módulo de inteligência jurimétrica e Business Intelligence avançado. Consolida e cruza dados estatísticos processuais para extração de tendências judiciais.</p>
                     </div>
-                    <a href="https://lexrhetorical.cognivus.com.br" target="_blank" class="app-link">Acessar Ambiente IA <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    <div class="card-actions">
+                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Em Produção</span>
+                        <a href="https://lexmetric.cognivus.com.br" target="_blank" class="btn-card-link">Acessar <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
                 </div>
 
-                <div class="app-card">
+                <div class="card-eco sem">
                     <div>
-                        <div class="app-icon"><i class="fa-solid fa-file-word"></i></div>
-                        <div class="app-name">LexWord</div>
-                        <div class="app-desc">Processador de Processamento de Linguagem Natural (PLN) para varredura semântica estrutural, extração ágil de entidades e auditoria documental em larga escala.</div>
+                        <div class="card-header-eco">
+                            <span class="badge-eco sem">Análise Cognitiva</span>
+                            <div class="icon-eco"><i class="fa-solid fa-scale-balanced"></i></div>
+                        </div>
+                        <h3>LexRhetorical</h3>
+                        <p>Análise de retórica e argumentação jurídica orientada por modelos linguísticos. Avaliação de padrões textuais e eficácia discursiva em peças processuais.</p>
                     </div>
-                    <a href="https://lexword.cognivus.com.br" target="_blank" class="app-link">Abrir Processador <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    <div class="card-actions">
+                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Em Produção</span>
+                        <a href="https://lexrhetorical.cognivus.com.br" target="_blank" class="btn-card-link">Acessar <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
                 </div>
 
-                <div class="app-card">
+                <div class="card-eco log">
                     <div>
-                        <div class="app-icon"><i class="fa-solid fa-network-wired"></i></div>
-                        <div class="app-name">NeuroOS</div>
-                        <div class="app-desc">Orquestrador cognitivo central responsável pela integração entre barramentos de microsserviços, automação de fluxos inteligentes e modelos de LLMs.</div>
+                        <div class="card-header-eco">
+                            <span class="badge-eco log">Processamento PLN</span>
+                            <div class="icon-eco"><i class="fa-solid fa-file-word"></i></div>
+                        </div>
+                        <h3>LexWord</h3>
+                        <p>Processador inteligente de linguagem natural especializado em textos de alta complexidade. Extração automática de termos chaves, entidades e nexos causais.</p>
                     </div>
-                    <a href="https://neuroos.cognivus.com.br" target="_blank" class="app-link">Conectar Orquestrador <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    <div class="card-actions">
+                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Em Produção</span>
+                        <a href="https://lexword.cognivus.com.br" target="_blank" class="btn-card-link">Acessar <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
                 </div>
 
+                <div class="card-eco dat">
+                    <div>
+                        <div class="card-header-eco">
+                            <span class="badge-eco dat">Orquestrador IA</span>
+                            <div class="icon-eco"><i class="fa-solid fa-network-wired"></i></div>
+                        </div>
+                        <h3>NeuroOS</h3>
+                        <p>O cérebro distribuidor de microsserviços do ecossistema. Orquestra de maneira segura a chamada para grandes modelos de linguagem (LLMs) e agentes de IA.</p>
+                    </div>
+                    <div class="card-actions">
+                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Em Produção</span>
+                        <a href="https://neuroos.cognivus.com.br" target="_blank" class="btn-card-link">Acessar <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="card-eco edu">
+                    <div>
+                        <div class="card-header-eco">
+                            <span class="badge-eco edu">Hub Institucional</span>
+                            <div class="icon-eco"><i class="fa-solid fa-fingerprint"></i></div>
+                        </div>
+                        <h3>Cognivus</h3>
+                        <p>O portal agregador e vitrine institucional das iniciativas do grupo, concentrando dados de pesquisa corporativa, inovação digital e marcas proprietárias.</p>
+                    </div>
+                    <div class="card-actions">
+                        <span class="status-pill dev"><i class="fa-solid fa-circle"></i> Homologação</span>
+                        <a href="https://cognivus.com.br" target="_blank" class="btn-card-link">Acessar <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer class="compliance-bar">
-        <div class="container compliance-container">
+    <section id="trajetoria" class="timeline-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Trajetória Profissional & Acadêmica</h2>
+                <p>A consolidação conceitual e a formação técnica contínua que dão sustentação ao ecossistema tecnológico.</p>
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Agosto 2025 – Presente</div>
+                        <h3>Bacharelado em Direito</h3>
+                        <div class="timeline-institution">Faculdade Anhanguera Taubaté</div>
+                        <p>Desenvolvimento de competências em Teoria Geral do Processo, Direito Constitucional e hermenêutica jurídica, fundamentando o lastro legal do ecossistema LexOS.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Janeiro 2026 – Abril 2026</div>
+                        <h3>Formação "Excel com IA"</h3>
+                        <div class="timeline-institution">Programa Santander / Alura</div>
+                        <p>Especialização focada em otimização de matrizes de dados complexas, automação avançada com prompts e integração de ferramentas de inteligência artificial aplicadas a negócios.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Histórico de Consolidação</div>
+                        <h3>Bacharel em Administração de Empresas & MBA</h3>
+                        <div class="timeline-institution">Especialização em Gestão de Negócios & Marketing</div>
+                        <p>Sólida formação em governança corporativa, compliance estratégico e análise de processos. Base analítica indispensável para o desenvolvimento de soluções corporativas e jurimetria orientada a resultados.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="compliance-bar">
+        <div class="container">
+            <div class="compliance-grid">
+                <div class="compliance-title">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <h2>Governança,<br>Segurança & LGPD</h2>
+                </div>
+                <div class="compliance-badges">
+                    <div class="badge-comp">
+                        <h4><i class="fa-solid fa-fingerprint"></i> Privacy by Design</h4>
+                        <p>Arquitetura pensada nativamente para a proteção e privacidade dos dados desde a concepção do código estrutural.</p>
+                    </div>
+                    <div class="badge-comp">
+                        <h4><i class="fa-solid fa-cookie-bite"></i> Cookie-Less Static</h4>
+                        <p>Este ambiente não realiza o rastreamento, coleta de metadados invisíveis ou armazenamento de cookies analíticos de terceiros.</p>
+                    </div>
+                    <div class="badge-comp">
+                        <h4><i class="fa-solid fa-user-shield"></i> Legítimo Interesse</h4>
+                        <p>Tratamento estrito de dados sob os preceitos da Lei Geral de Proteção de Dados (Lei 13.709/18) e conformidade corporativa.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container footer-container">
             <div>
-                <p><strong>Segurança & Conformidade:</strong> Este ecossistema digital atua sob os pilares estritos de <i>Privacy by Design</i>.</p>
-                <p>Nenhum dado pessoal ou metadado confidencial é retido sem as devidas permissões corporativas.</p>
+                <p><strong>Segurança Corporativa:</strong> Este portfólio opera sob rígidas camadas de integridade estática.</p>
+                <p>Nenhum dado pessoal é transacionado sem validação criptográfica ou consentimento explícito.</p>
             </div>
             <div>
                 <p>© 2026 Luciano P. de Moura. Todos os direitos reservados à iniciativa Cognivus.</p>

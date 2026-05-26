@@ -3,32 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luciano P. de Moura | Análise de Dados & Engenharia de IA</title>
+    <title>Luciano P. de Moura | Inteligência Jurídica & Engenharia de IA</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* ==========================================================================
-           DESIGN SYSTEM: SUAVE OCEAN BLUE EDITION (CLARO, CONTRASTANTE E SEDUTOR)
+           DESIGN SYSTEM: SUAVE OCEAN BLUE (FUTURISTA, FLUIDO E COMPLIANT)
            ========================================================================== */
         :root {
-            --bg-deep: #0d1e36;       /* Fundo marítimo relaxante e mais claro */
-            --bg-gradient: linear-gradient(135deg, #091322 0%, #112543 50%, #18335c 100%);
-            --bg-card: rgba(21, 41, 74, 0.75); /* Card translúcido com fundo oceano */
-            --bg-tile: #1e3a64;       /* Azul oceano médio para divisores e tags */
-            --accent-glow: #38bdf8;   /* Azul ciano de tecnologia */
-            --accent-glow-secondary: #22d3ee; /* Azul turquesa complementar */
-            --text-main: #f8fafc;     /* Branco Soft para leitura confortável */
-            --text-muted: #cbd5e1;    /* Slate acinzetado claro e legível */
-            --border-color: rgba(56, 189, 248, 0.3); /* Borda inicial contrastante */
-            --border-hover: rgba(56, 189, 248, 0.85); /* Borda brilhante no hover */
-            --success: #0ea5e9;       /* Azul governação */
-            
-            /* Badges de Cores Alternadas para Contraste */
-            --badge-edu: #a78bfa;     /* Roxo suave */
-            --badge-core: #f43f5e;    /* Coral moderno */
-            --badge-log: #10b981;     /* Esmeralda */
-            --badge-dat: #f59e0b;     /* Âmbar brilhante */
-            --badge-sem: #ec4899;     /* Rosa chic */
-            --badge-hub: #3b82f6;     /* Azul elétrico */
+            --bg-deep: #0a1322;
+            --bg-gradient: linear-gradient(135deg, #060b14 0%, #0d1e36 50%, #132543 100%);
+            --bg-card: rgba(19, 35, 61, 0.75);
+            --accent-glow: #38bdf8;
+            --accent-glow-secondary: #22d3ee;
+            --text-main: #f8fafc;
+            --text-muted: #cbd5e1;
+            --border-color: rgba(56, 189, 248, 0.25);
+            --border-hover: rgba(56, 189, 248, 0.8);
+            --success: #10b981;
         }
 
         * {
@@ -47,28 +38,18 @@
             overflow-x: hidden;
         }
 
-        a {
-            color: var(--accent-glow);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        a:hover {
-            text-shadow: 0 0 10px var(--accent-glow);
-        }
-
         .container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1300px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 24px;
         }
 
         /* ==========================================================================
-           CABEÇALHO (HEADER)
+           CABEÇALHO
            ========================================================================== */
         header {
-            background-color: rgba(13, 30, 54, 0.9);
+            background-color: rgba(6, 11, 20, 0.85);
             border-bottom: 1px solid var(--border-color);
             position: fixed;
             width: 100%;
@@ -76,21 +57,19 @@
             left: 0;
             z-index: 1000;
             backdrop-filter: blur(12px);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
         }
 
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 70px;
+            height: 80px;
         }
 
         .logo {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             font-weight: 700;
             letter-spacing: 2px;
-            color: var(--text-main);
             display: flex;
             align-items: center;
             gap: 10px;
@@ -98,92 +77,57 @@
 
         .logo i {
             color: var(--accent-glow);
-            text-shadow: 0 0 8px var(--accent-glow);
+            text-shadow: 0 0 10px var(--accent-glow);
         }
 
         .logo span {
             color: var(--accent-glow);
         }
 
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-            align-items: center;
-        }
-
-        nav a {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            font-weight: 600;
-            padding: 5px 0;
-            position: relative;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--accent-glow);
-            transition: width 0.3s ease;
-        }
-
-        nav a:hover::after, nav a.active::after {
-            width: 100%;
-        }
-
-        nav a:hover, nav a.active {
-            color: var(--accent-glow);
-        }
-
         .nav-btn-dashboard {
-            background: rgba(56, 189, 248, 0.15);
+            background: rgba(56, 189, 248, 0.12);
             border: 1px solid var(--accent-glow);
-            padding: 6px 14px;
-            border-radius: 4px;
-            font-size: 0.88rem;
-            color: var(--accent-glow) !important;
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: var(--accent-glow);
             font-weight: 700;
+            text-decoration: none;
             transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .nav-btn-dashboard:hover {
             background: var(--accent-glow);
-            color: #091322 !important;
+            color: var(--bg-deep);
             box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
-            text-shadow: none !important;
         }
 
         /* ==========================================================================
-           SEÇÃO HERO EM DUAS COLUNAS & ANIMAÇÃO IA
+           SEÇÃO HERO (MAIS AMPLA E RESPONSIVA)
            ========================================================================== */
         .hero {
-            padding: 150px 0 100px 0;
-            background: radial-gradient(circle at 85% 30%, rgba(56, 189, 248, 0.15) 0%, transparent 65%),
-                        radial-gradient(circle at 15% 80%, rgba(34, 211, 238, 0.08) 0%, transparent 50%);
-            min-height: 95vh;
+            min-height: 100vh;
+            padding: 120px 0 60px 0;
             display: flex;
             align-items: center;
+            background: radial-gradient(circle at 85% 30%, rgba(56, 189, 248, 0.12) 0%, transparent 60%);
         }
 
         .hero-layout {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 40px;
+            gap: 50px;
             align-items: center;
+            width: 100%;
         }
 
         @media(min-width: 992px) {
             .hero-layout {
-                grid-template-columns: 1.2fr 0.8fr;
+                grid-template-columns: 1.1fr 0.9fr;
             }
-        }
-
-        .hero-content {
-            max-width: 100%;
         }
 
         .hero-tag {
@@ -191,221 +135,236 @@
             align-items: center;
             gap: 8px;
             padding: 8px 16px;
-            background: rgba(56, 189, 248, 0.12);
-            border: 1px solid rgba(56, 189, 248, 0.4);
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.3);
             color: var(--text-main);
             font-size: 0.85rem;
             font-weight: 700;
             border-radius: 50px;
             margin-bottom: 25px;
-            letter-spacing: 1.5px;
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.1);
+            letter-spacing: 1px;
         }
 
         .hero-tag i {
-            color: var(--accent-glow);
-            animation: pulse 2s infinite;
+            color: var(--success);
         }
 
         .action-connect-bar {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         .btn-sm {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 8px 18px;
+            padding: 8px 16px;
             border-radius: 6px;
-            font-size: 0.88rem;
+            font-size: 0.85rem;
             font-weight: 600;
             border: 1px solid var(--border-color);
-            background: rgba(19, 28, 49, 0.6);
+            background: rgba(13, 25, 47, 0.6);
             color: var(--text-muted);
+            text-decoration: none;
             cursor: pointer;
             transition: all 0.3s ease;
-        }
-
-        .btn-sm i {
-            font-size: 1rem;
-            transition: transform 0.3s ease;
         }
 
         .btn-sm:hover {
             border-color: var(--accent-glow);
             color: var(--text-main);
-            background: rgba(30, 58, 100, 0.4);
-            box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
+            background: rgba(19, 37, 67, 0.5);
         }
 
-        .btn-sm:hover i {
-            transform: scale(1.1);
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--text-main) 40%, var(--accent-glow-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .btn-share {
-            border-color: rgba(34, 211, 238, 0.4);
-            color: var(--accent-glow-secondary);
+        .typewriter-container {
+            font-size: 1.5rem;
+            color: var(--accent-glow);
+            margin-bottom: 30px;
+            height: 40px;
+            font-weight: 600;
+        }
+
+        .cursor {
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        .hero-p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 35px;
+        }
+
+        /* CONTAINER EXCLUSIVO DO VÍDEO (RESOLVE PROBLEMAS DE RENDERIZAÇÃO) */
+        .hero-visual-side {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-visual-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 500px; /* Tela expandida */
+            aspect-ratio: 16 / 9; /* Força proporção correta */
+            border-radius: 16px;
+            padding: 4px;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.5) 0%, rgba(34, 211, 238, 0.1) 100%);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 25px rgba(56, 189, 248, 0.15);
+        }
+
+        .hero-video-loop {
+            width: 100%;
+            height: 100%;
+            display: block;
+            border-radius: 12px;
+            object-fit: cover;
+            background-color: var(--bg-deep); /* Fallback visual */
+        }
+
+        /* ==========================================================================
+           GRID DOS ECOSSISTEMAS / APLICATIVOS (LEXOS)
+           ========================================================================== */
+        .apps-section {
+            padding: 80px 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--accent-glow);
+            margin: 10px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .app-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(8px);
+        }
+
+        .app-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--border-hover);
+            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.15);
+        }
+
+        .app-icon {
+            font-size: 2rem;
+            color: var(--accent-glow);
+            margin-bottom: 15px;
+        }
+
+        .app-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .app-desc {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .app-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent-glow);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .app-link:hover {
+            color: var(--text-main);
+        }
+
+        /* ==========================================================================
+           BARRA DE PRIVACIDADE E COMPLIANCE
+           ========================================================================== */
+        .compliance-bar {
+            background-color: rgba(6, 11, 20, 0.9);
+            border-top: 1px solid var(--border-color);
+            padding: 40px 0;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        .compliance-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+            text-align: center;
+        }
+
+        @media(min-width: 768px) {
+            .compliance-container {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
         }
 
         .toast-notification {
             position: fixed;
             bottom: -60px;
             right: 20px;
-            background: var(--bg-card);
+            background: rgba(13, 25, 47, 0.95);
             border: 1px solid var(--accent-glow);
             color: var(--text-main);
             padding: 12px 24px;
             border-radius: 8px;
             font-weight: 600;
             font-size: 0.95rem;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(56, 189, 248, 0.2);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
             z-index: 2000;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: bottom 0.4s ease;
         }
 
-        .toast-notification.show {
-            bottom: 20px;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.2); opacity: 1; }
-            100% { transform: scale(1); opacity: 0.8; }
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            line-height: 1.15;
-            margin-bottom: 20px;
-            letter-spacing: -1.5px;
-            background: linear-gradient(135deg, var(--text-main) 30%, var(--accent-glow-secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .typewriter-container {
-            font-size: 1.6rem;
-            color: var(--accent-glow);
-            margin-bottom: 35px;
-            height: 45px;
-            font-weight: 600;
-            text-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
-        }
-
-        .cursor {
-            color: var(--text-main);
-            animation: blink 0.7s infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        .hero-p {
-            font-size: 1.15rem;
-            color: var(--text-muted);
-            margin-bottom: 40px;
-            max-width: 750px;
-            font-weight: 400;
-        }
-
-        .hero-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
-            color: var(--text-main);
-            padding: 16px 32px;
-            border-radius: 8px;
-            font-weight: 700;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 4px 25px rgba(29, 78, 216, 0.4);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.4);
-            border-color: var(--accent-glow);
-            background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
-        }
-
-        .btn-secondary {
-            background: rgba(19, 28, 49, 0.5);
-            border: 1px solid var(--border-color);
-            box-shadow: none;
-            color: var(--accent-glow);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(30, 58, 100, 0.3);
-            border-color: var(--accent-glow);
-            color: var(--text-main);
-        }
-
-        /* Container da Imagem/Vídeo em Loop */
-        .hero-visual-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 440px;
-            margin: 0 auto;
-            border-radius: 20px;
-            padding: 6px;
-            background: linear-gradient(135deg, rgba(56, 189, 248, 0.4) 0%, rgba(34, 211, 238, 0.1) 100%);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 30px rgba(56, 189, 248, 0.15);
-        }
-
-        .hero-video-loop {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 16px;
-            object-fit: cover;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        /* Restante do layout preservado */
-        .compliance-bar {
-            background-color: rgba(17, 37, 67, 0.85);
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-            padding: 60px 0;
-            box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .compliance-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-        }
-
-        @media(min-width: 768px) {
-            .compliance-grid {
-                grid-template-columns: 1fr 2.5fr;
-                align-items: center;
-            }
-        }
-
-        .compliance-title {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            color: var(--accent-glow);
-        }
+        .toast-notification.show { bottom: 20px; }
     </style>
 </head>
 <body>
@@ -415,38 +374,30 @@
             <div class="logo">
                 <i class="fa-solid fa-brain"></i> LUCIANO <span>P. DE MOURA</span>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="#home" class="active">Home</a></li>
-                    <li><a href="#sobre">Sobre</a></li>
-                    <li><a href="#skills">Competências</a></li>
-                    <li><a href="dashboard.html" class="nav-btn-dashboard"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
-                </ul>
-            </nav>
+            <a href="dashboard.html" class="nav-btn-dashboard">
+                <i class="fa-solid fa-chart-pie"></i> Ver Dashboard
+            </a>
         </div>
     </header>
 
-    <section id="home" class="hero">
+    <section class="hero">
         <div class="container">
             <div class="hero-layout">
                 
                 <div class="hero-content">
                     <div class="hero-tag">
-                        <i class="fa-solid fa-shield-halved"></i> AMBIENTE 100% COMPLIANT & COOKIE-LESS
+                        <i class="fa-solid fa-cookie-bite"></i> AMBIENTE COOKIE-LESS & COMPLIANT LGPD
                     </div>
 
                     <div class="action-connect-bar">
-                        <button class="btn-sm" onclick="window.open('https://github.com/lucianoadm', '_blank')">
+                        <a class="btn-sm" href="https://github.com/lucianoadm" target="_blank">
                             <i class="fa-brands fa-github"></i> GitHub
-                        </button>
-                        <button class="btn-sm" onclick="window.open('https://linkedin.com/in/lucianopmoura', '_blank')">
+                        </a>
+                        <a class="btn-sm" href="https://www.linkedin.com/in/lucianopmoura" target="_blank">
                             <i class="fa-brands fa-linkedin"></i> LinkedIn
-                        </button>
-                        <button class="btn-sm btn-share" onclick="copyShareLink()">
+                        </a>
+                        <button class="btn-sm" onclick="copyShareLink()">
                             <i class="fa-solid fa-share-nodes"></i> Compartilhar Link
-                        </button>
-                        <button class="btn-sm" onclick="window.location.href='dashboard.html'" style="border-color: var(--badge-edu); color: var(--badge-edu);">
-                            <i class="fa-solid fa-chart-simple"></i> Ver Analytics
                         </button>
                     </div>
 
@@ -457,26 +408,23 @@
                     </div>
 
                     <p class="hero-p">
-                        Desenvolvimento de soluções estratégicas e aplicações orientadas a dados no ecossistema 
-                        <strong>Cognivus (LexOS)</strong>. Unindo Ciência de Dados, Business Intelligence e 
-                        Inteligência Artificial Generativa sob rígidos padrões de Governança corporativa e LGPD.
+                        Desenvolvimento de soluções estratégicas orientadas a dados no ecossistema 
+                        <strong>Cognivus (LexOS)</strong>. Unindo Jurimetria, Analytics Avançado e IA Generativa 
+                        sob rigorosos frameworks de Governança de TI e <i>Privacy by Design</i>.
                     </p>
 
-                    <div class="hero-buttons">
-                        <a href="https://wa.me/5512992345678" target="_blank" class="btn">
-                            <i class="fa-brands fa-whatsapp"></i> Iniciar Conexão
-                        </a>
-                        <a href="dashboard.html" class="btn btn-secondary">
-                            <i class="fa-solid fa-chart-line"></i> Abrir Dashboard de Competências
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                        <a href="dashboard.html" class="nav-btn-dashboard" style="padding: 14px 28px; font-size: 1rem;">
+                            <i class="fa-solid fa-chart-line"></i> Analisar Matriz de Competências
                         </a>
                     </div>
                 </div>
 
                 <div class="hero-visual-side">
                     <div class="hero-visual-wrapper">
-                        <video class="hero-video-loop" autoplay loop muted playsinline poster="">
+                        <video class="hero-video-loop" autoplay loop muted playsinline preload="auto">
                             <source src="dreamina-2026-05-25-5656.mp4" type="video/mp4">
-                            Seu navegador não suporta a execução de vídeos em formato moderno.
+                            Seu navegador não suporta vídeos HTML5.
                         </video>
                     </div>
                 </div>
@@ -485,23 +433,80 @@
         </div>
     </section>
 
+    <section class="apps-section">
+        <div class="container">
+            <h2 class="section-title">Ecossistema LexOS (Cognivus)</h2>
+            <div class="apps-grid">
+                
+                <div class="app-card">
+                    <div>
+                        <div class="app-icon"><i class="fa-solid fa-chart-bar"></i></div>
+                        <div class="app-name">LexMetric</div>
+                        <div class="app-desc">Plataforma analítica voltada para Jurimetria estatística de alto desempenho, modelagem de dados processuais e inteligência preditiva em tribunais.</div>
+                    </div>
+                    <a href="https://lexmetric.cognivus.com.br" target="_blank" class="app-link">Acessar App <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+
+                <div class="app-card">
+                    <div>
+                        <div class="app-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+                        <div class="app-name">LexRhetorical</div>
+                        <div class="app-desc">Módulo especializado em análise retórica computacional e Engenharia de Prompts voltada para a otimização de argumentos e peças jurídicas complexas.</div>
+                    </div>
+                    <a href="https://lexrhetorical.cognivus.com.br" target="_blank" class="app-link">Acessar App <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+
+                <div class="app-card">
+                    <div>
+                        <div class="app-icon"><i class="fa-solid fa-file-word"></i></div>
+                        <div class="app-name">LexWord</div>
+                        <div class="app-desc">Processador semântico de linguagem natural (PLN) para varredura estrutural, extração de entidades correlatas e automação documental ágil.</div>
+                    </div>
+                    <a href="https://lexword.cognivus.com.br" target="_blank" class="app-link">Acessar App <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+
+                <div class="app-card">
+                    <div>
+                        <div class="app-icon"><i class="fa-solid fa-network-wired"></i></div>
+                        <div class="app-name">NeuroOS</div>
+                        <div class="app-desc">O núcleo de orquestração cognitiva do ecossistema, gerenciando a integração entre os barramentos de dados externos e os modelos fundacionais de IA (LLMs).</div>
+                    </div>
+                    <a href="https://neuroos.cognivus.com.br" target="_blank" class="app-link">Acessar App <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="compliance-bar">
+        <div class="container compliance-container">
+            <div>
+                <p><strong>Segurança & Conformidade:</strong> Este portfólio digital atua sob os pilares de <i>Privacy by Design</i>.</p>
+                <p>Nenhum dado pessoal sensível é coletado ou armazenado sem consentimento expresso.</p>
+            </div>
+            <div>
+                <p>© 2026 Luciano P. de Moura. Todos os direitos reservados no ecossistema Cognivus.</p>
+            </div>
+        </div>
+    </footer>
+
     <div id="share-toast" class="toast-notification">
-        <i class="fa-solid fa-circle-check" style="color: #10b981;"></i> Link copiado para a área de transferência!
+        Link copiado para a área de transferência!
     </div>
 
     <script>
         const words = [
             "Legal Analytics & Jurimetria.",
+            "Sistemas Especialistas (LexOS).",
             "Engenharia de Prompts Aplicada.",
             "Business Intelligence & Analytics.",
-            "Sistemas Especialistas (LexOS).",
             "Privacy by Design & Compliance."
         ];
         let i = 0;
         let timer;
 
         function typingEffect() {
-            let currentWord = words[i].replace(/&amp;/g, '&');
+            let currentWord = words[i];
             let word = currentWord.split("");
             var loopTyping = function() {
                 if (word.length > 0) {
@@ -516,18 +521,14 @@
         }
 
         function deletingEffect() {
-            let currentWord = words[i].replace(/&amp;/g, '&');
+            let currentWord = words[i];
             let word = currentWord.split("");
             var loopDeleting = function() {
                 if (word.length > 0) {
                     word.pop();
                     document.getElementById('typewriter').innerHTML = word.join("");
                 } else {
-                    if (words.length > (i + 1)) {
-                        i++;
-                    } else {
-                        i = 0;
-                    }
+                    if (words.length > (i + 1)) { i++; } else { i = 0; }
                     setTimeout(typingEffect, 500);
                     return false;
                 }
@@ -537,13 +538,10 @@
         }
 
         function copyShareLink() {
-            const shareUrl = "https://luciano.cognivus.com.br/";
-            navigator.clipboard.writeText(shareUrl).then(() => {
+            navigator.clipboard.writeText("https://luciano.cognivus.com.br/").then(() => {
                 const toast = document.getElementById("share-toast");
                 toast.classList.add("show");
                 setTimeout(() => { toast.classList.remove("show"); }, 3000);
-            }).catch(err => {
-                console.error("Erro ao copiar o link: ", err);
             });
         }
 

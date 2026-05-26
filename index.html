@@ -109,6 +109,7 @@
             display: flex;
             list-style: none;
             gap: 30px;
+            align-items: center;
         }
 
         nav a {
@@ -138,20 +139,51 @@
             color: var(--accent-glow);
         }
 
+        .nav-btn-dashboard {
+            background: rgba(56, 189, 248, 0.15);
+            border: 1px solid var(--accent-glow);
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 0.88rem;
+            color: var(--accent-glow) !important;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn-dashboard:hover {
+            background: var(--accent-glow);
+            color: #091322 !important;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+            text-shadow: none !important;
+        }
+
         /* ==========================================================================
-           SEÇÃO HERO & BOTÕES DE AÇÃO RÁPIDA
+           SEÇÃO HERO EM DUAS COLUNAS & ANIMAÇÃO IA
            ========================================================================== */
         .hero {
-            padding: 200px 0 120px 0;
+            padding: 150px 0 100px 0;
             background: radial-gradient(circle at 85% 30%, rgba(56, 189, 248, 0.15) 0%, transparent 65%),
                         radial-gradient(circle at 15% 80%, rgba(34, 211, 238, 0.08) 0%, transparent 50%);
-            min-height: 90vh;
+            min-height: 95vh;
             display: flex;
             align-items: center;
         }
 
+        .hero-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        @media(min-width: 992px) {
+            .hero-layout {
+                grid-template-columns: 1.2fr 0.8fr;
+            }
+        }
+
         .hero-content {
-            max-width: 850px;
+            max-width: 100%;
         }
 
         .hero-tag {
@@ -248,7 +280,7 @@
         }
 
         .hero h1 {
-            font-size: 3.8rem;
+            font-size: 3.5rem;
             font-weight: 800;
             line-height: 1.15;
             margin-bottom: 20px;
@@ -259,7 +291,7 @@
         }
 
         .typewriter-container {
-            font-size: 1.7rem;
+            font-size: 1.6rem;
             color: var(--accent-glow);
             margin-bottom: 35px;
             height: 45px;
@@ -278,11 +310,17 @@
         }
 
         .hero-p {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             color: var(--text-muted);
-            margin-bottom: 45px;
+            margin-bottom: 40px;
             max-width: 750px;
             font-weight: 400;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .btn {
@@ -291,7 +329,7 @@
             gap: 10px;
             background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
             color: var(--text-main);
-            padding: 16px 36px;
+            padding: 16px 32px;
             border-radius: 8px;
             font-weight: 700;
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -306,9 +344,41 @@
             background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
         }
 
-        /* ==========================================================================
-           COMPLIANCE & PRIVACY BY DESIGN
-           ========================================================================== */
+        .btn-secondary {
+            background: rgba(19, 28, 49, 0.5);
+            border: 1px solid var(--border-color);
+            box-shadow: none;
+            color: var(--accent-glow);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(30, 58, 100, 0.3);
+            border-color: var(--accent-glow);
+            color: var(--text-main);
+        }
+
+        /* Container da Imagem/Vídeo em Loop */
+        .hero-visual-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 440px;
+            margin: 0 auto;
+            border-radius: 20px;
+            padding: 6px;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.4) 0%, rgba(34, 211, 238, 0.1) 100%);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 30px rgba(56, 189, 248, 0.15);
+        }
+
+        .hero-video-loop {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 16px;
+            object-fit: cover;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Restante do layout preservado */
         .compliance-bar {
             background-color: rgba(17, 37, 67, 0.85);
             border-top: 1px solid var(--border-color);
@@ -334,388 +404,7 @@
             display: flex;
             align-items: center;
             gap: 15px;
-            color: var(--accent-glow-secondary);
-            font-size: 1.4rem;
-            font-weight: 700;
-        }
-
-        .compliance-icon {
-            font-size: 2.2rem;
-            filter: drop-shadow(0 0 10px rgba(34, 211, 238, 0.4));
-        }
-
-        .compliance-text p {
-            color: var(--text-muted);
-            font-size: 1.05rem;
-            line-height: 1.7;
-        }
-
-        .cookie-badge-info {
-            display: inline-block;
-            margin-top: 10px;
-            font-size: 0.82rem;
             color: var(--accent-glow);
-            background: rgba(56, 189, 248, 0.1);
-            padding: 4px 10px;
-            border-radius: 4px;
-            border: 1px solid rgba(56, 189, 248, 0.25);
-        }
-
-        /* ==========================================================================
-           SEÇÕES DE CONTEÚDO (CARDS & PORTFÓLIO)
-           ========================================================================== */
-        .section {
-            padding: 120px 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .section-title {
-            font-size: 2.4rem;
-            margin-bottom: 60px;
-            position: relative;
-            display: inline-block;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            color: var(--text-main);
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -12px;
-            left: 0;
-            width: 70px;
-            height: 4px;
-            border-radius: 2px;
-            background-color: var(--accent-glow);
-            box-shadow: 0 0 15px var(--accent-glow);
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-        }
-
-        @media(min-width: 768px) {
-            .portfolio-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .portfolio-grid-3 {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        .card {
-            background-color: var(--bg-card);
-            border: 2px solid var(--border-color); 
-            border-radius: 16px;
-            padding: 35px;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            overflow: hidden;
-            backdrop-filter: blur(8px);
-        }
-
-        .card::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, transparent 60%);
-            z-index: 0;
-            transition: all 0.4s ease;
-            pointer-events: none;
-        }
-
-        .card-header-area {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 25px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .card-icon-box {
-            font-size: 2.2rem;
-            color: var(--accent-glow);
-            filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.3));
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 5px 12px;
-            font-size: 0.75rem;
-            font-weight: 800;
-            border-radius: 50px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .badge-edu  { background: rgba(167, 139, 250, 0.15); border: 1px solid var(--badge-edu); color: #c4b5fd; }
-        .badge-core { background: rgba(244, 63, 94, 0.15); border: 1px solid var(--badge-core); color: #fda4af; }
-        .badge-log  { background: rgba(16, 185, 129, 0.15); border: 1px solid var(--badge-log); color: #6ee7b7; }
-        .badge-dat  { background: rgba(245, 158, 11, 0.15); border: 1px solid var(--badge-dat); color: #fde047; }
-        .badge-sem  { background: rgba(236, 72, 153, 0.15); border: 1px solid var(--badge-sem); color: #fbcfe8; }
-        .badge-hub  { background: rgba(59, 130, 246, 0.15); border: 1px solid var(--badge-hub); color: #93c5fd; }
-
-        .card-body-area {
-            position: relative;
-            z-index: 2;
-            flex-grow: 1;
-        }
-
-        .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--text-main);
-            letter-spacing: -0.5px;
-        }
-
-        .card p {
-            color: var(--text-muted);
-            font-size: 1rem;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-
-        .card-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: var(--text-main);
-            border: 1px solid rgba(56, 189, 248, 0.4);
-            padding: 10px 20px;
-            border-radius: 8px;
-            background: rgba(13, 30, 54, 0.6);
-            align-self: flex-start;
-            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            justify-content: center;
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            border-color: var(--border-hover);
-            box-shadow: 0 15px 35px rgba(56, 189, 248, 0.25);
-        }
-
-        .card:hover::after {
-            top: -30%;
-            right: -30%;
-            background: radial-gradient(circle, rgba(34, 211, 238, 0.15) 0%, transparent 70%);
-        }
-
-        .card:hover .card-link {
-            background: var(--accent-glow);
-            color: #091322;
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
-            border-color: var(--accent-glow);
-        }
-
-        /* ==========================================================================
-           LINHA DO TEMPO DA EFICIÊNCIA (TIMELINE)
-           ========================================================================== */
-        .timeline {
-            position: relative;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 0;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            width: 2px;
-            background-color: var(--border-color);
-            top: 0;
-            bottom: 0;
-            left: 20px;
-        }
-
-        @media(min-width: 768px) {
-            .timeline::before {
-                left: 50%;
-                margin-left: -1px;
-            }
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 60px;
-            padding-left: 50px;
-        }
-
-        @media(min-width: 768px) {
-            .timeline-item {
-                padding-left: 0;
-                width: 50%;
-                margin-bottom: 50px;
-            }
-            .timeline-item-left {
-                left: 0;
-                padding-right: 45px;
-                text-align: right;
-            }
-            .timeline-item-right {
-                left: 50%;
-                padding-left: 45px;
-            }
-        }
-
-        .timeline-dot {
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            background-color: var(--bg-deep);
-            border: 4px solid var(--accent-glow);
-            border-radius: 50%;
-            left: 13px;
-            top: 6px;
-            z-index: 10;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
-        }
-
-        .timeline-item:hover .timeline-dot {
-            background-color: var(--accent-glow-secondary);
-            border-color: var(--text-main);
-            box-shadow: 0 0 15px rgba(34, 211, 238, 0.8);
-            transform: scale(1.2);
-        }
-
-        @media(min-width: 768px) {
-            .timeline-item-left .timeline-dot {
-                left: auto;
-                right: -8px;
-            }
-            .timeline-item-right .timeline-dot {
-                left: -8px;
-            }
-        }
-
-        .timeline-date {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--accent-glow-secondary);
-            margin-bottom: 8px;
-            letter-spacing: 1.5px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        @media(min-width: 768px) {
-            .timeline-item-left .timeline-date {
-                flex-direction: row-reverse;
-            }
-        }
-
-        .timeline-content {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .timeline-item:hover .timeline-content {
-            border-color: var(--accent-glow);
-            box-shadow: 0 15px 35px rgba(56, 189, 248, 0.15);
-        }
-
-        .timeline-content h3 {
-            font-size: 1.3rem;
-            margin-bottom: 12px;
-            color: var(--text-main);
-        }
-
-        .timeline-content p {
-            color: var(--text-muted);
-            font-size: 0.98rem;
-            line-height: 1.6;
-        }
-
-        /* Botão sutil interno da linha do tempo */
-        .timeline-inline-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--accent-glow);
-            margin-top: 15px;
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            padding: 6px 14px;
-            border-radius: 4px;
-            background: rgba(13, 30, 54, 0.4);
-            transition: all 0.2s ease;
-        }
-
-        .timeline-inline-link:hover {
-            background: var(--accent-glow);
-            color: #091322;
-            box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
-            border-color: var(--accent-glow);
-            text-shadow: none;
-        }
-
-        /* ==========================================================================
-           RODAPÉ (FOOTER)
-           ========================================================================== */
-        footer {
-            background-color: #060d18;
-            border-top: 1px solid var(--border-color);
-            padding: 50px 0;
-            font-size: 0.95rem;
-            color: var(--text-muted);
-        }
-
-        .footer-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            align-items: center;
-            text-align: center;
-        }
-
-        @media(min-width: 768px) {
-            .footer-container {
-                flex-direction: row;
-                justify-content: space-between;
-                text-align: left;
-            }
-        }
-
-        .footer-info p {
-            margin-bottom: 5px;
-        }
-
-        .footer-info span {
-            color: var(--text-main);
-            font-weight: 600;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 25px;
-            font-weight: 600;
-        }
-
-        .footer-links i {
-            color: var(--accent-glow-secondary);
         }
     </style>
 </head>
@@ -724,240 +413,71 @@
     <header>
         <div class="container header-container">
             <div class="logo">
-                <i class="fa-solid fa-layer-group"></i>
-                LUCIANO P.<span>MOURA</span>
+                <i class="fa-solid fa-brain"></i> LUCIANO <span>P. DE MOURA</span>
             </div>
             <nav>
                 <ul>
                     <li><a href="#home" class="active">Home</a></li>
-                    <li><a href="#solucoes">Ecossistema</a></li>
-                    <li><a href="#trajetoria">Trajetória</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#skills">Competências</a></li>
+                    <li><a href="dashboard.html" class="nav-btn-dashboard"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <section id="home" class="hero">
-        <div class="container hero-content">
-            <div class="hero-tag">
-                <i class="fa-solid fa-wand-magic-sparkles"></i>
-                <span>CONTEÚDO CONTEMPORÂNEO &amp; ASSISTIDO POR IA</span>
-            </div>
-
-            <div class="action-connect-bar">
-                <a href="mailto:lucianopaiva@cognivus.com.br" class="btn-sm" title="Enviar E-mail de Contato">
-                    <i class="fa-solid fa-envelope"></i> E-mail
-                </a>
-                <a href="https://linkedin.com/in/luciano-paiva-b0b01a19b" target="_blank" class="btn-sm" title="Acessar Perfil do LinkedIn">
-                    <i class="fa-brands fa-linkedin"></i> LinkedIn
-                </a>
-                <a href="https://github.com/lucianoadm" target="_blank" class="btn-sm" title="Ver Repositórios do GitHub">
-                    <i class="fa-brands fa-github"></i> GitHub
-                </a>
-                <button class="btn-sm btn-share" onclick="copyShareLink()" title="Copiar Link do Portfólio">
-                    <i class="fa-solid fa-share-nodes"></i> Compartilhar
-                </button>
-            </div>
-
-            <h1>Luciano P. de Moura</h1>
-            <div class="typewriter-container">
-                <span id="typewriter"></span><span class="cursor">|</span>
-            </div>
-            <p class="hero-p">
-                Capacidade analítica profunda focada na construção de sistemas e aplicações modulares com o uso estratégico de IA e métricas de análise estruturada. Desenvolvimento focado em engenharia de software ágil de alto impacto e máxima geração de valor na entrega de serviços e produtos tecnológicos.
-            </p>
-            <a href="#solucoes" class="btn">
-                <span>Explorar Ecossistema</span>
-                <i class="fa-solid fa-arrow-right"></i>
-            </a>
-        </div>
-    </section>
-
-    <div id="share-toast" class="toast-notification">
-        <i class="fa-solid fa-circle-check" style="color: var(--accent-glow);"></i> Link copiado para a área de transferência!
-    </div>
-
-    <div class="compliance-bar">
-        <div class="container compliance-grid">
-            <div class="compliance-title">
-                <span class="compliance-icon"><i class="fa-solid fa-shield-halved"></i></span>
-                <h2>Data Governance &amp; Compliance</h2>
-            </div>
-            <div class="compliance-text">
-                <p>
-                    Toda arquitetura e soluções web desenvolvidas por mim operam sob estrita observância das normas legais da <strong>LGPD (Lei Geral de Proteção de Dados)</strong> e princípios de Compliance Digital. Isso assegura a higienização completa de dados sensíveis, mitigação activa de vieses em algoritmos analíticos e adoção nativa do <em>Privacy by Design</em>.
-                </p>
-                <div class="cookie-badge-info">
-                    <i class="fa-solid fa-cookie-bite"></i> <strong>Cookie-less Architecture:</strong> Este site não armazena cookies de rastreamento ou dados analíticos de terceiros.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <section id="solucoes" class="section">
         <div class="container">
-            <h2 class="section-title">Ecossistema Cognivus</h2>
-            <div class="portfolio-grid portfolio-grid-3">
+            <div class="hero-layout">
                 
-                <div class="card">
-                    <div class="card-header-area">
-                        <div class="card-icon-box"><i class="fa-solid fa-graduation-cap"></i></div>
-                        <span class="badge badge-edu">Cognição</span>
+                <div class="hero-content">
+                    <div class="hero-tag">
+                        <i class="fa-solid fa-shield-halved"></i> AMBIENTE 100% COMPLIANT & COOKIE-LESS
                     </div>
-                    <div class="card-body-area">
-                        <h3>Treinador</h3>
-                        <p>Plataforma inteligente focada no monitoramento educacional estruturado e desenvolvimento de treinamento cognitivo avançado.</p>
-                    </div>
-                    <a href="https://treinador.cognivus.com.br/" class="card-link" target="_blank">
-                        <span>Acessar App</span>
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    </a>
-                </div>
 
-                <div class="card">
-                    <div class="card-header-area">
-                        <div class="card-icon-box"><i class="fa-solid fa-circle-nodes"></i></div>
-                        <span class="badge badge-core">Núcleo</span>
+                    <div class="action-connect-bar">
+                        <button class="btn-sm" onclick="window.open('https://github.com/lucianoadm', '_blank')">
+                            <i class="fa-brands fa-github"></i> GitHub
+                        </button>
+                        <button class="btn-sm" onclick="window.open('https://linkedin.com/in/lucianopmoura', '_blank')">
+                            <i class="fa-brands fa-linkedin"></i> LinkedIn
+                        </button>
+                        <button class="btn-sm btn-share" onclick="copyShareLink()">
+                            <i class="fa-solid fa-share-nodes"></i> Compartilhar Link
+                        </button>
+                        <button class="btn-sm" onclick="window.location.href='dashboard.html'" style="border-color: var(--badge-edu); color: var(--badge-edu);">
+                            <i class="fa-solid fa-chart-simple"></i> Ver Analytics
+                        </button>
                     </div>
-                    <div class="card-body-area">
-                        <h3>CoreMaster</h3>
-                        <p>O centro de controle operacional e orquestrador principal de microsserviços integrados de todo o ecossistema Cognivus.</p>
-                    </div>
-                    <a href="https://coremaster.cognivus.com.br/" class="card-link" target="_blank">
-                        <span>Acessar App</span>
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    </a>
-                </div>
 
-                <div class="card">
-                    <div class="card-header-area">
-                        <div class="card-icon-box"><i class="fa-solid fa-brain"></i></div>
-                        <span class="badge badge-log">Lógica</span>
+                    <h1>Inteligência Jurídica & Engenharia de IA</h1>
+                    
+                    <div class="typewriter-container">
+                        <span id="typewriter"></span><span class="cursor">|</span>
                     </div>
-                    <div class="card-body-area">
-                        <h3>Axion Rhetorical</h3>
-                        <p>Engine analítica baseada em modelos de linguagem avançados para mapeamento, estruturação e auditoria de argumentação lógica.</p>
-                    </div>
-                    <a href="https://axion-rethorical.cognivus.com.br/" class="card-link" target="_blank">
-                        <span>Acessar App</span>
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    </a>
-                </div>
 
-                <div class="card">
-                    <div class="card-header-area">
-                        <div class="card-icon-box"><i class="fa-solid fa-chart-pie"></i></div>
-                        <span class="badge badge-dat">Análise</span>
-                    </div>
-                    <div class="card-body-area">
-                        <h3>Rethor</h3>
-                        <p>Módulo de análise quantitativa e inteligência de dados aplicada diretamente na avaliação de métricas textuais e discursivas.</p>
-                    </div>
-                    <a href="https://rethor.cognivus.com.br/" class="card-link" target="_blank">
-                        <span>Acessar App</span>
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    </a>
-                </div>
+                    <p class="hero-p">
+                        Desenvolvimento de soluções estratégicas e aplicações orientadas a dados no ecossistema 
+                        <strong>Cognivus (LexOS)</strong>. Unindo Ciência de Dados, Business Intelligence e 
+                        Inteligência Artificial Generativa sob rígidos padrões de Governança corporativa e LGPD.
+                    </p>
 
-                <div class="card">
-                    <div class="card-header-area">
-                        <div class="card-icon-box"><i class="fa-solid fa-book-bookmark"></i></div>
-                        <span class="badge badge-sem">Semântica</span>
-                    </div>
-                    <div class="card-body-area">
-                        <h3>Termos</h3>
-                        <p>Glossário conceitual dinâmico desenvolvido para normalização e padronização analítica de termos técnicos e jurídicos complexos.</p>
-                    </div>
-                    <a href="https://termos.cognivus.com.br/" class="card-link" target="_blank">
-                        <span>Acessar App</span>
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    </a>
-                </div>
-
-                <div class="card">
-                    <div class="card-header-area">
-                        <div class="card-icon-box"><i class="fa-solid fa-network-wired"></i></div>
-                        <span class="badge badge-hub">Portal</span>
-                    </div>
-                    <div class="card-body-area">
-                        <h3>Cognivus.com.br</h3>
-                        <p>O ecossistema principal unificado. O hub de integração de marcas, inteligência analítica e produtos digitais corporativos.</p>
-                    </div>
-                    <a href="https://cognivus.com.br/" class="card-link" target="_blank">
-                        <span>Acessar Portal</span>
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section id="trajetoria" class="section">
-        <div class="container">
-            <h2 class="section-title">Trajetória de Eficiência Convergente</h2>
-            <div class="timeline">
-
-                <div class="timeline-item timeline-item-left">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">
-                        <i class="fa-solid fa-industry"></i>
-                        <span>FUNDAÇÃO OPERACIONAL &amp; INDUSTRIAL</span>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>Processos Industriais, SMT &amp; PCP</h3>
-                        <p>Atuação sólida em auditoria de documentação técnica, controle estatístico de inventários e planejamento integrado de processos industriais complexos. Esta bagagem pavimentou uma sólida mentalidade voltada para a otimização matemática e eliminação sistemática de gargalos operacionais e fluxos lógicos.</p>
-                        <a href="https://lucianoadm.github.io/Portfolio_unificado/" target="_blank" class="timeline-inline-link" title="Visualizar Portfólio Unificado Histórico">
-                            <span>Ver Portfólio Unificado</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <div class="hero-buttons">
+                        <a href="https://wa.me/5512992345678" target="_blank" class="btn">
+                            <i class="fa-brands fa-whatsapp"></i> Iniciar Conexão
+                        </a>
+                        <a href="dashboard.html" class="btn btn-secondary">
+                            <i class="fa-solid fa-chart-line"></i> Abrir Dashboard de Competências
                         </a>
                     </div>
                 </div>
 
-                <div class="timeline-item timeline-item-right">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">
-                        <i class="fa-solid fa-briefcase"></i>
-                        <span>ESTRUTURA DE NEGÓCIOS &amp; MARKETING</span>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>Bacharel em Administração &amp; MBA</h3>
-                        <p>Graduação em Administração de Empresas consolidando as competências de governança estratégica e gestão corporativa. Sequenciado pelo MBA focado em Gestão de Negócios e Marketing, estabelecendo uma visão holística de mercado indispensável na criação de produtos digitais altamente orientados à geração contínua de valor.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item timeline-item-left">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">
-                        <i class="fa-solid fa-scale-balanced"></i>
-                        <span>CONVERGÊNCIA ACADÊMICA</span>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>Direito &amp; Especialização em Jurimetria</h3>
-                        <p>Graduação em Direito na Faculdade Anhanguera de Taubaté em pleno desenvolvimento, integrada à pós-graduação paralela em Jurimetria. Uma junção estratégica construída para fundir a dogmática jurídica normativa com modelagens matemáticas de dados, transformando procedimentos analíticos tradicionais em dados tangíveis.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item timeline-item-right">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">
-                        <i class="fa-solid fa-terminal"></i>
-                        <span>ARQUITETURA DE DADOS &amp; ENGENHARIA IA</span>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>Arquitetura de Soluções Inteligentes &amp; Cloud</h3>
-                        <p>Desenvolvimento ativo de pipelines analíticos robustos, engenharia avançada de prompts estruturados e automação em nuvem com bancos de dados escaláveis. Arquiteto e desenvolvedor líder por trás do ecossistema inteligente Cognivus, integrando microsserviços inovadores assistidos por inteligência artificial.</p>
-                    </div>
-                </div>
-
-                <div class="timeline-item timeline-item-left">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">
-                        <i class="fa-solid fa-infinity"></i>
-                        <span>VISÃO DIGITAL 2032</span>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>Expansão Acadêmica Contínua &amp; Lifelong Learning</h3>
-                        <p>Planejamento estratégico estruturado de longo prazo desenhado para a consolidação e conclusão de mais duas formações acadêmicas avançadas até 2032. Compromisso inabalável com o aprendizado contínuo, garantindo prontidão técnica absoluta na liderança de mercados altamente disruptivos.</p>
+                <div class="hero-visual-side">
+                    <div class="hero-visual-wrapper">
+                        <video class="hero-video-loop" autoplay loop muted playsinline poster="">
+                            <source src="dreamina-2026-05-25-5656.mp4" type="video/mp4">
+                            Seu navegador não suporta a execução de vídeos em formato moderno.
+                        </video>
                     </div>
                 </div>
 
@@ -965,32 +485,23 @@
         </div>
     </section>
 
-    <footer>
-        <div class="container footer-container">
-            <div class="footer-info">
-                <p>&copy; 2026 <span>Luciano P. de Moura</span>. Todos os direitos reservados.</p>
-                <p>Hospedado via GitHub Pages sob o ecossistema <span>Cognivus</span>.</p>
-            </div>
-            <div class="footer-links">
-                <span><i class="fa-solid fa-circle-check"></i> LGPD Compliant</span>
-                <span>•</span>
-                <span><i class="fa-solid fa-lock"></i> SSL Active</span>
-            </div>
-        </div>
-    </footer>
+    <div id="share-toast" class="toast-notification">
+        <i class="fa-solid fa-circle-check" style="color: #10b981;"></i> Link copiado para a área de transferência!
+    </div>
 
     <script>
         const words = [
-            "Análise de Dados Estratégicos.",
-            "Engenharia de Software Assistida por IA.",
-            "Desenvolvedor do Ecossistema Cognivus.",
-            "Gestor de Processos &amp; Qualidade Analítica."
+            "Legal Analytics & Jurimetria.",
+            "Engenharia de Prompts Aplicada.",
+            "Business Intelligence & Analytics.",
+            "Sistemas Especialistas (LexOS).",
+            "Privacy by Design & Compliance."
         ];
         let i = 0;
         let timer;
 
         function typingEffect() {
-            let currentWord = words[i].replace(/&amp;/g, '&'); 
+            let currentWord = words[i].replace(/&amp;/g, '&');
             let word = currentWord.split("");
             var loopTyping = function() {
                 if (word.length > 0) {
@@ -1027,14 +538,10 @@
 
         function copyShareLink() {
             const shareUrl = "https://luciano.cognivus.com.br/";
-            
             navigator.clipboard.writeText(shareUrl).then(() => {
                 const toast = document.getElementById("share-toast");
                 toast.classList.add("show");
-                
-                setTimeout(() => {
-                    toast.classList.remove("show");
-                }, 3000);
+                setTimeout(() => { toast.classList.remove("show"); }, 3000);
             }).catch(err => {
                 console.error("Erro ao copiar o link: ", err);
             });

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luciano P. de Moura | Inteligência Jurídica & Legal Analytics</title>
+    <title>Luciano P. de Moura | Inteligência Jurídica & Engenharia de IA</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* ==========================================================================
@@ -22,7 +22,7 @@
             --border-hover: rgba(56, 189, 248, 0.85); 
             --success: #10b981;       
             
-            /* Badges de Cores Alternadas para a Skill Tree */
+            /* Badges de Cores Alternadas para o Ecossistema e Skill Tree */
             --badge-edu: #a78bfa;     
             --badge-core: #f43f5e;    
             --badge-log: #10b981;     
@@ -281,7 +281,7 @@
         }
 
         /* ==========================================================================
-           GRID DE ECOSSISTEMAS (OS 6 CARDS)
+           GRID DE ECOSSISTEMAS (OS 6 CARDS REAIS)
            ========================================================================== */
         .ecosystem {
             padding: 100px 0;
@@ -350,7 +350,7 @@
         .card-eco.log:hover::before { background: var(--badge-log); }
         .card-eco.dat:hover::before { background: var(--badge-dat); }
         .card-eco.sem:hover::before { background: var(--accent-glow-secondary); }
-        .card-eco.hub:hover::before { background: rgba(59, 130, 246, 1); }
+        .card-eco.hub:hover::before { background: #3b82f6; }
 
         .card-header-eco {
             display: flex;
@@ -372,7 +372,7 @@
         .badge-eco.core { background: rgba(244, 63, 94, 0.15); color: var(--badge-core); }
         .badge-eco.log { background: rgba(16, 185, 129, 0.15); color: var(--badge-log); }
         .badge-eco.dat { background: rgba(245, 158, 11, 0.15); color: var(--badge-dat); }
-        .badge-eco.sem { background: rgba(236, 72, 153, 0.15); color: var(--accent-glow-secondary); }
+        .badge-eco.sem { background: rgba(34, 211, 238, 0.15); color: var(--accent-glow-secondary); }
         .badge-eco.hub { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
 
         .icon-eco {
@@ -412,7 +412,6 @@
         }
 
         .status-pill.online i { color: var(--success); }
-        .status-pill.dev i { color: var(--badge-dat); }
 
         .btn-card-link {
             font-size: 0.9rem;
@@ -445,7 +444,6 @@
             }
         }
 
-        /* LADO ESQUERDO: FOTO CENTRALIZADA E EIXOS ESTRUTURAIS */
         .tree-avatar-hub {
             display: flex;
             flex-direction: column;
@@ -542,7 +540,6 @@
             color: var(--text-main);
         }
 
-        /* LADO DIREITO: EXPANSÃO DETALHADA DAS SKILLS */
         .tree-skills-expansion {
             display: flex;
             flex-direction: column;
@@ -824,7 +821,7 @@
                             <div class="icon-eco"><i class="fa-solid fa-circle-nodes"></i></div>
                         </div>
                         <h3>CoreMaster</h3>
-                        <p>O centro de controle operacional e orquestrador principal de microsservços integrados de todo o ecossistema Cognivus.</p>
+                        <p>O centro de controle operacional e orquestrador principal de microsserviços integrados de todo o ecossistema Cognivus.</p>
                     </div>
                     <div class="card-actions">
                         <span class="status-pill online"><i class="fa-solid fa-circle"></i> Em Produção</span>
@@ -906,7 +903,7 @@
                 
                 <div class="tree-avatar-hub">
                     <div class="profile-frame">
-                        <img src="foto.jpg" alt="Luciano P. de Moura" class="avatar-img">
+                        <img src="luciano.jpg" alt="Luciano P. de Moura" class="avatar-img">
                     </div>
                     <div class="avatar-info">
                         <h3>Luciano P. de Moura</h3>
@@ -934,7 +931,6 @@
                 </div>
 
                 <div class="tree-skills-expansion">
-                    
                     <div class="skill-group-box">
                         <div class="group-box-header">
                             <i class="fa-solid fa-gavel"></i>
@@ -1002,7 +998,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
 
             </div>
@@ -1062,7 +1057,7 @@
         let timer;
 
         function typingEffect() {
-            let currentWord = words[i];
+            let currentWord = words[i].replace(/&amp;/g, '&'); 
             let word = currentWord.split("");
             var loopTyping = function() {
                 if (word.length > 0) {
@@ -1077,7 +1072,7 @@
         }
 
         function deletingEffect() {
-            let currentWord = words[i];
+            let currentWord = words[i].replace(/&amp;/g, '&');
             let word = currentWord.split("");
             var loopDeleting = function() {
                 if (word.length > 0) {
@@ -1094,14 +1089,16 @@
         }
 
         function copyShareLink() {
-            navigator.clipboard.writeText("https://luciano.cognivus.com.br/").then(() => {
+            const shareUrl = "https://luciano.cognivus.com.br/";
+            navigator.clipboard.writeText(shareUrl).then(() => {
                 const toast = document.getElementById("share-toast");
                 toast.classList.add("show");
                 setTimeout(() => { toast.classList.remove("show"); }, 3000);
+            }).catch(err => {
+                console.error("Erro ao copiar o link: ", err);
             });
         }
 
-        // Animação dinâmica de crescimento das barras de skills
         function animateSkillBars() {
             const fills = document.querySelectorAll('.bar-fill');
             fills.forEach(fill => {
@@ -1112,12 +1109,8 @@
 
         document.addEventListener("DOMContentLoaded", function() {
             typingEffect();
-            // Pequeno delay para suavizar a entrada visual das barras
             setTimeout(animateSkillBars, 300);
         });
     </script>
-        <a href="https://lucianoadm.github.io/meta-case-portfolio/index.html" target="_blank" class="floating-portfolio-btn">
-        <i class="fa-solid fa-folder-open"></i> Ver Portfólios Profissionais
-    </a>
 </body>
 </html>

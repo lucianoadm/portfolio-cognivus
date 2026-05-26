@@ -10,25 +10,23 @@
            DESIGN SYSTEM: SUAVE OCEAN BLUE EDITION (CLARO, CONTRASTANTE E SEDUTOR)
            ========================================================================== */
         :root {
-            --bg-deep: #0d1e36;       /* Fundo marítimo relaxante e mais claro */
+            --bg-deep: #0d1e36;       
             --bg-gradient: linear-gradient(135deg, #091322 0%, #112543 50%, #18335c 100%);
-            --bg-card: rgba(21, 41, 74, 0.75); /* Card translúcido com fundo oceano */
-            --bg-tile: #1e3a64;       /* Azul oceano médio para divisores e tags */
-            --accent-glow: #38bdf8;   /* Azul ciano de tecnologia */
-            --accent-glow-secondary: #22d3ee; /* Azul turquesa complementar */
-            --text-main: #f8fafc;     /* Branco Soft para leitura confortável */
-            --text-muted: #cbd5e1;    /* Slate acinzetado claro e legível */
-            --border-color: rgba(56, 189, 248, 0.3); /* Borda inicial contrastante */
-            --border-hover: rgba(56, 189, 248, 0.85); /* Borda brilhante no hover */
-            --success: #10b981;       /* Verde governança */
+            --bg-card: rgba(21, 41, 74, 0.75); 
+            --bg-tile: #1e3a64;       
+            --accent-glow: #38bdf8;   
+            --accent-glow-secondary: #22d3ee; 
+            --text-main: #f8fafc;     
+            --text-muted: #cbd5e1;    
+            --border-color: rgba(56, 189, 248, 0.3); 
+            --border-hover: rgba(56, 189, 248, 0.85); 
+            --success: #10b981;       
             
-            /* Badges de Cores Alternadas para Contraste */
+            /* Badges de Cores Alternadas para a Skill Tree */
             --badge-edu: #a78bfa;     
             --badge-core: #f43f5e;    
             --badge-log: #10b981;     
             --badge-dat: #f59e0b;     
-            --badge-sem: #ec4899;     
-            --badge-hub: #3b82f6;     
         }
 
         * {
@@ -157,7 +155,7 @@
         }
 
         /* ==========================================================================
-           HERO SECTION (PROPORÇÕES CORRIGIDAS)
+           HERO SECTION
            ========================================================================== */
         .hero {
             padding: 150px 0 100px 0;
@@ -255,7 +253,6 @@
             margin-bottom: 40px;
         }
 
-        /* CONTAINER ROBUSTO DO VÍDEO COGNIVUS.MP4 */
         .hero-visual-side {
             display: flex;
             justify-content: center;
@@ -284,7 +281,7 @@
         }
 
         /* ==========================================================================
-           GRID DE ECOSSISTEMAS (OS 6 CARDS ORIGINAIS)
+           GRID DE ECOSSISTEMAS (OS 6 CARDS)
            ========================================================================== */
         .ecosystem {
             padding: 100px 0;
@@ -352,8 +349,8 @@
         .card-eco.core:hover::before { background: var(--badge-core); }
         .card-eco.log:hover::before { background: var(--badge-log); }
         .card-eco.dat:hover::before { background: var(--badge-dat); }
-        .card-eco.sem:hover::before { background: var(--badge-sem); }
-        .card-eco.hub:hover::before { background: var(--badge-hub); }
+        .card-eco.sem:hover::before { background: var(--accent-glow-secondary); }
+        .card-eco.hub:hover::before { background: rgba(59, 130, 246, 1); }
 
         .card-header-eco {
             display: flex;
@@ -375,8 +372,8 @@
         .badge-eco.core { background: rgba(244, 63, 94, 0.15); color: var(--badge-core); }
         .badge-eco.log { background: rgba(16, 185, 129, 0.15); color: var(--badge-log); }
         .badge-eco.dat { background: rgba(245, 158, 11, 0.15); color: var(--badge-dat); }
-        .badge-eco.sem { background: rgba(236, 72, 153, 0.15); color: var(--badge-sem); }
-        .badge-eco.hub { background: rgba(59, 130, 246, 0.15); color: var(--badge-hub); }
+        .badge-eco.sem { background: rgba(236, 72, 153, 0.15); color: var(--accent-glow-secondary); }
+        .badge-eco.hub { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
 
         .icon-eco {
             font-size: 1.8rem;
@@ -427,82 +424,184 @@
         }
 
         /* ==========================================================================
-           TRAJETÓRIA PROFISSIONAL & ACADÊMICA
+           MULTIDISCIPLINARY SKILL TREE (ÁRVORE DE HABILIDADES COM FOTO CENTRAL)
            ========================================================================== */
-        .timeline-section {
+        .skill-tree-section {
             padding: 100px 0;
-            background-color: rgba(6, 11, 20, 0.3);
+            background-color: rgba(6, 11, 20, 0.35);
             border-top: 1px solid var(--border-color);
         }
 
-        .timeline {
-            position: relative;
-            max-width: 850px;
-            margin: 0 auto;
+        .tree-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 50px;
+            align-items: start;
         }
 
-        .timeline::after {
+        @media(min-width: 992px) {
+            .tree-layout {
+                grid-template-columns: 0.9fr 1.1fr;
+            }
+        }
+
+        /* LADO ESQUERDO: FOTO CENTRALIZADA E EIXOS ESTRUTURAIS */
+        .tree-avatar-hub {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile-frame {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin-bottom: 30px;
+            z-index: 5;
+        }
+
+        .profile-frame::before {
             content: '';
             position: absolute;
-            width: 2px;
-            background-color: var(--border-color);
-            top: 0;
-            bottom: 0;
-            left: 30px;
-        }
-
-        .timeline-item {
-            padding: 10px 40px;
-            position: relative;
-            background-color: transparent;
-            margin-bottom: 40px;
-        }
-
-        .timeline-dot {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            left: 21px;
-            top: 15px;
-            background-color: var(--bg-deep);
-            border: 3px solid var(--accent-glow);
+            inset: -8px;
             border-radius: 50%;
-            z-index: 1;
+            background: linear-gradient(135deg, var(--badge-core) 0%, var(--accent-glow) 50%, var(--badge-log) 100%);
+            animation: spinGlow 8s linear infinite;
+            z-index: -1;
         }
 
-        .timeline-content {
-            padding: 25px 30px;
-            background-color: var(--bg-card);
-            position: relative;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
+        @keyframes spinGlow { 100% { transform: rotate(360deg); } }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--bg-deep);
+            background-color: var(--bg-deep);
         }
 
-        .timeline-date {
-            font-size: 0.85rem;
-            font-weight: 700;
+        .avatar-info {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .avatar-info h3 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 5px;
+        }
+
+        .avatar-info p {
+            font-size: 0.95rem;
             color: var(--accent-glow);
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-        }
-
-        .timeline-content h3 {
-            font-size: 1.3rem;
             font-weight: 700;
-            margin-bottom: 6px;
+            letter-spacing: 1px;
         }
 
-        .timeline-institution {
-            font-size: 0.95rem;
-            color: var(--text-muted);
+        .axis-summary-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .axis-badge-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+            border-radius: 10px;
+            background: rgba(13, 25, 47, 0.5);
+            border-left: 4px solid var(--accent-glow);
+        }
+
+        .axis-badge-item.gestao { border-left-color: var(--badge-core); }
+        .axis-badge-item.juri { border-left-color: var(--badge-edu); }
+        .axis-badge-item.ia { border-left-color: var(--accent-glow-secondary); }
+        .axis-badge-item.dev { border-left-color: var(--badge-log); }
+
+        .axis-title-sm {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.92rem;
+            font-weight: 700;
+        }
+
+        .axis-pct {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        /* LADO DIREITO: EXPANSÃO DETALHADA DAS SKILLS */
+        .tree-skills-expansion {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .skill-group-box {
+            background: rgba(21, 41, 74, 0.4);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            border-radius: 16px;
+            padding: 25px;
+        }
+
+        .group-box-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .group-box-header i { font-size: 1.3rem; color: var(--accent-glow); }
+        .group-box-header h4 { font-size: 1.15rem; font-weight: 700; color: var(--text-main); }
+
+        .skill-bars-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .bar-item {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .bar-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.88rem;
             font-weight: 600;
-            margin-bottom: 15px;
+            color: var(--text-muted);
         }
 
-        .timeline-content p {
-            font-size: 0.95rem;
-            color: var(--text-muted);
+        .bar-track {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: 10px;
+            background: var(--accent-glow);
+            width: 0%;
+            transition: width 1.5s cubic-bezier(0.1, 1, 0.1, 1);
         }
 
         /* ==========================================================================
@@ -632,7 +731,7 @@
                 <ul>
                     <li><a href="#home" class="active">Home</a></li>
                     <li><a href="#ecossistema">Ecossistema</a></li>
-                    <li><a href="#trajetoria">Trajetória</a></li>
+                    <li><a href="#skills">Skill Tree</a></li>
                     <li><a href="dashboard.html" class="nav-btn-dashboard"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
                 </ul>
             </nav>
@@ -767,7 +866,7 @@
                             <div class="icon-eco"><i class="fa-solid fa-network-wired"></i></div>
                         </div>
                         <h3>NeuroOS</h3>
-                        <p>O cérebro distribuidor de microsserviços do ecossistema. Orquestra de maneira segura a chamada para grandes modelos de linguagem (LLMs) e agentes de IA.</p>
+                        <p>O cérebro distribuidor de microsservços do ecossistema. Orquestra de maneira segura a chamada para grandes modelos de linguagem (LLMs) e agentes de IA.</p>
                     </div>
                     <div class="card-actions">
                         <span class="status-pill online"><i class="fa-solid fa-circle"></i> Em Produção</span>
@@ -793,43 +892,116 @@
         </div>
     </section>
 
-    <section id="trajetoria" class="timeline-section">
+    <section id="skills" class="skill-tree-section">
         <div class="container">
             <div class="section-header">
-                <h2>Trajetória Profissional & Acadêmica</h2>
-                <p>A consolidação conceitual e a formação técnica contínua que dão sustentação ao ecossistema tecnológico.</p>
+                <h2>Multidisciplinary Skill Tree</h2>
+                <p>Mapeamento dinâmico de competências correlacionadas que alimentam a governança, a inteligência jurídica e o desenvolvimento analítico.</p>
             </div>
-            
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">Agosto 2025 – Presente</div>
-                        <h3>Bacharelado em Direito</h3>
-                        <div class="timeline-institution">Faculdade Anhanguera Taubaté</div>
-                        <p>Desenvolvimento de competências em Teoria Geral do Processo, Direito Constitucional e hermenêutica jurídica, fundamentando o lastro legal do ecossistema LexOS.</p>
+
+            <div class="tree-layout">
+                
+                <div class="tree-avatar-hub">
+                    <div class="profile-frame">
+                        <img src="foto.jpg" alt="Luciano P. de Moura" class="avatar-img">
+                    </div>
+                    <div class="avatar-info">
+                        <h3>Luciano P. de Moura</h3>
+                        <p>Legal Data Scientist & Architect</p>
+                    </div>
+
+                    <div class="axis-summary-list">
+                        <div class="axis-badge-item gestao">
+                            <span class="axis-title-sm"><i class="fa-solid fa-briefcase"></i> Gestão & Compliance</span>
+                            <span class="axis-pct">95%</span>
+                        </div>
+                        <div class="axis-badge-item juri">
+                            <span class="axis-title-sm"><i class="fa-solid fa-chart-line"></i> Jurimetria & BI</span>
+                            <span class="axis-pct">88%</span>
+                        </div>
+                        <div class="axis-badge-item ia">
+                            <span class="axis-title-sm"><i class="fa-solid fa-robot"></i> Engenharia de IA</span>
+                            <span class="axis-pct">92%</span>
+                        </div>
+                        <div class="axis-badge-item dev">
+                            <span class="axis-title-sm"><i class="fa-solid fa-code"></i> Data & Dev Stack</span>
+                            <span class="axis-pct">86%</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">Janeiro 2026 – Abril 2026</div>
-                        <h3>Formação "Excel com IA"</h3>
-                        <div class="timeline-institution">Programa Santander / Alura</div>
-                        <p>Especialização focada em otimização de matrizes de dados complexas, automação avançada com prompts e integração de ferramentas de inteligência artificial aplicadas a negócios.</p>
+                <div class="tree-skills-expansion">
+                    
+                    <div class="skill-group-box">
+                        <div class="group-box-header">
+                            <i class="fa-solid fa-gavel"></i>
+                            <h4>Gestão, Processos & Governança</h4>
+                        </div>
+                        <div class="skill-bars-container">
+                            <div class="bar-item">
+                                <div class="bar-labels"><span>Administração Estratégica & Processos</span><span>95%</span></div>
+                                <div class="bar-track"><div class="bar-fill" style="background: var(--badge-core);" data-pct="95"></div></div>
+                            </div>
+                            <div class="bar-item">
+                                <div class="bar-labels"><span>Compliance & Proteção de Dados (LGPD)</span><span>92%</span></div>
+                                <div class="bar-track"><div class="bar-fill" style="background: var(--badge-core);" data-pct="92"></div></div>
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="skill-group-box">
+                        <div class="group-box-header">
+                            <i class="fa-solid fa-chart-pie"></i>
+                            <h4>Jurimetria, BI & Analytics</h4>
+                        </div>
+                        <div class="skill-bars-container">
+                            <div class="bar-item">
+                                <div class="bar-labels"><span>Power BI & Business Intelligence</span><span>90%</span></div>
+                                <div class="bar-track"><div class="bar-fill" style="background: var(--badge-edu);" data-pct="90"></div></div>
+                            </div>
+                            <div class="bar-item">
+                                <div class="bar-labels"><span>Jurimetria Estatística Aplicada</span><span>88%</span></div>
+                                <div class="bar-track"><div class="bar-fill" style="background: var(--badge-edu);" data-pct="88"></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-group-box">
+                        <div class="group-box-header">
+                            <i class="fa-solid fa-brain"></i>
+                            <h4>IA, PLN & Engenharia de Prompts</h4>
+                        </div>
+                        <div class="skill-bars-container">
+                            <div class="bar-item">
+                                <div class="bar-labels"><span>Engenharia de Prompts & LLMs</span><span>94%</span></div>
+                                <div class="bar-track"><div class="bar-fill" style="background: var(--accent-glow-secondary);" data-pct="94"></div></div>
+                            </div>
+                            <div class="bar-item">
+                                <div class="bar-labels"><span>Inteligência Artificial Aplicada ao Direito</span><span>90%</span></div>
+                                <div class="bar-track"><div class="bar-fill" style="background: var(--accent-glow-secondary);" data-pct="90"></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-group-box">
+                        <div class="group-box-header">
+                            <i class="fa-solid fa-database"></i>
+                            <h4>Dev Stack & Arquitetura de Dados</h4>
+                        </div>
+                        <div class="skill-bars-container">
+                            <div class="bar-item">
+                                <div class="bar-labels"><span>Python (Streamlit & Modelagem)</span><span>85%</span></div>
+                                <div class="bar-track"><div class="bar-fill" style="background: var(--badge-log);" data-pct="85"></div></div>
+                            </div>
+                            <div class="bar-item">
+                                <div class="bar-labels"><span>Firebase & Integração de Infraestrutura</span><span>87%</span></div>
+                                <div class="bar-track"><div class="bar-fill" style="background: var(--badge-log);" data-pct="87"></div></div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">Histórico de Consolidação</div>
-                        <h3>Bacharel em Administração de Empresas & MBA</h3>
-                        <div class="timeline-institution">Especialização em Gestão de Negócios & Marketing</div>
-                        <p>Sólida formação em governança corporativa, compliance estratégico e análise de processos. Base analítica indispensável para o desenvolvimento de soluções corporativas e jurimetria orientada a resultados.</p>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -926,8 +1098,19 @@
             });
         }
 
+        // Animação dinâmica de crescimento das barras de skills
+        function animateSkillBars() {
+            const fills = document.querySelectorAll('.bar-fill');
+            fills.forEach(fill => {
+                const pct = fill.getAttribute('data-pct');
+                fill.style.width = pct + '%';
+            });
+        }
+
         document.addEventListener("DOMContentLoaded", function() {
             typingEffect();
+            // Pequeno delay para suavizar a entrada visual das barras
+            setTimeout(animateSkillBars, 300);
         });
     </script>
 </body>

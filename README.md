@@ -23,4 +23,4 @@ Alinhado com as exigências de órgãos institucionais de alta relevância como 
 ```bash
 portfolio-cognivus/
 ├── index.html       # Arquivo principal contendo a estrutura semântica e os estilos CSS incorporados
-└── README.md        # Documentação e guia de implantação técnica do repositório
+└── README.md        # Documentação e guia de implantação técnica do repositório.

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* ==========================================================================
-           DESIGN SYSTEM: COGNIVUS DATA-DRIVEN DEEP BLUE
+           DESIGN SYSTEM: COGNIVUS DATA-DRIVEN DEEP BLUE (ORIGINAL MANTIDO)
            ========================================================================== */
         :root {
             --bg-deep: #091322;
@@ -19,14 +19,7 @@
             --text-main: #f8fafc;
             --text-muted: #cbd5e1;
             --border-color: rgba(56, 189, 248, 0.25);
-            --border-hover: rgba(56, 189, 248, 0.7);
-            
-            /* Cores dos Eixos */
-            --color-eixo1: #a78bfa; /* Roxo */
-            --color-eixo2: #f59e0b; /* Âmbar */
-            --color-eixo3: #f43f5e; /* Coral */
-            --color-eixo4: #10b981; /* Esmeralda */
-            --color-eixo5: #ec4899; /* Rosa */
+            --border-hover: rgba(56, 189, 248, 0.6);
         }
 
         * {
@@ -37,719 +30,470 @@
         }
 
         body {
+            background: var(--bg-deep);
             background: var(--bg-gradient);
-            background-attachment: fixed;
             color: var(--text-main);
             min-height: 100vh;
-            padding-bottom: 60px;
+            padding: 2rem 1rem;
+            line-height: 1.5;
         }
 
         .container {
-            width: 100%;
-            max-width: 1240px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
         }
 
-        /* NAVBAR / HEADER */
+        /* HEADER & MARCOS STRATEGICOS */
         header {
-            background: rgba(9, 19, 34, 0.95);
+            text-align: center;
+            margin-bottom: 3rem;
             border-bottom: 1px solid var(--border-color);
-            padding: 20px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(10px);
+            padding-bottom: 2rem;
         }
 
-        .header-box {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 1.3rem;
+        header h1 {
+            font-size: 2.5rem;
             font-weight: 800;
-            letter-spacing: 1px;
-        }
-
-        .brand i {
-            color: var(--accent-glow);
-            text-shadow: 0 0 10px var(--accent-glow);
-        }
-
-        .brand span {
-            color: var(--accent-cyan);
-        }
-
-        .back-btn {
-            background: rgba(56, 189, 248, 0.1);
-            border: 1px solid var(--border-color);
-            color: var(--accent-glow);
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .back-btn:hover {
-            background: var(--accent-glow);
-            color: var(--bg-deep);
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
-        }
-
-        /* DASHBOARD HERO TITLE */
-        .dash-intro {
-            margin: 40px 0 30px 0;
-        }
-
-        .dash-intro h1 {
-            font-size: 2.2rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--text-main) 40%, var(--accent-cyan) 100%);
+            letter-spacing: -0.05em;
+            background: linear-gradient(to right, #ffffff, var(--accent-glow));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 8px;
+            margin-bottom: 0.5rem;
         }
 
-        .dash-intro p {
+        header p {
             color: var(--text-muted);
-            font-size: 1.05rem;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 1.5rem auto;
         }
 
-        /* CARDS DE RESUMO (KPIs) */
+        /* METRICAS KPINAV */
         .kpi-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
         }
 
         .kpi-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 24px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
 
-        .kpi-icon {
+        .kpi-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--border-hover);
+            box-shadow: 0 8px 30px rgba(56, 189, 248, 0.2);
+        }
+
+        .kpi-card i {
             font-size: 2rem;
             color: var(--accent-glow);
-            background: rgba(56, 189, 248, 0.1);
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 10px;
-            border: 1px solid rgba(56, 189, 248, 0.2);
+            margin-bottom: 0.5rem;
         }
 
-        .kpi-data h3 {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            letter-spacing: 0.5px;
-            margin-bottom: 4px;
-        }
-
-        .kpi-data p {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--text-main);
-        }
-
-        /* CONTROL BAR (FILTROS) */
-        .controls-bar {
-            background: rgba(15, 35, 60, 0.5);
-            border: 1px solid var(--border-color);
-            padding: 15px 20px;
-            border-radius: 10px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 30px;
-            align-items: center;
-        }
-
-        .filter-label {
-            font-size: 0.9rem;
+        .kpi-value {
+            font-size: 2.2rem;
             font-weight: 700;
-            color: var(--accent-cyan);
-            margin-right: 10px;
+            color: #fff;
+            display: block;
+            margin: 0.2rem 0;
+        }
+
+        .kpi-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
             text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* FILTROS NAV */
+        .filter-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
         }
 
         .filter-btn {
-            background: transparent;
-            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(15, 35, 60, 0.6);
+            border: 1px solid var(--border-color);
             color: var(--text-muted);
-            padding: 6px 14px;
-            border-radius: 6px;
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
             cursor: pointer;
-            font-size: 0.88rem;
             font-weight: 600;
             transition: all 0.2s ease;
         }
 
         .filter-btn:hover, .filter-btn.active {
+            background: var(--accent-glow);
+            color: var(--bg-deep);
             border-color: var(--accent-glow);
-            color: var(--text-main);
-            background: rgba(56, 189, 248, 0.15);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
         }
 
-        /* EIXOS ACORDEÃO STRUTURA */
+        /* ACORDEAO EIXOS */
         .eixo-section {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 14px;
-            margin-bottom: 20px;
+            border-radius: 16px;
+            margin-bottom: 1.5rem;
             overflow: hidden;
-            transition: border-color 0.3s;
-        }
-
-        .eixo-section:hover {
-            border-color: var(--border-hover);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         .eixo-header {
-            padding: 24px;
+            padding: 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
-            user-select: none;
-            background: linear-gradient(to right, rgba(25, 52, 92, 0.3), transparent);
+            background: rgba(15, 35, 60, 0.4);
+            transition: background 0.2s ease;
         }
 
-        .eixo-title-box {
+        .eixo-header:hover {
+            background: rgba(25, 52, 92, 0.4);
+        }
+
+        .eixo-title {
             display: flex;
             align-items: center;
-            gap: 15px;
-        }
-
-        .eixo-icon {
-            font-size: 1.5rem;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-        }
-
-        .eixo-title-box h2 {
-            font-size: 1.2rem;
+            gap: 1rem;
+            font-size: 1.3rem;
             font-weight: 700;
         }
 
-        .eixo-meta {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .eixo-badge-count {
-            background: rgba(255,255,255,0.08);
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .chevron-icon {
-            font-size: 1.1rem;
-            transition: transform 0.3s ease;
-            color: var(--text-muted);
-        }
-
-        .eixo-section.open .chevron-icon {
-            transform: rotate(180deg);
+        .eixo-title i {
             color: var(--accent-glow);
         }
 
-        /* CONTEÚDO EXPANSÍVEL (LISTA DE CURSOS) */
+        .eixo-trigger-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .eixo-section.open .eixo-trigger-icon {
+            transform: rotate(180deg);
+        }
+
         .eixo-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.4s ease-out;
-            background: rgba(9, 19, 34, 0.4);
+            transition: max-height 0.3s cubic-bezier(4, 0, 0.2, 1);
         }
 
-        .eixo-section.open .eixo-content {
-            max-height: 1200px; /* Grande o suficiente para conter a lista */
+        .eixo-inner {
+            padding: 1.5rem;
             border-top: 1px solid rgba(56, 189, 248, 0.1);
         }
 
-        .courses-list {
-            padding: 20px 24px;
+        /* GRID DE PROJETOS E CERTIFICADOS */
+        .items-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
         }
 
-        @media(min-width: 768px) {
-            .courses-list {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        .course-card {
-            background: rgba(13, 27, 48, 0.7);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 10px;
-            padding: 20px;
+        .item-card {
+            background: rgba(10, 20, 38, 0.6);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            border-radius: 12px;
+            padding: 1.25rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            position: relative;
+            transition: all 0.2s ease;
         }
 
-        .course-card-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 10px;
-            margin-bottom: 12px;
+        .item-card:hover {
+            border-color: rgba(56, 189, 248, 0.4);
+            background: rgba(15, 32, 59, 0.7);
         }
 
-        .course-card h4 {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text-main);
-            line-height: 1.4;
-        }
-
-        .status-pill {
-            font-size: 0.72rem;
-            font-weight: 800;
-            padding: 3px 8px;
-            border-radius: 4px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            white-space: nowrap;
-        }
-
-        .status-done {
-            background: rgba(16, 185, 129, 0.12);
-            color: #34d399;
-            border: 1px solid rgba(16, 185, 129, 0.3);
-        }
-
-        .status-ongoing {
-            background: rgba(245, 158, 11, 0.12);
-            color: #fbbf24;
-            border: 1px solid rgba(245, 158, 11, 0.3);
-        }
-
-        .course-meta-row {
+        .item-meta {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .badge-status {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .status-concluido { background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.4); }
+        .status-andamento { background: rgba(245, 158, 11, 0.2); color: #f59e0b; border: 1px solid rgba(245, 158, 11, 0.4); }
+        .status-pratico { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); }
+
+        .item-hours {
+            font-size: 0.8rem;
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+
+        .item-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .item-institution {
             font-size: 0.85rem;
             color: var(--text-muted);
-            margin-bottom: 10px;
-        }
-
-        .inst-name i {
-            margin-right: 5px;
-            color: var(--accent-glow);
-        }
-
-        /* BARRAS DE PROGRESSO INTERNAS */
-        .progress-container {
+            margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
-            gap: 10px;
-            width: 100%;
+            gap: 0.4rem;
         }
 
-        .progress-bar-bg {
-            background: rgba(255,255,255,0.08);
-            height: 6px;
-            border-radius: 10px;
-            flex-grow: 1;
-            overflow: hidden;
-        }
-
-        .progress-bar-fill {
-            height: 100%;
-            border-radius: 10px;
-            width: 0%;
-            transition: width 0.8s ease-in-out;
-        }
-
-        .progress-text {
-            font-size: 0.78rem;
-            font-weight: 700;
-            min-width: 32px;
-            text-align: right;
-        }
-
-        /* SEÇÃO INTEGRAÇÃO COGNIVUS APPS */
-        .cognivus-integration {
-            background: radial-gradient(circle at top right, rgba(34, 211, 238, 0.1), transparent), var(--bg-card);
-            border: 2px solid var(--border-color);
-            border-radius: 16px;
-            padding: 35px;
-            margin-top: 50px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-        }
-
-        .integration-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .integration-header i {
-            font-size: 2rem;
-            color: var(--accent-cyan);
-            filter: drop-shadow(0 0 10px var(--accent-cyan));
-        }
-
-        .integration-header h2 {
-            font-size: 1.5rem;
-            font-weight: 800;
-        }
-
-        .integration-p {
-            color: var(--text-muted);
-            font-size: 1.05rem;
-            line-height: 1.6;
-            margin-bottom: 25px;
-        }
-
-        .apps-tags-box {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .app-tag {
-            background: rgba(9, 19, 34, 0.6);
-            border: 1px solid rgba(56, 189, 248, 0.4);
-            padding: 8px 16px;
-            border-radius: 8px;
+        .item-desc {
             font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* SEÇÃO SOBRE DISRUPTIVA */
+        .insight-section {
+            background: rgba(15, 32, 59, 0.9);
+            border: 1px solid var(--accent-glow);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 3rem;
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.15);
+        }
+
+        .insight-title {
+            font-size: 1.4rem;
             font-weight: 700;
-            color: var(--text-main);
-            display: inline-flex;
+            color: #fff;
+            margin-bottom: 1rem;
+            display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 0.75rem;
         }
 
-        .app-tag i {
-            color: var(--accent-glow);
+        .insight-title i { color: var(--accent-cyan); }
+
+        .insight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
         }
 
-        /* CLASSES DINÂMICAS PARA CORES DO GRÁFICO / EIXOS */
-        .eixo1-theme { border-left: 4px solid var(--color-eixo1); }
-        .eixo1-theme .eixo-icon { background: rgba(167, 139, 250, 0.15); color: var(--color-eixo1); }
-        .eixo1-theme .progress-bar-fill { background: var(--color-eixo1); box-shadow: 0 0 8px var(--color-eixo1); }
+        .insight-pill {
+            background: rgba(9, 19, 34, 0.7);
+            border-left: 4px solid var(--accent-glow);
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+        }
 
-        .eixo2-theme { border-left: 4px solid var(--color-eixo2); }
-        .eixo2-theme .eixo-icon { background: rgba(245, 158, 11, 0.15); color: var(--color-eixo2); }
-        .eixo2-theme .progress-bar-fill { background: var(--color-eixo2); box-shadow: 0 0 8px var(--color-eixo2); }
+        .insight-pill h4 {
+            color: #fff;
+            margin-bottom: 0.25rem;
+            font-size: 1rem;
+        }
 
-        .eixo3-theme { border-left: 4px solid var(--color-eixo3); }
-        .eixo3-theme .eixo-icon { background: rgba(244, 63, 94, 0.15); color: var(--color-eixo3); }
-        .eixo3-theme .progress-bar-fill { background: var(--color-eixo3); box-shadow: 0 0 8px var(--color-eixo3); }
-
-        .eixo4-theme { border-left: 4px solid var(--color-eixo4); }
-        .eixo4-theme .eixo-icon { background: rgba(16, 185, 129, 0.15); color: var(--color-eixo4); }
-        .eixo4-theme .progress-bar-fill { background: var(--color-eixo4); box-shadow: 0 0 8px var(--color-eixo4); }
-
-        .eixo5-theme { border-left: 4px solid var(--color-eixo5); }
-        .eixo5-theme .eixo-icon { background: rgba(236, 72, 153, 0.15); color: var(--color-eixo5); }
-        .eixo5-theme .progress-bar-fill { background: var(--color-eixo5); box-shadow: 0 0 8px var(--color-eixo5); }
+        .insight-pill p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="container header-box">
-            <div class="brand">
-                <i class="fa-solid fa-chart-network"></i>
-                COGNIVUS<span>ANALYTICS</span>
+    <div class="container">
+        <header>
+            <h1>COGNIVUS ANALYTICS</h1>
+            <p>Dashboard de Competências Convergentes | Engenharia de Software, IA Generativa, Ciência de Dados e Ciências Jurídicas</p>
+            <div style="color: var(--accent-cyan); font-weight: 700; font-size: 0.95rem;">
+                <i class="fa-solid fa-graduation-cap"></i> Estagiário de Direito na PGE-SP (Regional Seccional de Taubaté)
             </div>
-            <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar ao Hub</a>
+        </header>
+
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <i class="fa-solid fa-scroll"></i>
+                <span class="kpi-value">53</span>
+                <span class="kpi-label">Formações Catalogadas</span>
+            </div>
+            <div class="kpi-card">
+                <i class="fa-solid fa-clock"></i>
+                <span class="kpi-value">8.624h</span>
+                <span class="kpi-label">Carga Horária Acumulada</span>
+            </div>
+            <div class="kpi-card">
+                <i class="fa-solid fa-laptop-code"></i>
+                <span class="kpi-value">80+</span>
+                <span class="kpi-label">Projetos Web/HTML</span>
+            </div>
+            <div class="kpi-card">
+                <i class="fa-solid fa-bolt"></i>
+                <span class="kpi-value">420h</span>
+                <span class="kpi-label">Imersão Dev Acelerada</span>
+            </div>
         </div>
-    </header>
 
-    <main class="container">
-        
-        <section class="dash-intro">
-            <h1>Dashboard de Competências e Engenharia de Conhecimento</h1>
-            <p>Mapeamento analítico e inventário quantitativo estruturado de competências multidisciplinares de Luciano P. de Moura.</p>
-        </section>
+        <div class="filter-nav">
+            <button class="filter-btn active" onclick="filterStatus('todos', this)">Todos os Status</button>
+            <button class="filter-btn" onclick="filterStatus('concluido', this)">Concluídos</button>
+            <button class="filter-btn" onclick="filterStatus('andamento', this)">Em Andamento</button>
+            <button class="filter-btn" onclick="filterStatus('pratico', this)">Aplicação Prática</button>
+        </div>
 
-        <section class="kpi-grid">
-            <div class="kpi-card">
-                <div class="kpi-icon"><i class="fa-solid fa-clock"></i></div>
-                <div class="kpi-data">
-                    <h3>Carga Horária Total</h3>
-                    <p id="total-hours">10.434h</p>
-                </div>
+        <div id="eixos-container"></div>
+
+        <section class="insight-section">
+            <div class="insight-title">
+                <i class="fa-solid fa-chart-line"></i> Diagnóstico Executivo: Perfil Disruptivo Data-Driven
             </div>
-            <div class="kpi-card">
-                <div class="kpi-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-                <div class="kpi-data">
-                    <h3>Certificações &amp; Cursos</h3>
-                    <p id="total-courses">44</p>
+            <div class="insight-grid">
+                <div class="insight-pill">
+                    <h4>Janela de Entrega Ágil</h4>
+                    <p>A consolidação de 420h de desenvolvimento autônomo em 3,5 meses comprova altíssima velocidade de tração operacional e entrega rápida de MVPs funcionais.</p>
                 </div>
-            </div>
-            <div class="kpi-card">
-                <div class="kpi-icon"><i class="fa-solid fa-diagram-project"></i></div>
-                <div class="kpi-data">
-                    <h3>Eixos Estratégicos</h3>
-                    <p>5/5</p>
+                <div class="insight-pill">
+                    <h4>Validação por Código Real</h4>
+                    <p>Mais de 80 microprojetos práticos estruturados e o ecossistema LexOS eliminam barreiras conceituais, provando competência com deploys reais.</p>
                 </div>
-            </div>
-            <div class="kpi-card">
-                <div class="kpi-icon"><i class="fa-solid fa-bars-progress"></i></div>
-                <div class="kpi-data">
-                    <h3>Status de Execução</h3>
-                    <p>93.1%</p>
+                <div class="insight-pill">
+                    <h4>Convergência Quantitativa e Semântica</h4>
+                    <p>A stack de BI/Estatística aliada à engenharia de raciocínio lógico (LexMetric, NeuroOS) une análise numérica e refinamento terminológico para o ecossistema do Direito Público.</p>
                 </div>
             </div>
         </section>
-
-        <section class="controls-bar">
-            <span class="filter-label">Filtros Operacionais:</span>
-            <button class="filter-btn active" onclick="filterStatus('all', this)">Todos os Cursos</button>
-            <button class="filter-btn" onclick="filterStatus('Concluído', this)">Apenas Concluídos</button>
-            <button class="filter-btn" onclick="filterStatus('Em andamento', this)">Em Andamento</button>
-        </section>
-
-        <section id="eixos-container">
-            
-            <div class="eixo-section eixo1-theme open">
-                <div class="eixo-header" onclick="toggleEixo(this)">
-                    <div class="eixo-title-box">
-                        <div class="eixo-icon"><i class="fa-solid fa-briefcase"></i></div>
-                        <h2>Eixo 1: Gestão de Negócios, Processos, Governança &amp; Compliance</h2>
-                    </div>
-                    <div class="eixo-meta">
-                        <span class="eixo-badge-count">9 Formações</span>
-                        <i class="fa-solid fa-chevron-down chevron-icon"></i>
-                    </div>
-                </div>
-                <div class="eixo-content">
-                    <div class="courses-list" id="eixo1-list"></div>
-                </div>
-            </div>
-
-            <div class="eixo-section eixo2-theme">
-                <div class="eixo-header" onclick="toggleEixo(this)">
-                    <div class="eixo-title-box">
-                        <div class="eixo-icon"><i class="fa-solid fa-chart-simple"></i></div>
-                        <h2>Eixo 2: Jurimetria, Business Intelligence &amp; Analytics</h2>
-                    </div>
-                    <div class="eixo-meta">
-                        <span class="eixo-badge-count">18 Formações</span>
-                        <i class="fa-solid fa-chevron-down chevron-icon"></i>
-                    </div>
-                </div>
-                <div class="eixo-content">
-                    <div class="courses-list" id="eixo2-list"></div>
-                </div>
-            </div>
-
-            <div class="eixo-section eixo3-theme">
-                <div class="eixo-header" onclick="toggleEixo(this)">
-                    <div class="eixo-title-box">
-                        <div class="eixo-icon"><i class="fa-solid fa-robot"></i></div>
-                        <h2>Eixo 3: Inteligência Artificial, PLN &amp; Engenharia de Prompts</h2>
-                    </div>
-                    <div class="eixo-meta">
-                        <span class="eixo-badge-count">16 Formações</span>
-                        <i class="fa-solid fa-chevron-down chevron-icon"></i>
-                    </div>
-                </div>
-                <div class="eixo-content">
-                    <div class="courses-list" id="eixo3-list"></div>
-                </div>
-            </div>
-
-            <div class="eixo-section eixo4-theme">
-                <div class="eixo-header" onclick="toggleEixo(this)">
-                    <div class="eixo-title-box">
-                        <div class="eixo-icon"><i class="fa-solid fa-code"></i></div>
-                        <h2>Eixo 4: Desenvolvimento de Software, Engenharia de Dados &amp; Infraestrutura</h2>
-                    </div>
-                    <div class="eixo-meta">
-                        <span class="eixo-badge-count">6 Formações</span>
-                        <i class="fa-solid fa-chevron-down chevron-icon"></i>
-                    </div>
-                </div>
-                <div class="eixo-content">
-                    <div class="courses-list" id="eixo4-list"></div>
-                </div>
-            </div>
-
-            <div class="eixo-section eixo5-theme">
-                <div class="eixo-header" onclick="toggleEixo(this)">
-                    <div class="eixo-title-box">
-                        <div class="eixo-icon"><i class="fa-solid fa-scale-balanced"></i></div>
-                        <h2>Eixo 5: Ciências Jurídicas, Direito &amp; Tecnologia Jurídica</h2>
-                    </div>
-                    <div class="eixo-meta">
-                        <span class="eixo-badge-count">5 Formações</span>
-                        <i class="fa-solid fa-chevron-down chevron-icon"></i>
-                    </div>
-                </div>
-                <div class="eixo-content">
-                    <div class="courses-list" id="eixo5-list"></div>
-                </div>
-            </div>
-
-        </section>
-
-        <section class="cognivus-integration">
-            <div class="integration-header">
-                <i class="fa-solid fa-circle-nodes"></i>
-                <h2>Convergência Prática: A Infraestrutura de Apps Cognivus</h2>
-            </div>
-            <p class="integration-p">
-                A união orgânica destes 5 eixos de conhecimento superou o campo teórico, servindo como base de engenharia de software e modelagem conceitual para a fundação e desenvolvimento completo da marca <strong>Cognivus (Sistemas e Inteligência Analítica)</strong>. Essa robusta esteira educacional resultou na arquitetura de microsserviços integrados de produção ativos:
-            </p>
-            <div class="apps-tags-box">
-                <span class="app-tag"><i class="fa-solid fa-graduation-cap"></i> Treinador (Monitoramento Cognitivo)</span>
-                <span class="app-tag"><i class="fa-solid fa-circle-nodes"></i> CoreMaster (Orquestrador Core)</span>
-                <span class="app-tag"><i class="fa-solid fa-brain"></i> Axion Rhetorical (Engine Lógica)</span>
-                <span class="app-tag"><i class="fa-solid fa-chart-pie"></i> Rethor (Métricas Quantitativas)</span>
-                <span class="app-tag"><i class="fa-solid fa-book-bookmark"></i> Termos (Padronização Semântica)</span>
-            </div>
-        </section>
-
-    </main>
+    </div>
 
     <script>
-        // DATA MATRIX COMPLETA DAS SUAS FORMAÇÕES REALINHADAS
-        const dataset = [
-            // EIXO 1
-            { eixo: 1, nome: "Bacharelado em Administração", inst: "Faculdade Dehoniana", horas: 3150, status: "Concluído", prog: 100 },
-            { eixo: 1, nome: "MBA Executivo em Gestão de Negócios e Marketing", inst: "Universidade Candido Mendes", horas: 600, status: "Concluído", prog: 100 },
-            { eixo: 1, nome: "Auditoria de Qualidade e Processos", inst: "Certificações Corporativas", horas: 80, status: "Concluído", prog: 100 },
-            { eixo: 1, nome: "Gestão de Suprimentos e Logística", inst: "Extensão Universitária", horas: 60, status: "Concluído", prog: 100 },
-            { eixo: 1, nome: "LGPD e Privacidade de Dados", inst: "Extensão / SENAI / ENAP", horas: 20, status: "Concluído", prog: 100 },
-            { eixo: 1, nome: "Compliance & Governança Corporativa", inst: "Curso de Especialização", horas: 40, status: "Concluído", prog: 100 },
-            { eixo: 1, nome: "Compliance e Proteção de Dados", inst: "PUCRS", horas: 10, status: "Concluído", prog: 100 },
-            { eixo: 1, nome: "Governança de Dados", inst: "ENAP", horas: 30, status: "Concluído", prog: 100 },
-            { eixo: 1, nome: "Fundamentos de ESG", inst: "FM2S", horas: 7, status: "Concluído", prog: 100 },
-
-            // EIXO 2
-            { eixo: 2, nome: "Pós-Graduação em Jurimetria", inst: "Faculdade Unyleya", horas: 420, status: "Em andamento", prog: 35 },
-            { eixo: 2, nome: "Jurimetria", inst: "Adequa Cursos", horas: 80, status: "Concluído", prog: 100 },
-            { eixo: 2, nome: "Jurimetria Aplicada à Gestão de Contencioso", inst: "Adequa Cursos", horas: 80, status: "Concluído", prog: 100 },
-            { eixo: 2, nome: "Business Intelligence & Power BI para Análise de Dados", inst: "Data Science Academy", horas: 72, status: "Concluído", prog: 100 },
-            { eixo: 2, nome: "Introdução à Análise de Dados", inst: "Microsoft Power BI", horas: 5, status: "Concluído", prog: 100 },
-            { eixo: 2, nome: "Análise de Dados e Inteligência de Negócios", inst: "Formação Complementar", horas: 30, status: "Concluído", prog: 100 },
-            { eixo: 2, nome: "Big Data em Apoio à Tomada de Decisão", inst: "ENAP", horas: 25, status: "Concluído", prog: 100 },
-            { eixo: 2, nome: "Análise de Dados: Uma Leitura Crítica das Informações", inst: "ENAP", horas: 23, status: "Concluído", prog: 100 },
-            { eixo: 2, nome: "Estatística Aplicada à Análise de Dados", inst: "Alura / IFRS / ENAP", horas: 40, status: "Concluído", prog: 100 },
-            { eixo: 2, nome: "Introdução à Ciência de Dados", inst: "Oracle Academy", horas: 6, status: "Concluído", prog: 100 },
-            { eixo: 2, nome: "Excel Avançado com Inteligência Artificial", inst: "Alura / Santander / ENAP", horas: 60, status: "Concluído", prog: 100 },
-            { eixo: 2, nome: "Excel Intermediário", inst: "ENAP", horas: 30, status: "Concluído", prog: 100 },
-            { eixo: 2, nome: "Introdução ao Excel", inst: "ENAP", horas: 25, status: "Concluído", prog: 100 },
-            { eixo: 2, nome: "Recursos Visuais com Excel: Gráficos e Formatos", inst: "Alura", horas: 8, status: "Concluído", prog: 100 },
-            { eixo: 2, nome: "Funções com Excel: Operações e Filtros", inst: "Alura", horas: 8, status: "Concluído", prog: 100 },
-            { eixo: 2, nome: "Excel: Domine o Editor de Planilhas", inst: "Alura", horas: 8, status: "Concluído", prog: 100 },
-            { eixo: 2, nome: "Excel: Lógica Booleana e Busca de Valores", inst: "Alura", horas: 8, status: "Concluído", prog: 100 },
-            { eixo: 2, nome: "Análise de Dados em Linguagem R", inst: "ENAP", horas: 20, status: "Concluído", prog: 100 },
-
-            // EIXO 3
-            { eixo: 3, nome: "Engenharia de Prompts para Profissionais do Direito", inst: "Alura / Formação Avançada", horas: 120, status: "Concluído", prog: 100 },
-            { eixo: 3, nome: "Engenharia de Prompt: Prompts Eficazes para IA Generativa", inst: "Alura", horas: 6, status: "Concluído", prog: 100 },
-            { eixo: 3, nome: "Engenharia de Prompt Eficaz para Servidores Públicos", inst: "ENAP", horas: 2, status: "Concluído", prog: 100 },
-            { eixo: 3, nome: "Processamento de Linguagem Natural (PLN) e IA Generativa", inst: "Alura / ENAP", horas: 90, status: "Concluído", prog: 100 },
-            { eixo: 3, nome: "Introdução ao Processamento de Linguagem Natural", inst: "ENAP", horas: 25, status: "Concluído", prog: 100 },
-            { eixo: 3, nome: "Análise de Sentimentos em Computação", inst: "UFRGS", horas: 20, status: "Concluído", prog: 100 },
-            { eixo: 3, nome: "Modelos de Linguagem (LLMs) aplicados a Sistemas Jurídicos", inst: "Curso Técnico", horas: 30, status: "Concluído", prog: 100 },
-            { eixo: 3, nome: "Inteligência Artificial Aplicada ao Direito (Legal Techs)", inst: "Alura", horas: 50, status: "Concluído", prog: 100 },
-            { eixo: 3, nome: "IA para Profissionais do Direito", inst: "ENAP", horas: 2, status: "Concluído", prog: 100 },
-            { eixo: 3, nome: "IA para Profissionais da Justiça", inst: "Escola Virtual", horas: 2, status: "Concluído", prog: 100 },
-            { eixo: 3, nome: "IA: Explorando o Potencial da IA Generativa", inst: "Alura", horas: 8, status: "Concluído", prog: 100 },
-            { eixo: 3, nome: "ChatGPT: Otimizando a Qualidade dos Resultados", inst: "Alura", horas: 8, status: "Concluído", prog: 100 },
-            { eixo: 3, nome: "Descubra a Inteligência Artificial Generativa", inst: "LinkedIn Learning", horas: 4, status: "Concluído", prog: 100 },
-            { eixo: 3, nome: "Getting Started with Artificial Intelligence", inst: "IBM SkillsBuild", horas: 5, status: "Concluído", prog: 100 },
-            { eixo: 3, nome: "FluêncIA", inst: "Formação Complementar", horas: 10, status: "Concluído", prog: 100 },
-            { eixo: 3, nome: "Prompting Responsável: Maximizar a IA no seu Negócio", inst: "Oracle Academy", horas: 8, status: "Concluído", prog: 100 },
-
-            // EIXO 4
-            { eixo: 4, nome: "Formação Python Fundamentos para Análise de Dados", inst: "Data Science Academy", horas: 60, status: "Concluído", prog: 100 },
-            { eixo: 4, nome: "Desenvolvimento de Web Apps de Dados com Streamlit", inst: "Formação Prática / Autodidata", horas: 160, status: "Concluído", prog: 100 },
-            { eixo: 4, nome: "Desenvolvimento Web com HTML5, CSS3, JavaScript, JSON e CSV", inst: "Formação Prática / Autodidata", horas: 140, status: "Concluído", prog: 100 },
-            { eixo: 4, nome: "Implantação de Web Apps com Firebase, Vercel & DNS", inst: "Formação Prática / Autodidata", horas: 45, status: "Concluído", prog: 100 },
-            { eixo: 4, nome: "Modelagem de Bancos de Dados NoSQL com Firebase", inst: "Alura", horas: 80, status: "Concluído", prog: 100 },
-            { eixo: 4, nome: "Arquitetura de Microsserviços e APIs para Ecossistemas de IA", inst: "Curso Técnico", horas: 180, status: "Concluído", prog: 100 },
-
-            // EIXO 5
-            { eixo: 5, nome: "Bacharelado em Direito", inst: "Faculdade Anhanguera de Taubaté", horas: 3700, status: "Em andamento", prog: 20 },
-            { eixo: 5, nome: "Pós-Graduação em Jurimetria", inst: "Faculdade Unyleya", horas: 420, status: "Em andamento", prog: 35 },
-            { eixo: 5, nome: "Responsabilidade Jurídica nos Ambientes Digitais", inst: "Formação Complementar", horas: 30, status: "Concluído", prog: 100 },
-            { eixo: 5, nome: "IA Aplicada ao Ecossistema Jurídico e Legal Techs", inst: "Formação Complementar", horas: 15, status: "Concluído", prog: 100 },
-            { eixo: 5, nome: "Jurimetria e Inteligência Artificial aplicada ao Direito", inst: "Formação Complementar", horas: 20, status: "Concluído", prog: 100 }
+        const eixosDados = [
+            {
+                id: 1,
+                titulo: "Eixo 1: Gestão de Negócios, Processos & Compliance",
+                icone: "fa-solid fa-briefcase",
+                itens: [
+                    { nome: "Bacharelado em Administração de Empresas", inst: "Faculdade Dehoniana", horas: "3.150h", status: "concluido", desc: "Formação de base sólida em governança corporativa, finanças e engenharia de processos organizacionais." },
+                    { nome: "MBA Executivo em Gestão de Negócios e Marketing", inst: "Faculdade Cândido Mendes", horas: "600h", status: "concluido", desc: "Especialização em tomada de decisão de alto nível, cenários estratégicos e gestão mercadológica." },
+                    { nome: "Auditoria de Qualidade e Processos", inst: "Certificações Internas", horas: "80h", status: "pratico", desc: "Mapeamento estruturado de fluxos de produção, rastreabilidade e melhoria contínua de rotinas." },
+                    { nome: "Gestão de Suprimentos e Logística", inst: "Extensão Universitária", horas: "60h", status: "concluido", desc: "Otimização de cadeias de valor, fluxos operacionais e eficiência de recursos." },
+                    { nome: "LGPD e Privacidade de Dados", inst: "Curso de Extensão", horas: "20h", status: "pratico", desc: "Alinhamento operacional, proteção de privacidade e mapeamento de dados pessoais." },
+                    { nome: "Compliance & Governança Corporativa", inst: "Curso de Especialização", horas: "40h", status: "pratico", desc: "Auditoria regulatória, mitigação de riscos estruturais e éticos organizacionais." }
+                ]
+            },
+            {
+                id: 2,
+                titulo: "Eixo 2: Jurimetria & Business Intelligence (Dados Analíticos)",
+                icone: "fa-solid fa-chart-pie",
+                itens: [
+                    { nome: "Pós-Graduação (Especialização) em Jurimetria", inst: "Faculdade Unyleya", horas: "420h", status: "andamento", desc: "Especialização voltada à aplicação da Ciência de Dados e Estatística ao universo jurídico." },
+                    { nome: "Business Intelligence & Power BI para Análise de Dados", inst: "Data Science Academy", horas: "72h", status: "pratico", desc: "Arquitetura e modelagem de dados completas com dashboards dinâmicos integrados em produção." },
+                    { nome: "Excel Avançado com Inteligência Artificial", inst: "Alura / Programa Santander", horas: "60h", status: "pratico", desc: "Modelagem de cenários estatísticos avançados, matrizes de decisão e automações corporativas." },
+                    { nome: "Mineração e Modelagem de Dados", inst: "Weka / Linguagem R", horas: "Trilha Prática", status: "pratico", desc: "Aplicação prática de algoritmos de classificação, clusterização de dados e análise preditiva de massa." },
+                    { nome: "Estatística Aplicada à Análise de Dados", inst: "Alura", horas: "40h", status: "concluido", desc: "Construção de bases inferenciais robustas para tomada de decisões baseada em evidências." },
+                    { nome: "Jurimetria Aplicada à Gestão de Contencioso", inst: "Adequa Cursos", horas: "30h", status: "concluido", desc: "Análise quantitativa de risco processual voltada ao controle de carteiras judiciais massivas." }
+                ]
+            },
+            {
+                id: 3,
+                titulo: "Eixo 3: Inteligência Artificial & Engenharia de Prompts",
+                icone: "fa-solid fa-brain",
+                itens: [
+                    { nome: "Engenharia de Prompts para Profissionais do Direito", inst: "Alura / Avançado", horas: "120h", status: "pratico", desc: "Desenho lógico e arquitetura de raciocínio para extração de dados jurídicos via LLMs." },
+                    { nome: "Processamento de Linguagem Natural (PLN) e IA Generativa", inst: "Alura", horas: "90h", status: "pratico", desc: "Tratamento de textos não estruturados e conversão analítica para padrões estruturados (JSON/CSV)." },
+                    { nome: "Inteligência Artificial Aplicada ao Direito (Legal Techs)", inst: "Alura", horas: "50h", status: "concluido", desc: "Mapeamento das tendências disruptivas globais e ferramentas cognitivas do ecossistema legal." },
+                    { nome: "Modelos de Linguagem (LLMs) aplicados a Sistemas Jurídicos", inst: "Curso Técnico", horas: "30h", status: "concluido", desc: "Engenharia de prompt aplicada para mitigação de alucinações e padronização de peças estruturadas." }
+                ]
+            },
+            {
+                id: 4,
+                titulo: "Eixo 4: Engenharia de Software, Infraestrutura & Portfólios",
+                icone: "fa-solid fa-code",
+                itens: [
+                    { nome: "Imersão Prática Autodidata em Software e Segurança", inst: "Desenvolvimento Acelerado", horas: "420h", status: "pratico", desc: "Ciclo intensivo de 3,5 meses (4h diárias) de codificação ponta a ponta e arquitetura de software de dados." },
+                    { nome: "Arquitetura de Microsserviços e APIs para Ecossistemas de IA", inst: "Curso Técnico", horas: "180h", status: "pratico", desc: "Modelagem estruturada de microsserviços integrados para o tráfego ágil de dados." },
+                    { nome: "Portfólio-Cognivus: Web Apps de Dados com Streamlit", inst: "Desenvolvimento Prático", horas: "160h", status: "pratico", desc: "Construção de aplicações dinâmicas em Python com deploy real em nuvem." },
+                    { nome: "Portfólio de Interface: Aplicações Web Estruturadas", inst: "80+ Projetos HTML", horas: "140h", status: "pratico", desc: "Desenvolvimento de mais de 80 projetos funcionais utilizando HTML5, CSS3, JavaScript estruturado e formatos JSON/CSV." },
+                    { nome: "Modelagem de Bancos de Dados NoSQL", inst: "Firebase & Firestore", horas: "80h", status: "pratico", desc: "Estruturação de persistência de dados em tempo real sob arquitetura escalável e nuvem." },
+                    { nome: "DevOps, Infraestrutura e Segurança de Redes", inst: "GitHub / Vercel", horas: "45h", status: "pratico", desc: "Gerenciamento completo de esteiras CI/CD, segurança em DNS, apontamento de domínios e subdomínios." }
+                ]
+            },
+            {
+                id: 5,
+                titulo: "Eixo 5: Ciências Jurídicas e Fundamentos (Foco em Desenvolvimento)",
+                icone: "fa-solid fa-scale-balanced",
+                itens: [
+                    { nome: "Bacharelado em Direito", inst: "Faculdade Anhanguera de Taubaté", horas: "3.700h", status: "andamento", desc: "Graduação com foco atual e consolidação acadêmica em Teoria Geral do Processo (TGP) e Direito Constitucional." },
+                    { nome: "Estágio Profissional em Direito Público", inst: "Procuradoria Geral do Estado de São Paulo (PGE-SP)", horas: "Unidade Regional Taubaté", status: "andamento", desc: "Atuação prática e suporte técnico-jurídico na análise processual e fluxos operacionais do Contencioso do Estado." }
+                ]
+            }
         ];
 
-        // RENDERIZADOR DOS CURSOS DENTRO DOS ACORDEÕES
-        function renderDashboard(filter = 'all') {
-            // Limpa as listas anteriores
-            for(let i=1; i<=5; i++) {
-                document.getElementById(`eixo${i}-list`).innerHTML = "";
-            }
+        function renderDashboard(filtroStatus = 'todos') {
+            const container = document.getElementById('eixos-container');
+            container.innerHTML = '';
 
-            // Filtra e reconstrói as listas de cards
-            dataset.forEach(course => {
-                if (filter !== 'all' && course.status !== filter) return;
+            eixosDados.forEach(eixo => {
+                const itensFiltrados = eixo.itens.filter(item => filtroStatus === 'todos' || item.status === filtroStatus);
+                if (itensFiltrados.length === 0) return;
 
-                const card = document.createElement('div');
-                card.className = 'course-card';
-                
-                const statusClass = course.status === "Concluído" ? "status-done" : "status-ongoing";
-                
-                card.innerHTML = `
-                    <div class="course-card-top">
-                        <h4>${course.nome}</h4>
-                        <span class="status-pill ${statusClass}">${course.status}</span>
-                    </div>
-                    <div>
-                        <div class="course-meta-row">
-                            <span class="inst-name"><i class="fa-solid fa-university"></i> ${course.inst}</span>
-                            <span><strong>${course.horas}h</strong></span>
-                        </div>
-                        <div class="progress-container">
-                            <div class="progress-bar-bg">
-                                <div class="progress-bar-fill" style="width: ${course.prog}%"></div>
+                const section = document.createElement('div');
+                section.className = `eixo-section ${eixo.id === 1 ? 'open' : ''}`;
+
+                const labelStatus = {
+                    'concluido': 'Concluído',
+                    'andamento': 'Em Andamento',
+                    'pratico': 'Aplicação Prática'
+                };
+
+                let cardsHtml = '';
+                itensFiltrados.forEach(item => {
+                    cardsHtml += `
+                        <div class="item-card">
+                            <div class="item-meta">
+                                <span class="badge-status status-${item.status}">${labelStatus[item.status]}</span>
+                                <span class="item-hours">${item.horas}</span>
                             </div>
-                            <span class="progress-text">${course.prog}%</span>
+                            <div class="item-name">${item.nome}</div>
+                            <div class="item-institution"><i class="fa-solid fa-building-columns"></i> ${item.inst}</div>
+                            <div class="item-desc">${item.desc}</div>
+                        </div>
+                    `;
+                });
+
+                section.innerHTML = `
+                    <div class="eixo-header" onclick="toggleEixo(this)">
+                        <div class="eixo-title">
+                            <i class="${eixo.icone}"></i>
+                            <span>${eixo.titulo}</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-down eixo-trigger-icon"></i>
+                    </div>
+                    <div class="eixo-content">
+                        <div class="eixo-inner">
+                            <div class="items-grid">${cardsHtml}</div>
                         </div>
                     </div>
                 `;
 
-                document.getElementById(`eixo${course.eixo}-list`).appendChild(card);
+                container.appendChild(section);
             });
 
-            // Ajuste dinâmico de altura máxima se o acordeão estiver ativo
+            // Reajusta a animação dos elementos abertos
             document.querySelectorAll('.eixo-section.open .eixo-content').forEach(content => {
                 content.style.maxHeight = content.scrollHeight + "px";
             });
         }
 
-        // LÓGICA DE INTERAÇÃO DO ACORDEÃO (ABRIR / FECHAR)
         function toggleEixo(element) {
             const section = element.parentElement;
             const content = section.querySelector('.eixo-content');
@@ -763,18 +507,14 @@
             }
         }
 
-        // CONTROLADOR DE FILTROS DE STATUS
         function filterStatus(status, button) {
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
             renderDashboard(status);
         }
 
-        // EXECUTA NO CARREGAMENTO DA PÁGINA
         document.addEventListener("DOMContentLoaded", function() {
             renderDashboard();
-            
-            // Corrige animação de abertura do primeiro eixo inicial
             setTimeout(() => {
                 const openContent = document.querySelector('.eixo-section.open .eixo-content');
                 if(openContent) openContent.style.maxHeight = openContent.scrollHeight + "px";

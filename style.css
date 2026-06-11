@@ -1,0 +1,231 @@
+:root {
+    --bg-dark: #0a1128; 
+    --card-dark: rgba(16, 31, 66, 0.65); 
+    --amber-glow: #ff9f43;
+    --orange-soft: #f39c12;
+    --copper: #d35400;
+    --text-light: #f5f6fa;
+    --text-muted: #8fa0c4; 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    overflow-x: hidden;
+    line-height: 1.7;
+}
+
+/* Background Global (Imagens claras) */
+.bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 2.5s ease-in-out;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.bg-overlay.active {
+    opacity: 1;
+}
+
+.container {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 70px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 65px;
+}
+
+.manifesto-section {
+    text-align: center;
+    animation: fadeIn 1.5s ease;
+}
+
+.title-enigmatic {
+    font-family: 'Cinzel', serif;
+    font-size: 2.8rem;
+    letter-spacing: 2px;
+    background: linear-gradient(45deg, var(--text-light), var(--amber-glow));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: var(--text-muted);
+    font-style: italic;
+    font-weight: 300;
+}
+
+.divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--copper), transparent);
+    margin: 35px auto;
+    width: 50%;
+}
+
+.manifesto-text p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.45rem;
+    color: #e2e8f0;
+    margin-bottom: 25px;
+    text-align: justify;
+    text-justify: inter-word;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+}
+
+.manifesto-text strong {
+    color: var(--amber-glow);
+    font-weight: 500;
+    font-style: italic;
+}
+
+.player-section {
+    display: flex;
+    justify-content: center;
+}
+
+.player-card {
+    background: var(--card-dark);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    width: 100%;
+    max-width: 680px;
+    border-radius: 12px;
+    padding: 45px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 40px rgba(4, 7, 20, 0.5);
+}
+
+.player-header {
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.player-header h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.35rem;
+    letter-spacing: 1px;
+    color: var(--text-light);
+    margin-bottom: 6px;
+}
+
+.player-header p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.audio-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* PREPARAÇÃO E ARRANJO DO VÍDEO MP4 COM A CAMADA TRANSPARENTE */
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.video-wrapper video {
+    width: 100%;
+    display: block;
+}
+
+/* CAMADA QUE FICA EXATAMENTE SOBRE O VÍDEO MP4 (OPACIDADE EM 50%) */
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0; /* Começa invisível e só aparece ao dar Play */
+    background-size: cover;
+    background-position: center;
+    transition: background-image 2s ease-in-out, opacity 1.5s ease-in-out;
+    pointer-events: none; /* Crucial: cliques passam direto para o vídeo por baixo */
+    mix-blend-mode: screen; /* Faz uma fusão elegante com o preto do MP4, troque para 'normal' se preferir overlay seco */
+}
+
+/* Ativada quando o vídeo começar a rodar */
+.video-overlay.playing {
+    opacity: 0.5; /* Exatamente 50% de transparência solicitados */
+}
+
+.btn-play {
+    background: transparent;
+    border: 1.5px solid var(--orange-soft);
+    color: var(--text-light);
+    padding: 12px 35px;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    width: fit-content;
+}
+
+.btn-play:hover {
+    background: rgba(243, 156, 18, 0.1);
+    border-color: var(--amber-glow);
+    box-shadow: 0 0 12px rgba(243, 156, 18, 0.2);
+}
+
+.valores-footer {
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 35px;
+}
+
+.valores-footer p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    max-width: 520px;
+    margin: 0 auto 20px auto;
+    font-weight: 300;
+}
+
+.signature {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    color: var(--orange-soft);
+    font-weight: 600;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 600px) {
+    .title-enigmatic { font-size: 2.2rem; }
+    .manifesto-text p { font-size: 1.25rem; }
+    .player-card { padding: 25px 15px; }
+}

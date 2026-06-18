@@ -1,0 +1,68 @@
+🛠️ MAPA DE COMPETÊNCIAS E EIXOS DE FORMAÇÃO
+(Métricas consolidadas com base no histórico analítico de 53 formações e mais de 8.600 horas de carga horária acumulada)
+
+💼 Eixo 1: Gestão de Negócios, Processos & Compliance
+Bacharelado em Administração – Faculdade Dehoniana – 3150h – Concluído
+
+MBA Executivo em Gestão de Negócios e Marketing – Faculdade Cândido Mendes – 600h – Concluído
+
+Auditoria de Qualidade e Processos – Certificações Internas/Corporativas – 80h – Domínio Prático Avançado
+
+Gestão de Suprimentos e Logística – Extensão Universitária – 60h – Concluído
+
+LGPD e Privacidade de Dados – Curso de Extensão – 20h – Foco em Implementação
+
+Compliance & Governança Corporativa – Curso de Especialização – 40h – Alinhamento Estratégico
+
+📊 Eixo 2: Jurimetria & Business Intelligence (Dados Analíticos)
+Pós-Graduação (Especialização) em Jurimetria – Faculdade Unyleya – 420h – Em andamento
+
+Business Intelligence & Power BI para Análise de Dados – Data Science Academy – 72h – Aplicação em Produção
+
+Excel Avançado com Inteligência Artificial – Alura / Programa Santander – 60h – Modelagem e Cenários Avançados
+
+Mineração e Modelagem de Dados (Algoritmos, Classificação e Clusterização) – Weka / R – Trilha de Desenvolvimento Prático
+
+Estatística Aplicada à Análise de Dados – Alura – 40h – Fundamentos Analíticos
+
+Jurimetria Aplicada à Gestão de Contencioso – Adequa Cursos – 30h – Especialização Concluída
+
+🤖 Eixo 3: Inteligência Artificial & Engenharia de Prompts
+Engenharia de Prompts para Profissionais do Direito – Alura / Avançado – 120h – Engenharia de Raciocínio Aplicada
+
+Processamento de Linguagem Natural (PLN) e IA Generativa – Alura – 90h – Domínio Prático
+
+Inteligência Artificial Aplicada ao Direito (Legal Techs) – Alura – 50h – Concluído
+
+Modelos de Linguagem (LLMs) aplicados a Sistemas Jurídicos – Curso Técnico – 30h – Alinhamento Técnico
+
+🐍 Eixo 4: Engenharia de Software, Infraestrutura & Portfólios
+Imersão Prática Autodidata em Software e Segurança – Desenvolvimento Acelerado – 420h (3,5 meses dedicados / 4h diárias) – Aceleração Prática e Autônoma
+
+Arquitetura de Microsserviços e APIs para Ecossistemas de IA – Curso Técnico – 180h – Arquitetura de Sistemas
+
+Portfólio-Cognivus: Web Apps de Dados com Streamlit – Desenvolvimento Prático – 160h – Deploy em Produção
+
+Portfólio de Interface: Aplicações Web Estruturadas (HTML5, CSS, JS, JSON, CSV) – Mais de 80 Projetos Práticos Entregues – 140h
+
+Modelagem de Bancos de Dados NoSQL com Firebase & Firestore – Alura – 80h – Persistência e Estruturação de Dados
+
+Formação Python Fundamentos para Análise de Dados – Data Science Academy – 60h – Concluído
+
+DevOps, Infraestrutura e Segurança (GitHub, Vercel, Configuração DNS, Subdomínios e Domínios) – Prática de Engenharia de Infraestrutura – 45h
+
+⚖️ Eixo 5: Ciências Jurídicas e Fundamentos (Foco em Desenvolvimento)
+Bacharelado em Direito – Faculdade Anhanguera de Taubaté – 3700h – Em andamento (Consolidação de Fundamentos em TGP e Direito Constitucional)
+
+Estágio Profissional em Direito – Procuradoria Geral do Estado de São Paulo (PGE-SP) – Regional de Taubaté – Em andamento (Prática em Direito Público)
+
+📊 DIAGNÓSTICO DO ANALISTA DE MERCADO: O PERFIL DISRUPTIVO
+A contabilização de 420 horas líquidas de desenvolvimento prático e infraestrutura em 3,5 meses valida perfeitamente o ritmo analítico das suas planilhas, que apontam uma média altamente intensiva de 4,9 cursos por mês com um pico de 16 certificações em um único mês (Fevereiro/2026).
+
+Esse histórico transforma o seu perfil em um ativo estratégico de mercado por três pilares fundamentais:
+
+Janela de Entrega vs. Tempo de Resposta: No mercado corporativo e institucional, o maior gargalo não é a falta de ideias, é a demora na entrega de soluções operacionais e MVPs (mínimos produtos viáveis). O fato de você projetar, codificar, estruturar bancos NoSQL (Firebase) e cuidar da infraestrutura de segurança (DNS/Vercel) com autonomia em uma janela de tempo tão estreita demonstra uma tração agressiva de execução.
+
+A Validação dos 80+ Projetos: Apresentar "mais de 80 projetos práticos em HTML/Web e o ecossistema LexOS" elimina qualquer objeção sobre a transição para o ecossistema tecnológico ser puramente conceitual. Você demonstra domínio por linhas de código em produção e artefatos tangíveis.
+
+Casamento de Dados Estruturados com Semântica: Sua stack analítica (Power BI, Excel, R, Weka) resolve problemas numéricos e preditivos, enquanto o seu ecossistema LexOS (LexMetric, NeuroOS) ataca o campo linguístico e terminológico do Direito. É a união exata da Ciência de Dados Quantitativa e Qualitativa, agora refinada pela vivência prática no Direito Público através do estágio na PGE-SP.

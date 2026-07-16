@@ -107,7 +107,7 @@ body {
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     width: 100%;
-    max-width: 680px;
+    max-width: 980px;
     border-radius: 12px;
     padding: 45px;
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -139,39 +139,44 @@ body {
 }
 
 /* PREPARAÇÃO E ARRANJO DO VÍDEO MP4 COM A CAMADA TRANSPARENTE */
+/* Adicione ou substitua estas propriedades na sua classe .video-wrapper */
+/* Atualize a altura aqui para o tamanho que desejar */
+/* Container do Player: Altura reduzida para algo proporcional e largura ajustada */
 .video-wrapper {
     position: relative;
     width: 100%;
-    max-width: 500px;
-    margin-bottom: 15px;
+    max-width: 800px; /* Largura que você pediu */
+    aspect-ratio: 16 / 9; /* Mantém a proporção correta de vídeo */
+    height: auto; /* Deixa a altura ser definida pela largura */
+    margin-bottom: 20px;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    background: #000;
 }
 
-.video-wrapper video {
+/* O vídeo e a imagem devem se ajustar ao container sem cortar */
+#meuVideo, .video-overlay {
     width: 100%;
-    display: block;
-}
-
-/* CAMADA QUE FICA EXATAMENTE SOBRE O VÍDEO MP4 (OPACIDADE EM 50%) */
-.video-overlay {
+    height: 100%;
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0; /* Começa invisível e só aparece ao dar Play */
-    background-size: cover;
+    /* 'contain' garante que a imagem inteira apareça sem cortes */
+    object-fit: contain; 
+    background-size: contain;
     background-position: center;
-    transition: background-image 2s ease-in-out, opacity 1.5s ease-in-out;
-    pointer-events: none; /* Crucial: cliques passam direto para o vídeo por baixo */
-    mix-blend-mode: screen; /* Faz uma fusão elegante com o preto do MP4, troque para 'normal' se preferir overlay seco */
+    background-repeat: no-repeat;
 }
 
-/* Ativada quando o vídeo começar a rodar */
+.video-overlay {
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+    pointer-events: none;
+    mix-blend-mode: screen;
+}
+
 .video-overlay.playing {
-    opacity: 0.5; /* Exatamente 50% de transparência solicitados */
+    opacity: 0.5;
 }
 
 .btn-play {
@@ -228,4 +233,26 @@ body {
     .title-enigmatic { font-size: 2.2rem; }
     .manifesto-text p { font-size: 1.25rem; }
     .player-card { padding: 25px 15px; }
+}
+
+.playlist {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.track-link {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+    transition: color 0.3s;
+}
+
+.track-link:hover {
+    color: var(--amber-glow);
 }

@@ -27,18 +27,20 @@
         <main class="player-section">
             <div class="player-card">
                 <div class="player-header">
-                    <h3>Experiência Acústica e Visual</h3>
-                    <p>Produção autoral assistida por IA</p>
+                    <h3>Centro de Controle Acústico</h3>
+                    <ul class="playlist">
+                        <li><button class="track-link" data-src="midia/musica1.mp4">Experiência Acústica I</button></li>
+                        <li><button class="track-link" data-src="midia/musica2.mp4">Experiência Acústica II</button></li>
+                        <li><button class="track-link" data-src="midia/musica3.mp4">Experiência Acústica III</button></li>
+                        <li><button class="track-link" data-src="midia/musica4.mp4">Experiência Acústica IV</button></li>
+                    </ul>
                 </div>
 
                 <div class="audio-container">
-                    
                     <div class="video-wrapper">
-                        <video id="meuVideo" src="midia/musica.mp4" preload="auto"></video>
-                        
+                        <video id="meuVideo" src="midia/musica1.mp4" preload="auto"></video>
                         <div id="videoOverlay" class="video-overlay"></div>
                     </div>
-                    
                     <button id="btnPlayPause" class="btn-play">
                         <span id="playerIcon">▶</span> <span id="playerText">Iniciar Experiência</span>
                     </button>

@@ -6,6 +6,7 @@
     --copper: #d35400;
     --text-light: #f5f6fa;
     --text-muted: #8fa0c4; 
+    --gold: #d4af37;
 }
 
 * {
@@ -22,13 +23,10 @@ body {
     line-height: 1.7;
 }
 
-/* Background Global (Imagens claras) */
+/* Background Global */
 .bg-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; width: 100%; height: 100%;
     z-index: -1;
     opacity: 0;
     transition: opacity 2.5s ease-in-out;
@@ -42,34 +40,41 @@ body {
 }
 
 .container {
-    max-width: 850px;
+    max-width: 950px;
     margin: 0 auto;
     padding: 70px 20px;
     display: flex;
     flex-direction: column;
-    gap: 65px;
+    gap: 70px;
 }
 
-.manifesto-section {
+.manifesto-section, .musical-journey {
     text-align: center;
     animation: fadeIn 1.5s ease;
 }
 
 .title-enigmatic {
     font-family: 'Cinzel', serif;
-    font-size: 2.8rem;
-    letter-spacing: 2px;
-    background: linear-gradient(45deg, var(--text-light), var(--amber-glow));
+    font-size: 2.9rem;
+    letter-spacing: 3px;
+    background: linear-gradient(45deg, var(--text-light), var(--gold));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .subtitle {
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: var(--text-muted);
     font-style: italic;
-    font-weight: 300;
+}
+
+.section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2.1rem;
+    color: var(--gold);
+    margin: 20px 0 30px;
+    letter-spacing: 1px;
 }
 
 .divider {
@@ -82,30 +87,27 @@ body {
 
 .manifesto-text p {
     font-family: 'Playfair Display', serif;
-    font-size: 1.45rem;
+    font-size: 1.38rem;
     color: #e2e8f0;
     margin-bottom: 25px;
     text-align: justify;
     text-justify: inter-word;
-    font-weight: 400;
-    letter-spacing: 0.3px;
 }
 
-.manifesto-text strong {
-    color: var(--amber-glow);
-    font-weight: 500;
-    font-style: italic;
+.manifesto-text h3 {
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    margin: 35px 0 12px;
+    font-size: 1.45rem;
 }
 
-.player-section {
-    display: flex;
-    justify-content: center;
-}
+.manifesto-text strong { color: var(--amber-glow); }
+
+.player-section { display: flex; justify-content: center; }
 
 .player-card {
     background: var(--card-dark);
     backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
     width: 100%;
     max-width: 980px;
     border-radius: 12px;
@@ -114,145 +116,125 @@ body {
     box-shadow: 0 20px 40px rgba(4, 7, 20, 0.5);
 }
 
-.player-header {
-    text-align: left;
-    margin-bottom: 25px;
-}
-
 .player-header h3 {
     font-family: 'Cinzel', serif;
-    font-size: 1.35rem;
-    letter-spacing: 1px;
+    font-size: 1.4rem;
     color: var(--text-light);
-    margin-bottom: 6px;
-}
-
-.player-header p {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-}
-
-.audio-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* PREPARAÇÃO E ARRANJO DO VÍDEO MP4 COM A CAMADA TRANSPARENTE */
-/* Adicione ou substitua estas propriedades na sua classe .video-wrapper */
-/* Atualize a altura aqui para o tamanho que desejar */
-/* Container do Player: Altura reduzida para algo proporcional e largura ajustada */
-.video-wrapper {
-    position: relative;
-    width: 100%;
-    max-width: 800px; /* Largura que você pediu */
-    aspect-ratio: 16 / 9; /* Mantém a proporção correta de vídeo */
-    height: auto; /* Deixa a altura ser definida pela largura */
-    margin-bottom: 20px;
-    border-radius: 8px;
-    overflow: hidden;
-    background: #000;
-}
-
-/* O vídeo e a imagem devem se ajustar ao container sem cortar */
-#meuVideo, .video-overlay {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    /* 'contain' garante que a imagem inteira apareça sem cortes */
-    object-fit: contain; 
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.video-overlay {
-    opacity: 0;
-    transition: opacity 1.5s ease-in-out;
-    pointer-events: none;
-    mix-blend-mode: screen;
-}
-
-.video-overlay.playing {
-    opacity: 0.5;
-}
-
-.btn-play {
-    background: transparent;
-    border: 1.5px solid var(--orange-soft);
-    color: var(--text-light);
-    padding: 12px 35px;
-    border-radius: 4px;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.95rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    transition: all 0.3s ease;
-    font-weight: 500;
-    width: fit-content;
-}
-
-.btn-play:hover {
-    background: rgba(243, 156, 18, 0.1);
-    border-color: var(--amber-glow);
-    box-shadow: 0 0 12px rgba(243, 156, 18, 0.2);
-}
-
-.valores-footer {
     text-align: center;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    padding-top: 35px;
-}
-
-.valores-footer p {
-    font-size: 0.95rem;
-    color: var(--text-muted);
-    max-width: 520px;
-    margin: 0 auto 20px auto;
-    font-weight: 300;
-}
-
-.signature {
-    font-family: 'Cinzel', serif;
-    font-size: 1.1rem;
-    letter-spacing: 2px;
-    color: var(--orange-soft);
-    font-weight: 600;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@media (max-width: 600px) {
-    .title-enigmatic { font-size: 2.2rem; }
-    .manifesto-text p { font-size: 1.25rem; }
-    .player-card { padding: 25px 15px; }
+    margin-bottom: 20px;
 }
 
 .playlist {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    margin-top: 10px;
+    gap: 10px;
+    margin-top: 15px;
 }
 
 .track-link {
     background: none;
-    border: none;
+    border: 1px solid rgba(255,255,255,0.1);
     color: var(--text-muted);
+    padding: 14px 20px;
+    border-radius: 8px;
     cursor: pointer;
     text-align: left;
-    width: 100%;
-    transition: color 0.3s;
+    transition: all 0.3s;
 }
 
-.track-link:hover {
+.track-link:hover, .track-link.active {
+    background: rgba(255, 159, 67, 0.15);
     color: var(--amber-glow);
+    border-color: var(--amber-glow);
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 16 / 9;
+    margin: 0 auto 25px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #000;
+}
+
+#meuVideo, .video-overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0; left: 0;
+    object-fit: contain;
+}
+
+/* === EFEITO DE TRANSIÇÃO SUAVE NO PLAYER === */
+.video-overlay {
+    opacity: 0;
+    transition: opacity 1.8s ease-in-out; /* Fade mais suave e elegante */
+    pointer-events: none;
+    mix-blend-mode: screen;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.video-overlay.playing {
+    opacity: 0.45; /* Intensidade suave - pode ajustar entre 0.35 e 0.55 */
+}
+
+/* Efeito extra de cross-fade (melhor transição) */
+.video-overlay::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    opacity: 0;
+    transition: opacity 1.8s ease-in-out;
+}
+
+.btn-play {
+    background: transparent;
+    border: 1.5px solid var(--orange-soft);
+    color: var(--text-light);
+    padding: 14px 40px;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s;
+}
+
+.btn-play:hover {
+    background: rgba(243, 156, 18, 0.1);
+    border-color: var(--amber-glow);
+    box-shadow: 0 0 15px rgba(243, 156, 18, 0.3);
+}
+
+.valores-footer {
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 40px;
+}
+
+.signature {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+    letter-spacing: 2px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 700px) {
+    .title-enigmatic { font-size: 2.3rem; }
+    .manifesto-text p { font-size: 1.25rem; }
 }

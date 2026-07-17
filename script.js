@@ -1,3 +1,7 @@
+// ====================== GSAP ======================
+gsap.registerPlugin();
+
+// ====================== ELEMENTOS ======================
 const video = document.getElementById('meuVideo');
 const btnPlayPause = document.getElementById('btnPlayPause');
 const playerIcon = document.getElementById('playerIcon');
@@ -5,50 +9,58 @@ const playerText = document.getElementById('playerText');
 const videoOverlay = document.getElementById('videoOverlay');
 const bgContainer = document.getElementById('bg-container');
 
-const minhasImagens = [
-    "images/image (1).jpg", "images/image (2).jpg", "images/image (3).jpg", 
-    "images/image (4).jpg", "images/image (5).jpg", "images/image (6).jpg",
-    "images/image (7).jpg", "images/image (8).jpg", "images/image (9).jpg",
-    "images/image (10).jpg", "images/image (11).jpg", "images/image (12).jpg",
-    "images/image (13).jpg", "images/image (14).jpg", "images/image (15).jpg",
-    "images/image (16).jpg", "images/image (17).jpg", "images/image (18).jpg",
-    "images/image (19).jpg", "images/image (20).jpg", "images/image (21).jpg",
-    "images/image (22).jpg", "images/image (23).jpg", "images/image (24).jpg",
-    "images/image (25).jpg", "images/image (26).jpg", "images/image (27).jpg",
-    "images/image (28).jpg"
-];
+// ====================== ARRAY COM 63 IMAGENS ======================
+let minhasImagens = [];
 
-let bgInterval, overlayInterval;
+// Carregar automaticamente as 63 imagens (recomendado)
+for (let i = 1; i <= 63; i++) {
+    minhasImagens.push(`images/image (${i}).jpg`);
+}
+
+let bgInterval = null;
+let overlayInterval = null;
 let currentBgIndex = 0;
 let currentOverlayIndex = 0;
 
-// Inicialização
-function inicializarBackgrounds() {
-    bgContainer.innerHTML = '';
-    minhasImagens.forEach((caminhoImg, index) => {
-        const divOverlay = document.createElement('div');
-        divOverlay.className = `bg-overlay ${index === 0 ? 'active' : ''}`;
-        divOverlay.style.backgroundImage = `linear-gradient(rgba(10, 17, 40, 0.65), rgba(10, 17, 40, 0.65)), url('${caminhoImg}')`;
-        bgContainer.appendChild(divOverlay);
+// ====================== ANIMAÇÕES GSAP ======================
+function initGSAP() {
+    gsap.from(".title-enigmatic", { duration: 1.8, y: 60, opacity: 0, ease: "power3.out" });
+    gsap.from(".subtitle", { duration: 1.5, y: 40, opacity: 0, delay: 0.4 });
+    gsap.from(".manifesto-text p, .manifesto-text h3", { 
+        duration: 1.3, y: 40, opacity: 0, stagger: 0.2, delay: 0.7 
     });
-    if (videoOverlay) videoOverlay.style.backgroundImage = `url('${minhasImagens[0]}')`;
+    gsap.from(".player-card", { duration: 1.8, y: 90, opacity: 0, delay: 1.2, ease: "power3.out" });
 }
 
-inicializarBackgrounds();
+// ====================== BACKGROUND ======================
+function inicializarBackgrounds() {
+    bgContainer.innerHTML = '';
+    
+    minhasImagens.forEach((caminhoImg, index) => {
+        const div = document.createElement('div');
+        div.className = `bg-overlay ${index === 0 ? 'active' : ''}`;
+        div.style.backgroundImage = `linear-gradient(rgba(10, 17, 40, 0.68), rgba(10, 17, 40, 0.68)), url('${caminhoImg}')`;
+        bgContainer.appendChild(div);
+    });
 
-// Player controls (mantido igual)
+    if (videoOverlay) videoOverlay.style.backgroundImage = `url('${minhasImagens[0]}')`;
+
+    initGSAP();
+}
+
+// ====================== PLAYER ======================
 document.querySelectorAll('.track-link').forEach(link => {
     link.addEventListener('click', function() {
         document.querySelectorAll('.track-link').forEach(l => l.classList.remove('active'));
         this.classList.add('active');
-        
+
         video.src = this.getAttribute('data-src');
         video.load();
-        video.play();
-        
+        video.play().catch(() => {});
+
         playerIcon.textContent = '⏸';
         playerText.textContent = 'Pausar Experiência';
-        
+
         stopAmbience();
         stopVideoOverlay();
         startAmbience();
@@ -58,7 +70,7 @@ document.querySelectorAll('.track-link').forEach(link => {
 
 btnPlayPause.addEventListener('click', () => {
     if (video.paused) {
-        video.play();
+        video.play().catch(() => {});
         playerIcon.textContent = '⏸';
         playerText.textContent = 'Pausar Experiência';
         startAmbience();
@@ -72,10 +84,11 @@ btnPlayPause.addEventListener('click', () => {
     }
 });
 
-// Background da página (mantido em 14s)
+// ====================== FUNÇÕES DE TRANSIÇÃO ======================
 function startAmbience() {
     const overlays = document.querySelectorAll('.bg-overlay');
     if (bgInterval) clearInterval(bgInterval);
+    
     bgInterval = setInterval(() => {
         overlays[currentBgIndex].classList.remove('active');
         currentBgIndex = (currentBgIndex + 1) % overlays.length;
@@ -88,26 +101,52 @@ function stopAmbience() {
     bgInterval = null;
 }
 
-// Overlay do Player - Aleatório com Fade Suave
+// Fade Suave no Player (sem corte seco)
+function changeVideoOverlay(newSrc) {
+    if (!videoOverlay) return;
+
+    gsap.to(videoOverlay, {
+        duration: 1.6,        // Duração do fade out
+        opacity: 0,
+        ease: "power2.inOut",
+        onComplete: () => {
+            videoOverlay.style.backgroundImage = `url('${newSrc}')`;
+            gsap.to(videoOverlay, {
+                duration: 1.6,   // Duração do fade in
+                opacity: 0.45,
+                ease: "power2.inOut"
+            });
+        }
+    });
+}
+
 function startVideoOverlay() {
     if (!videoOverlay) return;
-    videoOverlay.classList.add('playing');
-    
+    videoOverlay.style.opacity = "0.45";
+
     if (overlayInterval) clearInterval(overlayInterval);
-    
+
     overlayInterval = setInterval(() => {
         let randomIndex;
+        // Melhora a aleatoriedade para evitar repetições frequentes
         do {
             randomIndex = Math.floor(Math.random() * minhasImagens.length);
-        } while (randomIndex === currentOverlayIndex);
-        
+        } while (randomIndex === currentOverlayIndex && minhasImagens.length > 1);
+
         currentOverlayIndex = randomIndex;
-        videoOverlay.style.backgroundImage = `url('${minhasImagens[currentOverlayIndex]}')`;
-    }, 6000); // 6 segundos - bom equilíbrio entre movimento e suavidade
+        changeVideoOverlay(minhasImagens[currentOverlayIndex]);
+    }, 7000); // 7 segundos - bom equilíbrio
 }
 
 function stopVideoOverlay() {
     if (overlayInterval) clearInterval(overlayInterval);
     overlayInterval = null;
-    if (videoOverlay) videoOverlay.classList.remove('playing');
+    if (videoOverlay) gsap.to(videoOverlay, { duration: 0.8, opacity: 0 });
 }
+
+// ====================== INICIALIZAÇÃO ======================
+window.onload = function() {
+    inicializarBackgrounds();
+    startAmbience();
+    startVideoOverlay();
+};

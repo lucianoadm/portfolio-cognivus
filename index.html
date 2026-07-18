@@ -2,7 +2,7 @@
 <!-- 
     SISTEMA: LexOS Ecosystem
     MÓDULO: Landing Page (Portfólio Pessoal & Hub de Engenharia)
-    VERSÃO: v.5.0.1 - Inserção Card CoreMaster
+    VERSÃO: v.5.0.2 - Integração de Assinatura Filosófica Centrada
     DATA_ATUALIZAÇÃO: 2026-07-18
     STACK: HTML5, CSS/Tailwind, JavaScript, Chart.js
     ARQUITETO_E_DESENVOLVEDOR: Luciano P. de Moura
@@ -164,7 +164,7 @@
         }
 
         /* ==========================================================================
-           HERO SECTION
+           HERO SECTION & SIGNATURE
            ========================================================================== */
         .hero {
             padding: 150px 0 100px 0;
@@ -287,6 +287,29 @@
             display: block;
             border-radius: 16px;
             object-fit: cover;
+        }
+
+        /* Estilização Isolada para a Assinatura Conceitual */
+        .hero-signature-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .hero-signature-text {
+            font-size: 1.15rem;
+            font-weight: 300;
+            font-style: italic;
+            letter-spacing: 0.5px;
+            color: var(--accent-glow); 
+            text-shadow: 0 0 25px rgba(56, 189, 248, 0.25);
+            opacity: 0.95;
+            max-width: 750px;
+            line-height: 1.6;
+            margin: 0 auto;
         }
 
         /* ==========================================================================
@@ -825,12 +848,14 @@
                         Inteligência Artificial Generativa sob rígidos padrões de Governança corporativa e LGPD.
                     </p>
 
+                    <!-- Botão existente de competências -->
                     <div style="display: flex; gap: 15px; flex-wrap: wrap;">
                         <a href="dashboard.html" class="nav-btn-dashboard" style="padding: 14px 28px; font-size: 1rem;">
                             <i class="fa-solid fa-chart-line"></i> Analisar Matriz de Competências
                         </a>
                     </div>
-                </div>
+
+                </div> <!-- Fim do hero-content -->
 
                 <div class="hero-visual-side">
                     <div class="hero-visual-wrapper">
@@ -841,8 +866,16 @@
                     </div>
                 </div>
 
+            </div> <!-- Fim do hero-layout -->
+            
+            <!-- Frase de efeito ajustada ao centro da tela inteira -->
+            <div class="hero-signature-container">
+                <p class="hero-signature-text">
+                    O dado é passado, o processo é presente e a decisão é futuro.
+                </p>
             </div>
-        </div>
+
+        </div> <!-- Fim do container -->
     </section>
 
     <!-- SEÇÃO ATUALIZADA COM OS 9 CARDS DO ECOSSISTEMA LEXOS -->
@@ -1254,7 +1287,7 @@
 
         function animateSkillBars() {
             const fills = document.querySelectorAll('.bar-fill');
-            fills.forEach(fill => {
+            border = fills.forEach(fill => {
                 const pct = fill.getAttribute('data-pct');
                 fill.style.width = pct + '%';
             });

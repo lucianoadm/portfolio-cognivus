@@ -1,4 +1,13 @@
 <!DOCTYPE html>
+<!-- 
+    SISTEMA: LexOS Ecosystem / COGNIVUS
+    MÓDULO: Landing Page (Portfólio Pessoal & Hub de Engenharia)
+    VERSÃO: 5.0.0 - Enterprise Suite
+    DATA_ATUALIZAÇÃO: 2026-07-18
+    STACK: HTML5, CSS3, Vanilla JS
+    ARQUITETO_E_DESENVOLVEDOR: Luciano P. de Moura
+    RESTRIÇÃO: Uso restrito. Propriedade intelectual protegida.
+-->
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -281,7 +290,7 @@
         }
 
         /* ==========================================================================
-           GRID DE ECOSSISTEMAS (OS 6 CARDS REAIS)
+           GRID DE ECOSSISTEMAS (OS 8 CARDS REAIS)
            ========================================================================== */
         .ecosystem {
             padding: 100px 0;
@@ -351,6 +360,9 @@
         .card-eco.dat:hover::before { background: var(--badge-dat); }
         .card-eco.sem:hover::before { background: var(--accent-glow-secondary); }
         .card-eco.hub:hover::before { background: #3b82f6; }
+        /* Cores adicionais para os novos cards */
+        .card-eco.pccs:hover::before { background: #ef4444; }
+        .card-eco.phrase:hover::before { background: #8b5cf6; }
 
         .card-header-eco {
             display: flex;
@@ -374,6 +386,8 @@
         .badge-eco.dat { background: rgba(245, 158, 11, 0.15); color: var(--badge-dat); }
         .badge-eco.sem { background: rgba(34, 211, 238, 0.15); color: var(--accent-glow-secondary); }
         .badge-eco.hub { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
+        .badge-eco.pccs { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+        .badge-eco.phrase { background: rgba(139, 92, 246, 0.15); color: #8b5cf6; }
 
         .icon-eco {
             font-size: 1.8rem;
@@ -443,22 +457,19 @@
         .tree-skills-column {
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Distribui o espaço vazio por igual */
-            height: 100%; /* Força a coluna a ter a mesma altura do bloco central */
-            gap: 20px; /* Reduzimos o gap fixo para o flexbox gerenciar o espaço */
+            justify-content: space-between;
+            height: 100%;
+            gap: 20px;
         }
 
-        /* Garante que no celular o Avatar fique no topo, antes dos cards */
         @media(max-width: 1199px) {
             .tree-avatar-hub {
                 order: -1; 
             }
         }
 
-        /* Desktop: Layout de 3 colunas (Esquerda | Centro | Direita) */
         @media(min-width: 1200px) {
             .tree-layout {
-                /* 1fr para os cards, 350px para o avatar, 1fr para os cards */
                 grid-template-columns: 1fr 350px 1fr;
                 gap: 40px;
             }
@@ -535,13 +546,12 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 10px 15px; /* Reduzido de 12px 20px para dar mais espaço ao texto */
+            padding: 10px 15px; 
             border-radius: 10px;
             background: rgba(13, 25, 47, 0.5);
             border-left: 4px solid var(--accent-glow);
         }
 
-        /* Cores baseadas nas variáveis de design */
         .axis-badge-item.gestao { border-left-color: var(--badge-core); }
         .axis-badge-item.direito { border-left-color: var(--badge-edu); }
         .axis-badge-item.juri { border-left-color: var(--badge-dat); }
@@ -552,10 +562,10 @@
         .axis-title-sm {
             display: flex;
             align-items: center;
-            gap: 8px; /* Reduzido de 10px */
-            font-size: 0.85rem; /* Reduzido levemente de 0.92rem */
+            gap: 8px; 
+            font-size: 0.85rem; 
             font-weight: 700;
-            line-height: 1.2; /* Melhora a leitura se quebrar a linha */
+            line-height: 1.2; 
         }
 
         .axis-pct {
@@ -577,13 +587,12 @@
             border-radius: 16px;
             padding: 25px;
             --current-group-color: var(--accent-glow);
-            flex: 1; /* Faz os cards esticarem por igual na vertical */
+            flex: 1; 
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Centraliza o conteúdo dentro do card */
+            justify-content: center; 
         }
 
-        /* Mapeamento exato das classes para transferir a cor para os cards */
         .skill-group-box.gestao { --current-group-color: var(--badge-core); }
         .skill-group-box.direito { --current-group-color: var(--badge-edu); }
         .skill-group-box.juri { --current-group-color: var(--badge-dat); }
@@ -600,7 +609,6 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        /* Ícone agora herda a cor dinamicamente */
         .group-box-header i { 
             font-size: 1.3rem; 
             color: var(--current-group-color) !important; 
@@ -640,7 +648,6 @@
             position: relative;
         }
 
-        /* Barra de progresso totalmente dinâmica, limpa de estilos inline */
         .bar-fill {
             height: 100%;
             border-radius: 10px;
@@ -779,7 +786,6 @@
                     <li><a href="#skills">Skill Tree</a></li>
                     <li><a href="dashboard.html" class="nav-btn-dashboard"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
                     <li><a href="base.html" class="nav-btn-base"><i class="fa-solid fa-chart-pie"></i> Base</a></li>
-
                 </ul>
             </nav>
         </div>
@@ -841,6 +847,7 @@
         </div>
     </section>
 
+    <!-- SEÇÃO ATUALIZADA COM OS 8 CARDS DO ECOSSISTEMA LEXOS -->
     <section id="ecossistema" class="ecosystem">
         <div class="container">
             <div class="section-header">
@@ -849,6 +856,39 @@
             </div>
             
             <div class="grid-ecosystem">
+                <!-- Card 1: LexPCCS -->
+                <div class="card-eco pccs">
+                    <div>
+                        <div class="card-header-eco">
+                            <span class="badge-eco pccs">Governança</span>
+                            <div class="icon-eco"><i class="fa-solid fa-scale-balanced" style="color: #ef4444;"></i></div>
+                        </div>
+                        <h3>LexPCCS Engine</h3>
+                        <p>Simulador corporativo focado na modelagem financeira, mitigação de passivos trabalhistas e estruturação de Planos de Cargos, Carreiras e Salários.</p>
+                    </div>
+                    <div class="card-actions">
+                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Online</span>
+                        <a href="https://lexpcs.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar App <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+
+                <!-- Card 2: PhraseUp -->
+                <div class="card-eco phrase">
+                    <div>
+                        <div class="card-header-eco">
+                            <span class="badge-eco phrase">Linguística</span>
+                            <div class="icon-eco"><i class="fa-solid fa-feather" style="color: #8b5cf6;"></i></div>
+                        </div>
+                        <h3>PhraseUp Nav</h3>
+                        <p>Refinador semântico de linguagem. Processa vocabulários corporativos para aprimoramento de clareza e autoridade retórica.</p>
+                    </div>
+                    <div class="card-actions">
+                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Online</span>
+                        <a href="https://phraseupnav.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar App <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+
+                <!-- Card 3: Treinador -->
                 <div class="card-eco edu">
                     <div>
                         <div class="card-header-eco">
@@ -864,36 +904,23 @@
                     </div>
                 </div>
 
-                <div class="card-eco core">
+                <!-- Card 4: Analysers Hub -->
+                <div class="card-eco hub">
                     <div>
                         <div class="card-header-eco">
-                            <span class="badge-eco core">Núcleo</span>
-                            <div class="icon-eco"><i class="fa-solid fa-circle-nodes"></i></div>
+                            <span class="badge-eco hub">Dados</span>
+                            <div class="icon-eco"><i class="fa-solid fa-chart-pie"></i></div>
                         </div>
-                        <h3>Cognivus</h3>
-                        <p>O centro de controle operacional e orquestrador principal de microsserviços integrados de todo o ecossistema Cognivus.</p>
+                        <h3>Cognivus Analysers</h3>
+                        <p>A Cognivus Intelligence Suite é uma plataforma centralizada de painéis de análise de dados operacionais e industriais de alto desempenho.</p>
                     </div>
                     <div class="card-actions">
-                        <span class="status-pill offline"><i class="fa-solid fa-circle"></i> Offline</span>
-                        <a href="https://luciano.cognivus.com.br/" target="_blank" class="btn-card-link">Em Desenvolvimento<i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Online</span>
+                        <a href="https://analysers.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar App <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                     </div>
                 </div>
 
-                <div class="card-eco log">
-                    <div>
-                        <div class="card-header-eco">
-                            <span class="badge-eco log">Lógica</span>
-                            <div class="icon-eco"><i class="fa-solid fa-brain"></i></div>
-                        </div>
-                        <h3>Axion Rhetorical</h3>
-                        <p>Engine analítica baseada em modelos de linguagem avançados para mapeamento, estruturação e auditoria de argumentação lógica.</p>
-                    </div>
-                    <div class="card-actions">
-                        <span class="status-pill offline"><i class="fa-solid fa-circle"></i> Offline</span>
-                        <a href="https://luciano.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar App <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-
+                <!-- Card 5: Gerador Prompt -->
                 <div class="card-eco dat">
                     <div>
                         <div class="card-header-eco">
@@ -909,13 +936,14 @@
                     </div>
                 </div>
 
+                <!-- Card 6: Termos -->
                 <div class="card-eco sem">
                     <div>
                         <div class="card-header-eco">
                             <span class="badge-eco sem">Semântica</span>
                             <div class="icon-eco"><i class="fa-solid fa-book-bookmark"></i></div>
                         </div>
-                        <h3>Termos</h3>
+                        <h3>Termos Lexicais</h3>
                         <p>Glossário conceitual dinâmico desenvolvido para normalização e padronização analítica de termos técnicos e jurídicos complexos.</p>
                     </div>
                     <div class="card-actions">
@@ -924,18 +952,35 @@
                     </div>
                 </div>
 
-                <div class="card-eco hub">
+                <!-- Card 7: Orquestrador Core -->
+                <div class="card-eco core">
                     <div>
                         <div class="card-header-eco">
-                            <span class="badge-eco hub">Dados</span>
-                            <div class="icon-eco"><i class="fa-solid fa-chart-pie"></i></div>
+                            <span class="badge-eco core">Núcleo</span>
+                            <div class="icon-eco"><i class="fa-solid fa-circle-nodes"></i></div>
                         </div>
-                        <h3>Analysers.Cognivus.com.br</h3>
-                        <p>A Cognivus Intelligence Suite é uma plataforma de análise de dados de alto desempenho.</p>
+                        <h3>Cognivus Core</h3>
+                        <p>O centro de controle operacional e orquestrador principal de microsserviços integrados de todo o ecossistema Cognivus.</p>
                     </div>
                     <div class="card-actions">
-                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Online</span>
-                        <a href="https://analysers.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar App <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        <span class="status-pill offline"><i class="fa-solid fa-circle"></i> Offline</span>
+                        <a href="https://luciano.cognivus.com.br/" target="_blank" class="btn-card-link">Em Desenvolvimento<i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+
+                <!-- Card 8: Axion Rhetorical -->
+                <div class="card-eco log">
+                    <div>
+                        <div class="card-header-eco">
+                            <span class="badge-eco log">Lógica</span>
+                            <div class="icon-eco"><i class="fa-solid fa-brain"></i></div>
+                        </div>
+                        <h3>Axion Rhetorical</h3>
+                        <p>Engine analítica baseada em modelos de linguagem avançados para mapeamento, estruturação e auditoria de argumentação lógica.</p>
+                    </div>
+                    <div class="card-actions">
+                        <span class="status-pill offline"><i class="fa-solid fa-circle"></i> Offline</span>
+                        <a href="https://luciano.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar App <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                     </div>
                 </div>
             </div>
@@ -951,12 +996,8 @@
 
            <div class="tree-layout">
                 
-                <!-- ==========================================
-                     COLUNA 1: ESQUERDA (3 EIXOS)
-                     ========================================== -->
+                <!-- COLUNA 1: ESQUERDA -->
                 <div class="tree-skills-column">
-                    
-                    <!-- ADICIONADA CLASSE 'gestao' AQUI -->
                     <div class="skill-group-box gestao">
                         <div class="group-box-header">
                             <i class="fa-solid fa-chart-pie"></i>
@@ -974,7 +1015,6 @@
                         </div>
                     </div>
 
-                    <!-- ADICIONADA CLASSE 'direito' AQUI -->
                     <div class="skill-group-box direito"> 
                         <div class="group-box-header"> 
                             <i class="fa-solid fa-gavel"></i> 
@@ -992,7 +1032,6 @@
                         </div>
                     </div>
 
-                    <!-- ADICIONADA CLASSE 'juri' AQUI -->
                     <div class="skill-group-box juri">
                         <div class="group-box-header">
                             <i class="fa-solid fa-chart-line"></i>
@@ -1009,12 +1048,9 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
 
-                <!-- ==========================================
-                     COLUNA 2: CENTRO (AVATAR)
-                     ========================================== -->
+                <!-- COLUNA 2: CENTRO (AVATAR) -->
                 <div class="tree-avatar-hub">
                     <div class="profile-frame">
                         <img src="luciano.jpg" alt="Luciano P. de Moura" class="avatar-img">
@@ -1052,12 +1088,8 @@
                     </div>
                 </div>
 
-                <!-- ==========================================
-                     COLUNA 3: DIREITA (3 EIXOS)
-                     ========================================== -->
+                <!-- COLUNA 3: DIREITA -->
                 <div class="tree-skills-column">
-                    
-                    <!-- ADICIONADA CLASSE 'ia' AQUI -->
                     <div class="skill-group-box ia">
                         <div class="group-box-header">
                             <i class="fa-solid fa-brain"></i>
@@ -1075,7 +1107,6 @@
                         </div>
                     </div>
 
-                    <!-- ADICIONADA CLASSE 'dev' AQUI -->
                     <div class="skill-group-box dev">
                         <div class="group-box-header">
                             <i class="fa-solid fa-database"></i>
@@ -1093,7 +1124,6 @@
                         </div>
                     </div>
 
-                    <!-- ADICIONADA CLASSE 'comunicacao' AQUI -->
                     <div class="skill-group-box comunicacao">
                         <div class="group-box-header">
                             <i class="fa-solid fa-comments"></i>
@@ -1110,10 +1140,11 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
 
             </div>
+        </div>
+    </section>
 
     <section class="compliance-bar">
         <div class="container">

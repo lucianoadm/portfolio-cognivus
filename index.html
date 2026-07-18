@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <!-- 
-    SISTEMA: LexOS Ecosystem / COGNIVUS
+    SISTEMA: LexOS Ecosystem
     MÓDULO: Landing Page (Portfólio Pessoal & Hub de Engenharia)
-    VERSÃO: 5.0.0 - Enterprise Suite
+    VERSÃO: v.5.0.1 - Inserção Card CoreMaster
     DATA_ATUALIZAÇÃO: 2026-07-18
-    STACK: HTML5, CSS3, Vanilla JS
+    STACK: HTML5, CSS/Tailwind, JavaScript, Chart.js
     ARQUITETO_E_DESENVOLVEDOR: Luciano P. de Moura
     RESTRIÇÃO: Uso restrito. Propriedade intelectual protegida.
 -->
@@ -22,14 +22,14 @@
             --bg-deep: #0d1e36;       
             --bg-gradient: linear-gradient(135deg, #091322 0%, #112543 50%, #18335c 100%);
             --bg-card: rgba(21, 41, 74, 0.75); 
-            --bg-tile: #1e3a64;       
+            --bg-tile: #1e3a64;        
             --accent-glow: #38bdf8;   
             --accent-glow-secondary: #22d3ee; 
             --text-main: #f8fafc;     
             --text-muted: #cbd5e1;    
             --border-color: rgba(56, 189, 248, 0.3); 
             --border-hover: rgba(56, 189, 248, 0.85); 
-            --success: #10b981;       
+            --success: #10b981;        
             
             /* Badges de Cores Alternadas para o Ecossistema e Skill Tree */
             --badge-edu: #a78bfa;     
@@ -290,7 +290,7 @@
         }
 
         /* ==========================================================================
-           GRID DE ECOSSISTEMAS (OS 8 CARDS REAIS)
+           GRID DE ECOSSISTEMAS (OS CARDS)
            ========================================================================== */
         .ecosystem {
             padding: 100px 0;
@@ -360,7 +360,6 @@
         .card-eco.dat:hover::before { background: var(--badge-dat); }
         .card-eco.sem:hover::before { background: var(--accent-glow-secondary); }
         .card-eco.hub:hover::before { background: #3b82f6; }
-        /* Cores adicionais para os novos cards */
         .card-eco.pccs:hover::before { background: #ef4444; }
         .card-eco.phrase:hover::before { background: #8b5cf6; }
 
@@ -453,7 +452,6 @@
             align-items: start;
         }
 
-       /* Nova classe para envolver os cards laterais */
         .tree-skills-column {
             display: flex;
             flex-direction: column;
@@ -542,7 +540,7 @@
             gap: 15px;
         }
 
-        axis-badge-item {
+        .axis-badge-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -847,7 +845,7 @@
         </div>
     </section>
 
-    <!-- SEÇÃO ATUALIZADA COM OS 8 CARDS DO ECOSSISTEMA LEXOS -->
+    <!-- SEÇÃO ATUALIZADA COM OS 9 CARDS DO ECOSSISTEMA LEXOS -->
     <section id="ecossistema" class="ecosystem">
         <div class="container">
             <div class="section-header">
@@ -963,8 +961,8 @@
                         <p>O centro de controle operacional e orquestrador principal de microsserviços integrados de todo o ecossistema Cognivus.</p>
                     </div>
                     <div class="card-actions">
-                        <span class="status-pill offline"><i class="fa-solid fa-circle"></i> Offline</span>
-                        <a href="https://luciano.cognivus.com.br/" target="_blank" class="btn-card-link">Em Desenvolvimento<i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Online</span>
+                        <a href="https://luciano.cognivus.com.br/" target="_blank" class="btn-card-link">Em testes<i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                     </div>
                 </div>
 
@@ -979,10 +977,27 @@
                         <p>Engine analítica baseada em modelos de linguagem avançados para mapeamento, estruturação e auditoria de argumentação lógica.</p>
                     </div>
                     <div class="card-actions">
-                        <span class="status-pill offline"><i class="fa-solid fa-circle"></i> Offline</span>
-                        <a href="https://luciano.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar App <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                         <span class="status-pill online"><i class="fa-solid fa-circle"></i> Online</span>
+                        <a href="https://axion-rethorical.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar App <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                     </div>
                 </div>
+
+                <!-- Card 9: CoreMaster (Adicionado via Protocolo LexOS - Zero Inferência) -->
+                <div class="card-eco core">
+                    <div>
+                        <div class="card-header-eco">
+                            <span class="badge-eco core">Gamificação de Conhecimento</span>
+                            <div class="icon-eco"><i class="fa-solid fa-server"></i></div>
+                        </div>
+                        <h3>CoreMaster</h3>
+                        <p>App para treinamento cognitivo de perguntas e respostas com níveis evolutivos</p>
+                    </div>
+                    <div class="card-actions">
+                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Online</span>
+                        <a href="https://coremaster.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar App <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -1195,6 +1210,14 @@
 
         </div>
     </footer>
+
+    <!-- CAMADA 2: RODAPÉ AUTORAL VISUAL (UI) EXIGIDO PELO PROTOCOLO LEXOS -->
+    <div class="lexos-footer" style="text-align: center; font-size: 0.875rem; color: #6b7280; padding: 1rem 0; border-top: 1px solid #e5e7eb; margin-top: 2rem; background-color: #060b14;">
+        <p><strong>© 2026 LexOS Ecosystem</strong> | Arquitetura e Engenharia: Luciano P. de Moura</p>
+        <p class="legal" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.25rem;">
+            🛡️ Propriedade Intelectual Protegida • Uso Restrito
+        </p>
+    </div>
 
     <div id="share-toast" class="toast-notification">
         Link copiado para a área de transferência!

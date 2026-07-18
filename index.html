@@ -435,13 +435,32 @@
         .tree-layout {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 50px;
+            gap: 40px;
             align-items: start;
         }
 
-        @media(min-width: 992px) {
+       /* Nova classe para envolver os cards laterais */
+        .tree-skills-column {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Distribui o espaço vazio por igual */
+            height: 100%; /* Força a coluna a ter a mesma altura do bloco central */
+            gap: 20px; /* Reduzimos o gap fixo para o flexbox gerenciar o espaço */
+        }
+
+        /* Garante que no celular o Avatar fique no topo, antes dos cards */
+        @media(max-width: 1199px) {
+            .tree-avatar-hub {
+                order: -1; 
+            }
+        }
+
+        /* Desktop: Layout de 3 colunas (Esquerda | Centro | Direita) */
+        @media(min-width: 1200px) {
             .tree-layout {
-                grid-template-columns: 0.9fr 1.1fr;
+                /* 1fr para os cards, 350px para o avatar, 1fr para os cards */
+                grid-template-columns: 1fr 350px 1fr;
+                gap: 40px;
             }
         }
 
@@ -512,27 +531,31 @@
             gap: 15px;
         }
 
-        .axis-badge-item {
+        axis-badge-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 12px 20px;
+            padding: 10px 15px; /* Reduzido de 12px 20px para dar mais espaço ao texto */
             border-radius: 10px;
             background: rgba(13, 25, 47, 0.5);
             border-left: 4px solid var(--accent-glow);
         }
 
+        /* Cores baseadas nas variáveis de design */
         .axis-badge-item.gestao { border-left-color: var(--badge-core); }
-        .axis-badge-item.juri { border-left-color: var(--badge-edu); }
+        .axis-badge-item.direito { border-left-color: var(--badge-edu); }
+        .axis-badge-item.juri { border-left-color: var(--badge-dat); }
         .axis-badge-item.ia { border-left-color: var(--accent-glow-secondary); }
         .axis-badge-item.dev { border-left-color: var(--badge-log); }
+        .axis-badge-item.comunicacao { border-left-color: #ffcc00; }
 
         .axis-title-sm {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 0.92rem;
+            gap: 8px; /* Reduzido de 10px */
+            font-size: 0.85rem; /* Reduzido levemente de 0.92rem */
             font-weight: 700;
+            line-height: 1.2; /* Melhora a leitura se quebrar a linha */
         }
 
         .axis-pct {
@@ -547,12 +570,26 @@
             gap: 30px;
         }
 
+        /* --- CONTROLE DINÂMICO DE CORES DOS BLOCOS --- */
         .skill-group-box {
             background: rgba(21, 41, 74, 0.4);
             border: 1px solid rgba(56, 189, 248, 0.15);
             border-radius: 16px;
             padding: 25px;
+            --current-group-color: var(--accent-glow);
+            flex: 1; /* Faz os cards esticarem por igual na vertical */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Centraliza o conteúdo dentro do card */
         }
+
+        /* Mapeamento exato das classes para transferir a cor para os cards */
+        .skill-group-box.gestao { --current-group-color: var(--badge-core); }
+        .skill-group-box.direito { --current-group-color: var(--badge-edu); }
+        .skill-group-box.juri { --current-group-color: var(--badge-dat); }
+        .skill-group-box.ia { --current-group-color: var(--accent-glow-secondary); }
+        .skill-group-box.dev { --current-group-color: var(--badge-log); }
+        .skill-group-box.comunicacao { --current-group-color: #ffcc00; }
 
         .group-box-header {
             display: flex;
@@ -563,8 +600,17 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .group-box-header i { font-size: 1.3rem; color: var(--accent-glow); }
-        .group-box-header h4 { font-size: 1.15rem; font-weight: 700; color: var(--text-main); }
+        /* Ícone agora herda a cor dinamicamente */
+        .group-box-header i { 
+            font-size: 1.3rem; 
+            color: var(--current-group-color) !important; 
+        }
+
+        .group-box-header h4 { 
+            font-size: 1.15rem; 
+            font-weight: 700; 
+            color: var(--text-main); 
+        }
 
         .skill-bars-container {
             display: flex;
@@ -594,10 +640,11 @@
             position: relative;
         }
 
+        /* Barra de progresso totalmente dinâmica, limpa de estilos inline */
         .bar-fill {
             height: 100%;
             border-radius: 10px;
-            background: var(--accent-glow);
+            background: var(--current-group-color) !important;
             width: 0%;
             transition: width 1.5s cubic-bezier(0.1, 1, 0.1, 1);
         }
@@ -823,7 +870,7 @@
                             <span class="badge-eco core">Núcleo</span>
                             <div class="icon-eco"><i class="fa-solid fa-circle-nodes"></i></div>
                         </div>
-                        <h3>CoreMaster</h3>
+                        <h3>Cognivus</h3>
                         <p>O centro de controle operacional e orquestrador principal de microsserviços integrados de todo o ecossistema Cognivus.</p>
                     </div>
                     <div class="card-actions">
@@ -850,15 +897,15 @@
                 <div class="card-eco dat">
                     <div>
                         <div class="card-header-eco">
-                            <span class="badge-eco dat">Análise</span>
-                            <div class="icon-eco"><i class="fa-solid fa-chart-pie"></i></div>
+                            <span class="badge-eco dat">Prompt</span>
+                            <div class="icon-eco"><i class="fa-solid fa-network-wired"></i></div>
                         </div>
-                        <h3>Rethor</h3>
-                        <p>Módulo de análise quantitativa e inteligência de dados aplicada diretamente na avaliação de métricas textuais e discursivas.</p>
+                        <h3>Gerador</h3>
+                        <p>Módulo de gerador de prompt diversos para uso com inteligência de dados aplicada diretamente na avaliação de métricas textuais.</p>
                     </div>
                     <div class="card-actions">
-                        <span class="status-pill offline"><i class="fa-solid fa-circle"></i> Offline</span>
-                        <a href="https://luciano.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar App <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Online</span>
+                        <a href="https://gerador.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar App <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                     </div>
                 </div>
 
@@ -880,8 +927,8 @@
                 <div class="card-eco hub">
                     <div>
                         <div class="card-header-eco">
-                            <span class="badge-eco hub">Portal</span>
-                            <div class="icon-eco"><i class="fa-solid fa-network-wired"></i></div>
+                            <span class="badge-eco hub">Dados</span>
+                            <div class="icon-eco"><i class="fa-solid fa-chart-pie"></i></div>
                         </div>
                         <h3>Analysers.Cognivus.com.br</h3>
                         <p>A Cognivus Intelligence Suite é uma plataforma de análise de dados de alto desempenho.</p>
@@ -902,8 +949,72 @@
                 <p>Mapeamento dinâmico de competências correlacionadas que alimentam a governança, a inteligência jurídica e o desenvolvimento analítico.</p>
             </div>
 
-            <div class="tree-layout">
+           <div class="tree-layout">
                 
+                <!-- ==========================================
+                     COLUNA 1: ESQUERDA (3 EIXOS)
+                     ========================================== -->
+                <div class="tree-skills-column">
+                    
+                    <!-- ADICIONADA CLASSE 'gestao' AQUI -->
+                    <div class="skill-group-box gestao">
+                        <div class="group-box-header">
+                            <i class="fa-solid fa-chart-pie"></i>
+                            <h4>Gestão, Processo e Otimização</h4>
+                        </div>
+                        <div class="skill-bars-container">
+                            <div class="bar-item">
+                                <div class="bar-labels"><span>Administração Estratégica & Processos</span><span>100%</span></div>
+                                <div class="bar-track"><div class="bar-fill" data-pct="100"></div></div>
+                            </div>
+                            <div class="bar-item">
+                                <div class="bar-labels"><span>Análise de Processos e Alinhamento Produtivo</span><span>97%</span></div>
+                                <div class="bar-track"><div class="bar-fill" data-pct="92"></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ADICIONADA CLASSE 'direito' AQUI -->
+                    <div class="skill-group-box direito"> 
+                        <div class="group-box-header"> 
+                            <i class="fa-solid fa-gavel"></i> 
+                            <h4>Direito e Compliance</h4> 
+                        </div> 
+                        <div class="skill-bars-container"> 
+                            <div class="bar-item"> 
+                                <div class="bar-labels"><span>Direito Corporativo</span><span>100%</span></div> 
+                                <div class="bar-track"><div class="bar-fill" data-pct="100"></div></div> 
+                            </div>
+                            <div class="bar-item">
+                                <div class="bar-labels"><span>Análise Contratual e Riscos</span><span>95%</span></div> 
+                                <div class="bar-track"><div class="bar-fill" data-pct="95"></div></div> 
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ADICIONADA CLASSE 'juri' AQUI -->
+                    <div class="skill-group-box juri">
+                        <div class="group-box-header">
+                            <i class="fa-solid fa-chart-line"></i>
+                            <h4>Jurimetria, BI & Analytics</h4>
+                        </div>
+                        <div class="skill-bars-container">
+                            <div class="bar-item">
+                                <div class="bar-labels"><span>Power BI & Business Intelligence</span><span>78%</span></div>
+                                <div class="bar-track"><div class="bar-fill" data-pct="78"></div></div>
+                            </div>
+                            <div class="bar-item">
+                                <div class="bar-labels"><span>Jurimetria Estatística Aplicada</span><span>85%</span></div>
+                                <div class="bar-track"><div class="bar-fill" data-pct="85"></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- ==========================================
+                     COLUNA 2: CENTRO (AVATAR)
+                     ========================================== -->
                 <div class="tree-avatar-hub">
                     <div class="profile-frame">
                         <img src="luciano.jpg" alt="Luciano P. de Moura" class="avatar-img">
@@ -915,11 +1026,15 @@
 
                     <div class="axis-summary-list">
                         <div class="axis-badge-item gestao">
-                            <span class="axis-title-sm"><i class="fa-solid fa-briefcase"></i> Gestão & Compliance</span>
-                            <span class="axis-pct">77%</span>
+                            <span class="axis-title-sm"><i class="fa-solid fa-briefcase"></i> ADM & MBA</span>
+                            <span class="axis-pct">100%</span>
+                        </div>
+                        <div class="axis-badge-item direito">
+                            <span class="axis-title-sm"><i class="fa-solid fa-scale-balanced"></i> Direito, Compliance & LGPD</span>
+                            <span class="axis-pct">20%</span>
                         </div>
                         <div class="axis-badge-item juri">
-                            <span class="axis-title-sm"><i class="fa-solid fa-chart-line"></i> Jurimetria & BI</span>
+                            <span class="axis-title-sm"><i class="fa-solid fa-chart-line"></i> Data Analisys, Jurimetria & BI</span>
                             <span class="axis-pct">85%</span>
                         </div>
                         <div class="axis-badge-item ia">
@@ -931,48 +1046,19 @@
                             <span class="axis-pct">75%</span>
                         </div>
                         <div class="axis-badge-item comunicacao">
-                            <span class="axis-title-sm"><i class="fa-solid fa-code"></i> Relac.Interpessoal</span>
-                            <span class="axis-pct">47%</span>
+                            <span class="axis-title-sm"><i class="fa-solid fa-bullhorn"></i> Relacionamento Social</span>
+                            <span class="axis-pct">72%</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="tree-skills-expansion">
-                    <div class="skill-group-box">
-                        <div class="group-box-header">
-                            <i class="fa-solid fa-gavel"></i>
-                            <h4>Gestão, Processos & Governança</h4>
-                        </div>
-                        <div class="skill-bars-container">
-                            <div class="bar-item">
-                                <div class="bar-labels"><span>Administração Estratégica & Processos</span><span>100%</span></div>
-                                <div class="bar-track"><div class="bar-fill" style="background: var(--badge-core);" data-pct="100"></div></div>
-                            </div>
-                            <div class="bar-item">
-                                <div class="bar-labels"><span>Compliance & Proteção de Dados (LGPD)</span><span>92%</span></div>
-                                <div class="bar-track"><div class="bar-fill" style="background: var(--badge-core);" data-pct="92"></div></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="skill-group-box">
-                        <div class="group-box-header">
-                            <i class="fa-solid fa-chart-pie"></i>
-                            <h4>Jurimetria, BI & Analytics</h4>
-                        </div>
-                        <div class="skill-bars-container">
-                            <div class="bar-item">
-                                <div class="bar-labels"><span>Power BI & Business Intelligence</span><span>78%</span></div>
-                                <div class="bar-track"><div class="bar-fill" style="background: var(--badge-edu);" data-pct="78"></div></div>
-                            </div>
-                            <div class="bar-item">
-                                <div class="bar-labels"><span>Jurimetria Estatística Aplicada</span><span>85%</span></div>
-                                <div class="bar-track"><div class="bar-fill" style="background: var(--badge-edu);" data-pct="85"></div></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="skill-group-box">
+                <!-- ==========================================
+                     COLUNA 3: DIREITA (3 EIXOS)
+                     ========================================== -->
+                <div class="tree-skills-column">
+                    
+                    <!-- ADICIONADA CLASSE 'ia' AQUI -->
+                    <div class="skill-group-box ia">
                         <div class="group-box-header">
                             <i class="fa-solid fa-brain"></i>
                             <h4>IA, PLN & Engenharia de Prompts</h4>
@@ -980,16 +1066,17 @@
                         <div class="skill-bars-container">
                             <div class="bar-item">
                                 <div class="bar-labels"><span>Engenharia de Prompts & LLMs</span><span>86%</span></div>
-                                <div class="bar-track"><div class="bar-fill" style="background: var(--accent-glow-secondary);" data-pct="86"></div></div>
+                                <div class="bar-track"><div class="bar-fill" data-pct="86"></div></div>
                             </div>
                             <div class="bar-item">
                                 <div class="bar-labels"><span>Inteligência Artificial Aplicada ao Direito</span><span>80%</span></div>
-                                <div class="bar-track"><div class="bar-fill" style="background: var(--accent-glow-secondary);" data-pct="80"></div></div>
+                                <div class="bar-track"><div class="bar-fill" data-pct="80"></div></div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="skill-group-box">
+                    <!-- ADICIONADA CLASSE 'dev' AQUI -->
+                    <div class="skill-group-box dev">
                         <div class="group-box-header">
                             <i class="fa-solid fa-database"></i>
                             <h4>Dev Stack & Arquitetura de Dados</h4>
@@ -997,49 +1084,36 @@
                         <div class="skill-bars-container">
                             <div class="bar-item">
                                 <div class="bar-labels"><span>Python (Streamlit & Modelagem)</span><span>75%</span></div>
-                                <div class="bar-track"><div class="bar-fill" style="background: var(--badge-log);" data-pct="75"></div></div>
+                                <div class="bar-track"><div class="bar-fill" data-pct="75"></div></div>
                             </div>
                             <div class="bar-item">
                                 <div class="bar-labels"><span>Firebase & Integração de Infraestrutura</span><span>65%</span></div>
-                                <div class="bar-track"><div class="bar-fill" style="background: var(--badge-log);" data-pct="65"></div></div>
+                                <div class="bar-track"><div class="bar-fill" data-pct="65"></div></div>
                             </div>
                         </div>
                     </div>
 
-
-
-                    <div class="skill-group-box">
+                    <!-- ADICIONADA CLASSE 'comunicacao' AQUI -->
+                    <div class="skill-group-box comunicacao">
                         <div class="group-box-header">
-                            <i class="fa-solid fa-database"></i>
+                            <i class="fa-solid fa-comments"></i>
                             <h4>Comunicação & Storytelling da Dados</h4>
                         </div>
                         <div class="skill-bars-container">
                             <div class="bar-item">
                                 <div class="bar-labels"><span>Técnicas de Comunicação institucional/Corporativa</span><span>37%</span></div>
-                                <div class="bar-track"><div class="bar-fill" style="background: yellow;" data-pct="37"></div></div>
+                                <div class="bar-track"><div class="bar-fill" data-pct="37"></div></div>
                             </div>
                             <div class="bar-item">
                                 <div class="bar-labels"><span>Comunicação Assertiva</span><span>23%</span></div>
-                                <div class="bar-track"><div class="bar-fill" style="background: yellow;" data-pct="23"></div></div>
+                                <div class="bar-track"><div class="bar-fill" data-pct="23"></div></div>
                             </div>
                         </div>
                     </div>
 
-
-
-
-
-
-
-
-
-
-                    
                 </div>
 
             </div>
-        </div>
-    </section>
 
     <section class="compliance-bar">
         <div class="container">

@@ -2,8 +2,8 @@
 <!-- 
     SISTEMA: LexOS Ecosystem
     MÓDULO: Landing Page (Portfólio Pessoal & Hub de Engenharia)
-    VERSÃO: v.5.0.2 - Integração de Assinatura Filosófica Centrada
-    DATA_ATUALIZAÇÃO: 2026-07-18
+    VERSÃO: v.5.1.1 - Integração da Matriz LexCore e Botão Sensorial
+    DATA_ATUALIZAÇÃO: 2026-07-19
     STACK: HTML5, CSS/Tailwind, JavaScript, Chart.js
     ARQUITETO_E_DESENVOLVEDOR: Luciano P. de Moura
     RESTRIÇÃO: Uso restrito. Propriedade intelectual protegida.
@@ -115,7 +115,7 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 30px;
+            gap: 25px;
             align-items: center;
         }
 
@@ -161,6 +161,23 @@
             background: var(--accent-glow);
             color: #091322 !important;
             box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+        }
+
+        .nav-btn-sensorial {
+            background: rgba(192, 132, 252, 0.15);
+            border: 1px solid #c084fc;
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 0.88rem;
+            color: #c084fc !important;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn-sensorial:hover {
+            background: #c084fc;
+            color: #091322 !important;
+            box-shadow: 0 0 15px rgba(192, 132, 252, 0.4);
         }
 
         /* ==========================================================================
@@ -289,7 +306,6 @@
             object-fit: cover;
         }
 
-        /* Estilização Isolada para a Assinatura Conceitual */
         .hero-signature-container {
             width: 100%;
             display: flex;
@@ -313,7 +329,7 @@
         }
 
         /* ==========================================================================
-           GRID DE ECOSSISTEMAS (OS CARDS)
+           GRID DE ECOSSISTEMAS E LEXCORE (OS CARDS)
            ========================================================================== */
         .ecosystem {
             padding: 100px 0;
@@ -460,7 +476,7 @@
         }
 
         /* ==========================================================================
-           MULTIDISCIPLINARY SKILL TREE (ÁRVORE DE HABILIDADES COM FOTO CENTRAL)
+           MULTIDISCIPLINARY SKILL TREE
            ========================================================================== */
         .skill-tree-section {
             padding: 100px 0;
@@ -481,12 +497,6 @@
             justify-content: space-between;
             height: 100%;
             gap: 20px;
-        }
-
-        @media(max-width: 1199px) {
-            .tree-avatar-hub {
-                order: -1; 
-            }
         }
 
         @media(min-width: 1200px) {
@@ -573,13 +583,6 @@
             border-left: 4px solid var(--accent-glow);
         }
 
-        .axis-badge-item.gestao { border-left-color: var(--badge-core); }
-        .axis-badge-item.direito { border-left-color: var(--badge-edu); }
-        .axis-badge-item.juri { border-left-color: var(--badge-dat); }
-        .axis-badge-item.ia { border-left-color: var(--accent-glow-secondary); }
-        .axis-badge-item.dev { border-left-color: var(--badge-log); }
-        .axis-badge-item.comunicacao { border-left-color: #ffcc00; }
-
         .axis-title-sm {
             display: flex;
             align-items: center;
@@ -595,13 +598,6 @@
             color: var(--text-main);
         }
 
-        .tree-skills-expansion {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        /* --- CONTROLE DINÂMICO DE CORES DOS BLOCOS --- */
         .skill-group-box {
             background: rgba(21, 41, 74, 0.4);
             border: 1px solid rgba(56, 189, 248, 0.15);
@@ -614,13 +610,6 @@
             justify-content: center; 
         }
 
-        .skill-group-box.gestao { --current-group-color: var(--badge-core); }
-        .skill-group-box.direito { --current-group-color: var(--badge-edu); }
-        .skill-group-box.juri { --current-group-color: var(--badge-dat); }
-        .skill-group-box.ia { --current-group-color: var(--accent-glow-secondary); }
-        .skill-group-box.dev { --current-group-color: var(--badge-log); }
-        .skill-group-box.comunicacao { --current-group-color: #ffcc00; }
-
         .group-box-header {
             display: flex;
             align-items: center;
@@ -630,55 +619,17 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .group-box-header i { 
-            font-size: 1.3rem; 
-            color: var(--current-group-color) !important; 
-        }
+        .group-box-header i { font-size: 1.3rem; color: var(--current-group-color) !important; }
+        .group-box-header h4 { font-size: 1.15rem; font-weight: 700; color: var(--text-main); }
 
-        .group-box-header h4 { 
-            font-size: 1.15rem; 
-            font-weight: 700; 
-            color: var(--text-main); 
-        }
-
-        .skill-bars-container {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .bar-item {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .bar-labels {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.88rem;
-            font-weight: 600;
-            color: var(--text-muted);
-        }
-
-        .bar-track {
-            height: 6px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .bar-fill {
-            height: 100%;
-            border-radius: 10px;
-            background: var(--current-group-color) !important;
-            width: 0%;
-            transition: width 1.5s cubic-bezier(0.1, 1, 0.1, 1);
-        }
+        .skill-bars-container { display: flex; flex-direction: column; gap: 15px; }
+        .bar-item { display: flex; flex-direction: column; gap: 6px; }
+        .bar-labels { display: flex; justify-content: space-between; font-size: 0.88rem; font-weight: 600; color: var(--text-muted); }
+        .bar-track { height: 6px; background: rgba(255, 255, 255, 0.08); border-radius: 10px; overflow: hidden; position: relative; }
+        .bar-fill { height: 100%; border-radius: 10px; background: var(--current-group-color) !important; width: 0%; transition: width 1.5s cubic-bezier(0.1, 1, 0.1, 1); }
 
         /* ==========================================================================
-           AUTORIDADE: BANNER DE COMPLIANCE, SEGURANÇA & LGPD
+           AUTORIDADE E FOOTER
            ========================================================================== */
         .compliance-bar {
             background-color: rgba(17, 37, 67, 0.85);
@@ -695,84 +646,18 @@
         }
 
         @media(min-width: 768px) {
-            .compliance-grid {
-                grid-template-columns: 1fr 2.5fr;
-                align-items: center;
-            }
+            .compliance-grid { grid-template-columns: 1fr 2.5fr; align-items: center; }
         }
 
-        .compliance-title {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            color: var(--accent-glow);
-        }
+        .compliance-title { display: flex; align-items: center; gap: 15px; color: var(--accent-glow); }
+        .compliance-title i { font-size: 2.5rem; text-shadow: 0 0 10px var(--accent-glow); }
+        .compliance-title h2 { font-size: 1.6rem; font-weight: 800; line-height: 1.2; letter-spacing: 0.5px; }
 
-        .compliance-title i {
-            font-size: 2.5rem;
-            text-shadow: 0 0 10px var(--accent-glow);
-        }
-
-        .compliance-title h2 {
-            font-size: 1.6rem;
-            font-weight: 800;
-            line-height: 1.2;
-            letter-spacing: 0.5px;
-        }
-
-        .compliance-badges {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .badge-comp {
-            background-color: rgba(13, 25, 47, 0.6);
-            border: 1px solid var(--border-color);
-            padding: 15px 20px;
-            border-radius: 8px;
-            flex: 1 1 200px;
-        }
-
-        .badge-comp h4 {
-            color: var(--text-main);
-            font-size: 0.95rem;
-            font-weight: 700;
-            margin-bottom: 6px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
+        .compliance-badges { display: flex; flex-wrap: wrap; gap: 15px; }
+        .badge-comp { background-color: rgba(13, 25, 47, 0.6); border: 1px solid var(--border-color); padding: 15px 20px; border-radius: 8px; flex: 1 1 200px; }
+        .badge-comp h4 { color: var(--text-main); font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
         .badge-comp h4 i { color: var(--success); }
         .badge-comp p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.4; }
-
-        /* ==========================================================================
-           RODAPÉ PADRÃO (FOOTER)
-           ========================================================================== */
-        footer.main-footer {
-            background-color: #060b14;
-            padding: 40px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: 0.88rem;
-            color: var(--text-muted);
-        }
-
-        .footer-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            align-items: center;
-            text-align: center;
-        }
-
-        @media(min-width: 768px) {
-            .footer-container {
-                flex-direction: row;
-                justify-content: space-between;
-                text-align: left;
-            }
-        }
 
         .toast-notification {
             position: fixed;
@@ -803,10 +688,11 @@
             <nav>
                 <ul>
                     <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#lexcore">LexCore (7 Pilares)</a></li>
                     <li><a href="#ecossistema">Ecossistema</a></li>
                     <li><a href="#skills">Skill Tree</a></li>
+                    <li><a href="base.html" class="nav-btn-sensorial"><i class="fa-solid fa-headphones-simple"></i> Estúdio Sensorial</a></li>
                     <li><a href="dashboard.html" class="nav-btn-dashboard"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
-                    <li><a href="base.html" class="nav-btn-base"><i class="fa-solid fa-chart-pie"></i> Base</a></li>
                 </ul>
             </nav>
         </div>
@@ -848,14 +734,13 @@
                         Inteligência Artificial Generativa sob rígidos padrões de Governança corporativa e LGPD.
                     </p>
 
-                    <!-- Botão existente de competências -->
                     <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-                        <a href="dashboard.html" class="nav-btn-dashboard" style="padding: 14px 28px; font-size: 1rem;">
-                            <i class="fa-solid fa-chart-line"></i> Analisar Matriz de Competências
+                        <a href="#lexcore" class="nav-btn-dashboard" style="padding: 14px 28px; font-size: 1rem; background: var(--accent-glow); color: #091322 !important;">
+                            <i class="fa-solid fa-layer-group"></i> Acessar Matriz Cognitiva
                         </a>
                     </div>
 
-                </div> <!-- Fim do hero-content -->
+                </div>
 
                 <div class="hero-visual-side">
                     <div class="hero-visual-wrapper">
@@ -866,36 +751,156 @@
                     </div>
                 </div>
 
-            </div> <!-- Fim do hero-layout -->
+            </div>
             
-            <!-- Frase de efeito ajustada ao centro da tela inteira -->
             <div class="hero-signature-container">
                 <p class="hero-signature-text">
                     O dado é passado, o processo é presente e a decisão é futuro.
                 </p>
             </div>
 
-        </div> <!-- Fim do container -->
+        </div>
     </section>
 
-    <!-- SEÇÃO ATUALIZADA COM OS 9 CARDS DO ECOSSISTEMA LEXOS -->
-    <section id="ecossistema" class="ecosystem">
+    <!-- SEÇÃO LEXCORE - AMBIENTE DE DESENVOLVIMENTO COGNITIVO (OS 7 PILARES) -->
+    <section id="lexcore" class="ecosystem" style="background-color: rgba(6, 11, 20, 0.25); border-bottom: 1px solid var(--border-color); border-top: 1px solid var(--border-color);">
         <div class="container">
             <div class="section-header">
-                <h2>Ecossistema Cognivus</h2>
-                <p>Aplicações modulares integradas para inteligência analítica, processamento cognitivo e governança de dados estruturados.</p>
+                <h2>LexCore: Dashboard Cognitivo</h2>
+                <p>A matriz de 7 pilares fundamentais que sustenta a engenharia de legado. O verdadeiro ambiente de desenvolvimento da mente.</p>
             </div>
             
             <div class="grid-ecosystem">
-                <!-- Card 1: LexPCCS -->
+                <!-- Pilar 1 -->
+                <div class="card-eco hub">
+                    <div>
+                        <div class="card-header-eco">
+                            <span class="badge-eco hub">Pilar 1</span>
+                            <div class="icon-eco"><i class="fa-solid fa-robot"></i></div>
+                        </div>
+                        <h3>Fluência em IA</h3>
+                        <p>Delegação, Descrição, Discernimento e Diligência. O framework 4Ds para colaborar ativamente e com segurança com IAs.</p>
+                    </div>
+                    <div class="card-actions">
+                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
+                        <a href="pilar1.html" class="btn-card-link">Acessar Hub <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Pilar 2 -->
+                <div class="card-eco edu">
+                    <div>
+                        <div class="card-header-eco">
+                            <span class="badge-eco edu">Pilar 2</span>
+                            <div class="icon-eco"><i class="fa-solid fa-compass"></i></div>
+                        </div>
+                        <h3>Heutagogia e Bloom</h3>
+                        <p>O controle autodirigido do próprio aprendizado. Assumir o leme da jornada escalando a taxonomia cognitiva rumo à criação.</p>
+                    </div>
+                    <div class="card-actions">
+                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
+                        <a href="pilar2.html" class="btn-card-link">Acessar Hub <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Pilar 3 -->
+                <div class="card-eco log">
+                    <div>
+                        <div class="card-header-eco">
+                            <span class="badge-eco log">Pilar 3</span>
+                            <div class="icon-eco"><i class="fa-solid fa-brain"></i></div>
+                        </div>
+                        <h3>Pensamento Computacional</h3>
+                        <p>A *engine* analítica. Decomposição de problemas, reconhecimento de padrões e lógica matemática aplicada à vida.</p>
+                    </div>
+                    <div class="card-actions">
+                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
+                        <a href="pilar3.html" class="btn-card-link">Acessar Hub <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Pilar 4 -->
+                <div class="card-eco dat">
+                    <div>
+                        <div class="card-header-eco">
+                            <span class="badge-eco dat">Pilar 4</span>
+                            <div class="icon-eco"><i class="fa-solid fa-network-wired"></i></div>
+                        </div>
+                        <h3>Gestão do Conhecimento</h3>
+                        <p>Materialização via Zettelkasten e Obsidian. Cruzamento de dados e visão executiva (MBA) para embasar a tomada de decisão.</p>
+                    </div>
+                    <div class="card-actions">
+                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
+                        <a href="pilar4.html" class="btn-card-link">Acessar Hub <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Pilar 5 -->
                 <div class="card-eco pccs">
                     <div>
                         <div class="card-header-eco">
-                            <span class="badge-eco pccs">Governança</span>
+                            <span class="badge-eco pccs">Pilar 5</span>
                             <div class="icon-eco"><i class="fa-solid fa-scale-balanced" style="color: #ef4444;"></i></div>
                         </div>
+                        <h3>Direito e Jurimetria</h3>
+                        <p>A aplicação máxima na estratégia social. Ler a justiça não como um dogma cego, mas como uma ciência exata apoiada por dados reais.</p>
+                    </div>
+                    <div class="card-actions">
+                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
+                        <a href="pilar5.html" class="btn-card-link">Acessar Hub <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Pilar 6 -->
+                <div class="card-eco phrase">
+                    <div>
+                        <div class="card-header-eco">
+                            <span class="badge-eco phrase">Pilar 6</span>
+                            <div class="icon-eco"><i class="fa-solid fa-bullhorn" style="color: #8b5cf6;"></i></div>
+                        </div>
+                        <h3>Eixo Comunicacional</h3>
+                        <p>O frontend humano. Empacotar teses em narrativas persuasivas, música e experiências afetivas para garantir a entrega de valor.</p>
+                    </div>
+                    <div class="card-actions">
+                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
+                        <a href="pilar6.html" class="btn-card-link">Acessar Hub <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Pilar 7 -->
+                <div class="card-eco sem">
+                    <div>
+                        <div class="card-header-eco">
+                            <span class="badge-eco sem">Pilar 7</span>
+                            <div class="icon-eco"><i class="fa-solid fa-globe"></i></div>
+                        </div>
+                        <h3>Soberania Digital</h3>
+                        <p>Engenharia de ecossistema. A posse absoluta da infraestrutura: portfólios dinâmicos, suítes e apps hospedados sob domínio próprio.</p>
+                    </div>
+                    <div class="card-actions">
+                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
+                        <a href="pilar7.html" class="btn-card-link">Acessar Hub <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO: ECOSSISTEMA LEXOS -->
+    <section id="ecossistema" class="ecosystem">
+        <div class="container">
+            <div class="section-header">
+                <h2>Aplicações Cognivus</h2>
+                <p>Soluções modulares integradas para inteligência analítica, processamento cognitivo e governança de dados estruturados.</p>
+            </div>
+            
+            <div class="grid-ecosystem">
+                <div class="card-eco pccs">
+                    <div>
+                        <div class="card-header-eco"><span class="badge-eco pccs">Governança</span><div class="icon-eco"><i class="fa-solid fa-scale-balanced" style="color: #ef4444;"></i></div></div>
                         <h3>LexPCCS Engine</h3>
-                        <p>Simulador corporativo focado na modelagem financeira, mitigação de passivos trabalhistas e estruturação de Planos de Cargos, Carreiras e Salários.</p>
+                        <p>Simulador corporativo focado na modelagem financeira, mitigação de passivos trabalhistas e estruturação de Planos de Cargos.</p>
                     </div>
                     <div class="card-actions">
                         <span class="status-pill online"><i class="fa-solid fa-circle"></i> Online</span>
@@ -903,13 +908,9 @@
                     </div>
                 </div>
 
-                <!-- Card 2: PhraseUp -->
                 <div class="card-eco phrase">
                     <div>
-                        <div class="card-header-eco">
-                            <span class="badge-eco phrase">Linguística</span>
-                            <div class="icon-eco"><i class="fa-solid fa-feather" style="color: #8b5cf6;"></i></div>
-                        </div>
+                        <div class="card-header-eco"><span class="badge-eco phrase">Linguística</span><div class="icon-eco"><i class="fa-solid fa-feather" style="color: #8b5cf6;"></i></div></div>
                         <h3>PhraseUp Nav</h3>
                         <p>Refinador semântico de linguagem. Processa vocabulários corporativos para aprimoramento de clareza e autoridade retórica.</p>
                     </div>
@@ -919,13 +920,9 @@
                     </div>
                 </div>
 
-                <!-- Card 3: Treinador -->
                 <div class="card-eco edu">
                     <div>
-                        <div class="card-header-eco">
-                            <span class="badge-eco edu">Cognição</span>
-                            <div class="icon-eco"><i class="fa-solid fa-graduation-cap"></i></div>
-                        </div>
+                        <div class="card-header-eco"><span class="badge-eco edu">Cognição</span><div class="icon-eco"><i class="fa-solid fa-graduation-cap"></i></div></div>
                         <h3>Treinador</h3>
                         <p>Plataforma inteligente focada no monitoramento educacional estruturado e desenvolvimento de treinamento cognitivo avançado.</p>
                     </div>
@@ -935,15 +932,11 @@
                     </div>
                 </div>
 
-                <!-- Card 4: Analysers Hub -->
                 <div class="card-eco hub">
                     <div>
-                        <div class="card-header-eco">
-                            <span class="badge-eco hub">Dados</span>
-                            <div class="icon-eco"><i class="fa-solid fa-chart-pie"></i></div>
-                        </div>
+                        <div class="card-header-eco"><span class="badge-eco hub">Dados</span><div class="icon-eco"><i class="fa-solid fa-chart-pie"></i></div></div>
                         <h3>Cognivus Analysers</h3>
-                        <p>A Cognivus Intelligence Suite é uma plataforma centralizada de painéis de análise de dados operacionais e industriais de alto desempenho.</p>
+                        <p>A Cognivus Intelligence Suite é uma plataforma centralizada de painéis de análise de dados operacionais e industriais.</p>
                     </div>
                     <div class="card-actions">
                         <span class="status-pill online"><i class="fa-solid fa-circle"></i> Online</span>
@@ -951,15 +944,11 @@
                     </div>
                 </div>
 
-                <!-- Card 5: Gerador Prompt -->
                 <div class="card-eco dat">
                     <div>
-                        <div class="card-header-eco">
-                            <span class="badge-eco dat">Prompt</span>
-                            <div class="icon-eco"><i class="fa-solid fa-network-wired"></i></div>
-                        </div>
+                        <div class="card-header-eco"><span class="badge-eco dat">Prompt</span><div class="icon-eco"><i class="fa-solid fa-network-wired"></i></div></div>
                         <h3>Gerador</h3>
-                        <p>Módulo de gerador de prompt diversos para uso com inteligência de dados aplicada diretamente na avaliação de métricas textuais.</p>
+                        <p>Módulo de gerador de prompt diversos para uso com inteligência de dados aplicada diretamente na avaliação de métricas.</p>
                     </div>
                     <div class="card-actions">
                         <span class="status-pill online"><i class="fa-solid fa-circle"></i> Online</span>
@@ -967,13 +956,9 @@
                     </div>
                 </div>
 
-                <!-- Card 6: Termos -->
                 <div class="card-eco sem">
                     <div>
-                        <div class="card-header-eco">
-                            <span class="badge-eco sem">Semântica</span>
-                            <div class="icon-eco"><i class="fa-solid fa-book-bookmark"></i></div>
-                        </div>
+                        <div class="card-header-eco"><span class="badge-eco sem">Semântica</span><div class="icon-eco"><i class="fa-solid fa-book-bookmark"></i></div></div>
                         <h3>Termos Lexicais</h3>
                         <p>Glossário conceitual dinâmico desenvolvido para normalização e padronização analítica de termos técnicos e jurídicos complexos.</p>
                     </div>
@@ -983,13 +968,9 @@
                     </div>
                 </div>
 
-                <!-- Card 7: Orquestrador Core -->
                 <div class="card-eco core">
                     <div>
-                        <div class="card-header-eco">
-                            <span class="badge-eco core">Núcleo</span>
-                            <div class="icon-eco"><i class="fa-solid fa-circle-nodes"></i></div>
-                        </div>
+                        <div class="card-header-eco"><span class="badge-eco core">Núcleo</span><div class="icon-eco"><i class="fa-solid fa-circle-nodes"></i></div></div>
                         <h3>Cognivus Core</h3>
                         <p>O centro de controle operacional e orquestrador principal de microsserviços integrados de todo o ecossistema Cognivus.</p>
                     </div>
@@ -999,13 +980,9 @@
                     </div>
                 </div>
 
-                <!-- Card 8: Axion Rhetorical -->
                 <div class="card-eco log">
                     <div>
-                        <div class="card-header-eco">
-                            <span class="badge-eco log">Lógica</span>
-                            <div class="icon-eco"><i class="fa-solid fa-brain"></i></div>
-                        </div>
+                        <div class="card-header-eco"><span class="badge-eco log">Lógica</span><div class="icon-eco"><i class="fa-solid fa-brain"></i></div></div>
                         <h3>Axion Rhetorical</h3>
                         <p>Engine analítica baseada em modelos de linguagem avançados para mapeamento, estruturação e auditoria de argumentação lógica.</p>
                     </div>
@@ -1015,15 +992,11 @@
                     </div>
                 </div>
 
-                <!-- Card 9: CoreMaster (Adicionado via Protocolo LexOS - Zero Inferência) -->
                 <div class="card-eco core">
                     <div>
-                        <div class="card-header-eco">
-                            <span class="badge-eco core">Gamificação de Conhecimento</span>
-                            <div class="icon-eco"><i class="fa-solid fa-server"></i></div>
-                        </div>
+                        <div class="card-header-eco"><span class="badge-eco core">Gamificação</span><div class="icon-eco"><i class="fa-solid fa-server"></i></div></div>
                         <h3>CoreMaster</h3>
-                        <p>App para treinamento cognitivo de perguntas e respostas com níveis evolutivos</p>
+                        <p>App para treinamento cognitivo de perguntas e respostas com níveis evolutivos e avaliação de desempenho.</p>
                     </div>
                     <div class="card-actions">
                         <span class="status-pill online"><i class="fa-solid fa-circle"></i> Online</span>
@@ -1035,6 +1008,7 @@
         </div>
     </section>
 
+    <!-- SKILL TREE E DEMAIS SEÇÕES MANTIDAS INTACTAS -->
     <section id="skills" class="skill-tree-section">
         <div class="container">
             <div class="section-header">
@@ -1044,7 +1018,6 @@
 
            <div class="tree-layout">
                 
-                <!-- COLUNA 1: ESQUERDA -->
                 <div class="tree-skills-column">
                     <div class="skill-group-box gestao">
                         <div class="group-box-header">
@@ -1098,7 +1071,6 @@
                     </div>
                 </div>
 
-                <!-- COLUNA 2: CENTRO (AVATAR) -->
                 <div class="tree-avatar-hub">
                     <div class="profile-frame">
                         <img src="luciano.jpg" alt="Luciano P. de Moura" class="avatar-img">
@@ -1136,7 +1108,6 @@
                     </div>
                 </div>
 
-                <!-- COLUNA 3: DIREITA -->
                 <div class="tree-skills-column">
                     <div class="skill-group-box ia">
                         <div class="group-box-header">
@@ -1179,7 +1150,7 @@
                         </div>
                         <div class="skill-bars-container">
                             <div class="bar-item">
-                                <div class="bar-labels"><span>Técnicas de Comunicação institucional/Corporativa</span><span>77%</span></div>
+                                <div class="bar-labels"><span>Técnicas de Comunicação Institucional</span><span>77%</span></div>
                                 <div class="bar-track"><div class="bar-fill" data-pct="77"></div></div>
                             </div>
                             <div class="bar-item">

@@ -67,18 +67,25 @@
                 <div class="player-header">
                     <h3>Centro de Controle Acústico</h3>
                     <ul class="playlist">
-                        <li><button class="track-link active" data-src="midia/musica1.mp4">The River — Experiência I</button></li>
-                        <li><button class="track-link" data-src="midia/musica2.mp4">Tempo — Experiência II</button></li>
-                        <li><button class="track-link" data-src="midia/musica3.mp4">Deep Time — Experiência III</button></li>
-                        <li><button class="track-link" data-src="midia/musica4.mp4">Ápice — Experiência IV</button></li>
-                        <li><button class="track-link" data-src="midia/musica5.mp4">Engenharia do Legado — Experiência V</button></li>
-                        <li><button class="track-link" data-src="midia/musica6.mp4">A Virada — Experiência VI</button></li>
+                        <!-- O atributo data-gif foi removido, pois o JS agora cuidará da rotação de todos os GIFs -->
+                        <li><button class="track-link active" data-src="./midia/musica1.mp4">The River — Experiência I</button></li>
+                        <li><button class="track-link" data-src="./midia/musica2.mp4">Tempo — Experiência II</button></li>
+                        <li><button class="track-link" data-src="./midia/musica3.mp4">Deep Time — Experiência III</button></li>
+                        <li><button class="track-link" data-src="./midia/musica4.mp4">Ápice — Experiência IV</button></li>
+                        <li><button class="track-link" data-src="./midia/musica5.mp4">Engenharia do Legado — Experiência V</button></li>
+                        <li><button class="track-link" data-src="./midia/musica6.mp4">A Virada — Experiência VI</button></li>
                     </ul>
                 </div>
 
                 <div class="audio-container">
                     <div class="video-wrapper">
-                        <video id="meuVideo" src="midia/musica1.mp4" preload="auto"></video>
+                        <!-- Vídeo (com legendas) na camada frontal (z-index: 2) -->
+                        <video id="meuVideo" src="./midia/musica1.mp4" preload="auto"></video>
+                        
+                        <!-- GIF rotativo na camada do fundo (z-index: 1) -->
+                        <img id="playerGif" class="gif-background" src="./gifs/experiencia1.gif" alt="Visualizador da Experiência">
+                        
+                        <!-- Overlay fixo -->
                         <div id="videoOverlay" class="video-overlay"></div>
                     </div>
                     <button id="btnPlayPause" class="btn-play">
@@ -95,12 +102,14 @@
         </footer>
 
         <!-- CAMADA 2: RODAPÉ AUTORAL VISUAL (UI) EXIGIDO PELO PROTOCOLO LEXOS -->
-    <div class="lexos-footer" style="text-align: center; font-size: 0.875rem; color: #6b7280; padding: 1rem 0; border-top: 1px solid #e5e7eb; margin-top: 2rem; background-color: #060b14;">
-        <p><strong>© 2026 LexOS Ecosystem</strong> | Arquitetura e Engenharia: Luciano P. de Moura</p>
-        <p class="legal" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.25rem;">
-            🛡️ Propriedade Intelectual Protegida • Uso Restrito
-        </p>
+        <div class="lexos-footer" style="text-align: center; font-size: 0.875rem; color: #6b7280; padding: 1rem 0; border-top: 1px solid #e5e7eb; margin-top: 2rem; background-color: #060b14;">
+            <p><strong>© 2026 LexOS Ecosystem</strong> | Arquitetura e Engenharia: Luciano P. de Moura</p>
+            <p class="legal" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.25rem;">
+                🛡️ Propriedade Intelectual Protegida • Uso Restrito
+            </p>
+        </div>
     </div>
+    
     <script src="script.js"></script>
 </body>
 </html>

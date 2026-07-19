@@ -3,26 +3,32 @@ gsap.registerPlugin();
 
 // ====================== ELEMENTOS ======================
 const video = document.getElementById('meuVideo');
+const gifElement = document.getElementById('playerGif');
 const btnPlayPause = document.getElementById('btnPlayPause');
 const playerIcon = document.getElementById('playerIcon');
 const playerText = document.getElementById('playerText');
-const videoOverlay = document.getElementById('videoOverlay');
 const bgContainer = document.getElementById('bg-container');
 
-// ====================== ARRAY COM 63 IMAGENS ======================
+// ====================== ARRAYS DE MÍDIA ======================
+// 1. Array do Fundo Global (63 imagens)
 let minhasImagens = [];
-
-// Carregar automaticamente as 63 imagens (recomendado)
 for (let i = 1; i <= 63; i++) {
     minhasImagens.push(`images/image (${i}).jpg`);
 }
 
-let bgInterval = null;
-let overlayInterval = null;
-let currentBgIndex = 0;
-let currentOverlayIndex = 0;
+// 2. Array dos GIFs do Player (25 GIFs)
+let meusGifs = [];
+for (let i = 1; i <= 25; i++) {
+    meusGifs.push(`./gifs/experiencia${i}.gif`); // Usando o prefixo ./ para segurança no caminho
+}
 
-// ====================== ANIMAÇÕES GSAP ======================
+let bgInterval = null;
+let currentBgIndex = 0;
+
+let gifInterval = null;
+let currentGifIndex = 0;
+
+// ====================== ANIMAÇÕES GSAP INICIAIS ======================
 function initGSAP() {
     gsap.from(".title-enigmatic", { duration: 1.8, y: 60, opacity: 0, ease: "power3.out" });
     gsap.from(".subtitle", { duration: 1.5, y: 40, opacity: 0, delay: 0.4 });
@@ -32,7 +38,7 @@ function initGSAP() {
     gsap.from(".player-card", { duration: 1.8, y: 90, opacity: 0, delay: 1.2, ease: "power3.out" });
 }
 
-// ====================== BACKGROUND ======================
+// ====================== BACKGROUND DA PÁGINA (Imagens) ======================
 function inicializarBackgrounds() {
     bgContainer.innerHTML = '';
     
@@ -43,48 +49,9 @@ function inicializarBackgrounds() {
         bgContainer.appendChild(div);
     });
 
-    if (videoOverlay) videoOverlay.style.backgroundImage = `url('${minhasImagens[0]}')`;
-
     initGSAP();
 }
 
-// ====================== PLAYER ======================
-document.querySelectorAll('.track-link').forEach(link => {
-    link.addEventListener('click', function() {
-        document.querySelectorAll('.track-link').forEach(l => l.classList.remove('active'));
-        this.classList.add('active');
-
-        video.src = this.getAttribute('data-src');
-        video.load();
-        video.play().catch(() => {});
-
-        playerIcon.textContent = '⏸';
-        playerText.textContent = 'Pausar Experiência';
-
-        stopAmbience();
-        stopVideoOverlay();
-        startAmbience();
-        startVideoOverlay();
-    });
-});
-
-btnPlayPause.addEventListener('click', () => {
-    if (video.paused) {
-        video.play().catch(() => {});
-        playerIcon.textContent = '⏸';
-        playerText.textContent = 'Pausar Experiência';
-        startAmbience();
-        startVideoOverlay();
-    } else {
-        video.pause();
-        playerIcon.textContent = '▶';
-        playerText.textContent = 'Retomar Experiência';
-        stopAmbience();
-        stopVideoOverlay();
-    }
-});
-
-// ====================== FUNÇÕES DE TRANSIÇÃO ======================
 function startAmbience() {
     const overlays = document.querySelectorAll('.bg-overlay');
     if (bgInterval) clearInterval(bgInterval);
@@ -101,52 +68,90 @@ function stopAmbience() {
     bgInterval = null;
 }
 
-// Fade Suave no Player (sem corte seco)
-function changeVideoOverlay(newSrc) {
-    if (!videoOverlay) return;
-
-    gsap.to(videoOverlay, {
-        duration: 1.6,        // Duração do fade out
-        opacity: 0,
-        ease: "power2.inOut",
-        onComplete: () => {
-            videoOverlay.style.backgroundImage = `url('${newSrc}')`;
-            gsap.to(videoOverlay, {
-                duration: 1.6,   // Duração do fade in
-                opacity: 0.45,
-                ease: "power2.inOut"
-            });
-        }
-    });
-}
-
-function startVideoOverlay() {
-    if (!videoOverlay) return;
-    videoOverlay.style.opacity = "0.45";
-
-    if (overlayInterval) clearInterval(overlayInterval);
-
-    overlayInterval = setInterval(() => {
-        let randomIndex;
-        // Melhora a aleatoriedade para evitar repetições frequentes
+// ====================== ROTAÇÃO DOS 25 GIFs DO PLAYER ======================
+function startGifRotation() {
+    if (gifInterval) clearInterval(gifInterval);
+    
+    // Troca o GIF a cada 8 segundos
+    gifInterval = setInterval(() => {
+        let nextIndex;
+        
+        // Garante que não repita o mesmo GIF duas vezes seguidas
         do {
-            randomIndex = Math.floor(Math.random() * minhasImagens.length);
-        } while (randomIndex === currentOverlayIndex && minhasImagens.length > 1);
-
-        currentOverlayIndex = randomIndex;
-        changeVideoOverlay(minhasImagens[currentOverlayIndex]);
-    }, 7000); // 7 segundos - bom equilíbrio
+            nextIndex = Math.floor(Math.random() * meusGifs.length);
+        } while (nextIndex === currentGifIndex && meusGifs.length > 1);
+        
+        currentGifIndex = nextIndex;
+        
+        // Transição suave via GSAP
+        gsap.to(gifElement, {
+            opacity: 0.2, // Não apaga totalmente para evitar 'fundo preto' brusco
+            duration: 0.8,
+            ease: "power2.inOut",
+            onComplete: () => {
+                gifElement.src = meusGifs[currentGifIndex];
+                gsap.to(gifElement, { opacity: 1, duration: 0.8, ease: "power2.inOut" });
+            }
+        });
+    }, 8000);
 }
 
-function stopVideoOverlay() {
-    if (overlayInterval) clearInterval(overlayInterval);
-    overlayInterval = null;
-    if (videoOverlay) gsap.to(videoOverlay, { duration: 0.8, opacity: 0 });
+function stopGifRotation() {
+    if (gifInterval) clearInterval(gifInterval);
+    gifInterval = null;
 }
 
-// ====================== INICIALIZAÇÃO ======================
+// ====================== CONTROLE DO PLAYER ======================
+document.querySelectorAll('.track-link').forEach(link => {
+    link.addEventListener('click', function() {
+        // Atualiza UI da Playlist
+        document.querySelectorAll('.track-link').forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+
+        // Captura a nova fonte do vídeo
+        const newSrc = this.getAttribute('data-src');
+        
+        // Atualiza e dispara a música
+        video.src = newSrc;
+        video.load();
+        video.play().catch(() => {});
+
+        // Atualiza Botão
+        playerIcon.textContent = '⏸';
+        playerText.textContent = 'Pausar Experiência';
+
+        // Reinicia as rotações de Imagens(Fundo) e GIFs(Player)
+        stopAmbience();
+        startAmbience();
+        
+        startGifRotation();
+    });
+});
+
+btnPlayPause.addEventListener('click', () => {
+    if (video.paused) {
+        video.play().catch(() => {});
+        playerIcon.textContent = '⏸';
+        playerText.textContent = 'Pausar Experiência';
+        
+        startAmbience();
+        startGifRotation();
+    } else {
+        video.pause();
+        playerIcon.textContent = '▶';
+        playerText.textContent = 'Retomar Experiência';
+        
+        stopAmbience();
+        stopGifRotation();
+    }
+});
+
+// ====================== INICIALIZAÇÃO GERAL ======================
 window.onload = function() {
     inicializarBackgrounds();
     startAmbience();
-    startVideoOverlay();
+    
+    // Define o primeiro GIF na inicialização da tela
+    gifElement.src = meusGifs[0];
+    startGifRotation();
 };

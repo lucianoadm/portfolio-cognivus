@@ -23,7 +23,7 @@ body {
     line-height: 1.7;
 }
 
-/* Background Global */
+/* Background Global (Página) */
 .bg-overlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -149,6 +149,7 @@ body {
     border-color: var(--amber-glow);
 }
 
+/* === CONTAINER DO PLAYER E VÍDEO/GIF === */
 .video-wrapper {
     position: relative;
     width: 100%;
@@ -160,40 +161,40 @@ body {
     background: #000;
 }
 
-#meuVideo, .video-overlay {
+#meuVideo {
     width: 100%;
     height: 100%;
     position: absolute;
-    top: 0; left: 0;
+    top: 0; 
+    left: 0;
     object-fit: contain;
+    z-index: 2; /* Traz o vídeo para a FRENTE da camada do GIF */
+    mix-blend-mode: screen; /* Torna o fundo preto do MP4 transparente para vazar o GIF atrás */
+    pointer-events: none; /* Garante que não bloqueie cliques na interface */
 }
 
-/* === EFEITO DE TRANSIÇÃO SUAVE NO PLAYER === */
-.video-overlay {
-    opacity: 0;
-    transition: opacity 1.8s ease-in-out; /* Fade mais suave e elegante */
-    pointer-events: none;
-    mix-blend-mode: screen;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.video-overlay.playing {
-    opacity: 0.45; /* Intensidade suave - pode ajustar entre 0.35 e 0.55 */
-}
-
-/* Efeito extra de cross-fade (melhor transição) */
-.video-overlay::after {
-    content: '';
+/* Camada do GIF dinâmico */
+.gif-background {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: inherit;
-    opacity: 0;
-    transition: opacity 1.8s ease-in-out;
+    object-fit: cover; 
+    z-index: 1; /* O GIF fica no fundo preenchendo o quadro */
+    pointer-events: none;
+}
+
+/* Overlay escuro fixo sobre o GIF para não ofuscar as legendas */
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.25);
+    pointer-events: none;
 }
 
 .btn-play {
@@ -208,6 +209,7 @@ body {
     align-items: center;
     gap: 12px;
     transition: all 0.3s;
+    margin: 0 auto;
 }
 
 .btn-play:hover {

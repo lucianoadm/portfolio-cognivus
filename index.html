@@ -2,7 +2,7 @@
 <!-- 
     SISTEMA: LexOS Ecosystem
     MÓDULO: Landing Page (Portfólio Pessoal & Hub de Engenharia)
-    VERSÃO: v.5.1.1 - Integração da Matriz LexCore e Botão Sensorial
+    VERSÃO: v.5.2.0 - Integração Completa LexCore (8 Pilares) + Estúdio Sensorial
     DATA_ATUALIZAÇÃO: 2026-07-19
     STACK: HTML5, CSS/Tailwind, JavaScript, Chart.js
     ARQUITETO_E_DESENVOLVEDOR: Luciano P. de Moura
@@ -401,6 +401,7 @@
         .card-eco.hub:hover::before { background: #3b82f6; }
         .card-eco.pccs:hover::before { background: #ef4444; }
         .card-eco.phrase:hover::before { background: #8b5cf6; }
+        .card-eco.divine:hover::before { background: #f59e0b; }
 
         .card-header-eco {
             display: flex;
@@ -426,6 +427,7 @@
         .badge-eco.hub { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
         .badge-eco.pccs { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
         .badge-eco.phrase { background: rgba(139, 92, 246, 0.15); color: #8b5cf6; }
+        .badge-eco.divine { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
 
         .icon-eco {
             font-size: 1.8rem;
@@ -688,7 +690,7 @@
             <nav>
                 <ul>
                     <li><a href="#home" class="active">Home</a></li>
-                    <li><a href="#lexcore">LexCore (7 Pilares)</a></li>
+                    <li><a href="#lexcore">LexCore (8 Pilares)</a></li>
                     <li><a href="#ecossistema">Ecossistema</a></li>
                     <li><a href="#skills">Skill Tree</a></li>
                     <li><a href="base.html" class="nav-btn-sensorial"><i class="fa-solid fa-headphones-simple"></i> Estúdio Sensorial</a></li>
@@ -762,12 +764,12 @@
         </div>
     </section>
 
-    <!-- SEÇÃO LEXCORE - AMBIENTE DE DESENVOLVIMENTO COGNITIVO (OS 7 PILARES) -->
+    <!-- SEÇÃO LEXCORE - AMBIENTE DE DESENVOLVIMENTO COGNITIVO (OS 8 PILARES) -->
     <section id="lexcore" class="ecosystem" style="background-color: rgba(6, 11, 20, 0.25); border-bottom: 1px solid var(--border-color); border-top: 1px solid var(--border-color);">
         <div class="container">
             <div class="section-header">
                 <h2>LexCore: Dashboard Cognitivo</h2>
-                <p>A matriz de 7 pilares fundamentais que sustenta a engenharia de legado. O verdadeiro ambiente de desenvolvimento da mente.</p>
+                <p>A matriz de 8 pilares fundamentais que sustenta a engenharia de legado. O verdadeiro ambiente de desenvolvimento da mente.</p>
             </div>
             
             <div class="grid-ecosystem">
@@ -883,11 +885,27 @@
                     </div>
                 </div>
 
+                <!-- Pilar 8 (NOVO) -->
+                <div class="card-eco divine">
+                    <div>
+                        <div class="card-header-eco">
+                            <span class="badge-eco divine">Pilar 8</span>
+                            <div class="icon-eco"><i class="fa-solid fa-cross" style="color: #f59e0b;"></i></div>
+                        </div>
+                        <h3>Transcendência Espiritual</h3>
+                        <p>A sabedoria do Legado. Onde a lógica e a técnica se curvam à Fé. A rendição ao processo do Oleiro e a força inabalável do reconhecimento Divino.</p>
+                    </div>
+                    <div class="card-actions">
+                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
+                        <a href="pilar8.html" class="btn-card-link" style="color: #f59e0b;">Acessar Hub <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <!-- SEÇÃO: ECOSSISTEMA LEXOS -->
+    <!-- SEÇÃO ORIGINAL: ECOSSISTEMA LEXOS -->
     <section id="ecossistema" class="ecosystem">
         <div class="container">
             <div class="section-header">

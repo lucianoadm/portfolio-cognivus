@@ -1,0 +1,223 @@
+def generate_analise_html():
+    html_content = """<!-- 
+    SISTEMA: LexOS Ecosystem
+    MÓDULO: Campo 2 - Inteligência Analítica (A Lente)
+    VERSÃO: v.1.0.0 - Dark Theme Tailwind (Data Edition)
+    DATA_ATUALIZAÇÃO: 2026-07-23
+    STACK: HTML5, CSS/Tailwind, JavaScript
+    ARQUITETO_E_DESENVOLVEDOR: Luciano P. de Moura
+    RESTRIÇÃO: Uso restrito. Propriedade intelectual protegida.
+-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LexOS: Inteligência Analítica (A Lente)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: {
+                            bg: '#050816',
+                            card: '#0f172a',
+                            border: '#1f2937'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { 
+            background: radial-gradient(circle at top, #1e293b 0, #050816 60%);
+            background-color: #050816; 
+            color: #e5e7eb; 
+        }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(245, 158, 11, 0.15); /* Amber tint for DATA */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+            border-radius: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .glass-panel:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 20px -3px rgba(245, 158, 11, 0.15), 0 8px 10px -2px rgba(245, 158, 11, 0.1);
+            border-color: rgba(245, 158, 11, 0.4);
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #fbbf24, #f59e0b, #d97706);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .data-glow {
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.2);
+        }
+    </style>
+</head>
+<body class="antialiased pb-12">
+
+    <!-- Header Section -->
+    <header class="bg-[#0f172a]/80 border-b border-amber-900/30 py-20 px-4 sm:px-6 lg:px-8 mb-12 relative overflow-hidden backdrop-blur-md">
+        <!-- Background Data Glow -->
+        <div class="absolute top-[-100px] right-[10%] w-[400px] h-[400px] bg-amber-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+        <div class="absolute bottom-[-100px] left-[10%] w-[300px] h-[300px] bg-yellow-600/10 rounded-full blur-[80px] pointer-events-none"></div>
+        
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <span class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-amber-300 bg-amber-950/40 border border-amber-500/30 mb-6 data-glow">
+                A Tríade Operacional LexOS • Campo 2
+            </span>
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight mb-6">
+                Inteligência Analítica: <span class="gradient-text">A Lente</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-light">
+                O domínio absoluto sobre a extração da verdade através dos dados. Onde a matemática aplicada, a estatística e o código se tornam a base inquestionável da decisão.
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 main-content">
+        
+        <!-- Intro: A Lente -->
+        <section class="glass-panel p-8 md:p-12 mb-12 relative overflow-hidden">
+            <div class="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8 relative z-10">
+                <div class="flex-shrink-0 text-5xl bg-[#020617] p-4 rounded-full border border-[#1f2937] shadow-inner data-glow">
+                    🔬
+                </div>
+                <div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-gray-100 mb-4">
+                        Enxergando Padrões Onde Outros Veem Ruído
+                    </h2>
+                    <p class="text-gray-300 leading-relaxed max-w-3xl text-lg mb-4">
+                        A Governança organiza a casa, mas é a Inteligência Analítica que ilumina o caminho. O Campo 2 da Tríade Operacional não é apenas sobre "gerar gráficos", é sobre o rigor metodológico de torturar os dados até que eles confessem a verdade.
+                    </p>
+                    <p class="text-gray-400 leading-relaxed text-sm">
+                        Com uma base enraizada em mais de duas décadas de modelagem matemática intensa, o ecossistema LexOS processa cenários complexos através de Pesquisa Operacional, validações estatísticas e algoritmos avançados, fundindo a precisão acadêmica à escalabilidade de aplicativos (SaaS) gerados em Python.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Crown Jewel: 20+ Years of Excel & O.R. -->
+        <section class="glass-panel p-8 md:p-10 mb-8 border-t-4 border-t-amber-500 relative overflow-hidden">
+            <div class="absolute right-[-20px] top-[-20px] text-[10rem] opacity-5 pointer-events-none">📊</div>
+            <div class="relative z-10">
+                <div class="flex items-center mb-4">
+                    <span class="bg-amber-900/40 text-amber-400 border border-amber-800/50 w-12 h-12 rounded-lg flex items-center justify-center mr-4 text-2xl shadow-inner">🏆</span>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-100">Maestria em Excel & Pesquisa Operacional</h3>
+                        <span class="text-amber-400 text-sm font-semibold tracking-wide uppercase">Mais de 20 anos de experiência acumulada</span>
+                    </div>
+                </div>
+                <p class="text-gray-300 leading-relaxed mb-6">
+                    A jornada de inteligência começou muito antes da era dos LLMs modernos. O alicerce analítico do LexOS foi cimentado por mais de duas décadas dominando o Excel na sua forma mais bruta e científica. Não são apenas "planilhas", é engenharia de cenários complexos.
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-[#020617] p-4 rounded-lg border border-[#1f2937]">
+                        <h4 class="text-amber-300 font-bold mb-2 text-sm uppercase">Otimização Avançada (SOLVER)</h4>
+                        <p class="text-gray-400 text-xs leading-relaxed">
+                            Resolução de sistemas lineares e não-lineares. Aplicação prática do clássico problema do <strong>Caixeiro Viajante</strong>, otimizando rotas, custos logísticos e alocação de recursos finitos com máxima eficiência.
+                        </p>
+                    </div>
+                    <div class="bg-[#020617] p-4 rounded-lg border border-[#1f2937]">
+                        <h4 class="text-amber-300 font-bold mb-2 text-sm uppercase">Estatística Profunda</h4>
+                        <p class="text-gray-400 text-xs leading-relaxed">
+                            Domínio absoluto de Estatística Descritiva e Inferencial. Cálculo minucioso de <strong>medidas de dispersão</strong> (variância, desvio padrão) e <strong>tendência central</strong>, fundamentais para prever riscos e julgar a consistência de qualquer base de dados.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced Analytics Stack Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            
+            <!-- Python -->
+            <div class="glass-panel p-8 relative overflow-hidden group">
+                <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
+                <div class="flex items-center mb-6">
+                    <span class="bg-blue-900/40 text-blue-400 border border-blue-800/50 w-12 h-12 rounded-lg flex items-center justify-center mr-4 text-2xl shadow-inner">🐍</span>
+                    <h3 class="text-xl font-bold text-gray-100">Python: De Scripts a Apps Dedicados</h3>
+                </div>
+                <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                    A evolução natural da análise. Usar a linguagem para manipulação pesada de dados e, crucialmente, <strong>geração de aplicativos web dedicados</strong> (ex: Streamlit). A inteligência não fica presa no console do programador; ela é transformada em plataformas de fácil acesso para o usuário final.
+                </p>
+            </div>
+
+            <!-- R e PLN -->
+            <div class="glass-panel p-8 relative overflow-hidden group">
+                <div class="absolute top-0 left-0 w-1 h-full bg-indigo-500"></div>
+                <div class="flex items-center mb-6">
+                    <span class="bg-indigo-900/40 text-indigo-400 border border-indigo-800/50 w-12 h-12 rounded-lg flex items-center justify-center mr-4 text-2xl shadow-inner">®️</span>
+                    <h3 class="text-xl font-bold text-gray-100">Linguagem R & PLN</h3>
+                </div>
+                <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                    Poder computacional focado em simulações estatísticas rigorosas e <strong>Processamento de Linguagem Natural (PLN)</strong>. A habilidade de extrair sentimentos, frequências e significados de grandes volumes textuais, transformando leis, contratos e discursos em matrizes matemáticas.
+                </p>
+            </div>
+
+            <!-- WEKA -->
+            <div class="glass-panel p-8 relative overflow-hidden group">
+                <div class="absolute top-0 left-0 w-1 h-full bg-red-500"></div>
+                <div class="flex items-center mb-6">
+                    <span class="bg-red-900/40 text-red-400 border border-red-800/50 w-12 h-12 rounded-lg flex items-center justify-center mr-4 text-2xl shadow-inner">🦆</span>
+                    <h3 class="text-xl font-bold text-gray-100">WEKA: Validação & Data Mining</h3>
+                </div>
+                <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                    A auditoria do aprendizado de máquina. Utilização do ambiente WEKA para classificação, regressão e <em>clustering</em> (agrupamentos). O papel dessa ferramenta é <strong>validar cientificamente</strong> as análises de *data mining*, garantindo que as premissas e inferências do modelo estejam corretas antes da decisão final.
+                </p>
+            </div>
+
+            <!-- Power BI -->
+            <div class="glass-panel p-8 relative overflow-hidden group">
+                <div class="absolute top-0 left-0 w-1 h-full bg-yellow-500"></div>
+                <div class="flex items-center mb-6">
+                    <span class="bg-yellow-900/40 text-yellow-400 border border-yellow-800/50 w-12 h-12 rounded-lg flex items-center justify-center mr-4 text-2xl shadow-inner">📊</span>
+                    <h3 class="text-xl font-bold text-gray-100">Power BI: O Essencial Visual</h3>
+                </div>
+                <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                    A tradução executiva. O domínio sobre a camada de visualização é tratado como o "Essencial". Após a modelagem complexa em Python, R ou Excel, os dados são convertidos em <em>dashboards</em> em Power BI. É a síntese estética e interativa projetada exclusivamente para a mesa da diretoria.
+                </p>
+            </div>
+        </div>
+
+        <!-- The Final Word Section -->
+        <section class="bg-gradient-to-br from-amber-900/40 via-[#0f172a] to-[#020617] border-l-4 border-l-amber-500 p-10 rounded-2xl mb-12 shadow-2xl relative overflow-hidden">
+            <svg class="w-8 h-8 text-amber-500/30 mb-4" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+            <div class="relative z-10">
+                <p class="text-xl md:text-2xl font-medium text-gray-200 italic leading-relaxed">
+                    "A intuição diz para onde ir, mas são os dados que revelam onde estão os abismos. O verdadeiro analista não se apega às ferramentas, ele as subordina à lógica. Seja calculando o trajeto ótimo de um Caixeiro Viajante no Excel, ou criando um aplicativo escalável de Inteligência Artificial em Python, o objetivo é um só: extrair a verdade irrefutável do caos da informação."
+                </p>
+            </div>
+        </section>
+
+        <!-- LexOS Protocol Footer -->
+        <div class="lexos-footer" style="text-align: center; font-size: 0.875rem; color: #64748b; padding: 1.5rem 0; border-top: 1px solid rgba(245, 158, 11, 0.2); margin-top: 3rem;">
+            <p><strong>© 2026 LexOS Ecosystem</strong> | Arquitetura e Engenharia: Luciano P. de Moura</p>
+            <p class="legal" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.4rem; color: #475569;">
+                🛡️ Propriedade Intelectual Protegida • Uso Restrito
+            </p>
+        </div>
+
+    </div>
+
+</body>
+</html>
+"""
+    
+    with open("analise.html", "w", encoding="utf-8") as f:
+        f.write(html_content)
+        
+    print("[file-tag: html-analise-campo2]")
+
+update_index_triade()

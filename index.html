@@ -2,8 +2,8 @@
 <!-- 
     SISTEMA: LexOS Ecosystem
     MÓDULO: Landing Page (Portfólio Pessoal & Hub de Engenharia)
-    VERSÃO: v.5.2.0 - Integração Completa LexCore (8 Pilares) + Estúdio Sensorial
-    DATA_ATUALIZAÇÃO: 2026-07-19
+    VERSÃO: v.6.0.0 - Integração da Tríade Operacional LexOS
+    DATA_ATUALIZAÇÃO: 2026-07-23
     STACK: HTML5, CSS/Tailwind, JavaScript, Chart.js
     ARQUITETO_E_DESENVOLVEDOR: Luciano P. de Moura
     RESTRIÇÃO: Uso restrito. Propriedade intelectual protegida.
@@ -115,13 +115,13 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 25px;
+            gap: 20px;
             align-items: center;
         }
 
         nav a {
             color: var(--text-muted);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 600;
             padding: 5px 0;
             position: relative;
@@ -329,7 +329,7 @@
         }
 
         /* ==========================================================================
-           GRID DE ECOSSISTEMAS E LEXCORE (OS CARDS)
+           GRID DE ECOSSISTEMAS, LEXCORE E TRÍADE (OS CARDS)
            ========================================================================== */
         .ecosystem {
             padding: 100px 0;
@@ -691,6 +691,7 @@
                 <ul>
                     <li><a href="#home" class="active">Home</a></li>
                     <li><a href="#lexcore">LexCore (8 Pilares)</a></li>
+                    <li><a href="#triade">Tríade Operacional</a></li>
                     <li><a href="#ecossistema">Ecossistema</a></li>
                     <li><a href="#skills">Skill Tree</a></li>
                     <li><a href="base.html" class="nav-btn-sensorial"><i class="fa-solid fa-headphones-simple"></i> Estúdio Sensorial</a></li>
@@ -765,7 +766,7 @@
     </section>
 
     <!-- SEÇÃO LEXCORE - AMBIENTE DE DESENVOLVIMENTO COGNITIVO (OS 8 PILARES) -->
-    <section id="lexcore" class="ecosystem" style="background-color: rgba(6, 11, 20, 0.25); border-bottom: 1px solid var(--border-color); border-top: 1px solid var(--border-color);">
+    <section id="lexcore" class="ecosystem" style="background-color: rgba(6, 11, 20, 0.25); border-top: 1px solid var(--border-color);">
         <div class="container">
             <div class="section-header">
                 <h2>LexCore: Dashboard Cognitivo</h2>
@@ -905,6 +906,66 @@
         </div>
     </section>
 
+    <!-- NOVA SEÇÃO: A TRÍADE OPERACIONAL -->
+    <section id="triade" class="ecosystem" style="background-color: rgba(9, 19, 34, 0.4); border-bottom: 1px solid var(--border-color);">
+        <div class="container">
+            <div class="section-header">
+                <h2>A Tríade Operacional LexOS</h2>
+                <p>O núcleo da inteligência corporativa: estruturar na Governança, processar na Análise e blindar na Decisão.</p>
+            </div>
+            
+            <div class="grid-ecosystem" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                <!-- Campo 1 -->
+                <div class="card-eco core">
+                    <div>
+                        <div class="card-header-eco">
+                            <span class="badge-eco core">Alicerce</span>
+                            <div class="icon-eco"><i class="fa-solid fa-folder-tree"></i></div>
+                        </div>
+                        <h3>Governança e Gestão Operacional</h3>
+                        <p>O domínio sobre a estrutura e rastreabilidade. Criação de POPs, mapeamento de rotinas, versionamento de software e gestão do conhecimento (Zettelkasten).</p>
+                    </div>
+                    <div class="card-actions">
+                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
+                        <a href="gestao.html" class="btn-card-link">Acessar Campo <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Campo 2 -->
+                <div class="card-eco dat">
+                    <div>
+                        <div class="card-header-eco">
+                            <span class="badge-eco dat">A Lente</span>
+                            <div class="icon-eco"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                        </div>
+                        <h3>Inteligência Analítica</h3>
+                        <p>O domínio sobre a extração da verdade através dos dados. Modelagem em Power BI, Excel avançado, scripts Python e engenharia de prompts.</p>
+                    </div>
+                    <div class="card-actions">
+                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
+                        <a href="analise.html" class="btn-card-link">Acessar Campo <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Campo 3 -->
+                <div class="card-eco log">
+                    <div>
+                        <div class="card-header-eco">
+                            <span class="badge-eco log">O Veredito</span>
+                            <div class="icon-eco"><i class="fa-solid fa-scale-balanced"></i></div>
+                        </div>
+                        <h3>Estratégico-Decisório e Jurídico</h3>
+                        <p>O domínio sobre a aplicação segura e regulamentada. Tomada de decisão balizada pela LGPD, compliance, raciocínio lógico estruturado e mitigação de riscos.</p>
+                    </div>
+                    <div class="card-actions">
+                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
+                        <a href="decisao.html" class="btn-card-link">Acessar Campo <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- SEÇÃO ORIGINAL: ECOSSISTEMA LEXOS -->
     <section id="ecossistema" class="ecosystem">
         <div class="container">
@@ -969,8 +1030,8 @@
                         <p>Módulo de gerador de prompt diversos para uso com inteligência de dados aplicada diretamente na avaliação de métricas.</p>
                     </div>
                     <div class="card-actions">
-                        <span class="status-pill offline"><i class="fa-solid fa-circle"></i> Offline</span>
-                        <a href="https://luciano.cognivus.com.br/" target="_blank" class="btn-card-link">Em Atualização <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Online</span>
+                        <a href="https://gerador.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar App <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                     </div>
                 </div>
 

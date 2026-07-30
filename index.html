@@ -1378,5 +1378,33 @@
             setTimeout(animateSkillBars, 300);
         });
     </script>
+
+<!-- ANALYTICS INTERNO E SILENCIOSO (FIREBASE) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBWKSAiSyyMN0Z-fpGfxL0VNRaCBRpn_Ps",
+            authDomain: "cognivus-platform.firebaseapp.com",
+            projectId: "cognivus-platform",
+            storageBucket: "cognivus-platform.firebasestorage.app",
+            messagingSenderId: "517638561103",
+            appId: "1:517638561103:web:f1001fb054c961f109793a"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Registra a visita silenciosamente
+        try {
+            addDoc(collection(db, "visitas_site"), {
+                pagina: "index.html",
+                data_acesso: serverTimestamp()
+            });
+        } catch (e) {
+            // Falha silenciosa para não afetar a experiência do usuário
+        }
+    </script>
 </body>
 </html>

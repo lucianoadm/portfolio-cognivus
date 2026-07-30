@@ -420,6 +420,20 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
+        // ----------------------------------------------------
+        // REGISTRO SILENCIOSO DE VISITA (LGPD COMPLIANT)
+        // ----------------------------------------------------
+        try {
+            // Usa o addDoc e collection que já foram importados no topo
+            addDoc(collection(db, "visitas_site"), {
+                pagina: "academico.html",
+                data_acesso: serverTimestamp()
+            });
+        } catch (e) {
+            console.error("Erro no analytics interno:", e);
+        }
+        // ----------------------------------------------------
+
         // Elementos da Interface
         const btnOpen = document.getElementById('btn-open-vip');
         const btnClose = document.getElementById('btn-close-vip');

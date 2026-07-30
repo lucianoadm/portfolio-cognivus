@@ -1,0 +1,297 @@
+<!-- 
+    SISTEMA: LexOS Ecosystem
+    MÓDULO: Produção Científica & Trajetória Acadêmica
+    VERSÃO: v.1.1.0 - Dark Theme Tailwind (Academic Edition)
+    DATA_ATUALIZAÇÃO: 2026-07-29
+    STACK: HTML5, CSS/Tailwind
+    ARQUITETO_E_DESENVOLVEDOR: Luciano P. de Moura
+    RESTRIÇÃO: Uso restrito. Propriedade intelectual protegida.
+-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LexOS: Trajetória Acadêmica & Científica</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Segoe UI"', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: {
+                            bg: '#050816',
+                            card: '#0f172a',
+                            border: '#1f2937'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { 
+            background: radial-gradient(circle at top right, #1e293b 0, #050816 70%);
+            background-color: #050816; 
+            color: #e5e7eb; 
+        }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(167, 139, 250, 0.15);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+            border-radius: 1rem;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .glass-panel:hover {
+            transform: translateY(-3px);
+            border-color: rgba(167, 139, 250, 0.4);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #a78bfa, #c084fc, #e879f9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .timeline-line {
+            position: absolute;
+            left: 16px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(167, 139, 250, 0.2);
+        }
+        .timeline-dot {
+            position: absolute;
+            left: 11px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #a78bfa;
+            box-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
+        }
+    </style>
+</head>
+<body class="antialiased pb-12">
+
+    <!-- Header & Hero Section -->
+    <header class="bg-[#0f172a]/80 border-b border-purple-900/30 py-20 px-4 sm:px-6 lg:px-8 mb-12 relative overflow-hidden backdrop-blur-md">
+        <div class="absolute top-[-100px] left-[10%] w-[400px] h-[400px] bg-purple-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+        
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <a href="index.html" class="inline-flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors mb-8 text-sm font-semibold uppercase tracking-wider">
+                <i class="fa-solid fa-arrow-left"></i> Voltar ao Hub Principal
+            </a>
+            
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-6">
+                Produção Científica & <span class="gradient-text">Trajetória Acadêmica</span>
+            </h1>
+            <p class="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed font-light mb-10">
+                A fundamentação teórica por trás do ecossistema LexOS. Uma década de pesquisa empírica, desenvolvimento tecnológico e validação científica unindo Governança, Direito e Inteligência Artificial.
+            </p>
+            
+            <!-- Botão Lattes -->
+            <a href="http://lattes.cnpq.br/SEU_LINK_AQUI" target="_blank" class="inline-flex items-center gap-3 px-8 py-3 rounded-md text-sm font-bold text-white bg-blue-600 hover:bg-blue-500 border border-blue-400/50 shadow-[0_0_20px_rgba(37,99,235,0.3)] transition-all">
+                <i class="fa-solid fa-graduation-cap text-lg"></i> Acessar Currículo Lattes
+            </a>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+
+        <!-- DESTAQUE: EXPO COMPLIANCE 2026 -->
+        <section class="glass-panel p-8 md:p-10 border-l-4 border-l-purple-500 relative overflow-hidden">
+            <div class="absolute right-[-20px] top-[-20px] text-[8rem] opacity-5 pointer-events-none"><i class="fa-solid fa-microchip"></i></div>
+            <div class="relative z-10">
+                <div class="flex flex-col md:flex-row justify-between md:items-center mb-6 gap-4">
+                    <h2 class="text-2xl font-bold text-gray-100 flex items-center gap-3">
+                        <i class="fa-solid fa-star text-purple-400"></i> Destaque Científico 2026
+                    </h2>
+                    <span class="bg-purple-900/40 text-purple-300 border border-purple-800/50 px-3 py-1 rounded text-xs font-bold tracking-widest uppercase">
+                        Submissão: Expo Compliance
+                    </span>
+                </div>
+
+                <h3 class="text-xl font-bold text-white mb-3">
+                    Governança Corporativa 4.0: Modelo Preditivo Explicável para Mitigação de Riscos Regulatórios no Ambiente Online
+                </h3>
+                <div class="space-y-4 text-gray-300 text-sm leading-relaxed">
+                    <p>
+                        A intensificação das operações digitais ampliou a complexidade dos incidentes de privacidade e expôs limitações dos modelos tradicionais de compliance. Este trabalho apresenta um modelo preditivo explicável para mitigação de riscos regulatórios no ambiente online, fundamentado na integração entre jurimetria, ciência de dados e inteligência artificial.
+                    </p>
+                    <p>
+                        A pesquisa desenvolve um indicador matemático de risco e valida sua eficácia por meio de simulação estatística com 5.000 registros e ruído intencional, além de duplo experimento com algoritmo de árvore de decisão sob validação cruzada.
+                    </p>
+                    <div class="bg-[#020617] p-4 rounded border border-[#1f2937] mt-4">
+                        <h4 class="text-purple-400 font-bold mb-2 text-xs uppercase tracking-wider">Resultados Atingidos</h4>
+                        <p class="text-xs">
+                            Acurácia superior a 93%, alta capacidade discriminatória e resiliência a dados imperfeitos. O modelo demonstra a viabilidade de uma governança orientada a dados capaz de substituir práticas reativas por processos preditivos, auditáveis e alinhados às exigências regulatórias contemporâneas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LINHA DO TEMPO ACADÊMICA -->
+        <section>
+            <h2 class="text-2xl font-bold text-gray-100 mb-8 flex items-center gap-3">
+                <i class="fa-solid fa-clock-rotate-left text-purple-400"></i> Evolução da Pesquisa (ENIC / CICTED / UNITAU)
+            </h2>
+            
+            <div class="relative pl-8 space-y-10">
+                <div class="timeline-line"></div>
+
+                <!-- 2017 -->
+                <div class="relative">
+                    <div class="timeline-dot top-2"></div>
+                    <div class="glass-panel p-6">
+                        <span class="text-purple-400 font-bold text-sm mb-1 block">2017 • XXII ENIC (Encontro de Iniciação Científica)</span>
+                        <h3 class="text-lg font-bold text-white mb-2">A Importância da Padronização na Gestão dos Negócios</h3>
+                        <p class="text-sm text-gray-400">
+                            Apresentação de trabalho científico abordando a necessidade de estruturação e normatização de processos para a elevação da eficiência corporativa, durante o VI Congresso Internacional de Ciência, Tecnologia e Desenvolvimento (CICTED).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2016 -->
+                <div class="relative">
+                    <div class="timeline-dot top-2"></div>
+                    <div class="glass-panel p-6">
+                        <span class="text-purple-400 font-bold text-sm mb-1 block">2016 • XXI ENIC (Encontro de Iniciação Científica)</span>
+                        <h3 class="text-lg font-bold text-white mb-2">A Gestão dos Recursos Humanos e os Impactos Tecnológicos</h3>
+                        <p class="text-sm text-gray-400">
+                            Pesquisa apresentada durante o V CICTED da Universidade de Taubaté (UNITAU), explorando a interseção entre o capital humano e a evolução das ferramentas tecnológicas nas organizações.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2015 -->
+                <div class="relative">
+                    <div class="timeline-dot top-2"></div>
+                    <div class="glass-panel p-6">
+                        <span class="text-purple-400 font-bold text-sm mb-1 block">2015 • XX ENIC (Encontro de Iniciação Científica)</span>
+                        <h3 class="text-lg font-bold text-white mb-2">O E-Commerce Regional e os Desafios da Gestão</h3>
+                        <p class="text-sm text-gray-400">
+                            Trabalho em coautoria focado nos gargalos gerenciais do comércio eletrônico em âmbito regional, apresentado na Universidade de Taubaté.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2014 -->
+                <div class="relative">
+                    <div class="timeline-dot top-2"></div>
+                    <div class="glass-panel p-6">
+                        <span class="text-purple-400 font-bold text-sm mb-1 block">2014 • III CICTED & Publicação em Revista</span>
+                        <h3 class="text-lg font-bold text-white mb-2">A Trajetória, os Caminhos e as Perspectivas da Qualidade</h3>
+                        <p class="text-sm text-gray-400 mb-3">
+                            Apresentação de painel científico no Congresso Internacional de Ciência, Tecnologia e Desenvolvimento.
+                        </p>
+                        <div class="inline-flex items-center gap-2 bg-[#020617] px-3 py-1.5 rounded border border-[#1f2937] text-xs font-semibold text-gray-300">
+                            <i class="fa-solid fa-book-open text-blue-400"></i> Publicação: Revista Nós (Set/Out 2014) - Faculdade Dehoniana.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CÂNONE ESTRATÉGICO / BIBLIOTECA -->
+        <section>
+            <h2 class="text-2xl font-bold text-gray-100 mb-8 flex items-center gap-3">
+                <i class="fa-solid fa-book text-purple-400"></i> O Cânone Estratégico (Indicações Bibliográficas)
+            </h2>
+            <p class="text-sm text-gray-400 mb-6">
+                O arsenal literário que fundamenta as metodologias de análise de dados, inteligência artificial, estratégia, lógica e governança corporativa utilizadas na construção do ecossistema LexOS.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Book 1 -->
+                <div class="bg-[#020617] p-5 rounded-xl border border-[#1f2937] flex gap-4 items-start hover:border-purple-500/50 transition-colors">
+                    <div class="text-3xl text-gray-600"><i class="fa-solid fa-book-journal-whills"></i></div>
+                    <div>
+                        <h4 class="text-white font-bold text-sm mb-1">O Andar do Bêbado: Como o acaso determina nossas vidas</h4>
+                        <p class="text-xs text-gray-400 mb-2">Leonard Mlodinow</p>
+                        <p class="text-xs text-gray-500 leading-relaxed">Uma leitura fundamental para a compreensão da aleatoriedade, estatística e a ilusão de controle nos dados e na vida.</p>
+                    </div>
+                </div>
+                <!-- Book 2 -->
+                <div class="bg-[#020617] p-5 rounded-xl border border-[#1f2937] flex gap-4 items-start hover:border-purple-500/50 transition-colors">
+                    <div class="text-3xl text-gray-600"><i class="fa-solid fa-book-journal-whills"></i></div>
+                    <div>
+                        <h4 class="text-white font-bold text-sm mb-1">O Discurso do Método</h4>
+                        <p class="text-xs text-gray-400 mb-2">René Descartes</p>
+                        <p class="text-xs text-gray-500 leading-relaxed">A base do racionalismo. O método cartesiano de dividir problemas complexos em partes menores, essencial na programação e engenharia.</p>
+                    </div>
+                </div>
+                <!-- Book 3 -->
+                <div class="bg-[#020617] p-5 rounded-xl border border-[#1f2937] flex gap-4 items-start hover:border-purple-500/50 transition-colors">
+                    <div class="text-3xl text-gray-600"><i class="fa-solid fa-book-journal-whills"></i></div>
+                    <div>
+                        <h4 class="text-white font-bold text-sm mb-1">A Arte da Guerra</h4>
+                        <p class="text-xs text-gray-400 mb-2">Sun Tzu</p>
+                        <p class="text-xs text-gray-500 leading-relaxed">Tratado atemporal sobre estratégia, tática, posicionamento e liderança, perfeitamente aplicável ao mundo corporativo e negocial.</p>
+                    </div>
+                </div>
+                <!-- Book 4 -->
+                <div class="bg-[#020617] p-5 rounded-xl border border-[#1f2937] flex gap-4 items-start hover:border-purple-500/50 transition-colors">
+                    <div class="text-3xl text-gray-600"><i class="fa-solid fa-book-journal-whills"></i></div>
+                    <div>
+                        <h4 class="text-white font-bold text-sm mb-1">A Bíblia Sagrada</h4>
+                        <p class="text-xs text-gray-400 mb-2">Diversos Autores</p>
+                        <p class="text-xs text-gray-500 leading-relaxed">A base da sabedoria, ética e transcendência espiritual (Pilar 8 do LexCore), pautando a integridade e os valores inegociáveis do legado.</p>
+                    </div>
+                </div>
+                <!-- Book 5 -->
+                <div class="bg-[#020617] p-5 rounded-xl border border-[#1f2937] flex gap-4 items-start hover:border-purple-500/50 transition-colors">
+                    <div class="text-3xl text-gray-600"><i class="fa-solid fa-book-journal-whills"></i></div>
+                    <div>
+                        <h4 class="text-white font-bold text-sm mb-1">Interpretable Machine Learning</h4>
+                        <p class="text-xs text-gray-400 mb-2">Christoph Molnar</p>
+                        <p class="text-xs text-gray-500 leading-relaxed">Guia definitivo para tornar modelos "caixa-preta" explicáveis. Fundamental para o pilar de Inteligência Artificial Explicável (XAI).</p>
+                    </div>
+                </div>
+                <!-- Book 6 -->
+                <div class="bg-[#020617] p-5 rounded-xl border border-[#1f2937] flex gap-4 items-start hover:border-purple-500/50 transition-colors">
+                    <div class="text-3xl text-gray-600"><i class="fa-solid fa-book-journal-whills"></i></div>
+                    <div>
+                        <h4 class="text-white font-bold text-sm mb-1">Jurimetria: Como a estatística pode revolucionar...</h4>
+                        <p class="text-xs text-gray-400 mb-2">Alexandre Araújo Costa</p>
+                        <p class="text-xs text-gray-500 leading-relaxed">Base bibliográfica essencial para a aplicação de métricas exatas no ecossistema do Direito e regulação de dados.</p>
+                    </div>
+                </div>
+                <!-- Book 7 -->
+                <div class="bg-[#020617] p-5 rounded-xl border border-[#1f2937] flex gap-4 items-start hover:border-purple-500/50 transition-colors">
+                    <div class="text-3xl text-gray-600"><i class="fa-solid fa-book-journal-whills"></i></div>
+                    <div>
+                        <h4 class="text-white font-bold text-sm mb-1">Gestão de Riscos Corporativos</h4>
+                        <p class="text-xs text-gray-400 mb-2">Fernando Serra de Almeida</p>
+                        <p class="text-xs text-gray-500 leading-relaxed">Literatura de cabeceira para a estruturação de mitigação de riscos, compliance e continuidade e solidez de negócios.</p>
+                    </div>
+                </div>
+                <!-- Book 8 -->
+                <div class="bg-[#020617] p-5 rounded-xl border border-[#1f2937] flex gap-4 items-start hover:border-purple-500/50 transition-colors">
+                    <div class="text-3xl text-gray-600"><i class="fa-solid fa-book-journal-whills"></i></div>
+                    <div>
+                        <h4 class="text-white font-bold text-sm mb-1">The Elements of Statistical Learning</h4>
+                        <p class="text-xs text-gray-400 mb-2">Trevor Hastie, et al.</p>
+                        <p class="text-xs text-gray-500 leading-relaxed">A espinha dorsal matemática para mineração de dados, inferência e desenvolvimento de algoritmos de predição complexos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- LexOS Protocol Footer -->
+    <div class="lexos-footer" style="text-align: center; font-size: 0.875rem; color: #64748b; padding: 2rem 0; border-top: 1px solid rgba(167, 139, 250, 0.15); margin-top: 4rem; background-color: #020617;">
+        <p><strong>© 2026 LexOS Ecosystem</strong> | Arquitetura e Engenharia: Luciano P. de Moura</p>
+        <p class="legal" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.4rem; color: #475569;">
+            🛡️ Propriedade Intelectual Protegida • Uso Restrito
+        </p>
+    </div>
+
+</body>
+</html>

@@ -92,6 +92,7 @@
             justify-content: space-between;
             align-items: center;
             height: 70px;
+            max-width: 1350px; /* Expandido levemente para comportar novos links */
         }
 
         .logo {
@@ -102,6 +103,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            white-space: nowrap; /* Impede a quebra do nome para a linha de baixo */
         }
 
         .logo i {
@@ -116,16 +118,17 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 20px;
+            gap: 12px; /* Reduzido de 20px para agrupar melhor os botões */
             align-items: center;
         }
 
         nav a {
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.85rem; /* Reduzido levemente de 0.9rem */
             font-weight: 600;
             padding: 5px 0;
             position: relative;
+            white-space: nowrap; /* Impede a quebra do texto dentro dos links */
         }
 
         nav a::after {
@@ -150,12 +153,13 @@
         .nav-btn-dashboard {
             background: rgba(56, 189, 248, 0.15);
             border: 1px solid var(--accent-glow);
-            padding: 6px 14px;
+            padding: 6px 12px;
             border-radius: 4px;
-            font-size: 0.88rem;
+            font-size: 0.85rem;
             color: var(--accent-glow) !important;
             font-weight: 700;
             transition: all 0.3s ease;
+            white-space: nowrap;
         }
 
         .nav-btn-dashboard:hover {
@@ -167,12 +171,13 @@
         .nav-btn-sensorial {
             background: rgba(192, 132, 252, 0.15);
             border: 1px solid #c084fc;
-            padding: 6px 14px;
+            padding: 6px 12px;
             border-radius: 4px;
-            font-size: 0.88rem;
+            font-size: 0.85rem;
             color: #c084fc !important;
             font-weight: 700;
             transition: all 0.3s ease;
+            white-space: nowrap;
         }
 
         .nav-btn-sensorial:hover {
@@ -695,6 +700,7 @@
                     <li><a href="#triade">Tríade Operacional</a></li>
                     <li><a href="#ecossistema">Ecossistema</a></li>
                     <li><a href="#skills">Skill Tree</a></li>
+                    <li><a href="academico.html" style="color: #a78bfa; font-weight: 700;"><i class="fa-solid fa-graduation-cap"></i> Científico</a></li>
                     <li><a href="base.html" class="nav-btn-sensorial"><i class="fa-solid fa-headphones-simple"></i> Estúdio Sensorial</a></li>
                     <li><a href="dashboard.html" class="nav-btn-dashboard"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
                 </ul>
@@ -1169,9 +1175,14 @@
                     <div class="profile-frame">
                         <img src="luciano.jpg" alt="Luciano P. de Moura" class="avatar-img">
                     </div>
-                    <div class="avatar-info">
+                   <div class="avatar-info">
                         <h3>Luciano P. de Moura</h3>
                         <p>Legal Data Science & Architecture</p>
+                        
+                        <!-- Botão Acadêmico -->
+                        <a href="academico.html" style="display: inline-block; margin-top: 18px; padding: 8px 18px; background: rgba(167, 139, 250, 0.15); border: 1px solid #a78bfa; color: #a78bfa; border-radius: 6px; font-size: 0.85rem; font-weight: 700; text-decoration: none; transition: 0.3s;" onmouseover="this.style.background='#a78bfa'; this.style.color='#091322';" onmouseout="this.style.background='rgba(167, 139, 250, 0.15)'; this.style.color='#a78bfa';">
+                            <i class="fa-solid fa-microscope"></i> Produção Científica & Lattes
+                        </a>
                     </div>
 
                     <div class="axis-summary-list">

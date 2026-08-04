@@ -2,8 +2,8 @@
 <!-- 
     SISTEMA: LexOS Ecosystem
     MÓDULO: Dashboard de Competências Convergentes
-    VERSÃO: v.1.0.0 - Integração Protocolo LexOS
-    DATA_ATUALIZAÇÃO: 2026-07-18
+    VERSÃO: v.1.1.0 - Atualização de Carga de Dados e UX
+    DATA_ATUALIZAÇÃO: 2026-08-03
     STACK: HTML5, CSS3, JavaScript
     ARQUITETO_E_DESENVOLVEDOR: Luciano P. de Moura
     RESTRIÇÃO: Uso restrito. Propriedade intelectual protegida.
@@ -52,7 +52,7 @@
             margin: 0 auto;
         }
 
-        /* HEADER & MARCOS STRATEGICOS */
+        /* HEADER & MARCOS ESTRATÉGICOS */
         header {
             text-align: center;
             margin-bottom: 3rem;
@@ -60,14 +60,23 @@
             padding-bottom: 2rem;
         }
 
-        header h1 {
-            font-size: 2.5rem;
+        header h1.nome-titular {
+            font-size: 3rem;
             font-weight: 800;
-            letter-spacing: -0.05em;
+            letter-spacing: -0.02em;
+            color: #ffffff;
+            margin-bottom: 0.2rem;
+        }
+
+        header h2.subtitulo-sistema {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
             background: linear-gradient(to right, #ffffff, var(--accent-glow));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
         }
 
         header p {
@@ -196,7 +205,7 @@
         .eixo-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s cubic-bezier(4, 0, 0.2, 1);
+            transition: max-height 0.4s ease-in-out;
         }
 
         .eixo-inner {
@@ -324,7 +333,8 @@
 
     <div class="container">
         <header>
-            <h1>COGNIVUS ANALYTICS</h1>
+            <h1 class="nome-titular">Luciano Paiva de Moura</h1>
+            <h2 class="subtitulo-sistema">COGNIVUS ANALYTICS</h2>
             <p>Dashboard de Competências Convergentes | Engenharia de Software, IA Generativa, Ciência de Dados e Ciências Jurídicas</p>
             <div style="color: var(--accent-cyan); font-weight: 700; font-size: 0.95rem;">
                 <i class="fa-solid fa-graduation-cap"></i> Estagiário de Direito Setor Público - Taubaté - SP
@@ -334,22 +344,22 @@
         <div class="kpi-grid">
             <div class="kpi-card">
                 <i class="fa-solid fa-scroll"></i>
-                <span class="kpi-value">63</span>
+                <span class="kpi-value">64+</span>
                 <span class="kpi-label">Formações Catalogadas</span>
             </div>
             <div class="kpi-card">
                 <i class="fa-solid fa-clock"></i>
-                <span class="kpi-value">9530h</span>
+                <span class="kpi-value">9540h</span>
                 <span class="kpi-label">Carga Horária Acumulada</span>
             </div>
             <div class="kpi-card">
                 <i class="fa-solid fa-laptop-code"></i>
-                <span class="kpi-value">83+</span>
+                <span class="kpi-value">88+</span>
                 <span class="kpi-label">Projetos Web/HTML</span>
             </div>
             <div class="kpi-card">
                 <i class="fa-solid fa-bolt"></i>
-                <span class="kpi-value">860h</span>
+                <span class="kpi-value">910h</span>
                 <span class="kpi-label">Imersão Dev Acelerada</span>
             </div>
         </div>
@@ -374,7 +384,7 @@
                 </div>
                 <div class="insight-pill">
                     <h4>Validação por Código Real</h4>
-                    <p>Mais de 83 microprojetos práticos estruturados e o ecossistema LexOS eliminam barreiras conceituais, provando competência com deploys reais.</p>
+                    <p>Mais de 88 microprojetos práticos estruturados e o ecossistema LexOS eliminam barreiras conceituais, provando competência com deploys reais.</p>
                 </div>
                 <div class="insight-pill">
                     <h4>Convergência Quantitativa e Semântica</h4>
@@ -399,10 +409,12 @@
                 itens: [
                     { nome: "Bacharelado em Administração de Empresas", inst: "Faculdade Dehoniana", horas: "3.150h", status: "concluido", desc: "Formação de base sólida em governança corporativa, finanças e engenharia de processos organizacionais." },
                     { nome: "MBA Executivo em Gestão de Negócios e Marketing", inst: "Faculdade Cândido Mendes", horas: "600h", status: "concluido", desc: "Especialização em tomada de decisão de alto nível, cenários estratégicos e gestão mercadológica." },
-                    { nome: "Auditoria de Qualidade e Processos", inst: "Certificações Internas", horas: "80h", status: "pratico", desc: "Mapeamento estruturado de fluxos de produção, rastreabilidade e melhoria contínua de rotinas." },
-                    { nome: "Gestão de Suprimentos e Logística", inst: "Extensão Universitária", horas: "60h", status: "concluido", desc: "Otimização de cadeias de valor, fluxos operacionais e eficiência de recursos." },
-                    { nome: "LGPD e Privacidade de Dados", inst: "Curso de Extensão", horas: "20h", status: "pratico", desc: "Alinhamento operacional, proteção de privacidade e mapeamento de dados pessoais." },
-                    { nome: "Compliance & Governança Corporativa", inst: "Curso de Especialização", horas: "40h", status: "pratico", desc: "Auditoria regulatória, mitigação de riscos estruturais e éticos organizacionais." }
+                    { nome: "Extensão em Compliance e Proteção de Dados", inst: "PCRS / Escola de Direito", horas: "10h", status: "concluido", desc: "Governança, ESG, normas ISO e tratamento de dados pessoais (LGPD)." },
+                    { nome: "Fundamentos de ESG", inst: "FM2S", horas: "7h", status: "concluido", desc: "Economia circular, stakeholders e indicadores de sustentabilidade." },
+                    { nome: "Responsabilidade Jurídica nos Ambientes Digitais", inst: "Gran Faculdade", horas: "30h", status: "concluido", desc: "Mitigação de riscos legais e compliance no ciberespaço." },
+                    { nome: "Introdução à Lei Brasileira de Proteção de Dados (LGPD)", inst: "ENAP", horas: "10h", status: "concluido", desc: "Marco legal, bases de tratamento e direitos dos titulares." },
+                    { nome: "Privacidade e Proteção de Dados (LGPD)", inst: "SENAI", horas: "4h", status: "concluido", desc: "Governança de dados, anonimização e deveres das empresas." },
+                    { nome: "Auditoria de Qualidade e Processos", inst: "Certificações Internas", horas: "80h", status: "pratico", desc: "Mapeamento estruturado de fluxos de produção, rastreabilidade e melhoria contínua de rotinas." }
                 ]
             },
             {
@@ -410,12 +422,17 @@
                 titulo: "Eixo 2: Jurimetria & Business Intelligence (Dados Analíticos)",
                 icone: "fa-solid fa-chart-pie",
                 itens: [
-                    { nome: "Pós-Graduação (Especialização) em Jurimetria", inst: "Faculdade Unyleya", horas: "860h", status: "andamento", desc: "Especialização voltada à aplicação da Ciência de Dados e Estatística ao universo jurídico." },
-                    { nome: "Business Intelligence & Power BI para Análise de Dados", inst: "Data Science Academy", horas: "72h", status: "pratico", desc: "Arquitetura e modelagem de dados completas com dashboards dinâmicos integrados em produção." },
-                    { nome: "Excel Avançado com Inteligência Artificial", inst: "Alura / Programa Santander", horas: "60h", status: "pratico", desc: "Modelagem de cenários estatísticos avançados, matrizes de decisão e automações corporativas." },
-                    { nome: "Mineração e Modelagem de Dados", inst: "Weka / Linguagem R", horas: "Trilha Prática", status: "pratico", desc: "Aplicação prática de algoritmos de classificação, clusterização de dados e análise preditiva de massa." },
-                    { nome: "Estatística Aplicada à Análise de Dados", inst: "Alura", horas: "40h", status: "concluido", desc: "Construção de bases inferenciais robustas para tomada de decisões baseada em evidências." },
-                    { nome: "Jurimetria Aplicada à Gestão de Contencioso", inst: "Adequa Cursos", horas: "30h", status: "concluido", desc: "Análise quantitativa de risco processual voltada ao controle de carteiras judiciais massivas." }
+                    { nome: "Pós-Graduação (Especialização) em Jurimetria", inst: "Faculdade Unyleya", horas: "420h", status: "andamento", desc: "Especialização voltada à aplicação da Ciência de Dados e Estatística ao universo jurídico." },
+                    { nome: "Microsoft Power BI Para Business Intelligence", inst: "Data Science Academy", horas: "72h", status: "concluido", desc: "Arquitetura e modelagem de dados completas com dashboards dinâmicos integrados em produção." },
+                    { nome: "Trilha Data Science (Excel Avançado e Dashboards)", inst: "Alura", horas: "60h", status: "concluido", desc: "Simulação de cenários, tabelas dinâmicas, lógica booleana e análise estratégica de padrões." },
+                    { nome: "Trilha Power BI (ETL, Dax e Visualização)", inst: "Alura", horas: "32h", status: "concluido", desc: "Construção ponta a ponta de dashboards, processos de ETL com Power Query e cálculos em DAX." },
+                    { nome: "Análise de Dados e Inteligência de Negócios", inst: "Gran Faculdade", horas: "30h", status: "concluido", desc: "Metodologias de extração de valor e insights a partir de dados operacionais." },
+                    { nome: "Estatística Geral (Conceitos e Dispersão)", inst: "IFRS / ENAP", horas: "60h", status: "concluido", desc: "Base matemática essencial, abordando medidas de posição e análise quantitativa." },
+                    { nome: "Excel com Inteligência Artificial (Bootcamp)", inst: "DIO / Santander", horas: "26h", status: "concluido", desc: "Integração de planilhas operacionais com ferramentas cognitivas avançadas." },
+                    { nome: "Análise de Dados em Linguagem R", inst: "ENAP", horas: "20h", status: "concluido", desc: "Programação funcional para manipulação estatística e ciência de dados." },
+                    { nome: "Big Data em Apoio à Tomada de Decisão", inst: "ENAP", horas: "25h", status: "concluido", desc: "Utilização de arquiteturas de Big Data para embasamento de processos corporativos." },
+                    { nome: "Governança de Dados", inst: "ENAP", horas: "30h", status: "concluido", desc: "Estabelecimento de políticas, qualidade e ciclo de vida da informação institucional." },
+                    { nome: "Introdução à Jurimetria", inst: "Adequa Cursos", horas: "80h", status: "concluido", desc: "Análise quantitativa de risco processual e predição estratégica." }
                 ]
             },
             {
@@ -423,10 +440,14 @@
                 titulo: "Eixo 3: Inteligência Artificial & Engenharia de Prompts",
                 icone: "fa-solid fa-brain",
                 itens: [
-                    { nome: "Engenharia de Prompts para Profissionais do Direito", inst: "Alura / Avançado", horas: "120h", status: "pratico", desc: "Desenho lógico e arquitetura de raciocínio para extração de dados jurídicos via LLMs." },
-                    { nome: "Processamento de Linguagem Natural (PLN) e IA Generativa", inst: "Alura", horas: "90h", status: "pratico", desc: "Tratamento de textos não estruturados e conversão analítica para padrões estruturados (JSON/CSV)." },
-                    { nome: "Inteligência Artificial Aplicada ao Direito (Legal Techs)", inst: "Alura", horas: "50h", status: "concluido", desc: "Mapeamento das tendências disruptivas globais e ferramentas cognitivas do ecossistema legal." },
-                    { nome: "Modelos de Linguagem (LLMs) aplicados a Sistemas Jurídicos", inst: "Curso Técnico", horas: "30h", status: "concluido", desc: "Engenharia de prompt aplicada para mitigação de alucinações e padronização de peças estruturadas." }
+                    { nome: "Trilha Inteligência Artificial Generativa e Prompts", inst: "Alura", horas: "28h", status: "concluido", desc: "Otimização de resultados via ChatGPT, construção de prompts eficazes e potencial generativo." },
+                    { nome: "Processamento de Linguagem Natural (PLN)", inst: "ENAP", horas: "25h", status: "concluido", desc: "Tratamento de textos não estruturados e compreensão computacional da linguagem humana." },
+                    { nome: "Análise de Sentimentos em Computação", inst: "UFRGS", horas: "20h", status: "concluido", desc: "Classificação de sentimentos via PLN e aplicações práticas em machine learning." },
+                    { nome: "Fluência em IA Responsável (Framework 4D - Claude)", inst: "Anthropic Academy", horas: "8h", status: "concluido", desc: "Domínio das etapas de Delegação, Descrição, Discernimento e Diligência em LLMs." },
+                    { nome: "Fluência e Fundamentos da Inteligência Artificial", inst: "SENAI", horas: "8h", status: "concluido", desc: "Mecanismos de IA para produtividade, tomada de decisão e ferramentas corporativas (Copilot)." },
+                    { nome: "Ética na Inteligência Artificial", inst: "SENAI", horas: "4h", status: "concluido", desc: "Pilares da IA responsável, marco legal e mitigação de vieses algorítmicos." },
+                    { nome: "Prompting Responsável: Maximizar a IA", inst: "Santander / Microsoft", horas: "8h", status: "concluido", desc: "Implementação ética e segura de inteligência artificial em ambientes de negócios." },
+                    { nome: "Engenharia de Prompt Eficaz e IA para Justiça", inst: "ENAP / Bradesco", horas: "4h", status: "concluido", desc: "Desenho lógico e arquitetura de raciocínio para extração de dados jurídicos." }
                 ]
             },
             {
@@ -434,14 +455,15 @@
                 titulo: "Eixo 4: Engenharia de Software, Infraestrutura & Portfólios",
                 icone: "fa-solid fa-code",
                 itens: [
-                    { nome: "Imersão Prática Autodidata em Software e Segurança", inst: "Desenvolvimento Acelerado", horas: "860h", status: "pratico", desc: "Ciclo intensivo em imersão digital e codificação ponta a ponta e arquitetura de software de dados." },
-                    { nome: "Arquitetura de Microsserviços e APIs para Ecossistemas de IA", inst: "Curso Técnico", horas: "180h", status: "pratico", desc: "Modelagem estruturada de microsserviços integrados para o tráfego ágil de dados." },
+                    { nome: "Imersão Prática Autodidata em Software e Segurança", inst: "Desenvolvimento Acelerado", horas: "860h", status: "pratico", desc: "Ciclo intensivo em imersão digital, codificação ponta a ponta e arquitetura de software de dados." },
+                    { nome: "Arquitetura de Microsserviços e APIs para IA", inst: "Curso Técnico", horas: "180h", status: "pratico", desc: "Modelagem estruturada de microsserviços integrados para o tráfego ágil de dados." },
                     { nome: "Portfólio-Cognivus: Web Apps de Dados com Streamlit", inst: "Desenvolvimento Prático", horas: "160h", status: "pratico", desc: "Construção de aplicações dinâmicas em Python com deploy real em nuvem." },
-                    { nome: "Portfólio de Interface: Aplicações Web Estruturadas", inst: "80+ Projetos HTML", horas: "140h", status: "pratico", desc: "Desenvolvimento de mais de 80 projetos funcionais utilizando HTML5, CSS3, JavaScript estruturado e formatos JSON/CSV." },
+                    { nome: "Portfólio de Interface: Aplicações Web Estruturadas", inst: "88+ Projetos HTML", horas: "140h", status: "pratico", desc: "Desenvolvimento de projetos funcionais utilizando HTML5, CSS3, JavaScript e formatos JSON/CSV." },
                     { nome: "Modelagem de Bancos de Dados NoSQL", inst: "Firebase & Firestore", horas: "80h", status: "pratico", desc: "Estruturação de persistência de dados em tempo real sob arquitetura escalável e nuvem." },
-                    { nome: "DevOps, Infraestrutura e Segurança de Redes", inst: "GitHub / Vercel", horas: "45h", status: "pratico", desc: "Gerenciamento completo de esteiras CI/CD, segurança em DNS, apontamento de domínios e subdomínios." },
-                    { nome: "Trilha Fundamentos de Nuvem", inst: "AWS - Acelera Brasil", horas: "4h 42min", status: "concluido", desc: "Conhecimentos essenciais de arquitetura em nuvem, computação global, segurança e infraestrutura escalável." },
-                    { nome: "AWS AI Practitioner - Semana 1", inst: "AWS - Acelera Brasil", horas: "5h 14min", status: "concluido", desc: "Preparação inicial focada em conceitos de IA generativa, machine learning e serviços de inteligência na AWS." }
+                    { nome: "DevOps, Infraestrutura e Segurança de Redes", inst: "GitHub / Vercel", horas: "45h", status: "pratico", desc: "Gerenciamento de esteiras CI/CD, segurança em DNS e apontamento de domínios." },
+                    { nome: "Integração de Gateways de Pagamento & Cloud Config", inst: "Implementação Nativa", horas: "10h", status: "pratico", desc: "Infraestrutura de checkout, gestão de chaves de API, webhooks e segurança transacional." },
+                    { nome: "Trilha Fundamentos de Nuvem", inst: "AWS - Acelera Brasil", horas: "4h 42min", status: "concluido", desc: "Conhecimentos essenciais de arquitetura em nuvem, segurança e infraestrutura global AWS." },
+                    { nome: "AWS AI Practitioner - Semana 1", inst: "AWS - Acelera Brasil", horas: "5h 14min", status: "concluido", desc: "Conceitos fundamentais de IA generativa e serviços de machine learning na AWS." }
                 ]
             },
             {
@@ -449,8 +471,8 @@
                 titulo: "Eixo 5: Ciências Jurídicas e Fundamentos (Foco em Desenvolvimento)",
                 icone: "fa-solid fa-scale-balanced",
                 itens: [
-                    { nome: "Bacharelado em Direito", inst: "Faculdade Anhanguera de Taubaté", horas: "3.700h", status: "andamento", desc: "Graduação com foco atual na consolidação e aprendizado contínuo." },
-                    { nome: "Estágio Profissional em Direito Público", inst: "Setor Público", horas: "Taubaté-SP", status: "andamento", desc: "Atuação prática em estágio no setor Público." }
+                    { nome: "Bacharelado em Direito", inst: "Faculdade Anhanguera de Taubaté", horas: "3.700h", status: "andamento", desc: "Graduação com foco na consolidação acadêmica, Direito Digital e corporativo." },
+                    { nome: "Estágio Profissional em Direito Público", inst: "Setor Público", horas: "Taubaté-SP", status: "andamento", desc: "Atuação prática e operacional no ambiente do Setor Público." }
                 ]
             },
             {
@@ -458,10 +480,11 @@
                 titulo: "Eixo 6: Competências Comunicacionais, Storytelling & Oratória",
                 icone: "fa-solid fa-comments",
                 itens: [
-                    { nome: "Storytelling com Dados para Comunicação Profissional", inst: "ENAP", horas: "25h", status: "pratico", desc: "Técnicas avançadas de tradução de métricas complexas em narrativas impactantes e de fácil digestão corporativa." },
-                    { nome: "Comunicação Assertiva: Oratória, Retórica e Apresentação", inst: "ENAP", horas: "50h", status: "pratico", desc: "Desenvolvimento de competências em expressão oral clara, persuasão fundamentada e estruturação de pitches." },
-                    { nome: "Produção Musical: produção, composição desenvolvimento musical", inst: "Autoditada com IA assistida", horas: "35h", status: "pratico", desc: "Comunicação social/pessoal por meio de arranjo musical e técnicas de storytelling, desenvolvimento de eperessão emocional auditiva." },
-                    { nome: "Contador de Histórias", inst: "SENAC", horas: "20h", status: "pratico", desc: "Domínio prático na descrição cronológica de fatos, engajamento de audiências e aperfeiçoamento da expressividade." }
+                    { nome: "Comunicação Assertiva: Oratória e Retórica", inst: "ENAP", horas: "50h", status: "concluido", desc: "Desenvolvimento de competências em expressão oral clara e estruturação de narrativas persuasivas." },
+                    { nome: "Storytelling com Dados para Comunicação Profissional", inst: "ENAP", horas: "25h", status: "concluido", desc: "Técnicas avançadas de tradução de métricas complexas em insights de fácil digestão corporativa." },
+                    { nome: "Comunicação Escrita Corporativa", inst: "Fundação Bradesco", horas: "40h", status: "concluido", desc: "Padronização linguística e estruturação formal de redações voltadas aos negócios." },
+                    { nome: "Contador de Histórias", inst: "SENAC", horas: "16h", status: "concluido", desc: "Domínio prático na descrição de fatos, engajamento e aperfeiçoamento da expressividade." },
+                    { nome: "Produção Musical: Composição e Desenvolvimento", inst: "Autoditada com IA assistida", horas: "35h", status: "pratico", desc: "Técnicas de storytelling e comunicação emocional através de arranjos e engenharia de áudio." }
                 ]
             }
         ];
@@ -475,7 +498,8 @@
                 if (itensFiltrados.length === 0) return;
 
                 const section = document.createElement('div');
-                section.className = `eixo-section ${eixo.id === 1 ? 'open' : ''}`;
+                // REMOVIDA A CONDICIONAL QUE FORÇAVA A PRIMEIRA ABA (id === 1) A ABRIR. TODAS CARREGAM FECHADAS.
+                section.className = 'eixo-section';
 
                 const labelStatus = {
                     'concluido': 'Concluído',
@@ -515,11 +539,6 @@
 
                 container.appendChild(section);
             });
-
-            // Reajusta a animação dos elementos abertos
-            document.querySelectorAll('.eixo-section.open .eixo-content').forEach(content => {
-                content.style.maxHeight = content.scrollHeight + "px";
-            });
         }
 
         function toggleEixo(element) {
@@ -543,10 +562,6 @@
 
         document.addEventListener("DOMContentLoaded", function() {
             renderDashboard();
-            setTimeout(() => {
-                const openContent = document.querySelector('.eixo-section.open .eixo-content');
-                if(openContent) openContent.style.maxHeight = openContent.scrollHeight + "px";
-            }, 200);
         });
     </script>
 </body>

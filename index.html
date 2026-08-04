@@ -2,7 +2,7 @@
 <!-- 
     SISTEMA: LexOS Ecosystem
     MÓDULO: Landing Page (Portfólio Pessoal & Hub de Engenharia)
-    VERSÃO: v.6.2.0 - Integração das Trilhas Comerciais e B2B
+    VERSÃO: v.6.3.0 - Correção de Responsividade (Menu Mobile)
     STACK: HTML5, CSS/Tailwind, JavaScript, Chart.js
     ARQUITETO_E_DESENVOLVEDOR: Luciano P. de Moura
     RESTRIÇÃO: Uso restrito. Propriedade intelectual protegida.
@@ -71,7 +71,7 @@
         }
 
         /* ==========================================================================
-           HEADER (CABEÇALHO)
+           HEADER (CABEÇALHO) E MENU MOBILE
            ========================================================================== */
         header {
             background-color: rgba(13, 30, 54, 0.9);
@@ -90,7 +90,7 @@
             justify-content: space-between;
             align-items: center;
             height: 70px;
-            max-width: 1500px; /* Expandido para comportar novos links comerciais */
+            max-width: 1500px; 
         }
 
         .logo {
@@ -101,7 +101,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            white-space: nowrap; /* Impede a quebra do nome para a linha de baixo */
+            white-space: nowrap; 
         }
 
         .logo i {
@@ -116,7 +116,7 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 10px; /* Ajuste para agrupamento perfeito */
+            gap: 10px; 
             align-items: center;
         }
 
@@ -126,7 +126,7 @@
             font-weight: 600;
             padding: 5px 0;
             position: relative;
-            white-space: nowrap; /* Impede a quebra do texto dentro dos links */
+            white-space: nowrap; 
         }
 
         nav a::after {
@@ -184,9 +184,8 @@
             box-shadow: 0 0 15px rgba(192, 132, 252, 0.4);
         }
 
-        /* Novo Botão B2B Corporate */
         .nav-btn-business {
-            background: rgba(245, 158, 11, 0.15); /* Amber/Gold */
+            background: rgba(245, 158, 11, 0.15); 
             border: 1px solid #f59e0b;
             padding: 6px 12px;
             border-radius: 4px;
@@ -201,6 +200,63 @@
             background: #f59e0b;
             color: #091322 !important;
             box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+        }
+
+        /* ---------------------------------------------------
+           BOTÃO E MEDIA QUERY DO MENU HAMBÚRGUER (MOBILE)
+           --------------------------------------------------- */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--accent-glow);
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu-btn:hover {
+            color: var(--text-main);
+        }
+
+        @media (max-width: 1024px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            #nav-menu {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: rgba(9, 19, 34, 0.98);
+                border-bottom: 1px solid var(--border-color);
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+                transform: translateY(-150%); 
+                transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+                z-index: -1;
+                opacity: 0;
+                pointer-events: none;
+            }
+
+            #nav-menu.active {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 25px 0;
+                gap: 20px;
+            }
+
+            nav a {
+                font-size: 1.1rem;
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
         }
 
         /* ==========================================================================
@@ -710,7 +766,14 @@
             <div class="logo">
                 <i class="fa-solid fa-brain"></i> LUCIANO <span>P. DE MOURA</span>
             </div>
-            <nav>
+            
+            <!-- BOTÃO MENU HAMBÚRGUER -->
+            <button id="mobile-menu-btn" class="mobile-menu-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <!-- MENU NAVEGAÇÃO -->
+            <nav id="nav-menu">
                 <ul>
                     <li><a href="#home" class="active">Home</a></li>
                     <li><a href="#lexcore">LexCore</a></li>
@@ -1334,6 +1397,36 @@
     </div>
 
     <script>
+        // Lógica do Menu Mobile (Menu Hambúrguer)
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+
+        if(mobileBtn && navMenu) {
+            mobileBtn.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                const icone = mobileBtn.querySelector('i');
+                if(navMenu.classList.contains('active')) {
+                    icone.classList.remove('fa-bars');
+                    icone.classList.add('fa-xmark');
+                } else {
+                    icone.classList.remove('fa-xmark');
+                    icone.classList.add('fa-bars');
+                }
+            });
+
+            // Fecha o menu ao clicar em qualquer link no celular
+            document.querySelectorAll('#nav-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    const icone = mobileBtn.querySelector('i');
+                    if(icone) {
+                        icone.classList.remove('fa-xmark');
+                        icone.classList.add('fa-bars');
+                    }
+                });
+            });
+        }
+
         const words = [
             "Legal Analytics & Jurimetria.",
             "Sistemas Especialistas (LexOS).",

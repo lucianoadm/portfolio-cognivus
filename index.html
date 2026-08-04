@@ -1,10 +1,8 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <!-- 
     SISTEMA: LexOS Ecosystem
     MÓDULO: Landing Page (Portfólio Pessoal & Hub de Engenharia)
-    VERSÃO: v.6.1.0 - Integração Soberania em IA & Atualização de Skills
-    DATA_ATUALIZAÇÃO: 2026-07-29
+    VERSÃO: v.6.2.0 - Integração das Trilhas Comerciais e B2B
     STACK: HTML5, CSS/Tailwind, JavaScript, Chart.js
     ARQUITETO_E_DESENVOLVEDOR: Luciano P. de Moura
     RESTRIÇÃO: Uso restrito. Propriedade intelectual protegida.
@@ -92,7 +90,7 @@
             justify-content: space-between;
             align-items: center;
             height: 70px;
-            max-width: 1350px; /* Expandido levemente para comportar novos links */
+            max-width: 1500px; /* Expandido para comportar novos links comerciais */
         }
 
         .logo {
@@ -118,13 +116,13 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 12px; /* Reduzido de 20px para agrupar melhor os botões */
+            gap: 10px; /* Ajuste para agrupamento perfeito */
             align-items: center;
         }
 
         nav a {
             color: var(--text-muted);
-            font-size: 0.85rem; /* Reduzido levemente de 0.9rem */
+            font-size: 0.85rem; 
             font-weight: 600;
             padding: 5px 0;
             position: relative;
@@ -184,6 +182,25 @@
             background: #c084fc;
             color: #091322 !important;
             box-shadow: 0 0 15px rgba(192, 132, 252, 0.4);
+        }
+
+        /* Novo Botão B2B Corporate */
+        .nav-btn-business {
+            background: rgba(245, 158, 11, 0.15); /* Amber/Gold */
+            border: 1px solid #f59e0b;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: #f59e0b !important;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-btn-business:hover {
+            background: #f59e0b;
+            color: #091322 !important;
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
         }
 
         /* ==========================================================================
@@ -696,13 +713,15 @@
             <nav>
                 <ul>
                     <li><a href="#home" class="active">Home</a></li>
-                    <li><a href="#lexcore">LexCore (8 Pilares)</a></li>
+                    <li><a href="#lexcore">LexCore</a></li>
                     <li><a href="#triade">Tríade Operacional</a></li>
                     <li><a href="#ecossistema">Ecossistema</a></li>
                     <li><a href="#skills">Skill Tree</a></li>
+                    <li><a href="comercial.html" style="color: #38bdf8; font-weight: 700;"><i class="fa-solid fa-briefcase"></i> Comercial</a></li>
                     <li><a href="academico.html" style="color: #a78bfa; font-weight: 700;"><i class="fa-solid fa-graduation-cap"></i> Científico</a></li>
                     <li><a href="base.html" class="nav-btn-sensorial"><i class="fa-solid fa-headphones-simple"></i> Estúdio Sensorial</a></li>
                     <li><a href="dashboard.html" class="nav-btn-dashboard"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
+                    <li><a href="https://negocios.cognivus.com.br" target="_blank" class="nav-btn-business"><i class="fa-solid fa-building-shield"></i> B2B Corporate</a></li>
                 </ul>
             </nav>
         </div>
@@ -726,6 +745,9 @@
                         </a>
                         <a class="btn-sm" href="https://lucianoadm.github.io/meta-case-portfolio/index.html" target="_blank" style="border-color: var(--accent-glow); color: var(--accent-glow); background: rgba(56, 189, 248, 0.08);">
                             <i class="fa-solid fa-briefcase"></i> Portfólios Profissionais
+                        </a>
+                        <a class="btn-sm" href="https://negocios.cognivus.com.br" target="_blank" style="border-color: #f59e0b; color: #f59e0b; background: rgba(245, 158, 11, 0.08);">
+                            <i class="fa-solid fa-building-shield"></i> Consultoria B2B
                         </a>
                         <button class="btn-sm" onclick="copyShareLink()">
                             <i class="fa-solid fa-share-nodes"></i> Compartilhar Link

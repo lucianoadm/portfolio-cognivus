@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <!-- 
-    SISTEMA: LexOS Ecosystem
-    MÓDULO: Landing Page (Portfólio Pessoal & Hub de Engenharia)
-    VERSÃO: v.6.3.0 - Correção de Responsividade (Menu Mobile)
-    STACK: HTML5, CSS/Tailwind, JavaScript, Chart.js
-    ARQUITETO_E_DESENVOLVEDOR: Luciano P. de Moura
-    RESTRIÇÃO: Uso restrito. Propriedade intelectual protegida.
+    SISTEMA: COGNIVUS Ecosystem Platform
+    MÓDULO: Interactive Executive Dashboard (Portfólio Pessoal & Hub de Engenharia)
+    VERSÃO: v.7.5.0 - Layout Balanceado, Marca COGNIVUS Registrada & Visual Matrix
+    STACK: HTML5, CSS3, JavaScript, FontAwesome, Firebase
+    ARQUITETO E DESENVOLVEDOR: Luciano P. de Moura
+    RESTRIÇÃO: Uso restrito. Propriedade intelectual protegida do Ecossistema COGNIVUS.
 -->
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luciano P. de Moura | Engenharia de Legado</title>
+    <title>Luciano P. de Moura | COGNIVUS Ecosystem Platform</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* ==========================================================================
-           DESIGN SYSTEM: SUAVE OCEAN BLUE EDITION (CLARO, CONTRASTANTE E SEDUTOR)
+           DESIGN SYSTEM: SUAVE OCEAN BLUE EDITION (COGNIVUS BRANDING)
            ========================================================================== */
         :root {
-            --bg-deep: #0d1e36;       
+            --bg-deep: #091322;       
             --bg-gradient: linear-gradient(135deg, #091322 0%, #112543 50%, #18335c 100%);
+            --bg-sidebar: #0d1e36;
             --bg-card: rgba(21, 41, 74, 0.75); 
-            --bg-tile: #1e3a64;        
             --accent-glow: #38bdf8;   
             --accent-glow-secondary: #22d3ee; 
             --text-main: #f8fafc;     
@@ -29,12 +29,15 @@
             --border-color: rgba(56, 189, 248, 0.3); 
             --border-hover: rgba(56, 189, 248, 0.85); 
             --success: #10b981;        
+            --warning: #f59e0b;
+            --purple: #a78bfa;
+            --danger: #ef4444;
             
-            /* Badges de Cores Alternadas para o Ecossistema e Skill Tree */
             --badge-edu: #a78bfa;     
             --badge-core: #f43f5e;    
             --badge-log: #10b981;     
             --badge-dat: #f59e0b;     
+            --sidebar-width: 270px;
         }
 
         * {
@@ -49,455 +52,336 @@
             background: var(--bg-gradient);
             background-attachment: fixed;
             color: var(--text-main);
-            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
             overflow-x: hidden;
         }
 
-        a {
-            color: var(--accent-glow);
-            text-decoration: none;
-            transition: all 0.3s ease;
+        a { color: var(--accent-glow); text-decoration: none; transition: all 0.3s ease; }
+        a:hover { text-shadow: 0 0 10px var(--accent-glow); }
+
+        /* ==========================================================================
+           LAYOUT APP-LIKE: SIDEBAR LATERAL & MAIN CONTENT
+           ========================================================================== */
+        .app-container {
+            display: flex;
+            width: 100vw;
+            min-height: 100vh;
         }
 
-        a:hover {
+        /* SIDEBAR */
+        aside.sidebar {
+            width: var(--sidebar-width);
+            background: var(--bg-sidebar);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: fixed;
+            top: 0; bottom: 0; left: 0;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+            backdrop-filter: blur(15px);
+        }
+
+        .sidebar-header {
+            padding: 24px 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sidebar-header i {
+            font-size: 1.6rem;
+            color: var(--accent-glow);
             text-shadow: 0 0 10px var(--accent-glow);
         }
 
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* ==========================================================================
-           HEADER (CABEÇALHO) E MENU MOBILE
-           ========================================================================== */
-        header {
-            background-color: rgba(13, 30, 54, 0.9);
-            border-bottom: 1px solid var(--border-color);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 70px;
-            max-width: 1500px; 
-        }
-
-        .logo {
-            font-size: 1.25rem;
-            font-weight: 700;
-            letter-spacing: 2px;
+        .sidebar-brand {
+            font-size: 0.95rem;
+            font-weight: 800;
+            letter-spacing: 1px;
             color: var(--text-main);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            white-space: nowrap; 
+            line-height: 1.2;
         }
 
-        .logo i {
+        .sidebar-brand span {
             color: var(--accent-glow);
-            text-shadow: 0 0 8px var(--accent-glow);
-        }
-
-        .logo span {
-            color: var(--accent-glow);
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 10px; 
-            align-items: center;
-        }
-
-        nav a {
-            color: var(--text-muted);
-            font-size: 0.85rem; 
+            display: block;
+            font-size: 0.72rem;
             font-weight: 600;
-            padding: 5px 0;
-            position: relative;
-            white-space: nowrap; 
         }
 
-        nav a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--accent-glow);
-            transition: width 0.3s ease;
+        .sidebar-menu {
+            list-style: none;
+            padding: 20px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex-grow: 1;
+            overflow-y: auto;
         }
 
-        nav a:hover::after, nav a.active::after {
+        .sidebar-menu button, .sidebar-menu a.nav-link {
             width: 100%;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 11px 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-align: left;
         }
 
-        nav a:hover, nav a.active {
-            color: var(--accent-glow);
+        .sidebar-menu button i, .sidebar-menu a.nav-link i {
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
         }
 
-        .nav-btn-dashboard {
-            background: rgba(56, 189, 248, 0.15);
-            border: 1px solid var(--accent-glow);
-            padding: 6px 12px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            color: var(--accent-glow) !important;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            white-space: nowrap;
+        .sidebar-menu button:hover, .sidebar-menu a.nav-link:hover {
+            color: var(--text-main);
+            background: rgba(56, 189, 248, 0.1);
         }
 
-        .nav-btn-dashboard:hover {
+        .sidebar-menu button.active {
+            color: #091322;
             background: var(--accent-glow);
-            color: #091322 !important;
+            font-weight: 700;
             box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
         }
 
-        .nav-btn-sensorial {
-            background: rgba(192, 132, 252, 0.15);
-            border: 1px solid #c084fc;
-            padding: 6px 12px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            color: #c084fc !important;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            white-space: nowrap;
+        .sidebar-footer {
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            text-align: center;
         }
 
-        .nav-btn-sensorial:hover {
-            background: #c084fc;
-            color: #091322 !important;
-            box-shadow: 0 0 15px rgba(192, 132, 252, 0.4);
+        /* MAIN CONTENT AREA */
+        main.main-content {
+            margin-left: var(--sidebar-width);
+            flex-grow: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            width: calc(100vw - var(--sidebar-width));
         }
 
-        .nav-btn-business {
-            background: rgba(245, 158, 11, 0.15); 
-            border: 1px solid #f59e0b;
-            padding: 6px 12px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            color: #f59e0b !important;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            white-space: nowrap;
+        /* TOPBAR NAV */
+        header.topbar {
+            height: 70px;
+            background: rgba(13, 30, 54, 0.9);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            position: sticky;
+            top: 0;
+            z-index: 900;
+            backdrop-filter: blur(12px);
         }
 
-        .nav-btn-business:hover {
-            background: #f59e0b;
-            color: #091322 !important;
-            box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
-        }
-
-        /* ---------------------------------------------------
-           BOTÃO E MEDIA QUERY DO MENU HAMBÚRGUER (MOBILE)
-           --------------------------------------------------- */
-        .mobile-menu-btn {
+        .mobile-toggle {
             display: none;
             background: none;
             border: none;
             color: var(--accent-glow);
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             cursor: pointer;
-            transition: color 0.3s ease;
         }
 
-        .mobile-menu-btn:hover {
-            color: var(--text-main);
-        }
+        .topbar-title { font-size: 1.1rem; font-weight: 700; color: var(--text-main); }
 
-        @media (max-width: 1024px) {
-            .mobile-menu-btn {
-                display: block;
-            }
+        .topbar-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 
-            #nav-menu {
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background-color: rgba(9, 19, 34, 0.98);
-                border-bottom: 1px solid var(--border-color);
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-                transform: translateY(-150%); 
-                transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-                z-index: -1;
-                opacity: 0;
-                pointer-events: none;
-            }
-
-            #nav-menu.active {
-                transform: translateY(0);
-                opacity: 1;
-                pointer-events: auto;
-            }
-
-            nav ul {
-                flex-direction: column;
-                padding: 25px 0;
-                gap: 20px;
-            }
-
-            nav a {
-                font-size: 1.1rem;
-                display: block;
-                width: 100%;
-                text-align: center;
-            }
-        }
-
-        /* ==========================================================================
-           HERO SECTION & SIGNATURE
-           ========================================================================== */
-        .hero {
-            padding: 150px 0 100px 0;
-            background: radial-gradient(circle at 85% 30%, rgba(56, 189, 248, 0.15) 0%, transparent 65%),
-                        radial-gradient(circle at 15% 80%, rgba(34, 211, 238, 0.08) 0%, transparent 50%);
-            min-height: 95vh;
-            display: flex;
-            align-items: center;
-        }
-
-        .hero-layout {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-
-        @media(min-width: 992px) {
-            .hero-layout {
-                grid-template-columns: 1.2fr 0.8fr;
-            }
-        }
-
-        .hero-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
-            background: rgba(56, 189, 248, 0.12);
-            border: 1px solid rgba(56, 189, 248, 0.4);
-            color: var(--text-main);
-            font-size: 0.85rem;
-            font-weight: 700;
-            border-radius: 50px;
-            margin-bottom: 25px;
-            letter-spacing: 1.5px;
-        }
-
-        .action-connect-bar {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-bottom: 30px;
-        }
-
-        .btn-sm {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 18px;
-            border-radius: 6px;
-            font-size: 0.88rem;
-            font-weight: 600;
-            border: 1px solid var(--border-color);
+        .btn-topbar {
             background: rgba(19, 28, 49, 0.6);
+            border: 1px solid var(--border-color);
             color: var(--text-muted);
+            padding: 7px 14px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
             cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             transition: all 0.3s ease;
         }
 
-        .btn-sm:hover {
+        .btn-topbar:hover {
             border-color: var(--accent-glow);
             color: var(--text-main);
             background: rgba(30, 58, 100, 0.4);
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            line-height: 1.15;
-            margin-bottom: 20px;
-            letter-spacing: -1.5px;
-            background: linear-gradient(135deg, var(--text-main) 30%, var(--accent-glow-secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        /* VIEWS (PÁGINAS SPA) */
+        .view-section {
+            padding: 35px 30px 60px 30px;
+            display: none;
+            animation: fadeIn 0.4s ease forwards;
         }
 
-        .typewriter-container {
-            font-size: 1.6rem;
-            color: var(--accent-glow);
-            margin-bottom: 35px;
-            height: 45px;
-            font-weight: 600;
-        }
+        .view-section.active { display: block; }
 
-        .cursor {
-            animation: blink 0.7s infinite;
-        }
-
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-
-        .hero-p {
-            font-size: 1.15rem;
-            color: var(--text-muted);
-            margin-bottom: 40px;
-        }
-
-        .hero-visual-side {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-        }
-
-        .hero-visual-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 460px;
-            aspect-ratio: 16 / 9;
-            border-radius: 20px;
-            padding: 5px;
-            background: linear-gradient(135deg, rgba(56, 189, 248, 0.4) 0%, rgba(34, 211, 238, 0.1) 100%);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 30px rgba(56, 189, 248, 0.15);
-            background-color: #060b14;
-        }
-
-        .hero-video-loop {
-            width: 100%;
-            height: 100%;
-            display: block;
-            border-radius: 16px;
-            object-fit: cover;
-        }
-
-        .hero-signature-container {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 4rem;
-            text-align: center;
-        }
-
-        .hero-signature-text {
-            font-size: 1.15rem;
-            font-weight: 300;
-            font-style: italic;
-            letter-spacing: 0.5px;
-            color: var(--accent-glow); 
-            text-shadow: 0 0 25px rgba(56, 189, 248, 0.25);
-            opacity: 0.95;
-            max-width: 750px;
-            line-height: 1.6;
-            margin: 0 auto;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* ==========================================================================
-           GRID DE ECOSSISTEMAS, LEXCORE E TRÍADE (OS CARDS)
+           GRID E PAINÉIS DE CONTEÚDO
            ========================================================================== */
-        .ecosystem {
-            padding: 100px 0;
-            position: relative;
+        
+        /* KPI MATRIX TOPBAR DENTRO DA HOME */
+        .kpi-matrix-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 18px;
+            margin-bottom: 30px;
         }
 
-        .section-header {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 60px auto;
+        .kpi-card-sm {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 18px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
         }
 
-        .section-header h2 {
-            font-size: 2.5rem;
+        .kpi-card-sm:hover {
+            border-color: var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        .kpi-icon-sm {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: rgba(56, 189, 248, 0.12);
+            color: var(--accent-glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        .kpi-text-sm h4 {
+            font-size: 1.4rem;
             font-weight: 800;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, var(--text-main) 50%, var(--accent-glow) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--text-main);
+            line-height: 1;
         }
 
-        .section-header p {
+        .kpi-text-sm p {
+            font-size: 0.8rem;
             color: var(--text-muted);
-            font-size: 1.1rem;
+            margin-top: 3px;
         }
+
+        /* HERO BANNER BLOCK */
+        .hero-layout {
+            display: grid; 
+            grid-template-columns: 1fr; 
+            gap: 30px; 
+            align-items: center; 
+            background: rgba(21, 41, 74, 0.4);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 30px;
+            margin-bottom: 35px;
+        }
+
+        @media(min-width: 1100px) { 
+            .hero-layout { grid-template-columns: 1.2fr 0.8fr; } 
+        }
+
+        .hero-tag {
+            display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px;
+            background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.4);
+            color: var(--text-main); font-size: 0.82rem; font-weight: 700; border-radius: 50px; margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem; font-weight: 800; line-height: 1.15; margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--text-main) 30%, var(--accent-glow-secondary) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        .typewriter-container { font-size: 1.3rem; color: var(--accent-glow); margin-bottom: 20px; height: 35px; font-weight: 600; }
+        .hero-p { font-size: 1rem; color: var(--text-muted); margin-bottom: 25px; line-height: 1.6; }
+
+        .hero-visual-wrapper {
+            width: 100%; aspect-ratio: 16 / 9; border-radius: 14px; padding: 4px;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.4) 0%, rgba(34, 211, 238, 0.1) 100%);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4); background-color: #060b14;
+        }
+        .hero-video-loop { width: 100%; height: 100%; border-radius: 10px; object-fit: cover; display: block; }
+
+        .hero-quote-bar {
+            background: rgba(13, 30, 54, 0.6);
+            border-left: 4px solid var(--accent-glow);
+            padding: 15px 25px;
+            border-radius: 8px;
+            margin-bottom: 35px;
+            font-style: italic;
+            color: var(--accent-glow);
+            font-size: 1.05rem;
+        }
+
+        /* GRID DO ECOSSISTEMA */
+        .section-header { text-align: center; max-width: 750px; margin: 0 auto 40px auto; }
+        .section-header h2 {
+            font-size: 2.1rem; font-weight: 800; margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--text-main) 50%, var(--accent-glow) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .section-header p { color: var(--text-muted); font-size: 1rem; }
 
         .grid-ecosystem {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 22px;
         }
 
         .card-eco {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 16px;
-            padding: 35px;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            padding: 25px;
+            transition: all 0.35s ease;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             position: relative;
-            overflow: hidden;
             backdrop-filter: blur(8px);
         }
 
-        .card-eco::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: transparent;
-            transition: background 0.3s ease;
-        }
-
         .card-eco:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
             border-color: var(--border-hover);
-            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.15);
+            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.15);
         }
 
-        .card-eco.edu:hover::before { background: var(--badge-edu); }
-        .card-eco.core:hover::before { background: var(--badge-core); }
-        .card-eco.log:hover::before { background: var(--badge-log); }
-        .card-eco.dat:hover::before { background: var(--badge-dat); }
-        .card-eco.sem:hover::before { background: var(--accent-glow-secondary); }
-        .card-eco.hub:hover::before { background: #3b82f6; }
-        .card-eco.pccs:hover::before { background: #ef4444; }
-        .card-eco.phrase:hover::before { background: #8b5cf6; }
-        .card-eco.divine:hover::before { background: #f59e0b; }
-
-        .card-header-eco {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 25px;
-        }
-
+        .card-header-eco { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 18px; }
+        
         .badge-eco {
-            font-size: 0.72rem;
-            font-weight: 800;
-            padding: 6px 12px;
-            border-radius: 4px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+            font-size: 0.7rem; font-weight: 800; padding: 4px 9px; border-radius: 4px;
+            letter-spacing: 1px; text-transform: uppercase;
         }
-
         .badge-eco.edu { background: rgba(167, 139, 250, 0.15); color: var(--badge-edu); }
         .badge-eco.core { background: rgba(244, 63, 94, 0.15); color: var(--badge-core); }
         .badge-eco.log { background: rgba(16, 185, 129, 0.15); color: var(--badge-log); }
@@ -508,965 +392,795 @@
         .badge-eco.phrase { background: rgba(139, 92, 246, 0.15); color: #8b5cf6; }
         .badge-eco.divine { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
 
-        .icon-eco {
-            font-size: 1.8rem;
-            color: var(--accent-glow);
-        }
-
-        .card-eco h3 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: var(--text-main);
-        }
-
-        .card-eco p {
-            color: var(--text-muted);
-            font-size: 0.98rem;
-            margin-bottom: 25px;
-            flex-grow: 1;
-        }
+        .icon-eco { font-size: 1.6rem; color: var(--accent-glow); }
+        .card-eco h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 8px; color: var(--text-main); }
+        .card-eco p { color: var(--text-muted); font-size: 0.92rem; margin-bottom: 18px; flex-grow: 1; line-height: 1.5; }
 
         .card-actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 20px;
+            display: flex; justify-content: space-between; align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 14px;
         }
 
-        .status-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-muted);
-        }
-
+        .status-pill { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; font-weight: 600; color: var(--text-muted); }
         .status-pill.online i { color: var(--success); }
-        .status-pill.offline i { color: #ef4444; } 
+        .status-pill.offline i { color: var(--danger); }
 
-        .btn-card-link {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--accent-glow);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
+        .btn-card-link { font-size: 0.85rem; font-weight: 700; color: var(--accent-glow); display: flex; align-items: center; gap: 6px; }
 
-        /* ==========================================================================
-           MULTIDISCIPLINARY SKILL TREE
-           ========================================================================== */
-        .skill-tree-section {
-            padding: 100px 0;
-            background-color: rgba(6, 11, 20, 0.35);
-            border-top: 1px solid var(--border-color);
-        }
-
-        .tree-layout {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-            align-items: start;
-        }
-
-        .tree-skills-column {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
-            gap: 20px;
-        }
-
-        @media(min-width: 1200px) {
-            .tree-layout {
-                grid-template-columns: 1fr 350px 1fr;
-                gap: 40px;
-            }
-        }
+        /* SKILL TREE E AVATAR */
+        .tree-layout { display: grid; grid-template-columns: 1fr; gap: 25px; align-items: start; }
+        @media(min-width: 1200px) { .tree-layout { grid-template-columns: 1fr 320px 1fr; } }
 
         .tree-avatar-hub {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            padding: 40px;
-            border-radius: 24px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            display: flex; flex-direction: column; align-items: center;
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            padding: 25px 18px; border-radius: 18px; text-align: center;
         }
 
         .profile-frame {
-            position: relative;
-            width: 180px;
-            height: 180px;
-            margin-bottom: 30px;
-            z-index: 5;
+            position: relative; width: 150px; height: 150px; margin-bottom: 18px;
         }
-
         .profile-frame::before {
-            content: '';
-            position: absolute;
-            inset: -8px;
-            border-radius: 50%;
+            content: ''; position: absolute; inset: -5px; border-radius: 50%;
             background: linear-gradient(135deg, var(--badge-core) 0%, var(--accent-glow) 50%, var(--badge-log) 100%);
-            animation: spinGlow 8s linear infinite;
-            z-index: -1;
+            animation: spinGlow 8s linear infinite; z-index: 1;
         }
-
         @keyframes spinGlow { 100% { transform: rotate(360deg); } }
 
         .avatar-img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--bg-deep);
-            background-color: var(--bg-deep);
+            width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
+            position: relative; z-index: 2; border: 4px solid var(--bg-deep);
         }
 
-        .avatar-info {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .avatar-info h3 {
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: var(--text-main);
-            margin-bottom: 5px;
-        }
-
-        .avatar-info p {
-            font-size: 0.95rem;
-            color: var(--accent-glow);
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .axis-summary-list {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
+        .axis-summary-list { width: 100%; display: flex; flex-direction: column; gap: 8px; margin-top: 18px; }
         .axis-badge-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 15px; 
-            border-radius: 10px;
-            background: rgba(13, 25, 47, 0.5);
-            border-left: 4px solid var(--accent-glow);
-        }
-
-        .axis-title-sm {
-            display: flex;
-            align-items: center;
-            gap: 8px; 
-            font-size: 0.85rem; 
-            font-weight: 700;
-            line-height: 1.2; 
-        }
-
-        .axis-pct {
-            font-size: 0.9rem;
-            font-weight: 800;
-            color: var(--text-main);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 7px 12px; border-radius: 8px; background: rgba(13, 25, 47, 0.6);
+            border-left: 3px solid var(--accent-glow); font-size: 0.8rem; font-weight: 700;
         }
 
         .skill-group-box {
-            background: rgba(21, 41, 74, 0.4);
-            border: 1px solid rgba(56, 189, 248, 0.15);
-            border-radius: 16px;
-            padding: 25px;
-            --current-group-color: var(--accent-glow);
-            flex: 1; 
-            display: flex;
-            flex-direction: column;
-            justify-content: center; 
+            background: rgba(21, 41, 74, 0.4); border: 1px solid rgba(56, 189, 248, 0.15);
+            border-radius: 14px; padding: 18px; margin-bottom: 18px;
         }
+        .group-box-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .group-box-header i { font-size: 1.1rem; color: var(--accent-glow); }
+        .group-box-header h4 { font-size: 1rem; font-weight: 700; color: var(--text-main); }
 
-        .group-box-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        }
+        .bar-item { margin-bottom: 10px; }
+        .bar-labels { display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--text-muted); margin-bottom: 4px; font-weight: 600; }
+        .bar-track { height: 6px; background: rgba(255, 255, 255, 0.08); border-radius: 10px; overflow: hidden; }
+        .bar-fill { height: 100%; background: var(--accent-glow); border-radius: 10px; width: 0%; transition: width 1.2s ease; }
 
-        .group-box-header i { font-size: 1.3rem; color: var(--current-group-color) !important; }
-        .group-box-header h4 { font-size: 1.15rem; font-weight: 700; color: var(--text-main); }
-
-        .skill-bars-container { display: flex; flex-direction: column; gap: 15px; }
-        .bar-item { display: flex; flex-direction: column; gap: 6px; }
-        .bar-labels { display: flex; justify-content: space-between; font-size: 0.88rem; font-weight: 600; color: var(--text-muted); }
-        .bar-track { height: 6px; background: rgba(255, 255, 255, 0.08); border-radius: 10px; overflow: hidden; position: relative; }
-        .bar-fill { height: 100%; border-radius: 10px; background: var(--current-group-color) !important; width: 0%; transition: width 1.5s cubic-bezier(0.1, 1, 0.1, 1); }
-
-        /* ==========================================================================
-           AUTORIDADE E FOOTER
-           ========================================================================== */
-        .compliance-bar {
-            background-color: rgba(17, 37, 67, 0.85);
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-            padding: 60px 0;
-            box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .compliance-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-        }
-
-        @media(min-width: 768px) {
-            .compliance-grid { grid-template-columns: 1fr 2.5fr; align-items: center; }
-        }
-
-        .compliance-title { display: flex; align-items: center; gap: 15px; color: var(--accent-glow); }
-        .compliance-title i { font-size: 2.5rem; text-shadow: 0 0 10px var(--accent-glow); }
-        .compliance-title h2 { font-size: 1.6rem; font-weight: 800; line-height: 1.2; letter-spacing: 0.5px; }
-
-        .compliance-badges { display: flex; flex-wrap: wrap; gap: 15px; }
-        .badge-comp { background-color: rgba(13, 25, 47, 0.6); border: 1px solid var(--border-color); padding: 15px 20px; border-radius: 8px; flex: 1 1 200px; }
-        .badge-comp h4 { color: var(--text-main); font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+        /* COMPLIANCE GRID */
+        .compliance-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        @media(min-width: 768px) { .compliance-grid { grid-template-columns: 1fr 2.5fr; align-items: center; } }
+        .badge-comp { background-color: rgba(13, 25, 47, 0.6); border: 1px solid var(--border-color); padding: 15px 20px; border-radius: 8px; }
+        .badge-comp h4 { color: var(--text-main); font-size: 0.9rem; font-weight: 700; margin-bottom: 5px; display: flex; align-items: center; gap: 8px; }
         .badge-comp h4 i { color: var(--success); }
-        .badge-comp p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.4; }
+        .badge-comp p { color: var(--text-muted); font-size: 0.82rem; line-height: 1.4; }
 
+        /* TOAST & MODAL */
         .toast-notification {
-            position: fixed;
-            bottom: -60px;
-            right: 20px;
-            background: rgba(13, 25, 47, 0.95);
-            border: 1px solid var(--accent-glow);
-            color: var(--text-main);
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            z-index: 2000;
-            transition: bottom 0.4s ease;
+            position: fixed; bottom: -60px; right: 20px; background: rgba(13, 25, 47, 0.95);
+            border: 1px solid var(--accent-glow); color: var(--text-main); padding: 12px 24px;
+            border-radius: 8px; font-weight: 600; font-size: 0.9rem; box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            z-index: 2000; transition: bottom 0.4s ease;
         }
-
         .toast-notification.show { bottom: 20px; }
+
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.75); backdrop-filter: blur(8px); z-index: 2000;
+            display: none; justify-content: flex-end;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-drawer {
+            width: 100%; max-width: 480px; height: 100%; background: var(--bg-sidebar);
+            border-left: 1px solid var(--border-color); padding: 30px; display: flex;
+            flex-direction: column; justify-content: space-between; animation: slideLeft 0.3s ease;
+        }
+        @keyframes slideLeft { from { transform: translateX(100%); } to { transform: translateX(0); } }
+
+        @media (max-width: 992px) {
+            aside.sidebar { transform: translateX(-100%); }
+            aside.sidebar.active { transform: translateX(0); }
+            main.main-content { margin-left: 0; width: 100vw; }
+            .mobile-toggle { display: block; }
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="container header-container">
-            <div class="logo">
-                <i class="fa-solid fa-brain"></i> LUCIANO <span>P. DE MOURA</span>
-            </div>
-            
-            <!-- BOTÃO MENU HAMBÚRGUER -->
-            <button id="mobile-menu-btn" class="mobile-menu-btn">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-
-            <!-- MENU NAVEGAÇÃO -->
-            <nav id="nav-menu">
-                <ul>
-                    <li><a href="#home" class="active">Home</a></li>
-                    <li><a href="#lexcore">LexCore</a></li>
-                    <li><a href="#triade">Tríade Operacional</a></li>
-                    <li><a href="#ecossistema">Ecossistema</a></li>
-                    <li><a href="#skills">Skill Tree</a></li>
-                    <li><a href="comercial.html" style="color: #38bdf8; font-weight: 700;"><i class="fa-solid fa-briefcase"></i> Comercial</a></li>
-                    <li><a href="academico.html" style="color: #a78bfa; font-weight: 700;"><i class="fa-solid fa-graduation-cap"></i> Científico</a></li>
-                    <li><a href="base.html" class="nav-btn-sensorial"><i class="fa-solid fa-headphones-simple"></i> Estúdio Sensorial</a></li>
-                    <li><a href="dashboard.html" class="nav-btn-dashboard"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
-                    <li><a href="https://negocios.cognivus.com.br" target="_blank" class="nav-btn-business"><i class="fa-solid fa-building-shield"></i> B2B Corporate</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-layout">
-                
-                <div class="hero-content">
-                    <div class="hero-tag">
-                        <i class="fa-solid fa-shield-halved"></i> AMBIENTE 100% COMPLIANT & COOKIE-LESS
+    <div class="app-container">
+        
+        <!-- SIDEBAR COM A MARCA REGISTRADA COGNIVUS -->
+        <aside class="sidebar" id="sidebar">
+            <div>
+                <div class="sidebar-header">
+                    <i class="fa-solid fa-brain"></i>
+                    <div class="sidebar-brand">
+                        LUCIANO P. DE MOURA
+                        <span>COGNIVUS Ecosystem Platform</span>
                     </div>
+                </div>
 
-                    <div class="action-connect-bar">
-                        <a class="btn-sm" href="https://github.com/lucianoadm" target="_blank">
-                            <i class="fa-brands fa-github"></i> GitHub
-                        </a>
-                        <a class="btn-sm" href="https://www.linkedin.com/in/luciano-paiva-b0b01a19b/" target="_blank">
-                            <i class="fa-brands fa-linkedin"></i> LinkedIn
-                        </a>
-                        <a class="btn-sm" href="https://lucianoadm.github.io/meta-case-portfolio/index.html" target="_blank" style="border-color: var(--accent-glow); color: var(--accent-glow); background: rgba(56, 189, 248, 0.08);">
-                            <i class="fa-solid fa-briefcase"></i> Portfólios Profissionais
-                        </a>
-                        <a class="btn-sm" href="https://negocios.cognivus.com.br" target="_blank" style="border-color: #f59e0b; color: #f59e0b; background: rgba(245, 158, 11, 0.08);">
-                            <i class="fa-solid fa-building-shield"></i> Consultoria B2B
-                        </a>
-                        <button class="btn-sm" onclick="copyShareLink()">
-                            <i class="fa-solid fa-share-nodes"></i> Compartilhar Link
+                <ul class="sidebar-menu">
+                    <li><button class="menu-btn active" onclick="switchTab('tab-home', this)"><i class="fa-solid fa-house"></i> Visão Geral & Hero</button></li>
+                    <li><button class="menu-btn" onclick="switchTab('tab-lexcore', this)"><i class="fa-solid fa-layer-group"></i> LexCore (8 Pilares)</button></li>
+                    <li><button class="menu-btn" onclick="switchTab('tab-triade', this)"><i class="fa-solid fa-shield-halved"></i> Tríade Operacional</button></li>
+                    <li><button class="menu-btn" onclick="switchTab('tab-apps', this)"><i class="fa-solid fa-cubes"></i> Ecossistema de Apps</button></li>
+                    <li><button class="menu-btn" onclick="switchTab('tab-skills', this)"><i class="fa-solid fa-sitemap"></i> Skill Tree Multidisciplinar</button></li>
+                    <li><button class="menu-btn" onclick="switchTab('tab-governance', this)"><i class="fa-solid fa-user-lock"></i> Governança, LGPD & IA</button></li>
+                    
+                    <li style="margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 10px;">
+                        <a href="comercial.html" class="nav-link" style="color: #38bdf8;"><i class="fa-solid fa-briefcase"></i> Comercial</a>
+                    </li>
+                    <li>
+                        <a href="academico.html" class="nav-link" style="color: #a78bfa;"><i class="fa-solid fa-graduation-cap"></i> Científico & Lattes</a>
+                    </li>
+                    <li>
+                        <a href="base.html" class="nav-link" style="color: #c084fc;"><i class="fa-solid fa-headphones-simple"></i> Estúdio Sensorial</a>
+                    </li>
+                    <li>
+                        <a href="dashboard.html" class="nav-link" style="color: #38bdf8;"><i class="fa-solid fa-chart-pie"></i> Dashboard Interno</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="sidebar-footer">
+                <p><strong>© 2026 COGNIVUS Ecosystem</strong></p>
+                <p style="font-size: 0.7rem; color: #6b7280; margin-top: 2px;">Propriedade Intelectual Protegida</p>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT AREA -->
+        <main class="main-content">
+            
+            <!-- TOPBAR FIXA -->
+            <header class="topbar">
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <button class="mobile-toggle" onclick="toggleSidebar()"><i class="fa-solid fa-bars"></i></button>
+                    <span class="topbar-title" id="current-page-title">Home / Visão Geral</span>
+                </div>
+
+                <div class="topbar-actions">
+                    <a href="https://github.com/lucianoadm" target="_blank" class="btn-topbar"><i class="fa-brands fa-github"></i> GitHub</a>
+                    <a href="https://www.linkedin.com/in/luciano-paiva-b0b01a19b/" target="_blank" class="btn-topbar"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                    <a href="https://negocios.cognivus.com.br" target="_blank" class="btn-topbar" style="border-color: #f59e0b; color: #f59e0b;"><i class="fa-solid fa-building-shield"></i> B2B Corporate</a>
+                    <button class="btn-topbar" onclick="copyShareLink()"><i class="fa-solid fa-share-nodes"></i> Compartilhar</button>
+                </div>
+            </header>
+
+            <!-- ABA 1: HOME & HERO TOTALMENTE DISTRIBUÍDO E BALANCEADO -->
+            <section id="tab-home" class="view-section active">
+                
+                <!-- KPI MATRIX SUPERIOR DA HOME -->
+                <div class="kpi-matrix-grid">
+                    <div class="kpi-card-sm">
+                        <div class="kpi-icon-sm"><i class="fa-solid fa-cubes"></i></div>
+                        <div class="kpi-text-sm">
+                            <h4>10+</h4>
+                            <p>Aplicações Ativas</p>
+                        </div>
+                    </div>
+                    <div class="kpi-card-sm">
+                        <div class="kpi-icon-sm"><i class="fa-solid fa-layer-group"></i></div>
+                        <div class="kpi-text-sm">
+                            <h4>8</h4>
+                            <p>Pilares Cognitivos</p>
+                        </div>
+                    </div>
+                    <div class="kpi-card-sm">
+                        <div class="kpi-icon-sm"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div class="kpi-text-sm">
+                            <h4>100%</h4>
+                            <p>Privacy & Cookie-Less</p>
+                        </div>
+                    </div>
+                    <div class="kpi-card-sm">
+                        <div class="kpi-icon-sm"><i class="fa-solid fa-robot"></i></div>
+                        <div class="kpi-text-sm">
+                            <h4>Human-in-the-Loop</h4>
+                            <p>Orquestração com IA</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HERO BANNER -->
+                <div class="hero-layout">
+                    <div>
+                        <div class="hero-tag"><i class="fa-solid fa-shield-halved"></i> AMBIENTE 100% COMPLIANT & COOKIE-LESS</div>
+                        <h1>Engenharia de Legado.</h1>
+                        <div class="typewriter-container">
+                            <span id="typewriter"></span><span>|</span>
+                        </div>
+                        <p class="hero-p">
+                            Desenvolvimento de soluções estratégicas e aplicações orientadas a dados no ecossistema 
+                            <strong>COGNIVUS</strong>. Unindo Ciência de Dados, Business Intelligence e 
+                            Inteligência Artificial Generativa sob rígidos padrões de Governança corporativa e LGPD.
+                        </p>
+                        <button class="btn-topbar" style="padding: 12px 24px; background: var(--accent-glow); color: #091322; font-weight: 700;" onclick="switchTab('tab-lexcore', document.querySelectorAll('.menu-btn')[1])">
+                            <i class="fa-solid fa-layer-group"></i> Acessar Matriz Cognitiva (LexCore)
                         </button>
                     </div>
 
-                    <h1>Engenharia de Legado.</h1>
-                    
-                    <div class="typewriter-container">
-                        <span id="typewriter"></span><span class="cursor">|</span>
-                    </div>
-
-                    <p class="hero-p">
-                        Desenvolvimento de soluções estratégicas e aplicações orientadas a dados no ecossistema 
-                        <strong>Cognivus (LexOS)</strong>. Unindo Ciência de Dados, Business Intelligence e 
-                        Inteligência Artificial Generativa sob rígidos padrões de Governança corporativa e LGPD.
-                    </p>
-
-                    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-                        <a href="#lexcore" class="nav-btn-dashboard" style="padding: 14px 28px; font-size: 1rem; background: var(--accent-glow); color: #091322 !important;">
-                            <i class="fa-solid fa-layer-group"></i> Acessar Matriz Cognitiva
-                        </a>
-                    </div>
-
-                </div>
-
-                <div class="hero-visual-side">
                     <div class="hero-visual-wrapper">
                         <video class="hero-video-loop" autoplay loop muted playsinline preload="auto">
                             <source src="cognivus.mp4" type="video/mp4">
-                            Seu navegador não suporta a execução de vídeos nativos.
                         </video>
                     </div>
                 </div>
 
-            </div>
-            
-            <div class="hero-signature-container">
-                <p class="hero-signature-text">
-                    O dado é passado, o processo é presente e a decisão é futuro.
-                </p>
-            </div>
+                <!-- QUOTE BAR -->
+                <div class="hero-quote-bar">
+                    <i class="fa-solid fa-quote-left" style="margin-right: 8px; opacity: 0.6;"></i>
+                    "O dado é passado, o processo é presente e a decisão é futuro."
+                </div>
 
-        </div>
-    </section>
+                <!-- PAINEL DE ACESSO RÁPIDO PARA PREENCHER O ESPAÇO INFERIOR -->
+                <div style="margin-top: 30px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <h3 style="font-size: 1.3rem; font-weight: 700; color: var(--text-main);">
+                            <i class="fa-solid fa-bolt" style="color: var(--accent-glow); margin-right: 8px;"></i>
+                            Visão Geral do Ecossistema Cognivus
+                        </h3>
+                        <button class="btn-card-link" onclick="switchTab('tab-apps', document.querySelectorAll('.menu-btn')[3])">Ver Todos os Apps <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
 
-    <!-- SEÇÃO LEXCORE - AMBIENTE DE DESENVOLVIMENTO COGNITIVO (OS 8 PILARES) -->
-    <section id="lexcore" class="ecosystem" style="background-color: rgba(6, 11, 20, 0.25); border-top: 1px solid var(--border-color);">
-        <div class="container">
-            <div class="section-header">
-                <h2>LexCore: Dashboard Cognitivo</h2>
-                <p>A matriz de 8 pilares fundamentais que sustenta a engenharia de legado. O verdadeiro ambiente de desenvolvimento da mente.</p>
-            </div>
-            
-            <div class="grid-ecosystem">
-                <!-- Pilar 1 -->
-                <div class="card-eco hub">
-                    <div>
-                        <div class="card-header-eco">
-                            <span class="badge-eco hub">Pilar 1</span>
-                            <div class="icon-eco"><i class="fa-solid fa-robot"></i></div>
+                    <div class="grid-ecosystem">
+                        <div class="card-eco pccs">
+                            <div>
+                                <div class="card-header-eco"><span class="badge-eco pccs">Governança</span><i class="fa-solid fa-scale-balanced icon-eco" style="color: #ef4444;"></i></div>
+                                <h3>LexPCCS Engine</h3>
+                                <p>Simulador corporativo para modelagem financeira e gestão de cargos e salários.</p>
+                            </div>
+                            <div class="card-actions">
+                                <span class="status-pill online"><i class="fa-solid fa-circle"></i> Online</span>
+                                <a href="https://lexpcs.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar App <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                            </div>
                         </div>
-                        <h3>Fluência em IA</h3>
-                        <p>Delegação, Descrição, Discernimento e Diligência. O framework 4Ds para colaborar ativamente e com segurança com IAs.</p>
-                    </div>
-                    <div class="card-actions">
-                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
-                        <a href="pilar1.html" class="btn-card-link">Acessar Hub <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
 
-                <!-- Pilar 2 -->
-                <div class="card-eco edu">
-                    <div>
-                        <div class="card-header-eco">
-                            <span class="badge-eco edu">Pilar 2</span>
-                            <div class="icon-eco"><i class="fa-solid fa-compass"></i></div>
+                        <div class="card-eco edu">
+                            <div>
+                                <div class="card-header-eco"><span class="badge-eco edu">Educação</span><i class="fa-solid fa-book-open-reader icon-eco"></i></div>
+                                <h3>Soberania em IA</h3>
+                                <p>Plataforma para domínio de prompts, mitigação de alucinações e governança em LLMs.</p>
+                            </div>
+                            <div class="card-actions">
+                                <span class="status-pill online"><i class="fa-solid fa-circle"></i> Online</span>
+                                <a href="https://soberania-ia.cognivus.com.br" target="_blank" class="btn-card-link">Acessar Hub <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                            </div>
                         </div>
-                        <h3>Heutagogia e Bloom</h3>
-                        <p>O controle autodirigido do próprio aprendizado. Assumir o leme da jornada escalando a taxonomia cognitiva rumo à criação.</p>
-                    </div>
-                    <div class="card-actions">
-                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
-                        <a href="pilar2.html" class="btn-card-link">Acessar Hub <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
 
-                <!-- Pilar 3 -->
-                <div class="card-eco log">
-                    <div>
-                        <div class="card-header-eco">
-                            <span class="badge-eco log">Pilar 3</span>
-                            <div class="icon-eco"><i class="fa-solid fa-brain"></i></div>
+                        <div class="card-eco hub">
+                            <div>
+                                <div class="card-header-eco"><span class="badge-eco hub">Dados & BI</span><i class="fa-solid fa-chart-pie icon-eco"></i></div>
+                                <h3>Cognivus Analysers</h3>
+                                <p>Suite centralizada de dashboards analíticos operacionais e industriais.</p>
+                            </div>
+                            <div class="card-actions">
+                                <span class="status-pill online"><i class="fa-solid fa-circle"></i> Online</span>
+                                <a href="https://analysers.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar App <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                            </div>
                         </div>
-                        <h3>Pensamento Computacional</h3>
-                        <p>A *engine* analítica. Decomposição de problemas, reconhecimento de padrões e lógica matemática aplicada à vida.</p>
-                    </div>
-                    <div class="card-actions">
-                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
-                        <a href="pilar3.html" class="btn-card-link">Acessar Hub <i class="fa-solid fa-arrow-right"></i></a>
                     </div>
                 </div>
 
-                <!-- Pilar 4 -->
-                <div class="card-eco dat">
-                    <div>
-                        <div class="card-header-eco">
-                            <span class="badge-eco dat">Pilar 4</span>
-                            <div class="icon-eco"><i class="fa-solid fa-network-wired"></i></div>
+                <!-- DISCLAIMER COMPACTO NA HOME -->
+                <div style="margin-top: 30px; background: rgba(167, 139, 250, 0.08); border: 1px solid var(--purple); border-radius: 14px; padding: 20px;">
+                    <h4 style="color: var(--purple); font-size: 1.1rem; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+                        <i class="fa-solid fa-handshake"></i> Metodologia Human-in-the-Loop (Co-criação com IA)
+                    </h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">
+                        Utilizo Inteligência Artificial Generativa como copiloto de produtividade no ecossistema COGNIVUS. Toda a concepção, arquitetura de software, lógica de negócios, validação jurídica e supervisão permanecem exclusivamente sob minha responsabilidade técnica e autoral.
+                    </p>
+                </div>
+
+            </section>
+
+            <!-- ABA 2: LEXCORE (8 PILARES) -->
+            <section id="tab-lexcore" class="view-section">
+                <div class="section-header">
+                    <h2>LexCore: Dashboard Cognitivo</h2>
+                    <p>A matriz de 8 pilares fundamentais que sustenta a engenharia de legado no ecossistema COGNIVUS.</p>
+                </div>
+
+                <div class="grid-ecosystem">
+                    <div class="card-eco hub">
+                        <div>
+                            <div class="card-header-eco"><span class="badge-eco hub">Pilar 1</span><div class="icon-eco"><i class="fa-solid fa-robot"></i></div></div>
+                            <h3>Fluência em IA</h3>
+                            <p>Delegação, Descrição, Discernimento e Diligência. O framework 4Ds para colaborar ativamente e com segurança com IAs.</p>
                         </div>
-                        <h3>Gestão do Conhecimento</h3>
-                        <p>Materialização via Zettelkasten e Obsidian. Cruzamento de dados e visão executiva (MBA) para embasar a tomada de decisão.</p>
-                    </div>
-                    <div class="card-actions">
-                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
-                        <a href="pilar4.html" class="btn-card-link">Acessar Hub <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
-
-                <!-- Pilar 5 -->
-                <div class="card-eco pccs">
-                    <div>
-                        <div class="card-header-eco">
-                            <span class="badge-eco pccs">Pilar 5</span>
-                            <div class="icon-eco"><i class="fa-solid fa-scale-balanced" style="color: #ef4444;"></i></div>
+                        <div class="card-actions">
+                            <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
+                            <a href="pilar1.html" class="btn-card-link">Acessar Hub <i class="fa-solid fa-arrow-right"></i></a>
                         </div>
-                        <h3>Direito e Jurimetria</h3>
-                        <p>A aplicação máxima na estratégia social. Ler a justiça não como um dogma cego, mas como uma ciência exata apoiada por dados reais.</p>
                     </div>
-                    <div class="card-actions">
-                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
-                        <a href="pilar5.html" class="btn-card-link">Acessar Hub <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
 
-                <!-- Pilar 6 -->
-                <div class="card-eco phrase">
-                    <div>
-                        <div class="card-header-eco">
-                            <span class="badge-eco phrase">Pilar 6</span>
-                            <div class="icon-eco"><i class="fa-solid fa-bullhorn" style="color: #8b5cf6;"></i></div>
+                    <div class="card-eco edu">
+                        <div>
+                            <div class="card-header-eco"><span class="badge-eco edu">Pilar 2</span><div class="icon-eco"><i class="fa-solid fa-compass"></i></div></div>
+                            <h3>Heutagogia e Bloom</h3>
+                            <p>O controle autodirigido do próprio aprendizado. Assumir o leme da jornada escalando a taxonomia cognitiva rumo à criação.</p>
                         </div>
-                        <h3>Eixo Comunicacional</h3>
-                        <p>O frontend humano. Empacotar teses em narrativas persuasivas, música e experiências afetivas para garantir a entrega de valor.</p>
-                    </div>
-                    <div class="card-actions">
-                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
-                        <a href="pilar6.html" class="btn-card-link">Acessar Hub <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
-
-                <!-- Pilar 7 -->
-                <div class="card-eco sem">
-                    <div>
-                        <div class="card-header-eco">
-                            <span class="badge-eco sem">Pilar 7</span>
-                            <div class="icon-eco"><i class="fa-solid fa-globe"></i></div>
+                        <div class="card-actions">
+                            <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
+                            <a href="pilar2.html" class="btn-card-link">Acessar Hub <i class="fa-solid fa-arrow-right"></i></a>
                         </div>
-                        <h3>Soberania Digital</h3>
-                        <p>Engenharia de ecossistema. A posse absoluta da infraestrutura: portfólios dinâmicos, suítes e apps hospedados sob domínio próprio.</p>
                     </div>
-                    <div class="card-actions">
-                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
-                        <a href="pilar7.html" class="btn-card-link">Acessar Hub <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
 
-                <!-- Pilar 8 (NOVO) -->
-                <div class="card-eco divine">
-                    <div>
-                        <div class="card-header-eco">
-                            <span class="badge-eco divine">Pilar 8</span>
-                            <div class="icon-eco"><i class="fa-solid fa-cross" style="color: #f59e0b;"></i></div>
+                    <div class="card-eco log">
+                        <div>
+                            <div class="card-header-eco"><span class="badge-eco log">Pilar 3</span><div class="icon-eco"><i class="fa-solid fa-brain"></i></div></div>
+                            <h3>Pensamento Computacional</h3>
+                            <p>A engine analítica. Decomposição de problemas, reconhecimento de padrões e lógica matemática aplicada à vida.</p>
                         </div>
-                        <h3>Transcendência Espiritual</h3>
-                        <p>A sabedoria do Legado. Onde a lógica e a técnica se curvam à Fé. A rendição ao processo do Oleiro e a força inabalável do reconhecimento Divino.</p>
-                    </div>
-                    <div class="card-actions">
-                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
-                        <a href="pilar8.html" class="btn-card-link" style="color: #f59e0b;">Acessar Hub <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- NOVA SEÇÃO: A TRÍADE OPERACIONAL -->
-    <section id="triade" class="ecosystem" style="background-color: rgba(9, 19, 34, 0.4); border-bottom: 1px solid var(--border-color);">
-        <div class="container">
-            <div class="section-header">
-                <h2>A Tríade Operacional LexOS</h2>
-                <p>O núcleo da inteligência corporativa: estruturar na Governança, processar na Análise e blindar na Decisão.</p>
-            </div>
-            
-            <div class="grid-ecosystem" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-                <!-- Campo 1 -->
-                <div class="card-eco core">
-                    <div>
-                        <div class="card-header-eco">
-                            <span class="badge-eco core">Alicerce</span>
-                            <div class="icon-eco"><i class="fa-solid fa-folder-tree"></i></div>
+                        <div class="card-actions">
+                            <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
+                            <a href="pilar3.html" class="btn-card-link">Acessar Hub <i class="fa-solid fa-arrow-right"></i></a>
                         </div>
-                        <h3>Governança e Gestão Operacional</h3>
-                        <p>O domínio sobre a estrutura e rastreabilidade. Criação de POPs, mapeamento de rotinas, versionamento de software e gestão do conhecimento (Zettelkasten).</p>
                     </div>
-                    <div class="card-actions">
-                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
-                        <a href="gestao.html" class="btn-card-link">Acessar Campo <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
 
-                <!-- Campo 2 -->
-                <div class="card-eco dat">
-                    <div>
-                        <div class="card-header-eco">
-                            <span class="badge-eco dat">A Lente</span>
-                            <div class="icon-eco"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                    <div class="card-eco dat">
+                        <div>
+                            <div class="card-header-eco"><span class="badge-eco dat">Pilar 4</span><div class="icon-eco"><i class="fa-solid fa-network-wired"></i></div></div>
+                            <h3>Gestão do Conhecimento</h3>
+                            <p>Materialização via Zettelkasten e Obsidian. Cruzamento de dados e visão executiva (MBA) para embasar a tomada de decisão.</p>
                         </div>
-                        <h3>Inteligência Analítica</h3>
-                        <p>O domínio sobre a extração da verdade através dos dados. Modelagem em Power BI, Excel avançado, scripts Python e engenharia de prompts.</p>
-                    </div>
-                    <div class="card-actions">
-                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
-                        <a href="analise.html" class="btn-card-link">Acessar Campo <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
-
-                <!-- Campo 3 -->
-                <div class="card-eco log">
-                    <div>
-                        <div class="card-header-eco">
-                            <span class="badge-eco log">O Veredito</span>
-                            <div class="icon-eco"><i class="fa-solid fa-scale-balanced"></i></div>
+                        <div class="card-actions">
+                            <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
+                            <a href="pilar4.html" class="btn-card-link">Acessar Hub <i class="fa-solid fa-arrow-right"></i></a>
                         </div>
-                        <h3>Estratégico-Decisório e Jurídico</h3>
-                        <p>O domínio sobre a aplicação segura e regulamentada. Tomada de decisão balizada pela LGPD, compliance, raciocínio lógico estruturado e mitigação de riscos.</p>
                     </div>
-                    <div class="card-actions">
-                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
-                        <a href="decisao.html" class="btn-card-link">Acessar Campo <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- SEÇÃO ORIGINAL: ECOSSISTEMA LEXOS -->
-    <section id="ecossistema" class="ecosystem">
-        <div class="container">
-            <div class="section-header">
-                <h2>Aplicações Cognivus</h2>
-                <p>Soluções modulares integradas para inteligência analítica, processamento cognitivo e governança de dados estruturados.</p>
-            </div>
-            
-            <div class="grid-ecosystem">
-
-                <!-- NOVO EIXO: SOBERANIA EM IA -->
-                <div class="card-eco edu">
-                    <div>
-                        <div class="card-header-eco"><span class="badge-eco edu">Educação</span><div class="icon-eco"><i class="fa-solid fa-book-open-reader"></i></div></div>
-                        <h3>Soberania em IA</h3>
-                        <p>E-book e plataforma de cursos para domínio estratégico de prompts, blindagem contra alucinações e acesso ao ecossistema LexCore.</p>
-                    </div>
-                    <div class="card-actions">
-                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Online</span>
-                        <a href="https://soberania-ia.cognivus.com.br" target="_blank" class="btn-card-link">Acessar Hub <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-
-                <div class="card-eco pccs">
-                    <div>
-                        <div class="card-header-eco"><span class="badge-eco pccs">Governança</span><div class="icon-eco"><i class="fa-solid fa-scale-balanced" style="color: #ef4444;"></i></div></div>
-                        <h3>LexPCCS Engine</h3>
-                        <p>Simulador corporativo focado na modelagem financeira, mitigação de passivos trabalhistas e estruturação de Planos de Cargos.</p>
-                    </div>
-                    <div class="card-actions">
-                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Online</span>
-                        <a href="https://lexpcs.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar App <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-
-                <div class="card-eco phrase">
-                    <div>
-                        <div class="card-header-eco"><span class="badge-eco phrase">Linguística</span><div class="icon-eco"><i class="fa-solid fa-feather" style="color: #8b5cf6;"></i></div></div>
-                        <h3>PhraseUp Nav</h3>
-                        <p>Refinador semântico de linguagem. Processa vocabulários corporativos para aprimoramento de clareza e autoridade retórica.</p>
-                    </div>
-                    <div class="card-actions">
-                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Online</span>
-                        <a href="https://phraseupnav.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar App <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-
-                <div class="card-eco edu">
-                    <div>
-                        <div class="card-header-eco"><span class="badge-eco edu">Cognição</span><div class="icon-eco"><i class="fa-solid fa-graduation-cap"></i></div></div>
-                        <h3>Treinador</h3>
-                        <p>Plataforma inteligente focada no monitoramento educacional estruturado e desenvolvimento de treinamento cognitivo avançado.</p>
-                    </div>
-                    <div class="card-actions">
-                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Online</span>
-                        <a href="https://treinador.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar App <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-
-                <div class="card-eco hub">
-                    <div>
-                        <div class="card-header-eco"><span class="badge-eco hub">Dados</span><div class="icon-eco"><i class="fa-solid fa-chart-pie"></i></div></div>
-                        <h3>Cognivus Analysers</h3>
-                        <p>A Cognivus Intelligence Suite é uma plataforma centralizada de painéis de análise de dados operacionais e industriais.</p>
-                    </div>
-                    <div class="card-actions">
-                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Online</span>
-                        <a href="https://analysers.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar App <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-
-                <div class="card-eco dat">
-                    <div>
-                        <div class="card-header-eco"><span class="badge-eco dat">Prompt</span><div class="icon-eco"><i class="fa-solid fa-network-wired"></i></div></div>
-                        <h3>Gerador</h3>
-                        <p>Módulo de gerador de prompt diversos para uso com inteligência de dados aplicada diretamente na avaliação de métricas.</p>
-                    </div>
-                    <div class="card-actions">
-                        <span class="status-pill offline"><i class="fa-solid fa-circle"></i> Offline</span>
-                        <a href="https://luciano.cognivus.com.br/" target="_blank" class="btn-card-link">Em Atualização <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-
-                <div class="card-eco sem">
-                    <div>
-                        <div class="card-header-eco"><span class="badge-eco sem">Semântica</span><div class="icon-eco"><i class="fa-solid fa-book-bookmark"></i></div></div>
-                        <h3>Termos Lexicais</h3>
-                        <p>Glossário conceitual dinâmico desenvolvido para normalização e padronização analítica de termos técnicos e jurídicos complexos.</p>
-                    </div>
-                    <div class="card-actions">
-                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Online</span>
-                        <a href="https://termos.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar App <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-
-                <div class="card-eco core">
-                    <div>
-                        <div class="card-header-eco"><span class="badge-eco core">Núcleo</span><div class="icon-eco"><i class="fa-solid fa-circle-nodes"></i></div></div>
-                        <h3>Cognivus Core</h3>
-                        <p>O centro de controle operacional e orquestrador principal de microsserviços integrados de todo o ecossistema Cognivus.</p>
-                    </div>
-                    <div class="card-actions">
-                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Online</span>
-                        <a href="https://luciano.cognivus.com.br/" target="_blank" class="btn-card-link">Em testes<i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-
-                <div class="card-eco log">
-                    <div>
-                        <div class="card-header-eco"><span class="badge-eco log">Lógica</span><div class="icon-eco"><i class="fa-solid fa-brain"></i></div></div>
-                        <h3>Axion Rhetorical</h3>
-                        <p>Engine analítica baseada em modelos de linguagem avançados para mapeamento, estruturação e auditoria de argumentação lógica.</p>
-                    </div>
-                    <div class="card-actions">
-                         <span class="status-pill online"><i class="fa-solid fa-circle"></i> Online</span>
-                        <a href="https://axion-rethorical.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar App <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-
-                <div class="card-eco core">
-                    <div>
-                        <div class="card-header-eco"><span class="badge-eco core">Gamificação</span><div class="icon-eco"><i class="fa-solid fa-server"></i></div></div>
-                        <h3>CoreMaster</h3>
-                        <p>App para treinamento cognitivo de perguntas e respostas com níveis evolutivos e avaliação de desempenho.</p>
-                    </div>
-                    <div class="card-actions">
-                        <span class="status-pill online"><i class="fa-solid fa-circle"></i> Online</span>
-                        <a href="https://coremaster.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar App <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- SKILL TREE E DEMAIS SEÇÕES MANTIDAS INTACTAS -->
-    <section id="skills" class="skill-tree-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Multidisciplinary Skill Tree</h2>
-                <p>Mapeamento dinâmico de competências correlacionadas que alimentam a governança, a inteligência jurídica e o desenvolvimento analítico.</p>
-            </div>
-
-           <div class="tree-layout">
-                
-                <div class="tree-skills-column">
-                    <div class="skill-group-box gestao">
-                        <div class="group-box-header">
-                            <i class="fa-solid fa-chart-pie"></i>
-                            <h4>Gestão, Processo e Otimização</h4>
+                    <div class="card-eco pccs">
+                        <div>
+                            <div class="card-header-eco"><span class="badge-eco pccs">Pilar 5</span><div class="icon-eco"><i class="fa-solid fa-scale-balanced" style="color: #ef4444;"></i></div></div>
+                            <h3>Direito e Jurimetria</h3>
+                            <p>A aplicação máxima na estratégia social. Ler a justiça não como um dogma cego, mas como uma ciência exata apoiada por dados reais.</p>
                         </div>
-                        <div class="skill-bars-container">
+                        <div class="card-actions">
+                            <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
+                            <a href="pilar5.html" class="btn-card-link">Acessar Hub <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="card-eco phrase">
+                        <div>
+                            <div class="card-header-eco"><span class="badge-eco phrase">Pilar 6</span><div class="icon-eco"><i class="fa-solid fa-bullhorn" style="color: #8b5cf6;"></i></div></div>
+                            <h3>Eixo Comunicacional</h3>
+                            <p>O frontend humano. Empacotar teses em narrativas persuasivas, música e experiências afetivas para garantir a entrega de valor.</p>
+                        </div>
+                        <div class="card-actions">
+                            <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
+                            <a href="pilar6.html" class="btn-card-link">Acessar Hub <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="card-eco sem">
+                        <div>
+                            <div class="card-header-eco"><span class="badge-eco sem">Pilar 7</span><div class="icon-eco"><i class="fa-solid fa-globe"></i></div></div>
+                            <h3>Soberania Digital</h3>
+                            <p>Engenharia de ecossistema. A posse absoluta da infraestrutura: portfólios dinâmicos, suítes e apps hospedados sob domínio próprio.</p>
+                        </div>
+                        <div class="card-actions">
+                            <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
+                            <a href="pilar7.html" class="btn-card-link">Acessar Hub <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="card-eco divine">
+                        <div>
+                            <div class="card-header-eco"><span class="badge-eco divine">Pilar 8</span><div class="icon-eco"><i class="fa-solid fa-cross" style="color: #f59e0b;"></i></div></div>
+                            <h3>Transcendência Espiritual</h3>
+                            <p>A sabedoria do Legado. Onde a lógica e a técnica se curvam à Fé. A rendição ao processo do Oleiro e a força inabalável do reconhecimento Divino.</p>
+                        </div>
+                        <div class="card-actions">
+                            <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
+                            <a href="pilar8.html" class="btn-card-link" style="color: #f59e0b;">Acessar Hub <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ABA 3: TRÍADE OPERACIONAL -->
+            <section id="tab-triade" class="view-section">
+                <div class="section-header">
+                    <h2>A Tríade Operacional COGNIVUS</h2>
+                    <p>O núcleo da inteligência corporativa: estruturar na Governança, processar na Análise e blindar na Decisão.</p>
+                </div>
+
+                <div class="grid-ecosystem">
+                    <div class="card-eco core">
+                        <div>
+                            <div class="card-header-eco"><span class="badge-eco core">Alicerce</span><div class="icon-eco"><i class="fa-solid fa-folder-tree"></i></div></div>
+                            <h3>Governança e Gestão Operacional</h3>
+                            <p>O domínio sobre a estrutura e rastreabilidade. Criação de POPs, mapeamento de rotinas, versionamento de software e gestão do conhecimento (Zettelkasten).</p>
+                        </div>
+                        <div class="card-actions">
+                            <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
+                            <a href="gestao.html" class="btn-card-link">Acessar Campo <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="card-eco dat">
+                        <div>
+                            <div class="card-header-eco"><span class="badge-eco dat">A Lente</span><div class="icon-eco"><i class="fa-solid fa-magnifying-glass-chart"></i></div></div>
+                            <h3>Inteligência Analítica</h3>
+                            <p>O domínio sobre a extração da verdade através dos dados. Modelagem em Power BI, Excel avançado, scripts Python e engenharia de prompts.</p>
+                        </div>
+                        <div class="card-actions">
+                            <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
+                            <a href="analise.html" class="btn-card-link">Acessar Campo <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="card-eco log">
+                        <div>
+                            <div class="card-header-eco"><span class="badge-eco log">O Veredito</span><div class="icon-eco"><i class="fa-solid fa-scale-balanced"></i></div></div>
+                            <h3>Estratégico-Decisório e Jurídico</h3>
+                            <p>O domínio sobre a aplicação segura e regulamentada. Tomada de decisão balizada pela LGPD, compliance, raciocínio lógico estruturado e mitigação de riscos.</p>
+                        </div>
+                        <div class="card-actions">
+                            <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
+                            <a href="decisao.html" class="btn-card-link">Acessar Campo <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ABA 4: ECOSSISTEMA DE APPS (TODAS AS 10 APLICAÇÕES) -->
+            <section id="tab-apps" class="view-section">
+                <div class="section-header">
+                    <h2>Aplicações Cognivus</h2>
+                    <p>Soluções modulares integradas para inteligência analítica, processamento cognitivo e governança de dados estruturados.</p>
+                </div>
+
+                <div class="grid-ecosystem">
+                    <div class="card-eco edu">
+                        <div>
+                            <div class="card-header-eco"><span class="badge-eco edu">Educação</span><div class="icon-eco"><i class="fa-solid fa-book-open-reader"></i></div></div>
+                            <h3>Soberania em IA</h3>
+                            <p>E-book e plataforma de cursos para domínio estratégico de prompts, blindagem contra alucinações e acesso ao ecossistema LexCore.</p>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-card-link" onclick="openAppModal('Soberania em IA', 'Plataforma educacional para domínio de LLMs e governança em inteligência artificial generativa.', 'Python, Streamlit, Gemini LLM', 'https://soberania-ia.cognivus.com.br')">Detalhes <i class="fa-solid fa-info-circle"></i></button>
+                            <a href="https://soberania-ia.cognivus.com.br" target="_blank" class="btn-card-link">Acessar <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="card-eco pccs">
+                        <div>
+                            <div class="card-header-eco"><span class="badge-eco pccs">Governança</span><div class="icon-eco"><i class="fa-solid fa-scale-balanced" style="color: #ef4444;"></i></div></div>
+                            <h3>LexPCCS Engine</h3>
+                            <p>Simulador corporativo focado na modelagem financeira, mitigação de passivos trabalhistas e estruturação de Planos de Cargos.</p>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-card-link" onclick="openAppModal('LexPCCS Engine', 'Simulador focado na redução de passivos trabalhistas e otimização de folha de pagamento corporativa.', 'Python, Streamlit, Firebase', 'https://lexpcs.cognivus.com.br/')">Detalhes <i class="fa-solid fa-info-circle"></i></button>
+                            <a href="https://lexpcs.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="card-eco phrase">
+                        <div>
+                            <div class="card-header-eco"><span class="badge-eco phrase">Linguística</span><div class="icon-eco"><i class="fa-solid fa-feather" style="color: #8b5cf6;"></i></div></div>
+                            <h3>PhraseUp Nav</h3>
+                            <p>Refinador semântico de linguagem. Processa vocabulários corporativos para aprimoramento de clareza e autoridade retórica.</p>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-card-link" onclick="openAppModal('PhraseUp Nav', 'Engine de refinamento e padronização semântica executiva.', 'Python, NLP, Gemini API', 'https://phraseupnav.cognivus.com.br/')">Detalhes <i class="fa-solid fa-info-circle"></i></button>
+                            <a href="https://phraseupnav.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="card-eco edu">
+                        <div>
+                            <div class="card-header-eco"><span class="badge-eco edu">Cognição</span><div class="icon-eco"><i class="fa-solid fa-graduation-cap"></i></div></div>
+                            <h3>Treinador</h3>
+                            <p>Plataforma inteligente focada no monitoramento educacional estruturado e desenvolvimento de treinamento cognitivo avançado.</p>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-card-link" onclick="openAppModal('Treinador', 'Plataforma para gestão educacional e treinamento cognitivo.', 'Python, Streamlit, Firebase', 'https://treinador.cognivus.com.br/')">Detalhes <i class="fa-solid fa-info-circle"></i></button>
+                            <a href="https://treinador.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="card-eco hub">
+                        <div>
+                            <div class="card-header-eco"><span class="badge-eco hub">Dados</span><div class="icon-eco"><i class="fa-solid fa-chart-pie"></i></div></div>
+                            <h3>Cognivus Analysers</h3>
+                            <p>A Cognivus Intelligence Suite é uma plataforma centralizada de painéis de análise de dados operacionais e industriais.</p>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-card-link" onclick="openAppModal('Cognivus Analysers', 'Painel central de Business Intelligence corporativo e jurimetria.', 'Power BI, Python, Firebase', 'https://analysers.cognivus.com.br/')">Detalhes <i class="fa-solid fa-info-circle"></i></button>
+                            <a href="https://analysers.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="card-eco dat">
+                        <div>
+                            <div class="card-header-eco"><span class="badge-eco dat">Prompt</span><div class="icon-eco"><i class="fa-solid fa-network-wired"></i></div></div>
+                            <h3>Gerador</h3>
+                            <p>Módulo gerador de prompts diversos para uso com inteligência de dados aplicada diretamente na avaliação de métricas.</p>
+                        </div>
+                        <div class="card-actions">
+                            <span class="status-pill offline"><i class="fa-solid fa-circle"></i> Offline</span>
+                            <a href="https://luciano.cognivus.com.br/" target="_blank" class="btn-card-link">Em Atualização <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="card-eco sem">
+                        <div>
+                            <div class="card-header-eco"><span class="badge-eco sem">Semântica</span><div class="icon-eco"><i class="fa-solid fa-book-bookmark"></i></div></div>
+                            <h3>Termos Lexicais</h3>
+                            <p>Glossário conceitual dinâmico desenvolvido para normalização e padronização analítica de termos técnicos e jurídicos complexos.</p>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-card-link" onclick="openAppModal('Termos Lexicais', 'Normalizador de terminologia jurídica e conceitual.', 'Python, Streamlit', 'https://termos.cognivus.com.br/')">Detalhes <i class="fa-solid fa-info-circle"></i></button>
+                            <a href="https://termos.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="card-eco core">
+                        <div>
+                            <div class="card-header-eco"><span class="badge-eco core">Núcleo</span><div class="icon-eco"><i class="fa-solid fa-circle-nodes"></i></div></div>
+                            <h3>Cognivus Core</h3>
+                            <p>O centro de controle operacional e orquestrador principal de microsserviços integrados de todo o ecossistema Cognivus.</p>
+                        </div>
+                        <div class="card-actions">
+                            <span class="status-pill online"><i class="fa-solid fa-circle"></i> Online</span>
+                            <a href="https://luciano.cognivus.com.br/" target="_blank" class="btn-card-link">Em testes <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="card-eco log">
+                        <div>
+                            <div class="card-header-eco"><span class="badge-eco log">Lógica</span><div class="icon-eco"><i class="fa-solid fa-brain"></i></div></div>
+                            <h3>Axion Rhetorical</h3>
+                            <p>Engine analítica baseada em modelos de linguagem avançados para mapeamento, estruturação e auditoria de argumentação lógica.</p>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-card-link" onclick="openAppModal('Axion Rhetorical', 'Auditoria lógica e validação retórica de teses.', 'Python, Gemini LLMs', 'https://axion-rethorical.cognivus.com.br/')">Detalhes <i class="fa-solid fa-info-circle"></i></button>
+                            <a href="https://axion-rethorical.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="card-eco core">
+                        <div>
+                            <div class="card-header-eco"><span class="badge-eco core">Gamificação</span><div class="icon-eco"><i class="fa-solid fa-server"></i></div></div>
+                            <h3>CoreMaster</h3>
+                            <p>App para treinamento cognitivo de perguntas e respostas com níveis evolutivos e avaliação de desempenho.</p>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-card-link" onclick="openAppModal('CoreMaster', 'Plataforma gamificada de avaliação contínua de conhecimento.', 'Python, Firebase', 'https://coremaster.cognivus.com.br/')">Detalhes <i class="fa-solid fa-info-circle"></i></button>
+                            <a href="https://coremaster.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ABA 5: SKILL TREE -->
+            <section id="tab-skills" class="view-section">
+                <div class="section-header">
+                    <h2>Multidisciplinary Skill Tree</h2>
+                    <p>Mapeamento dinâmico de competências correlacionadas que alimentam a governança, a inteligência jurídica e o desenvolvimento analítico.</p>
+                </div>
+
+                <div class="tree-layout">
+                    <div>
+                        <div class="skill-group-box">
+                            <div class="group-box-header"><i class="fa-solid fa-chart-pie"></i><h4>Gestão, Processo e Otimização</h4></div>
                             <div class="bar-item">
                                 <div class="bar-labels"><span>Administração Estratégica & Processos</span><span>100%</span></div>
-                                <div class="bar-track"><div class="bar-fill" data-pct="100"></div></div>
+                                <div class="bar-track"><div class="bar-fill" style="width: 100%;"></div></div>
                             </div>
                             <div class="bar-item">
-                                <div class="bar-labels"><span>Análise de Processos e Alinhamento Produtivo</span><span>97%</span></div>
-                                <div class="bar-track"><div class="bar-fill" data-pct="92"></div></div>
+                                <div class="bar-labels"><span>Análise de Processos e Alinhamento</span><span>92%</span></div>
+                                <div class="bar-track"><div class="bar-fill" style="width: 92%;"></div></div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="skill-group-box direito"> 
-                        <div class="group-box-header"> 
-                            <i class="fa-solid fa-gavel"></i> 
-                            <h4>Direito e Compliance</h4> 
-                        </div> 
-                        <div class="skill-bars-container"> 
-                            <div class="bar-item"> 
-                                <div class="bar-labels"><span>Direito Corporativo</span><span>100%</span></div> 
-                                <div class="bar-track"><div class="bar-fill" data-pct="100"></div></div> 
+                        <div class="skill-group-box">
+                            <div class="group-box-header"><i class="fa-solid fa-gavel"></i><h4>Direito e Compliance</h4></div>
+                            <div class="bar-item">
+                                <div class="bar-labels"><span>Direito Corporativo</span><span>100%</span></div>
+                                <div class="bar-track"><div class="bar-fill" style="width: 100%;"></div></div>
                             </div>
                             <div class="bar-item">
-                                <div class="bar-labels"><span>Análise Contratual e Riscos</span><span>95%</span></div> 
-                                <div class="bar-track"><div class="bar-fill" data-pct="95"></div></div> 
+                                <div class="bar-labels"><span>Análise Contratual e Riscos</span><span>95%</span></div>
+                                <div class="bar-track"><div class="bar-fill" style="width: 95%;"></div></div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="skill-group-box juri">
-                        <div class="group-box-header">
-                            <i class="fa-solid fa-chart-line"></i>
-                            <h4>Jurimetria, BI & Analytics</h4>
-                        </div>
-                        <div class="skill-bars-container">
+                        <div class="skill-group-box">
+                            <div class="group-box-header"><i class="fa-solid fa-chart-line"></i><h4>Jurimetria, BI & Analytics</h4></div>
                             <div class="bar-item">
                                 <div class="bar-labels"><span>Power BI & Business Intelligence</span><span>78%</span></div>
-                                <div class="bar-track"><div class="bar-fill" data-pct="78"></div></div>
+                                <div class="bar-track"><div class="bar-fill" style="width: 78%;"></div></div>
                             </div>
                             <div class="bar-item">
                                 <div class="bar-labels"><span>Jurimetria Estatística Aplicada</span><span>85%</span></div>
-                                <div class="bar-track"><div class="bar-fill" data-pct="85"></div></div>
+                                <div class="bar-track"><div class="bar-fill" style="width: 85%;"></div></div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="tree-avatar-hub">
-                    <div class="profile-frame">
-                        <img src="luciano.jpg" alt="Luciano P. de Moura" class="avatar-img">
-                    </div>
-                   <div class="avatar-info">
-                        <h3>Luciano P. de Moura</h3>
-                        <p>Legal Data Science & Architecture</p>
-                        
-                        <!-- Botão Acadêmico -->
-                        <a href="academico.html" style="display: inline-block; margin-top: 18px; padding: 8px 18px; background: rgba(167, 139, 250, 0.15); border: 1px solid #a78bfa; color: #a78bfa; border-radius: 6px; font-size: 0.85rem; font-weight: 700; text-decoration: none; transition: 0.3s;" onmouseover="this.style.background='#a78bfa'; this.style.color='#091322';" onmouseout="this.style.background='rgba(167, 139, 250, 0.15)'; this.style.color='#a78bfa';">
+                    <div class="tree-avatar-hub">
+                        <div class="profile-frame">
+                            <img src="luciano.jpg" alt="Luciano P. de Moura" class="avatar-img">
+                        </div>
+                        <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--text-main);">Luciano P. de Moura</h3>
+                        <p style="font-size: 0.88rem; color: var(--accent-glow); font-weight: 700; margin-top: 3px;">Legal Data Science & Architecture</p>
+
+                        <a href="academico.html" style="margin-top: 15px; padding: 7px 14px; background: rgba(167, 139, 250, 0.15); border: 1px solid #a78bfa; color: #a78bfa; border-radius: 6px; font-size: 0.8rem; font-weight: 700;">
                             <i class="fa-solid fa-microscope"></i> Produção Científica & Lattes
                         </a>
+
+                        <div class="axis-summary-list">
+                            <div class="axis-badge-item"><span><i class="fa-solid fa-briefcase"></i> ADM & MBA</span><span>100%</span></div>
+                            <div class="axis-badge-item"><span><i class="fa-solid fa-scale-balanced"></i> Direito, Compliance & LGPD</span><span>20%</span></div>
+                            <div class="axis-badge-item"><span><i class="fa-solid fa-chart-line"></i> Data Analysis, Jurimetria & BI</span><span>85%</span></div>
+                            <div class="axis-badge-item"><span><i class="fa-solid fa-robot"></i> Engenharia de IA</span><span>80%</span></div>
+                            <div class="axis-badge-item"><span><i class="fa-solid fa-code"></i> Data & Dev Stack</span><span>80%</span></div>
+                            <div class="axis-badge-item"><span><i class="fa-solid fa-bullhorn"></i> Relacionamento Social</span><span>72%</span></div>
+                        </div>
                     </div>
 
-                    <div class="axis-summary-list">
-                        <div class="axis-badge-item gestao">
-                            <span class="axis-title-sm"><i class="fa-solid fa-briefcase"></i> ADM & MBA</span>
-                            <span class="axis-pct">100%</span>
-                        </div>
-                        <div class="axis-badge-item direito">
-                            <span class="axis-title-sm"><i class="fa-solid fa-scale-balanced"></i> Direito, Compliance & LGPD</span>
-                            <span class="axis-pct">20%</span>
-                        </div>
-                        <div class="axis-badge-item juri">
-                            <span class="axis-title-sm"><i class="fa-solid fa-chart-line"></i> Data Analisys, Jurimetria & BI</span>
-                            <span class="axis-pct">85%</span>
-                        </div>
-                        <div class="axis-badge-item ia">
-                            <span class="axis-title-sm"><i class="fa-solid fa-robot"></i> Engenharia de IA</span>
-                            <span class="axis-pct">80%</span>
-                        </div>
-                        <div class="axis-badge-item dev">
-                            <span class="axis-title-sm"><i class="fa-solid fa-code"></i> Data & Dev Stack</span>
-                            <span class="axis-pct">80%</span>
-                        </div>
-                        <div class="axis-badge-item comunicacao">
-                            <span class="axis-title-sm"><i class="fa-solid fa-bullhorn"></i> Relacionamento Social</span>
-                            <span class="axis-pct">72%</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tree-skills-column">
-                    <div class="skill-group-box ia">
-                        <div class="group-box-header">
-                            <i class="fa-solid fa-brain"></i>
-                            <h4>IA, PLN & Engenharia de Prompts</h4>
-                        </div>
-                        <div class="skill-bars-container">
+                    <div>
+                        <div class="skill-group-box">
+                            <div class="group-box-header"><i class="fa-solid fa-brain"></i><h4>IA, PLN & Engenharia de Prompts</h4></div>
                             <div class="bar-item">
                                 <div class="bar-labels"><span>Engenharia de Prompts & LLMs</span><span>86%</span></div>
-                                <div class="bar-track"><div class="bar-fill" data-pct="86"></div></div>
+                                <div class="bar-track"><div class="bar-fill" style="width: 86%;"></div></div>
                             </div>
                             <div class="bar-item">
-                                <div class="bar-labels"><span>Inteligência Artificial Aplicada ao Direito</span><span>87%</span></div>
-                                <div class="bar-track"><div class="bar-fill" data-pct="89"></div></div>
+                                <div class="bar-labels"><span>IA Aplicada ao Direito</span><span>89%</span></div>
+                                <div class="bar-track"><div class="bar-fill" style="width: 89%;"></div></div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="skill-group-box dev">
-                        <div class="group-box-header">
-                            <i class="fa-solid fa-database"></i>
-                            <h4>Dev Stack & Arquitetura de Dados</h4>
-                        </div>
-                        <div class="skill-bars-container">
+                        <div class="skill-group-box">
+                            <div class="group-box-header"><i class="fa-solid fa-database"></i><h4>Dev Stack & Arquitetura de Dados</h4></div>
                             <div class="bar-item">
                                 <div class="bar-labels"><span>Python (Streamlit & Modelagem)</span><span>82%</span></div>
-                                <div class="bar-track"><div class="bar-fill" data-pct="82"></div></div>
+                                <div class="bar-track"><div class="bar-fill" style="width: 82%;"></div></div>
                             </div>
                             <div class="bar-item">
-                                <div class="bar-labels"><span>Firebase & Integração de Infraestrutura</span><span>79%</span></div>
-                                <div class="bar-track"><div class="bar-fill" data-pct="79"></div></div>
+                                <div class="bar-labels"><span>Firebase & Infraestrutura</span><span>79%</span></div>
+                                <div class="bar-track"><div class="bar-fill" style="width: 79%;"></div></div>
                             </div>
                             <div class="bar-item">
-                                <div class="bar-labels"><span>Integração de Pagamentos & Cloud Config (+10h Imersão)</span><span>85%</span></div>
-                                <div class="bar-track"><div class="bar-fill" data-pct="85"></div></div>
+                                <div class="bar-labels"><span>Integração de Pagamentos & Cloud (+10h)</span><span>85%</span></div>
+                                <div class="bar-track"><div class="bar-fill" style="width: 85%;"></div></div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="skill-group-box comunicacao">
-                        <div class="group-box-header">
-                            <i class="fa-solid fa-comments"></i>
-                            <h4>Comunicação & Storytelling da Dados</h4>
-                        </div>
-                        <div class="skill-bars-container">
+                        <div class="skill-group-box">
+                            <div class="group-box-header"><i class="fa-solid fa-comments"></i><h4>Comunicação & Storytelling</h4></div>
                             <div class="bar-item">
                                 <div class="bar-labels"><span>Técnicas de Comunicação Institucional</span><span>77%</span></div>
-                                <div class="bar-track"><div class="bar-fill" data-pct="77"></div></div>
+                                <div class="bar-track"><div class="bar-fill" style="width: 77%;"></div></div>
                             </div>
                             <div class="bar-item">
                                 <div class="bar-labels"><span>Comunicação Assertiva</span><span>73%</span></div>
-                                <div class="bar-track"><div class="bar-fill" data-pct="73"></div></div>
+                                <div class="bar-track"><div class="bar-fill" style="width: 73%;"></div></div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </section>
 
-            </div>
-        </div>
-    </section>
-
-    <section class="compliance-bar">
-        <div class="container">
-            <div class="compliance-grid">
-                <div class="compliance-title">
-                    <i class="fa-solid fa-shield-halved"></i>
-                    <h2>Governança,<br>Segurança & LGPD</h2>
+            <!-- ABA 6: GOVERNANÇA, LGPD E IA DISCLAIMER -->
+            <section id="tab-governance" class="view-section">
+                <div class="section-header">
+                    <h2>Governança, Segurança & Ética</h2>
+                    <p>O rigor do tratamento de dados e a transparência metodológica na era da Inteligência Artificial no ecossistema COGNIVUS.</p>
                 </div>
-                <div class="compliance-badges">
-                    <div class="badge-comp">
-                        <h4><i class="fa-solid fa-fingerprint"></i> Privacy by Design</h4>
-                        <p>Arquitetura pensada nativamente para a proteção e privacidade dos dados desde a concepção do código estrutural.</p>
+
+                <div style="background: rgba(167, 139, 250, 0.08); border: 1px solid var(--purple); border-radius: 16px; padding: 30px; margin-bottom: 35px;">
+                    <h3 style="color: var(--purple); font-size: 1.25rem; margin-bottom: 12px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fa-solid fa-handshake"></i> Co-criação Homem-Máquina (Human-in-the-Loop)
+                    </h3>
+                    <p style="color: var(--text-main); font-size: 1rem; line-height: 1.7;">
+                        Acredito na tecnologia como um multiplicador do potencial humano. Neste ecossistema, utilizo Inteligência Artificial de forma declarada como copiloto no desenvolvimento de software e na produção acadêmica/técnica.
+                    </p>
+                    <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; margin-top: 12px;">
+                        Todas as ideias, engenharia de contexto, decisões de design, validações analíticas e a integridade final dos entregáveis são guiadas rigorosamente pela minha supervisão técnica e visão estratégica.
+                    </p>
+                </div>
+
+                <div class="compliance-grid">
+                    <div style="color: var(--accent-glow);">
+                        <i class="fa-solid fa-shield-halved" style="font-size: 2.3rem; margin-bottom: 10px;"></i>
+                        <h2 style="font-size: 1.4rem; font-weight: 800; color: var(--text-main);">Governança,<br>Segurança & LGPD</h2>
                     </div>
-                    <div class="badge-comp">
-                        <h4><i class="fa-solid fa-cookie-bite"></i> Cookie-Less Static</h4>
-                        <p>Este ambiente não realiza o rastreamento, coleta de metadados invisíveis ou armazenamento de cookies analíticos de terceiros.</p>
-                    </div>
-                    <div class="badge-comp">
-                        <h4><i class="fa-solid fa-user-shield"></i> Legítimo Interesse</h4>
-                        <p>Tratamento estrito de dados sob os preceitos da Lei Geral de Proteção de Dados (Lei 13.709/18) e conformidade corporativa.</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+                        <div class="badge-comp" style="flex: 1 1 200px;">
+                            <h4><i class="fa-solid fa-fingerprint"></i> Privacy by Design</h4>
+                            <p>Arquitetura pensada nativamente para a proteção e privacidade dos dados desde a concepção do código estrutural.</p>
+                        </div>
+                        <div class="badge-comp" style="flex: 1 1 200px;">
+                            <h4><i class="fa-solid fa-cookie-bite"></i> Cookie-Less Static</h4>
+                            <p>Este ambiente não realiza o rastreamento, coleta de metadados invisíveis ou armazenamento de cookies analíticos de terceiros.</p>
+                        </div>
+                        <div class="badge-comp" style="flex: 1 1 200px;">
+                            <h4><i class="fa-solid fa-user-shield"></i> Legítimo Interesse</h4>
+                            <p>Tratamento estrito de dados sob os preceitos da Lei Geral de Proteção de Dados (Lei 13.709/18) e conformidade corporativa.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <!-- CAMADA 2: RODAPÉ AUTORAL VISUAL (UI) EXIGIDO PELO PROTOCOLO LEXOS -->
-    <div class="lexos-footer" style="text-align: center; font-size: 0.875rem; color: #6b7280; padding: 1rem 0; border-top: 1px solid #e5e7eb; margin-top: 2rem; background-color: #060b14;">
-        <p><strong>© 2026 LexOS Ecosystem</strong> | Arquitetura e Engenharia: Luciano P. de Moura</p>
-        <p class="legal" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.25rem;">
-            🛡️ Propriedade Intelectual Protegida • Uso Restrito
-        </p>
+        </main>
     </div>
 
+    <!-- MODAL OVERLAY -->
+    <div class="modal-overlay" id="appModal" onclick="closeAppModal(event)">
+        <div class="modal-drawer" onclick="event.stopPropagation()">
+            <div>
+                <button style="background:none; border:none; color:var(--text-muted); font-size:1.5rem; cursor:pointer; float:right;" onclick="closeAppModal()"><i class="fa-solid fa-xmark"></i></button>
+                <h2 id="modalTitle" style="font-size: 1.7rem; color: var(--text-main); margin-bottom: 15px; margin-top:15px;">Título do App</h2>
+                <p id="modalDesc" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 25px;">Descrição do software...</p>
+                
+                <div style="margin-bottom: 25px;">
+                    <h4 style="color: var(--accent-glow); font-size: 0.85rem; margin-bottom: 8px; text-transform:uppercase;">Stack Tecnológica:</h4>
+                    <p id="modalStack" style="color: var(--text-main); font-weight: 600;">Python, Streamlit, Firebase</p>
+                </div>
+            </div>
+
+            <div>
+                <a id="modalLink" href="#" target="_blank" class="btn-topbar" style="width: 100%; justify-content: center; padding: 12px; background: var(--accent-glow); color: #091322; font-weight: 700;">
+                    Acessar Aplicação Agora <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST -->
     <div id="share-toast" class="toast-notification">
         Link copiado para a área de transferência!
     </div>
 
+    <!-- JAVASCRIPT DE INTERAÇÃO -->
     <script>
-        // Lógica do Menu Mobile (Menu Hambúrguer)
-        const mobileBtn = document.getElementById('mobile-menu-btn');
-        const navMenu = document.getElementById('nav-menu');
+        function switchTab(tabId, btnElement) {
+            document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'));
 
-        if(mobileBtn && navMenu) {
-            mobileBtn.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-                const icone = mobileBtn.querySelector('i');
-                if(navMenu.classList.contains('active')) {
-                    icone.classList.remove('fa-bars');
-                    icone.classList.add('fa-xmark');
-                } else {
-                    icone.classList.remove('fa-xmark');
-                    icone.classList.add('fa-bars');
-                }
-            });
+            document.getElementById(tabId).classList.add('active');
+            if(btnElement) btnElement.classList.add('active');
 
-            // Fecha o menu ao clicar em qualquer link no celular
-            document.querySelectorAll('#nav-menu a').forEach(link => {
-                link.addEventListener('click', () => {
-                    navMenu.classList.remove('active');
-                    const icone = mobileBtn.querySelector('i');
-                    if(icone) {
-                        icone.classList.remove('fa-xmark');
-                        icone.classList.add('fa-bars');
-                    }
-                });
-            });
+            const titles = {
+                'tab-home': 'Home / Visão Geral',
+                'tab-lexcore': 'LexCore (8 Pilares Cognitivos)',
+                'tab-triade': 'A Tríade Operacional COGNIVUS',
+                'tab-apps': 'Ecossistema de Aplicações Cognivus',
+                'tab-skills': 'Multidisciplinary Skill Tree',
+                'tab-governance': 'Governança, LGPD & IA'
+            };
+            document.getElementById('current-page-title').innerText = titles[tabId];
+
+            if(window.innerWidth <= 992) {
+                document.getElementById('sidebar').classList.remove('active');
+            }
         }
 
-        const words = [
-            "Legal Analytics & Jurimetria.",
-            "Sistemas Especialistas (LexOS).",
-            "Engenharia de Prompts Aplicada.",
-            "Business Intelligence & Analytics.",
-            "Privacy by Design & Compliance."
-        ];
-        let i = 0;
-        let timer;
-
-        function typingEffect() {
-            let currentWord = words[i].replace(/&amp;/g, '&'); 
-            let word = currentWord.split("");
-            var loopTyping = function() {
-                if (word.length > 0) {
-                    document.getElementById('typewriter').innerHTML += word.shift();
-                } else {
-                    setTimeout(deletingEffect, 2000);
-                    return false;
-                }
-                timer = setTimeout(loopTyping, 60);
-            };
-            loopTyping();
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
         }
 
-        function deletingEffect() {
-            let currentWord = words[i].replace(/&amp;/g, '&');
-            let word = currentWord.split("");
-            var loopDeleting = function() {
-                if (word.length > 0) {
-                    word.pop();
-                    document.getElementById('typewriter').innerHTML = word.join("");
-                } else {
-                    if (words.length > (i + 1)) { i++; } else { i = 0; }
-                    setTimeout(typingEffect, 500);
-                    return false;
-                }
-                timer = setTimeout(loopDeleting, 30);
-            };
-            loopDeleting();
+        function openAppModal(title, desc, stack, link) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalDesc').innerText = desc;
+            document.getElementById('modalStack').innerText = stack;
+            document.getElementById('modalLink').href = link;
+            document.getElementById('appModal').classList.add('active');
+        }
+
+        function closeAppModal() {
+            document.getElementById('appModal').classList.remove('active');
         }
 
         function copyShareLink() {
@@ -1475,26 +1189,45 @@
                 const toast = document.getElementById("share-toast");
                 toast.classList.add("show");
                 setTimeout(() => { toast.classList.remove("show"); }, 3000);
-            }).catch(err => {
-                console.error("Erro ao copiar o link: ", err);
             });
         }
 
-        function animateSkillBars() {
-            const fills = document.querySelectorAll('.bar-fill');
-            border = fills.forEach(fill => {
-                const pct = fill.getAttribute('data-pct');
-                fill.style.width = pct + '%';
-            });
+        // TYPEWRITER
+        const words = [
+            "Legal Analytics & Jurimetria.",
+            "Plataforma Digital COGNIVUS.",
+            "Engenharia de Prompts Aplicada.",
+            "Business Intelligence & Analytics.",
+            "Privacy by Design & Compliance."
+        ];
+        let i = 0, wordIdx = 0, isDeleting = false;
+
+        function type() {
+            const current = words[i];
+            const elem = document.getElementById('typewriter');
+            
+            if (isDeleting) {
+                elem.innerText = current.substring(0, wordIdx--);
+            } else {
+                elem.innerText = current.substring(0, wordIdx++);
+            }
+
+            if (!isDeleting && wordIdx === current.length + 1) {
+                isDeleting = true;
+                setTimeout(type, 1800);
+            } else if (isDeleting && wordIdx === 0) {
+                isDeleting = false;
+                i = (i + 1) % words.length;
+                setTimeout(type, 400);
+            } else {
+                setTimeout(type, isDeleting ? 40 : 80);
+            }
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
-            typingEffect();
-            setTimeout(animateSkillBars, 300);
-        });
+        document.addEventListener("DOMContentLoaded", type);
     </script>
 
-<!-- ANALYTICS INTERNO E SILENCIOSO (FIREBASE) -->
+    <!-- FIREBASE ANALYTICS -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
         import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
@@ -1511,15 +1244,12 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // Registra a visita silenciosamente
         try {
             addDoc(collection(db, "visitas_site"), {
-                pagina: "index.html",
+                pagina: "index.html_v7_cognivus",
                 data_acesso: serverTimestamp()
             });
-        } catch (e) {
-            // Falha silenciosa para não afetar a experiência do usuário
-        }
+        } catch (e) {}
     </script>
 </body>
 </html>

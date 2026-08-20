@@ -2,7 +2,7 @@
 <!-- 
     SISTEMA: COGNIVUS Ecosystem Platform
     MÓDULO: Interactive Executive Dashboard (Portfólio Pessoal & Hub de Engenharia)
-    VERSÃO: v.7.5.0 - Layout Balanceado, Marca COGNIVUS Registrada & Visual Matrix
+    VERSÃO: v.8.1.0 - Estrutura Integral Mantida + Posicionamento HI-C
     STACK: HTML5, CSS3, JavaScript, FontAwesome, Firebase
     ARQUITETO E DESENVOLVEDOR: Luciano P. de Moura
     RESTRIÇÃO: Uso restrito. Propriedade intelectual protegida do Ecossistema COGNIVUS.
@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luciano P. de Moura | COGNIVUS Ecosystem Platform</title>
+    <title>Luciano P. de Moura | Estrategista End-to-End & Arquiteto de Software</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* ==========================================================================
@@ -322,7 +322,7 @@
         }
 
         .typewriter-container { font-size: 1.3rem; color: var(--accent-glow); margin-bottom: 20px; height: 35px; font-weight: 600; }
-        .hero-p { font-size: 1rem; color: var(--text-muted); margin-bottom: 25px; line-height: 1.6; }
+        .hero-p { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 25px; line-height: 1.7; }
 
         .hero-visual-wrapper {
             width: 100%; aspect-ratio: 16 / 9; border-radius: 14px; padding: 4px;
@@ -405,7 +405,7 @@
         .status-pill.online i { color: var(--success); }
         .status-pill.offline i { color: var(--danger); }
 
-        .btn-card-link { font-size: 0.85rem; font-weight: 700; color: var(--accent-glow); display: flex; align-items: center; gap: 6px; }
+        .btn-card-link { font-size: 0.85rem; font-weight: 700; color: var(--accent-glow); display: flex; align-items: center; gap: 6px; background: none; border: none; cursor: pointer; }
 
         /* SKILL TREE E AVATAR */
         .tree-layout { display: grid; grid-template-columns: 1fr; gap: 25px; align-items: start; }
@@ -494,7 +494,7 @@
 
     <div class="app-container">
         
-        <!-- SIDEBAR COM A MARCA REGISTRADA COGNIVUS -->
+        <!-- SIDEBAR -->
         <aside class="sidebar" id="sidebar">
             <div>
                 <div class="sidebar-header">
@@ -516,15 +516,9 @@
                     <li style="margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 10px;">
                         <a href="comercial.html" class="nav-link" style="color: #38bdf8;"><i class="fa-solid fa-briefcase"></i> Comercial</a>
                     </li>
-                    <li>
-                        <a href="academico.html" class="nav-link" style="color: #a78bfa;"><i class="fa-solid fa-graduation-cap"></i> Científico & Lattes</a>
-                    </li>
-                    <li>
-                        <a href="base.html" class="nav-link" style="color: #c084fc;"><i class="fa-solid fa-headphones-simple"></i> Estúdio Sensorial</a>
-                    </li>
-                    <li>
-                        <a href="dashboard.html" class="nav-link" style="color: #38bdf8;"><i class="fa-solid fa-chart-pie"></i> Dashboard Interno</a>
-                    </li>
+                    <li><a href="academico.html" class="nav-link" style="color: #a78bfa;"><i class="fa-solid fa-graduation-cap"></i> Científico & Lattes</a></li>
+                    <li><a href="base.html" class="nav-link" style="color: #c084fc;"><i class="fa-solid fa-headphones-simple"></i> Estúdio Sensorial</a></li>
+                    <li><a href="dashboard.html" class="nav-link" style="color: #38bdf8;"><i class="fa-solid fa-chart-pie"></i> Dashboard Interno</a></li>
                 </ul>
             </div>
 
@@ -541,81 +535,49 @@
             <header class="topbar">
                 <div style="display: flex; align-items: center; gap: 15px;">
                     <button class="mobile-toggle" onclick="toggleSidebar()"><i class="fa-solid fa-bars"></i></button>
-                    <span class="topbar-title" id="current-page-title">Home / Visão Geral</span>
+                    <span class="topbar-title" id="current-page-title">Home / A Anatomia da Autonomia (HI-C)</span>
                 </div>
 
                 <div class="topbar-actions">
                     <a href="https://github.com/lucianoadm" target="_blank" class="btn-topbar">
                         <i class="fa-brands fa-github"></i> GitHub
                     </a>
-                    
                     <a href="https://www.linkedin.com/in/luciano-paiva-b0b01a19b/" target="_blank" class="btn-topbar">
                         <i class="fa-brands fa-linkedin"></i> LinkedIn
                     </a>
-                    
-                    <!-- NOVO BOTÃO: Portfólios Profissionais -->
                     <a href="https://lucianoadm.github.io/meta-case-portfolio/index.html" target="_blank" class="btn-topbar" style="border-color: var(--accent-glow); color: var(--accent-glow); background: rgba(56, 189, 248, 0.08);">
                         <i class="fa-solid fa-briefcase"></i> Portfólios Profissionais
                     </a>
-                    
-                    <!-- BOTÃO B2B ATUALIZADO -->
                     <a href="https://negocios.cognivus.com.br" target="_blank" class="btn-topbar" style="border-color: #f59e0b; color: #f59e0b; background: rgba(245, 158, 11, 0.08);">
                         <i class="fa-solid fa-building-shield"></i> Consultoria B2B
                     </a>
-                    
                     <button class="btn-topbar" onclick="copyShareLink()">
                         <i class="fa-solid fa-share-nodes"></i> Compartilhar
                     </button>
                 </div>
             </header>
 
-            <!-- ABA 1: HOME & HERO TOTALMENTE DISTRIBUÍDO E BALANCEADO -->
+            <!-- ABA 1: HOME & HERO HI-C -->
             <section id="tab-home" class="view-section active">
                 
-                <!-- KPI MATRIX SUPERIOR DA HOME -->
                 <div class="kpi-matrix-grid">
-                    <div class="kpi-card-sm">
-                        <div class="kpi-icon-sm"><i class="fa-solid fa-cubes"></i></div>
-                        <div class="kpi-text-sm">
-                            <h4>10+</h4>
-                            <p>Aplicações Ativas</p>
-                        </div>
-                    </div>
-                    <div class="kpi-card-sm">
-                        <div class="kpi-icon-sm"><i class="fa-solid fa-layer-group"></i></div>
-                        <div class="kpi-text-sm">
-                            <h4>8</h4>
-                            <p>Pilares Cognitivos</p>
-                        </div>
-                    </div>
-                    <div class="kpi-card-sm">
-                        <div class="kpi-icon-sm"><i class="fa-solid fa-shield-halved"></i></div>
-                        <div class="kpi-text-sm">
-                            <h4>100%</h4>
-                            <p>Privacy & Cookie-Less</p>
-                        </div>
-                    </div>
-                    <div class="kpi-card-sm">
-                        <div class="kpi-icon-sm"><i class="fa-solid fa-robot"></i></div>
-                        <div class="kpi-text-sm">
-                            <h4>Human-in-the-Loop</h4>
-                            <p>Orquestração com IA</p>
-                        </div>
-                    </div>
+                    <div class="kpi-card-sm"><div class="kpi-icon-sm"><i class="fa-solid fa-cubes"></i></div><div class="kpi-text-sm"><h4>End-to-End</h4><p>Autonomia Absoluta</p></div></div>
+                    <div class="kpi-card-sm"><div class="kpi-icon-sm"><i class="fa-solid fa-layer-group"></i></div><div class="kpi-text-sm"><h4>8</h4><p>Pilares Cognitivos</p></div></div>
+                    <div class="kpi-card-sm"><div class="kpi-icon-sm"><i class="fa-solid fa-shield-halved"></i></div><div class="kpi-text-sm"><h4>100%</h4><p>Privacy by Design</p></div></div>
+                    <div class="kpi-card-sm"><div class="kpi-icon-sm"><i class="fa-solid fa-robot"></i></div><div class="kpi-text-sm"><h4>Human/Loop</h4><p>Orquestração com IA</p></div></div>
                 </div>
 
-                <!-- HERO BANNER -->
+                <!-- HERO BANNER (NOVA NARRATIVA HI-C) -->
                 <div class="hero-layout">
                     <div>
-                        <div class="hero-tag"><i class="fa-solid fa-shield-halved"></i> AMBIENTE 100% COMPLIANT & COOKIE-LESS</div>
-                        <h1>Engenharia de Legado.</h1>
+                        <div class="hero-tag"><i class="fa-solid fa-bolt"></i> HIGH IMPACT INDIVIDUAL CONTRIBUTOR (HI-C)</div>
+                        <h1 style="font-size: 2.3rem;">Estrategista & Arquiteto<br>End-to-End.</h1>
                         <div class="typewriter-container">
                             <span id="typewriter"></span><span>|</span>
                         </div>
                         <p class="hero-p">
-                            Desenvolvimento de soluções estratégicas e aplicações orientadas a dados no ecossistema 
-                            <strong>COGNIVUS</strong>. Unindo Ciência de Dados, Business Intelligence e 
-                            Inteligência Artificial Generativa sob rígidos padrões de Governança corporativa e LGPD.
+                            Unindo a visão estratégica de um MBA Executivo, o rigor regulatório do Bacharelado em Direito e a precisão da engenharia de software para arquitetar plataformas completas.<br><br>
+                            Atuo substituindo a fragmentação de equipes tradicionais: domino a <strong>interface do usuário</strong> (Streamlit), a <strong>infraestrutura de segurança</strong> (Firebase) e a <strong>inteligência do núcleo lógico</strong> (Python) para materializar ecossistemas corporativos autônomos.
                         </p>
                         <button class="btn-topbar" style="padding: 12px 24px; background: var(--accent-glow); color: #091322; font-weight: 700;" onclick="switchTab('tab-lexcore', document.querySelectorAll('.menu-btn')[1])">
                             <i class="fa-solid fa-layer-group"></i> Acessar Matriz Cognitiva (LexCore)
@@ -629,13 +591,48 @@
                     </div>
                 </div>
 
-                <!-- QUOTE BAR -->
+                <!-- SEÇÃO: ANATOMIA DA AUTONOMIA (HI-C) -->
+                <div style="margin-top: 40px; margin-bottom: 40px;">
+                    <div style="text-align: left; margin-bottom: 25px;">
+                        <h3 style="font-size: 1.5rem; font-weight: 800; color: var(--text-main);">
+                            <i class="fa-solid fa-microchip" style="color: var(--accent-glow); margin-right: 8px;"></i>
+                            A Anatomia da Autonomia
+                        </h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 5px;">Como a mentalidade HI-C consolida a construção de ecossistemas na Cognivus.</p>
+                    </div>
+
+                    <div class="grid-ecosystem" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+                        
+                        <div class="card-eco core" style="padding: 20px;">
+                            <h4 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                                <i class="fa-solid fa-layer-group text-pink-500" style="color: #f43f5e;"></i> Autonomia Full-Stack
+                            </h4>
+                            <p style="font-size: 0.88rem;">Desenvolvimento solitário e gestão ponta a ponta. Orquestração completa da stack do <strong>LexOS</strong> e <strong>LexMetric</strong>: criando a interface em Streamlit, a segurança de infraestrutura no Firebase e o núcleo analítico em Python.</p>
+                        </div>
+                        
+                        <div class="card-eco dat" style="padding: 20px;">
+                            <h4 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                                <i class="fa-solid fa-robot text-amber-500" style="color: #f59e0b;"></i> Alavancagem com IA
+                            </h4>
+                            <p style="font-size: 0.88rem;">A Inteligência Artificial como equipe estendida. Criação de agentes locais (<strong>LangTutor</strong>) e engenharia de resiliência com arquitetura de <strong>fallback duplo</strong> para contornar falhas de APIs externas e garantir alta disponibilidade.</p>
+                        </div>
+                        
+                        <div class="card-eco log" style="padding: 20px;">
+                            <h4 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                                <i class="fa-solid fa-scale-balanced text-emerald-500" style="color: #10b981;"></i> Conhecimento de Domínio
+                            </h4>
+                            <p style="font-size: 0.88rem;">Código que ataca dores reais corporativas. A fusão da visão estratégica do MBA com o rigor regulatório do Direito gera sistemas baseados em problemas de mercado, materializando repositórios completos como o <strong>NeuroOS</strong>.</p>
+                        </div>
+
+                    </div>
+                </div>
+
                 <div class="hero-quote-bar">
                     <i class="fa-solid fa-quote-left" style="margin-right: 8px; opacity: 0.6;"></i>
                     "O dado é passado, o processo é presente e a decisão é futuro."
                 </div>
 
-                <!-- PAINEL DE ACESSO RÁPIDO PARA PREENCHER O ESPAÇO INFERIOR -->
+                <!-- PAINEL DE ACESSO RÁPIDO -->
                 <div style="margin-top: 30px;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                         <h3 style="font-size: 1.3rem; font-weight: 700; color: var(--text-main);">
@@ -693,7 +690,6 @@
                         O ecossistema COGNIVUS opera sob rígidos padrões de governança e <em>Privacy by Design</em>. Empregamos o método <strong>Human-in-the-Loop</strong> e Inteligência Artificial Explicável (XAI), assegurando alinhamento total com as diretrizes da ANPD e o Art. 20 da LGPD. As predições algorítmicas são ferramentas de apoio à decisão e não substituem o rigor da supervisão e validação humana autoral.
                     </p>
                 </div>
-
             </section>
 
             <!-- ABA 2: LEXCORE (8 PILARES) -->
@@ -808,8 +804,7 @@
                     <h2>A Tríade Operacional COGNIVUS</h2>
                     <p>O núcleo da inteligência corporativa: estruturar na Governança, processar na Análise e blindar na Decisão.</p>
                 </div>
-
-                <div class="grid-ecosystem">
+                <div class="grid-ecosystem" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
                     <div class="card-eco core">
                         <div>
                             <div class="card-header-eco"><span class="badge-eco core">Alicerce</span><div class="icon-eco"><i class="fa-solid fa-folder-tree"></i></div></div>
@@ -920,7 +915,7 @@
                         <div>
                             <div class="card-header-eco"><span class="badge-eco dat">Prompt</span><div class="icon-eco"><i class="fa-solid fa-network-wired"></i></div></div>
                             <h3>Gerador</h3>
-                            <p>Módulo gerador de prompts diversos para uso com inteligência de dados aplicada diretamente na avaliação de métricas.</p>
+                            <p>Módulo de gerador de prompt diversos para uso com inteligência de dados aplicada diretamente na avaliação de métricas.</p>
                         </div>
                         <div class="card-actions">
                             <span class="status-pill offline"><i class="fa-solid fa-circle"></i> Offline</span>
@@ -948,7 +943,7 @@
                         </div>
                         <div class="card-actions">
                             <span class="status-pill online"><i class="fa-solid fa-circle"></i> Online</span>
-                            <a href="https://luciano.cognivus.com.br/" target="_blank" class="btn-card-link">Em testes <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                            <a href="https://luciano.cognivus.com.br/" target="_blank" class="btn-card-link">Em testes<i class="fa-solid fa-arrow-up-right-from-square"></i></a>
                         </div>
                     </div>
 
@@ -1162,7 +1157,7 @@
         </main>
     </div>
 
-    <!-- MODAL OVERLAY -->
+    <!-- MODAL OVERLAY PARA APPS -->
     <div class="modal-overlay" id="appModal" onclick="closeAppModal(event)">
         <div class="modal-drawer" onclick="event.stopPropagation()">
             <div>
@@ -1194,15 +1189,14 @@
         function switchTab(tabId, btnElement) {
             document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
             document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'));
-
             document.getElementById(tabId).classList.add('active');
             if(btnElement) btnElement.classList.add('active');
 
             const titles = {
-                'tab-home': 'Home / Visão Geral',
+                'tab-home': 'Home / A Anatomia da Autonomia (HI-C)',
                 'tab-lexcore': 'LexCore (8 Pilares Cognitivos)',
                 'tab-triade': 'A Tríade Operacional COGNIVUS',
-                'tab-apps': 'Ecossistema de Aplicações Cognivus',
+                'tab-apps': 'Ecossistema End-to-End',
                 'tab-skills': 'Multidisciplinary Skill Tree',
                 'tab-governance': 'Governança, LGPD & IA'
             };
@@ -1238,12 +1232,10 @@
             });
         }
 
-        // TYPEWRITER
         const words = [
-            "Legal Analytics & Jurimetria.",
-            "Plataforma Digital COGNIVUS.",
-            "Engenharia de Prompts Aplicada.",
-            "Business Intelligence & Analytics.",
+            "High Impact Individual Contributor (HI-C).",
+            "Estrategista End-to-End.",
+            "Arquitetura de Software e Negócios.",
             "Privacy by Design & Compliance."
         ];
         let i = 0, wordIdx = 0, isDeleting = false;
@@ -1269,7 +1261,6 @@
                 setTimeout(type, isDeleting ? 40 : 80);
             }
         }
-
         document.addEventListener("DOMContentLoaded", type);
     </script>
 
@@ -1292,7 +1283,7 @@
 
         try {
             addDoc(collection(db, "visitas_site"), {
-                pagina: "index.html_v7_cognivus",
+                pagina: "index.html_v8_cognivus_completa",
                 data_acesso: serverTimestamp()
             });
         } catch (e) {}

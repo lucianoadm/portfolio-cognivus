@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <!-- 
-    SISTEMA: COGNIVUS Ecosystem Platform
-    MÓDULO: Interactive Executive Dashboard (Portfólio Pessoal & Hub de Engenharia)
-    VERSÃO: v.8.1.0 - Estrutura Integral Mantida + Posicionamento HI-C
+    SISTEMA: Portfólio Pessoal & Hub de Engenharia
+    VERSÃO: v.9.0.0 - Clean Portfolio Edition
     STACK: HTML5, CSS3, JavaScript, FontAwesome, Firebase
     ARQUITETO E DESENVOLVEDOR: Luciano P. de Moura
-    RESTRIÇÃO: Uso restrito. Propriedade intelectual protegida do Ecossistema COGNIVUS.
 -->
 <html lang="pt-BR">
 <head>
@@ -15,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         /* ==========================================================================
-           DESIGN SYSTEM: SUAVE OCEAN BLUE EDITION (COGNIVUS BRANDING)
+           DESIGN SYSTEM: SUAVE OCEAN BLUE EDITION
            ========================================================================== */
         :root {
             --bg-deep: #091322;       
@@ -33,7 +31,6 @@
             --purple: #a78bfa;
             --danger: #ef4444;
             
-            --badge-edu: #a78bfa;     
             --badge-core: #f43f5e;    
             --badge-log: #10b981;     
             --badge-dat: #f59e0b;     
@@ -123,7 +120,7 @@
             overflow-y: auto;
         }
 
-        .sidebar-menu button, .sidebar-menu a.nav-link {
+        .sidebar-menu button {
             width: 100%;
             background: transparent;
             border: none;
@@ -140,13 +137,13 @@
             text-align: left;
         }
 
-        .sidebar-menu button i, .sidebar-menu a.nav-link i {
+        .sidebar-menu button i {
             font-size: 1.1rem;
             width: 20px;
             text-align: center;
         }
 
-        .sidebar-menu button:hover, .sidebar-menu a.nav-link:hover {
+        .sidebar-menu button:hover {
             color: var(--text-main);
             background: rgba(56, 189, 248, 0.1);
         }
@@ -243,7 +240,6 @@
            GRID E PAINÉIS DE CONTEÚDO
            ========================================================================== */
         
-        /* KPI MATRIX TOPBAR DENTRO DA HOME */
         .kpi-matrix-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
@@ -342,7 +338,6 @@
             font-size: 1.05rem;
         }
 
-        /* GRID DO ECOSSISTEMA */
         .section-header { text-align: center; max-width: 750px; margin: 0 auto 40px auto; }
         .section-header h2 {
             font-size: 2.1rem; font-weight: 800; margin-bottom: 12px;
@@ -375,37 +370,9 @@
             border-color: var(--border-hover);
             box-shadow: 0 10px 25px rgba(56, 189, 248, 0.15);
         }
-
-        .card-header-eco { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 18px; }
         
-        .badge-eco {
-            font-size: 0.7rem; font-weight: 800; padding: 4px 9px; border-radius: 4px;
-            letter-spacing: 1px; text-transform: uppercase;
-        }
-        .badge-eco.edu { background: rgba(167, 139, 250, 0.15); color: var(--badge-edu); }
-        .badge-eco.core { background: rgba(244, 63, 94, 0.15); color: var(--badge-core); }
-        .badge-eco.log { background: rgba(16, 185, 129, 0.15); color: var(--badge-log); }
-        .badge-eco.dat { background: rgba(245, 158, 11, 0.15); color: var(--badge-dat); }
-        .badge-eco.sem { background: rgba(34, 211, 238, 0.15); color: var(--accent-glow-secondary); }
-        .badge-eco.hub { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
-        .badge-eco.pccs { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
-        .badge-eco.phrase { background: rgba(139, 92, 246, 0.15); color: #8b5cf6; }
-        .badge-eco.divine { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
-
-        .icon-eco { font-size: 1.6rem; color: var(--accent-glow); }
-        .card-eco h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 8px; color: var(--text-main); }
+        .card-eco h4 { color: var(--text-main); font-size: 1.1rem; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
         .card-eco p { color: var(--text-muted); font-size: 0.92rem; margin-bottom: 18px; flex-grow: 1; line-height: 1.5; }
-
-        .card-actions {
-            display: flex; justify-content: space-between; align-items: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 14px;
-        }
-
-        .status-pill { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; font-weight: 600; color: var(--text-muted); }
-        .status-pill.online i { color: var(--success); }
-        .status-pill.offline i { color: var(--danger); }
-
-        .btn-card-link { font-size: 0.85rem; font-weight: 700; color: var(--accent-glow); display: flex; align-items: center; gap: 6px; background: none; border: none; cursor: pointer; }
 
         /* SKILL TREE E AVATAR */
         .tree-layout { display: grid; grid-template-columns: 1fr; gap: 25px; align-items: start; }
@@ -452,15 +419,7 @@
         .bar-track { height: 6px; background: rgba(255, 255, 255, 0.08); border-radius: 10px; overflow: hidden; }
         .bar-fill { height: 100%; background: var(--accent-glow); border-radius: 10px; width: 0%; transition: width 1.2s ease; }
 
-        /* COMPLIANCE GRID */
-        .compliance-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-        @media(min-width: 768px) { .compliance-grid { grid-template-columns: 1fr 2.5fr; align-items: center; } }
-        .badge-comp { background-color: rgba(13, 25, 47, 0.6); border: 1px solid var(--border-color); padding: 15px 20px; border-radius: 8px; }
-        .badge-comp h4 { color: var(--text-main); font-size: 0.9rem; font-weight: 700; margin-bottom: 5px; display: flex; align-items: center; gap: 8px; }
-        .badge-comp h4 i { color: var(--success); }
-        .badge-comp p { color: var(--text-muted); font-size: 0.82rem; line-height: 1.4; }
-
-        /* TOAST & MODAL */
+        /* TOAST */
         .toast-notification {
             position: fixed; bottom: -60px; right: 20px; background: rgba(13, 25, 47, 0.95);
             border: 1px solid var(--accent-glow); color: var(--text-main); padding: 12px 24px;
@@ -468,19 +427,6 @@
             z-index: 2000; transition: bottom 0.4s ease;
         }
         .toast-notification.show { bottom: 20px; }
-
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(0,0,0,0.75); backdrop-filter: blur(8px); z-index: 2000;
-            display: none; justify-content: flex-end;
-        }
-        .modal-overlay.active { display: flex; }
-        .modal-drawer {
-            width: 100%; max-width: 480px; height: 100%; background: var(--bg-sidebar);
-            border-left: 1px solid var(--border-color); padding: 30px; display: flex;
-            flex-direction: column; justify-content: space-between; animation: slideLeft 0.3s ease;
-        }
-        @keyframes slideLeft { from { transform: translateX(100%); } to { transform: translateX(0); } }
 
         @media (max-width: 992px) {
             aside.sidebar { transform: translateX(-100%); }
@@ -498,33 +444,22 @@
         <aside class="sidebar" id="sidebar">
             <div>
                 <div class="sidebar-header">
-                    <i class="fa-solid fa-brain"></i>
+                    <i class="fa-solid fa-code"></i>
                     <div class="sidebar-brand">
                         LUCIANO P. DE MOURA
-                        <span>COGNIVUS Ecosystem Platform</span>
+                        <span>Estrategista & Desenvolvedor</span>
                     </div>
                 </div>
 
                 <ul class="sidebar-menu">
                     <li><button class="menu-btn active" onclick="switchTab('tab-home', this)"><i class="fa-solid fa-house"></i> Visão Geral & Hero</button></li>
-                    <li><button class="menu-btn" onclick="switchTab('tab-lexcore', this)"><i class="fa-solid fa-layer-group"></i> LexCore (8 Pilares)</button></li>
-                    <li><button class="menu-btn" onclick="switchTab('tab-triade', this)"><i class="fa-solid fa-shield-halved"></i> Tríade Operacional</button></li>
-                    <li><button class="menu-btn" onclick="switchTab('tab-apps', this)"><i class="fa-solid fa-cubes"></i> Ecossistema de Apps</button></li>
                     <li><button class="menu-btn" onclick="switchTab('tab-skills', this)"><i class="fa-solid fa-sitemap"></i> Skill Tree Multidisciplinar</button></li>
-                    <li><button class="menu-btn" onclick="switchTab('tab-governance', this)"><i class="fa-solid fa-user-lock"></i> Governança, LGPD & IA</button></li>
-                    
-                    <li style="margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 10px;">
-                        <a href="comercial.html" class="nav-link" style="color: #38bdf8;"><i class="fa-solid fa-briefcase"></i> Comercial</a>
-                    </li>
-                    <li><a href="academico.html" class="nav-link" style="color: #a78bfa;"><i class="fa-solid fa-graduation-cap"></i> Científico & Lattes</a></li>
-                    <li><a href="base.html" class="nav-link" style="color: #c084fc;"><i class="fa-solid fa-headphones-simple"></i> Estúdio Sensorial</a></li>
-                    <li><a href="dashboard.html" class="nav-link" style="color: #38bdf8;"><i class="fa-solid fa-chart-pie"></i> Dashboard Interno</a></li>
                 </ul>
             </div>
 
             <div class="sidebar-footer">
-                <p><strong>© 2026 COGNIVUS Ecosystem</strong></p>
-                <p style="font-size: 0.7rem; color: #6b7280; margin-top: 2px;">Propriedade Intelectual Protegida</p>
+                <p><strong>© 2026 Luciano P. de Moura</strong></p>
+                <p style="font-size: 0.7rem; color: #6b7280; margin-top: 2px;">Todos os direitos reservados.</p>
             </div>
         </aside>
 
@@ -535,7 +470,7 @@
             <header class="topbar">
                 <div style="display: flex; align-items: center; gap: 15px;">
                     <button class="mobile-toggle" onclick="toggleSidebar()"><i class="fa-solid fa-bars"></i></button>
-                    <span class="topbar-title" id="current-page-title">Home / A Anatomia da Autonomia (HI-C)</span>
+                    <span class="topbar-title" id="current-page-title">Visão Geral & Hero</span>
                 </div>
 
                 <div class="topbar-actions">
@@ -544,12 +479,6 @@
                     </a>
                     <a href="https://www.linkedin.com/in/luciano-paiva-b0b01a19b/" target="_blank" class="btn-topbar">
                         <i class="fa-brands fa-linkedin"></i> LinkedIn
-                    </a>
-                    <a href="https://lucianoadm.github.io/meta-case-portfolio/index.html" target="_blank" class="btn-topbar" style="border-color: var(--accent-glow); color: var(--accent-glow); background: rgba(56, 189, 248, 0.08);">
-                        <i class="fa-solid fa-briefcase"></i> Portfólios Profissionais
-                    </a>
-                    <a href="https://negocios.cognivus.com.br" target="_blank" class="btn-topbar" style="border-color: #f59e0b; color: #f59e0b; background: rgba(245, 158, 11, 0.08);">
-                        <i class="fa-solid fa-building-shield"></i> Consultoria B2B
                     </a>
                     <button class="btn-topbar" onclick="copyShareLink()">
                         <i class="fa-solid fa-share-nodes"></i> Compartilhar
@@ -562,7 +491,7 @@
                 
                 <div class="kpi-matrix-grid">
                     <div class="kpi-card-sm"><div class="kpi-icon-sm"><i class="fa-solid fa-cubes"></i></div><div class="kpi-text-sm"><h4>End-to-End</h4><p>Autonomia Absoluta</p></div></div>
-                    <div class="kpi-card-sm"><div class="kpi-icon-sm"><i class="fa-solid fa-layer-group"></i></div><div class="kpi-text-sm"><h4>8</h4><p>Pilares Cognitivos</p></div></div>
+                    <div class="kpi-card-sm"><div class="kpi-icon-sm"><i class="fa-solid fa-code"></i></div><div class="kpi-text-sm"><h4>Python</h4><p>Núcleo Analítico</p></div></div>
                     <div class="kpi-card-sm"><div class="kpi-icon-sm"><i class="fa-solid fa-shield-halved"></i></div><div class="kpi-text-sm"><h4>100%</h4><p>Privacy by Design</p></div></div>
                     <div class="kpi-card-sm"><div class="kpi-icon-sm"><i class="fa-solid fa-robot"></i></div><div class="kpi-text-sm"><h4>Human/Loop</h4><p>Orquestração com IA</p></div></div>
                 </div>
@@ -579,9 +508,6 @@
                             Unindo a visão estratégica de um MBA Executivo, o rigor regulatório do Bacharelado em Direito e a precisão da engenharia de software para arquitetar plataformas completas.<br><br>
                             Atuo substituindo a fragmentação de equipes tradicionais: domino a <strong>interface do usuário</strong> (Streamlit), a <strong>infraestrutura de segurança</strong> (Firebase) e a <strong>inteligência do núcleo lógico</strong> (Python) para materializar ecossistemas corporativos autônomos.
                         </p>
-                        <button class="btn-topbar" style="padding: 12px 24px; background: var(--accent-glow); color: #091322; font-weight: 700;" onclick="switchTab('tab-lexcore', document.querySelectorAll('.menu-btn')[1])">
-                            <i class="fa-solid fa-layer-group"></i> Acessar Matriz Cognitiva (LexCore)
-                        </button>
                     </div>
 
                     <div class="hero-visual-wrapper">
@@ -598,30 +524,24 @@
                             <i class="fa-solid fa-microchip" style="color: var(--accent-glow); margin-right: 8px;"></i>
                             A Anatomia da Autonomia
                         </h3>
-                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 5px;">Como a mentalidade HI-C consolida a construção de ecossistemas na Cognivus.</p>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 5px;">Como a mentalidade HI-C consolida a construção de ecossistemas complexos.</p>
                     </div>
 
                     <div class="grid-ecosystem" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
                         
-                        <div class="card-eco core" style="padding: 20px;">
-                            <h4 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
-                                <i class="fa-solid fa-layer-group text-pink-500" style="color: #f43f5e;"></i> Autonomia Full-Stack
-                            </h4>
-                            <p style="font-size: 0.88rem;">Desenvolvimento solitário e gestão ponta a ponta. Orquestração completa da stack do <strong>LexOS</strong> e <strong>LexMetric</strong>: criando a interface em Streamlit, a segurança de infraestrutura no Firebase e o núcleo analítico em Python.</p>
+                        <div class="card-eco" style="padding: 20px;">
+                            <h4><i class="fa-solid fa-layer-group" style="color: #f43f5e;"></i> Autonomia Full-Stack</h4>
+                            <p style="font-size: 0.88rem;">Desenvolvimento solitário e gestão ponta a ponta. Orquestração completa de aplicações: criando a interface moderna, a segurança de infraestrutura e o núcleo analítico em Python.</p>
                         </div>
                         
-                        <div class="card-eco dat" style="padding: 20px;">
-                            <h4 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
-                                <i class="fa-solid fa-robot text-amber-500" style="color: #f59e0b;"></i> Alavancagem com IA
-                            </h4>
-                            <p style="font-size: 0.88rem;">A Inteligência Artificial como equipe estendida. Criação de agentes locais (<strong>LangTutor</strong>) e engenharia de resiliência com arquitetura de <strong>fallback duplo</strong> para contornar falhas de APIs externas e garantir alta disponibilidade.</p>
+                        <div class="card-eco" style="padding: 20px;">
+                            <h4><i class="fa-solid fa-robot" style="color: #f59e0b;"></i> Alavancagem com IA</h4>
+                            <p style="font-size: 0.88rem;">A Inteligência Artificial como equipe estendida. Criação de agentes locais e engenharia de resiliência com arquitetura de fallback para contornar falhas de APIs externas e garantir alta disponibilidade.</p>
                         </div>
                         
-                        <div class="card-eco log" style="padding: 20px;">
-                            <h4 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
-                                <i class="fa-solid fa-scale-balanced text-emerald-500" style="color: #10b981;"></i> Conhecimento de Domínio
-                            </h4>
-                            <p style="font-size: 0.88rem;">Código que ataca dores reais corporativas. A fusão da visão estratégica do MBA com o rigor regulatório do Direito gera sistemas baseados em problemas de mercado, materializando repositórios completos como o <strong>NeuroOS</strong>.</p>
+                        <div class="card-eco" style="padding: 20px;">
+                            <h4><i class="fa-solid fa-scale-balanced" style="color: #10b981;"></i> Conhecimento de Domínio</h4>
+                            <p style="font-size: 0.88rem;">Código que ataca dores reais corporativas. A fusão da visão estratégica do MBA com o rigor regulatório do Direito gera sistemas baseados em problemas de mercado.</p>
                         </div>
 
                     </div>
@@ -631,349 +551,9 @@
                     <i class="fa-solid fa-quote-left" style="margin-right: 8px; opacity: 0.6;"></i>
                     "O dado é passado, o processo é presente e a decisão é futuro."
                 </div>
-
-                <!-- PAINEL DE ACESSO RÁPIDO -->
-                <div style="margin-top: 30px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                        <h3 style="font-size: 1.3rem; font-weight: 700; color: var(--text-main);">
-                            <i class="fa-solid fa-bolt" style="color: var(--accent-glow); margin-right: 8px;"></i>
-                            Visão Geral do Ecossistema Cognivus
-                        </h3>
-                        <button class="btn-card-link" onclick="switchTab('tab-apps', document.querySelectorAll('.menu-btn')[3])">Ver Todos os Apps <i class="fa-solid fa-arrow-right"></i></button>
-                    </div>
-
-                    <div class="grid-ecosystem">
-                        <div class="card-eco pccs">
-                            <div>
-                                <div class="card-header-eco"><span class="badge-eco pccs">Governança</span><i class="fa-solid fa-scale-balanced icon-eco" style="color: #ef4444;"></i></div>
-                                <h3>LexPCCS Engine</h3>
-                                <p>Simulador corporativo para modelagem financeira e gestão de cargos e salários.</p>
-                            </div>
-                            <div class="card-actions">
-                                <span class="status-pill online"><i class="fa-solid fa-circle"></i> Online</span>
-                                <a href="https://lexpcs.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar App <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                            </div>
-                        </div>
-
-                        <div class="card-eco edu">
-                            <div>
-                                <div class="card-header-eco"><span class="badge-eco edu">Educação</span><i class="fa-solid fa-book-open-reader icon-eco"></i></div>
-                                <h3>Soberania em IA</h3>
-                                <p>Plataforma para domínio de prompts, mitigação de alucinações e governança em LLMs.</p>
-                            </div>
-                            <div class="card-actions">
-                                <span class="status-pill online"><i class="fa-solid fa-circle"></i> Online</span>
-                                <a href="https://soberania-ia.cognivus.com.br" target="_blank" class="btn-card-link">Acessar Hub <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                            </div>
-                        </div>
-
-                        <div class="card-eco hub">
-                            <div>
-                                <div class="card-header-eco"><span class="badge-eco hub">Dados & BI</span><i class="fa-solid fa-chart-pie icon-eco"></i></div>
-                                <h3>Cognivus Analysers</h3>
-                                <p>Suite centralizada de dashboards analíticos operacionais e industriais.</p>
-                            </div>
-                            <div class="card-actions">
-                                <span class="status-pill online"><i class="fa-solid fa-circle"></i> Online</span>
-                                <a href="https://analysers.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar App <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- DISCLAIMER COMPACTO NA HOME -->
-                <div style="margin-top: 30px; background: rgba(167, 139, 250, 0.08); border: 1px solid var(--purple); border-radius: 14px; padding: 20px;">
-                    <h4 style="color: var(--purple); font-size: 1.1rem; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
-                        <i class="fa-solid fa-scale-balanced"></i> Conformidade LGPD & Transparência em IA
-                    </h4>
-                    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">
-                        O ecossistema COGNIVUS opera sob rígidos padrões de governança e <em>Privacy by Design</em>. Empregamos o método <strong>Human-in-the-Loop</strong> e Inteligência Artificial Explicável (XAI), assegurando alinhamento total com as diretrizes da ANPD e o Art. 20 da LGPD. As predições algorítmicas são ferramentas de apoio à decisão e não substituem o rigor da supervisão e validação humana autoral.
-                    </p>
-                </div>
             </section>
 
-            <!-- ABA 2: LEXCORE (8 PILARES) -->
-            <section id="tab-lexcore" class="view-section">
-                <div class="section-header">
-                    <h2>LexCore: Dashboard Cognitivo</h2>
-                    <p>A matriz de 8 pilares fundamentais que sustenta a engenharia de legado no ecossistema COGNIVUS.</p>
-                </div>
-
-                <div class="grid-ecosystem">
-                    <div class="card-eco hub">
-                        <div>
-                            <div class="card-header-eco"><span class="badge-eco hub">Pilar 1</span><div class="icon-eco"><i class="fa-solid fa-robot"></i></div></div>
-                            <h3>Fluência em IA</h3>
-                            <p>Delegação, Descrição, Discernimento e Diligência. O framework 4Ds para colaborar ativamente e com segurança com IAs.</p>
-                        </div>
-                        <div class="card-actions">
-                            <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
-                            <a href="pilar1.html" class="btn-card-link">Acessar Hub <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="card-eco edu">
-                        <div>
-                            <div class="card-header-eco"><span class="badge-eco edu">Pilar 2</span><div class="icon-eco"><i class="fa-solid fa-compass"></i></div></div>
-                            <h3>Heutagogia e Bloom</h3>
-                            <p>O controle autodirigido do próprio aprendizado. Assumir o leme da jornada escalando a taxonomia cognitiva rumo à criação.</p>
-                        </div>
-                        <div class="card-actions">
-                            <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
-                            <a href="pilar2.html" class="btn-card-link">Acessar Hub <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="card-eco log">
-                        <div>
-                            <div class="card-header-eco"><span class="badge-eco log">Pilar 3</span><div class="icon-eco"><i class="fa-solid fa-brain"></i></div></div>
-                            <h3>Pensamento Computacional</h3>
-                            <p>A engine analítica. Decomposição de problemas, reconhecimento de padrões e lógica matemática aplicada à vida.</p>
-                        </div>
-                        <div class="card-actions">
-                            <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
-                            <a href="pilar3.html" class="btn-card-link">Acessar Hub <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="card-eco dat">
-                        <div>
-                            <div class="card-header-eco"><span class="badge-eco dat">Pilar 4</span><div class="icon-eco"><i class="fa-solid fa-network-wired"></i></div></div>
-                            <h3>Gestão do Conhecimento</h3>
-                            <p>Materialização via Zettelkasten e Obsidian. Cruzamento de dados e visão executiva (MBA) para embasar a tomada de decisão.</p>
-                        </div>
-                        <div class="card-actions">
-                            <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
-                            <a href="pilar4.html" class="btn-card-link">Acessar Hub <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="card-eco pccs">
-                        <div>
-                            <div class="card-header-eco"><span class="badge-eco pccs">Pilar 5</span><div class="icon-eco"><i class="fa-solid fa-scale-balanced" style="color: #ef4444;"></i></div></div>
-                            <h3>Direito e Jurimetria</h3>
-                            <p>A aplicação máxima na estratégia social. Ler a justiça não como um dogma cego, mas como uma ciência exata apoiada por dados reais.</p>
-                        </div>
-                        <div class="card-actions">
-                            <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
-                            <a href="pilar5.html" class="btn-card-link">Acessar Hub <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="card-eco phrase">
-                        <div>
-                            <div class="card-header-eco"><span class="badge-eco phrase">Pilar 6</span><div class="icon-eco"><i class="fa-solid fa-bullhorn" style="color: #8b5cf6;"></i></div></div>
-                            <h3>Eixo Comunicacional</h3>
-                            <p>O frontend humano. Empacotar teses em narrativas persuasivas, música e experiências afetivas para garantir a entrega de valor.</p>
-                        </div>
-                        <div class="card-actions">
-                            <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
-                            <a href="pilar6.html" class="btn-card-link">Acessar Hub <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="card-eco sem">
-                        <div>
-                            <div class="card-header-eco"><span class="badge-eco sem">Pilar 7</span><div class="icon-eco"><i class="fa-solid fa-globe"></i></div></div>
-                            <h3>Soberania Digital</h3>
-                            <p>Engenharia de ecossistema. A posse absoluta da infraestrutura: portfólios dinâmicos, suítes e apps hospedados sob domínio próprio.</p>
-                        </div>
-                        <div class="card-actions">
-                            <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
-                            <a href="pilar7.html" class="btn-card-link">Acessar Hub <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="card-eco divine">
-                        <div>
-                            <div class="card-header-eco"><span class="badge-eco divine">Pilar 8</span><div class="icon-eco"><i class="fa-solid fa-cross" style="color: #f59e0b;"></i></div></div>
-                            <h3>Transcendência Espiritual</h3>
-                            <p>A sabedoria do Legado. Onde a lógica e a técnica se curvam à Fé. A rendição ao processo do Oleiro e a força inabalável do reconhecimento Divino.</p>
-                        </div>
-                        <div class="card-actions">
-                            <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
-                            <a href="pilar8.html" class="btn-card-link" style="color: #f59e0b;">Acessar Hub <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ABA 3: TRÍADE OPERACIONAL -->
-            <section id="tab-triade" class="view-section">
-                <div class="section-header">
-                    <h2>A Tríade Operacional COGNIVUS</h2>
-                    <p>O núcleo da inteligência corporativa: estruturar na Governança, processar na Análise e blindar na Decisão.</p>
-                </div>
-                <div class="grid-ecosystem" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-                    <div class="card-eco core">
-                        <div>
-                            <div class="card-header-eco"><span class="badge-eco core">Alicerce</span><div class="icon-eco"><i class="fa-solid fa-folder-tree"></i></div></div>
-                            <h3>Governança e Gestão Operacional</h3>
-                            <p>O domínio sobre a estrutura e rastreabilidade. Criação de POPs, mapeamento de rotinas, versionamento de software e gestão do conhecimento (Zettelkasten).</p>
-                        </div>
-                        <div class="card-actions">
-                            <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
-                            <a href="gestao.html" class="btn-card-link">Acessar Campo <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="card-eco dat">
-                        <div>
-                            <div class="card-header-eco"><span class="badge-eco dat">A Lente</span><div class="icon-eco"><i class="fa-solid fa-magnifying-glass-chart"></i></div></div>
-                            <h3>Inteligência Analítica</h3>
-                            <p>O domínio sobre a extração da verdade através dos dados. Modelagem em Power BI, Excel avançado, scripts Python e engenharia de prompts.</p>
-                        </div>
-                        <div class="card-actions">
-                            <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
-                            <a href="analise.html" class="btn-card-link">Acessar Campo <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="card-eco log">
-                        <div>
-                            <div class="card-header-eco"><span class="badge-eco log">O Veredito</span><div class="icon-eco"><i class="fa-solid fa-scale-balanced"></i></div></div>
-                            <h3>Estratégico-Decisório e Jurídico</h3>
-                            <p>O domínio sobre a aplicação segura e regulamentada. Tomada de decisão balizada pela LGPD, compliance, raciocínio lógico estruturado e mitigação de riscos.</p>
-                        </div>
-                        <div class="card-actions">
-                            <span class="status-pill online"><i class="fa-solid fa-circle"></i> Integrado</span>
-                            <a href="decisao.html" class="btn-card-link">Acessar Campo <i class="fa-solid fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ABA 4: ECOSSISTEMA DE APPS (TODAS AS 10 APLICAÇÕES) -->
-            <section id="tab-apps" class="view-section">
-                <div class="section-header">
-                    <h2>Aplicações Cognivus</h2>
-                    <p>Soluções modulares integradas para inteligência analítica, processamento cognitivo e governança de dados estruturados.</p>
-                </div>
-
-                <div class="grid-ecosystem">
-                    <div class="card-eco edu">
-                        <div>
-                            <div class="card-header-eco"><span class="badge-eco edu">Educação</span><div class="icon-eco"><i class="fa-solid fa-book-open-reader"></i></div></div>
-                            <h3>Soberania em IA</h3>
-                            <p>E-book e plataforma de cursos para domínio estratégico de prompts, blindagem contra alucinações e acesso ao ecossistema LexCore.</p>
-                        </div>
-                        <div class="card-actions">
-                            <button class="btn-card-link" onclick="openAppModal('Soberania em IA', 'Plataforma educacional para domínio de LLMs e governança em inteligência artificial generativa.', 'Python, Streamlit, Gemini LLM', 'https://soberania-ia.cognivus.com.br')">Detalhes <i class="fa-solid fa-info-circle"></i></button>
-                            <a href="https://soberania-ia.cognivus.com.br" target="_blank" class="btn-card-link">Acessar <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="card-eco pccs">
-                        <div>
-                            <div class="card-header-eco"><span class="badge-eco pccs">Governança</span><div class="icon-eco"><i class="fa-solid fa-scale-balanced" style="color: #ef4444;"></i></div></div>
-                            <h3>LexPCCS Engine</h3>
-                            <p>Simulador corporativo focado na modelagem financeira, mitigação de passivos trabalhistas e estruturação de Planos de Cargos.</p>
-                        </div>
-                        <div class="card-actions">
-                            <button class="btn-card-link" onclick="openAppModal('LexPCCS Engine', 'Simulador focado na redução de passivos trabalhistas e otimização de folha de pagamento corporativa.', 'Python, Streamlit, Firebase', 'https://lexpcs.cognivus.com.br/')">Detalhes <i class="fa-solid fa-info-circle"></i></button>
-                            <a href="https://lexpcs.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="card-eco phrase">
-                        <div>
-                            <div class="card-header-eco"><span class="badge-eco phrase">Linguística</span><div class="icon-eco"><i class="fa-solid fa-feather" style="color: #8b5cf6;"></i></div></div>
-                            <h3>PhraseUp Nav</h3>
-                            <p>Refinador semântico de linguagem. Processa vocabulários corporativos para aprimoramento de clareza e autoridade retórica.</p>
-                        </div>
-                        <div class="card-actions">
-                            <button class="btn-card-link" onclick="openAppModal('PhraseUp Nav', 'Engine de refinamento e padronização semântica executiva.', 'Python, NLP, Gemini API', 'https://phraseupnav.cognivus.com.br/')">Detalhes <i class="fa-solid fa-info-circle"></i></button>
-                            <a href="https://phraseupnav.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="card-eco edu">
-                        <div>
-                            <div class="card-header-eco"><span class="badge-eco edu">Cognição</span><div class="icon-eco"><i class="fa-solid fa-graduation-cap"></i></div></div>
-                            <h3>Treinador</h3>
-                            <p>Plataforma inteligente focada no monitoramento educacional estruturado e desenvolvimento de treinamento cognitivo avançado.</p>
-                        </div>
-                        <div class="card-actions">
-                            <button class="btn-card-link" onclick="openAppModal('Treinador', 'Plataforma para gestão educacional e treinamento cognitivo.', 'Python, Streamlit, Firebase', 'https://treinador-termos.cognivus.com.br/')">Detalhes <i class="fa-solid fa-info-circle"></i></button>
-                            <a href="https://treinador-termos.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="card-eco hub">
-                        <div>
-                            <div class="card-header-eco"><span class="badge-eco hub">Dados</span><div class="icon-eco"><i class="fa-solid fa-chart-pie"></i></div></div>
-                            <h3>Cognivus Analysers</h3>
-                            <p>A Cognivus Intelligence Suite é uma plataforma centralizada de painéis de análise de dados operacionais e industriais.</p>
-                        </div>
-                        <div class="card-actions">
-                            <button class="btn-card-link" onclick="openAppModal('Cognivus Analysers', 'Painel central de Business Intelligence corporativo e jurimetria.', 'Power BI, Python, Firebase', 'https://analysers.cognivus.com.br/')">Detalhes <i class="fa-solid fa-info-circle"></i></button>
-                            <a href="https://analysers.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="card-eco dat">
-                        <div>
-                            <div class="card-header-eco"><span class="badge-eco dat">Prompt</span><div class="icon-eco"><i class="fa-solid fa-network-wired"></i></div></div>
-                            <h3>Gerador</h3>
-                            <p>Módulo de gerador de prompt diversos para uso com inteligência de dados aplicada diretamente na avaliação de métricas.</p>
-                        </div>
-                        <div class="card-actions">
-                            <span class="status-pill offline"><i class="fa-solid fa-circle"></i> Offline</span>
-                            <a href="https://luciano.cognivus.com.br/" target="_blank" class="btn-card-link">Em Atualização <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="card-eco sem">
-                        <div>
-                            <div class="card-header-eco"><span class="badge-eco sem">Semântica</span><div class="icon-eco"><i class="fa-solid fa-book-bookmark"></i></div></div>
-                            <h3>LexWord</h3>
-                            <p>Glossário conceitual dinâmico desenvolvido para normalização e padronização analítica de termos técnicos e jurídicos complexos.</p>
-                        </div>
-                        <div class="card-actions">
-                            <button class="btn-card-link" onclick="openAppModal('Termos Lexicais', 'Normalizador de terminologia técnica e conceitual.', 'Python, Streamlit', 'https://lexword.cognivus.com.br/')">Detalhes <i class="fa-solid fa-info-circle"></i></button>
-                            <a href="https://lexword.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="card-eco core">
-                        <div>
-                            <div class="card-header-eco"><span class="badge-eco core">Núcleo</span><div class="icon-eco"><i class="fa-solid fa-circle-nodes"></i></div></div>
-                            <h3>Cognivus Core</h3>
-                            <p>O centro de controle operacional e orquestrador principal de microsserviços integrados de todo o ecossistema Cognivus.</p>
-                        </div>
-                        <div class="card-actions">
-                            <span class="status-pill online"><i class="fa-solid fa-circle"></i> Online</span>
-                            <a href="https://luciano.cognivus.com.br/" target="_blank" class="btn-card-link">Em testes<i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="card-eco log">
-                        <div>
-                            <div class="card-header-eco"><span class="badge-eco log">Lógica</span><div class="icon-eco"><i class="fa-solid fa-brain"></i></div></div>
-                            <h3>Axion Rhetorical</h3>
-                            <p>Engine analítica baseada em modelos de linguagem avançados para mapeamento, estruturação e auditoria de argumentação lógica.</p>
-                        </div>
-                        <div class="card-actions">
-                            <button class="btn-card-link" onclick="openAppModal('Axion Rhetorical', 'Auditoria lógica e validação retórica de teses.', 'Python, Gemini LLMs', 'https://axionrethorical.cognivus.com.br/')">Detalhes <i class="fa-solid fa-info-circle"></i></button>
-                            <a href="https://axionrethorical.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="card-eco core">
-                        <div>
-                            <div class="card-header-eco"><span class="badge-eco core">Gamificação</span><div class="icon-eco"><i class="fa-solid fa-server"></i></div></div>
-                            <h3>CoreMaster</h3>
-                            <p>App para treinamento cognitivo de perguntas e respostas com níveis evolutivos e avaliação de desempenho.</p>
-                        </div>
-                        <div class="card-actions">
-                            <button class="btn-card-link" onclick="openAppModal('CoreMaster', 'Plataforma gamificada de avaliação contínua de conhecimento.', 'Python, Firebase', 'https://coremaster.cognivus.com.br/')">Detalhes <i class="fa-solid fa-info-circle"></i></button>
-                            <a href="https://coremaster.cognivus.com.br/" target="_blank" class="btn-card-link">Acessar <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ABA 5: SKILL TREE -->
+            <!-- ABA 2: SKILL TREE -->
             <section id="tab-skills" class="view-section">
                 <div class="section-header">
                     <h2>Multidisciplinary Skill Tree</h2>
@@ -1026,10 +606,6 @@
                         <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--text-main);">Luciano P. de Moura</h3>
                         <p style="font-size: 0.88rem; color: var(--accent-glow); font-weight: 700; margin-top: 3px;">Legal Data Science & Architecture</p>
 
-                        <a href="academico.html" style="margin-top: 15px; padding: 7px 14px; background: rgba(167, 139, 250, 0.15); border: 1px solid #a78bfa; color: #a78bfa; border-radius: 6px; font-size: 0.8rem; font-weight: 700;">
-                            <i class="fa-solid fa-microscope"></i> Produção Científica & Lattes
-                        </a>
-
                         <div class="axis-summary-list">
                             <div class="axis-badge-item"><span><i class="fa-solid fa-briefcase"></i> ADM & MBA</span><span>100%</span></div>
                             <div class="axis-badge-item"><span><i class="fa-solid fa-scale-balanced"></i> Direito, Compliance & LGPD</span><span>20%</span></div>
@@ -1064,7 +640,7 @@
                                 <div class="bar-track"><div class="bar-fill" style="width: 79%;"></div></div>
                             </div>
                             <div class="bar-item">
-                                <div class="bar-labels"><span>Integração de Pagamentos & Cloud (+10h)</span><span>85%</span></div>
+                                <div class="bar-labels"><span>Integração de APIs & Cloud</span><span>85%</span></div>
                                 <div class="bar-track"><div class="bar-fill" style="width: 85%;"></div></div>
                             </div>
                         </div>
@@ -1083,100 +659,7 @@
                     </div>
                 </div>
             </section>
-
-            <!-- ABA 6: GOVERNANÇA, LGPD E IA DISCLAIMER -->
-            <section id="tab-governance" class="view-section">
-                <div class="section-header">
-                    <h2>Governança & Transparência Algorítmica</h2>
-                    <p>O rigor do tratamento de dados e a conformidade regulatória (ANPD/LGPD) na era da Inteligência Artificial do ecossistema COGNIVUS.</p>
-                </div>
-
-                <div style="background: rgba(167, 139, 250, 0.08); border: 1px solid var(--purple); border-radius: 16px; padding: 30px; margin-bottom: 35px;">
-                    <h3 style="color: var(--purple); font-size: 1.25rem; margin-bottom: 12px; display: flex; align-items: center; gap: 10px;">
-                        <i class="fa-solid fa-handshake"></i> Declaração Oficial de Uso de IA & Human-in-the-Loop
-                    </h3>
-                    <p style="color: var(--text-main); font-size: 1rem; line-height: 1.7;">
-                        O ecossistema Cognivus emprega Inteligência Artificial Explicável (XAI) e modelos generativos estritamente como ferramentas de apoio à decisão (<em>Decision Support Systems</em>). 
-                    </p>
-                    <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; margin-top: 12px;">
-                        Nenhuma predição substitui a validação humana. Toda a concepção, arquitetura de software, lógica de negócios, validação jurídica e a responsabilidade final pelos relatórios operam sob minha supervisão técnica direta. Cumprimos integralmente o princípio da explicabilidade, garantindo que o "humano no controle" blinde a operação corporativa contra vieses e automatizações opacas.
-                    </p>
-                </div>
-
-                <!-- VISUALIZADOR DA DECLARAÇÃO EM PDF -->
-                <div style="background: rgba(13, 25, 47, 0.6); border: 1px solid var(--border-color); border-radius: 16px; padding: 25px; margin-bottom: 35px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
-                        <div>
-                            <h3 style="color: var(--text-main); font-size: 1.15rem; display: flex; align-items: center; gap: 10px; margin-bottom: 4px;">
-                                <i class="fa-solid fa-file-signature" style="color: var(--accent-glow);"></i> 
-                                Documento Oficial Assinado Digitalmente
-                            </h3>
-                            <p style="color: var(--text-muted); font-size: 0.85rem;">Declaração de Transparência Algorítmica e Uso de IA</p>
-                        </div>
-                        
-                        <a href="COGNIVUS-declaracao.pdf" target="_blank" class="btn-topbar" style="background: var(--accent-glow); color: #091322; font-weight: 700; border: none; padding: 10px 18px;">
-                            <i class="fa-solid fa-expand"></i> Ampliar / Validar Assinatura
-                        </a>
-                    </div>
-                    
-                    <!-- IFRAME DO PDF -->
-                    <div style="width: 100%; height: 500px; border-radius: 10px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.05); background-color: #ffffff;">
-                        <iframe src="COGNIVUS-declaracao.pdf" width="100%" height="100%" style="border: none;" title="Declaração de Transparência Cognivus">
-                            <div style="padding: 40px; text-align: center; color: var(--text-muted);">
-                                <i class="fa-solid fa-file-pdf" style="font-size: 3rem; margin-bottom: 15px; color: var(--accent-glow);"></i>
-                                <p>Seu navegador não suporta a visualização direta do PDF.</p>
-                                <a href="COGNIVUS-declaracao.pdf" target="_blank" style="color: var(--accent-glow); font-weight: bold; margin-top: 10px; display: inline-block;">Clique aqui para baixar ou visualizar o documento</a>
-                            </div>
-                        </iframe>
-                    </div>
-                </div>
-
-                <!-- COMPLIANCE GRID -->
-                <div class="compliance-grid">
-                    <div style="color: var(--accent-glow);">
-                        <i class="fa-solid fa-shield-halved" style="font-size: 2.3rem; margin-bottom: 10px;"></i>
-                        <h2 style="font-size: 1.4rem; font-weight: 800; color: var(--text-main);">Conformidade<br>Regulatória (ANPD)</h2>
-                    </div>
-                    <div style="display: flex; flex-wrap: wrap; gap: 15px;">
-                        <div class="badge-comp" style="flex: 1 1 200px;">
-                            <h4><i class="fa-solid fa-scale-balanced"></i> Art. 20 da LGPD</h4>
-                            <p>Uso de IA Explicável (Árvores de Decisão Weka) garantindo total auditabilidade dos critérios preditivos e eliminando o efeito "caixa-preta".</p>
-                        </div>
-                        <div class="badge-comp" style="flex: 1 1 200px;">
-                            <h4><i class="fa-solid fa-fingerprint"></i> Privacy by Design (BYOK)</h4>
-                            <p>Processamento 100% <em>Client-Side</em>. O ecossistema não retém dados sensíveis e permite o uso de chaves privadas (Bring Your Own Key).</p>
-                        </div>
-                        <div class="badge-comp" style="flex: 1 1 200px;">
-                            <h4><i class="fa-solid fa-folder-tree"></i> Accountability</h4>
-                            <p>Geração de relatórios técnicos de mitigação de risco e contingência reversa, prontos para compor o Relatório de Impacto à Proteção de Dados (RIPD).</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
         </main>
-    </div>
-
-    <!-- MODAL OVERLAY PARA APPS -->
-    <div class="modal-overlay" id="appModal" onclick="closeAppModal(event)">
-        <div class="modal-drawer" onclick="event.stopPropagation()">
-            <div>
-                <button style="background:none; border:none; color:var(--text-muted); font-size:1.5rem; cursor:pointer; float:right;" onclick="closeAppModal()"><i class="fa-solid fa-xmark"></i></button>
-                <h2 id="modalTitle" style="font-size: 1.7rem; color: var(--text-main); margin-bottom: 15px; margin-top:15px;">Título do App</h2>
-                <p id="modalDesc" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 25px;">Descrição do software...</p>
-                
-                <div style="margin-bottom: 25px;">
-                    <h4 style="color: var(--accent-glow); font-size: 0.85rem; margin-bottom: 8px; text-transform:uppercase;">Stack Tecnológica:</h4>
-                    <p id="modalStack" style="color: var(--text-main); font-weight: 600;">Python, Streamlit, Firebase</p>
-                </div>
-            </div>
-
-            <div>
-                <a id="modalLink" href="#" target="_blank" class="btn-topbar" style="width: 100%; justify-content: center; padding: 12px; background: var(--accent-glow); color: #091322; font-weight: 700;">
-                    Acessar Aplicação Agora <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                </a>
-            </div>
-        </div>
     </div>
 
     <!-- TOAST -->
@@ -1193,12 +676,8 @@
             if(btnElement) btnElement.classList.add('active');
 
             const titles = {
-                'tab-home': 'Home / A Anatomia da Autonomia (HI-C)',
-                'tab-lexcore': 'LexCore (8 Pilares Cognitivos)',
-                'tab-triade': 'A Tríade Operacional COGNIVUS',
-                'tab-apps': 'Ecossistema End-to-End',
-                'tab-skills': 'Multidisciplinary Skill Tree',
-                'tab-governance': 'Governança, LGPD & IA'
+                'tab-home': 'Visão Geral & Hero',
+                'tab-skills': 'Skill Tree Multidisciplinar'
             };
             document.getElementById('current-page-title').innerText = titles[tabId];
 
@@ -1211,20 +690,8 @@
             document.getElementById('sidebar').classList.toggle('active');
         }
 
-        function openAppModal(title, desc, stack, link) {
-            document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalDesc').innerText = desc;
-            document.getElementById('modalStack').innerText = stack;
-            document.getElementById('modalLink').href = link;
-            document.getElementById('appModal').classList.add('active');
-        }
-
-        function closeAppModal() {
-            document.getElementById('appModal').classList.remove('active');
-        }
-
         function copyShareLink() {
-            const shareUrl = "https://luciano.cognivus.com.br/";
+            const shareUrl = window.location.href;
             navigator.clipboard.writeText(shareUrl).then(() => {
                 const toast = document.getElementById("share-toast");
                 toast.classList.add("show");
@@ -1283,7 +750,7 @@
 
         try {
             addDoc(collection(db, "visitas_site"), {
-                pagina: "index.html_v8_cognivus_completa",
+                pagina: "portfolio_clean_view",
                 data_acesso: serverTimestamp()
             });
         } catch (e) {}

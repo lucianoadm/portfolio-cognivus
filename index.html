@@ -1,762 +1,327 @@
 <!DOCTYPE html>
-<!-- 
-    SISTEMA: Portfólio Pessoal & Hub de Engenharia
-    VERSÃO: v.9.0.0 - Clean Portfolio Edition
-    STACK: HTML5, CSS3, JavaScript, FontAwesome, Firebase
-    ARQUITETO E DESENVOLVEDOR: Luciano P. de Moura
+<!--
+    SISTEMA: Portfólio Pessoal
+    VERSÃO: v10.0.0 — página única, evidências e privacidade
+    STACK: HTML5, CSS3, JavaScript (vanilla), Firebase Firestore (contagem de acessos)
+    AUTOR: Luciano P. de Moura
 -->
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luciano P. de Moura | Estrategista End-to-End & Arquiteto de Software</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        /* ==========================================================================
-           DESIGN SYSTEM: SUAVE OCEAN BLUE EDITION
-           ========================================================================== */
-        :root {
-            --bg-deep: #091322;       
-            --bg-gradient: linear-gradient(135deg, #091322 0%, #112543 50%, #18335c 100%);
-            --bg-sidebar: #0d1e36;
-            --bg-card: rgba(21, 41, 74, 0.75); 
-            --accent-glow: #38bdf8;   
-            --accent-glow-secondary: #22d3ee; 
-            --text-main: #f8fafc;     
-            --text-muted: #cbd5e1;    
-            --border-color: rgba(56, 189, 248, 0.3); 
-            --border-hover: rgba(56, 189, 248, 0.85); 
-            --success: #10b981;        
-            --warning: #f59e0b;
-            --purple: #a78bfa;
-            --danger: #ef4444;
-            
-            --badge-core: #f43f5e;    
-            --badge-log: #10b981;     
-            --badge-dat: #f59e0b;     
-            --sidebar-width: 270px;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luciano P. de Moura | Sistemas de dados e IA para o meio jurídico e corporativo</title>
+  <meta name="description" content="Administrador com MBA, graduando em Direito e desenvolvedor Python. Projeto e construo aplicações de dados e IA para o meio jurídico e corporativo, da interface à infraestrutura.">
+  <meta name="author" content="Luciano P. de Moura">
+  <link rel="canonical" href="https://luciano.cognivus.com.br/">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta name="theme-color" content="#071120">
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            scroll-behavior: smooth;
-        }
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:url" content="https://luciano.cognivus.com.br/">
+  <meta property="og:title" content="Luciano P. de Moura | Sistemas de dados e IA para o meio jurídico">
+  <meta property="og:description" content="Do problema jurídico ao sistema no ar: aplicações de dados e IA, da interface à infraestrutura.">
+  <meta property="og:image" content="https://luciano.cognivus.com.br/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
 
-        body {
-            background: var(--bg-gradient);
-            background-attachment: fixed;
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            overflow-x: hidden;
-        }
+  <link rel="stylesheet" href="css/style.css">
 
-        a { color: var(--accent-glow); text-decoration: none; transition: all 0.3s ease; }
-        a:hover { text-shadow: 0 0 10px var(--accent-glow); }
-
-        /* ==========================================================================
-           LAYOUT APP-LIKE: SIDEBAR LATERAL & MAIN CONTENT
-           ========================================================================== */
-        .app-container {
-            display: flex;
-            width: 100vw;
-            min-height: 100vh;
-        }
-
-        /* SIDEBAR */
-        aside.sidebar {
-            width: var(--sidebar-width);
-            background: var(--bg-sidebar);
-            border-right: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: fixed;
-            top: 0; bottom: 0; left: 0;
-            z-index: 1000;
-            transition: transform 0.3s ease;
-            backdrop-filter: blur(15px);
-        }
-
-        .sidebar-header {
-            padding: 24px 20px;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .sidebar-header i {
-            font-size: 1.6rem;
-            color: var(--accent-glow);
-            text-shadow: 0 0 10px var(--accent-glow);
-        }
-
-        .sidebar-brand {
-            font-size: 0.95rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            color: var(--text-main);
-            line-height: 1.2;
-        }
-
-        .sidebar-brand span {
-            color: var(--accent-glow);
-            display: block;
-            font-size: 0.72rem;
-            font-weight: 600;
-        }
-
-        .sidebar-menu {
-            list-style: none;
-            padding: 20px 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            flex-grow: 1;
-            overflow-y: auto;
-        }
-
-        .sidebar-menu button {
-            width: 100%;
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            padding: 11px 15px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            text-align: left;
-        }
-
-        .sidebar-menu button i {
-            font-size: 1.1rem;
-            width: 20px;
-            text-align: center;
-        }
-
-        .sidebar-menu button:hover {
-            color: var(--text-main);
-            background: rgba(56, 189, 248, 0.1);
-        }
-
-        .sidebar-menu button.active {
-            color: #091322;
-            background: var(--accent-glow);
-            font-weight: 700;
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
-        }
-
-        .sidebar-footer {
-            padding: 20px;
-            border-top: 1px solid var(--border-color);
-            font-size: 0.78rem;
-            color: var(--text-muted);
-            text-align: center;
-        }
-
-        /* MAIN CONTENT AREA */
-        main.main-content {
-            margin-left: var(--sidebar-width);
-            flex-grow: 1;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            width: calc(100vw - var(--sidebar-width));
-        }
-
-        /* TOPBAR NAV */
-        header.topbar {
-            height: 70px;
-            background: rgba(13, 30, 54, 0.9);
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 30px;
-            position: sticky;
-            top: 0;
-            z-index: 900;
-            backdrop-filter: blur(12px);
-        }
-
-        .mobile-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--accent-glow);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        .topbar-title { font-size: 1.1rem; font-weight: 700; color: var(--text-main); }
-
-        .topbar-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-
-        .btn-topbar {
-            background: rgba(19, 28, 49, 0.6);
-            border: 1px solid var(--border-color);
-            color: var(--text-muted);
-            padding: 7px 14px;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .btn-topbar:hover {
-            border-color: var(--accent-glow);
-            color: var(--text-main);
-            background: rgba(30, 58, 100, 0.4);
-        }
-
-        /* VIEWS (PÁGINAS SPA) */
-        .view-section {
-            padding: 35px 30px 60px 30px;
-            display: none;
-            animation: fadeIn 0.4s ease forwards;
-        }
-
-        .view-section.active { display: block; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ==========================================================================
-           GRID E PAINÉIS DE CONTEÚDO
-           ========================================================================== */
-        
-        .kpi-matrix-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-            gap: 18px;
-            margin-bottom: 30px;
-        }
-
-        .kpi-card-sm {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 18px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .kpi-card-sm:hover {
-            border-color: var(--accent-glow);
-            transform: translateY(-2px);
-        }
-
-        .kpi-icon-sm {
-            width: 44px;
-            height: 44px;
-            border-radius: 10px;
-            background: rgba(56, 189, 248, 0.12);
-            color: var(--accent-glow);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.3rem;
-        }
-
-        .kpi-text-sm h4 {
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: var(--text-main);
-            line-height: 1;
-        }
-
-        .kpi-text-sm p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-top: 3px;
-        }
-
-        /* HERO BANNER BLOCK */
-        .hero-layout {
-            display: grid; 
-            grid-template-columns: 1fr; 
-            gap: 30px; 
-            align-items: center; 
-            background: rgba(21, 41, 74, 0.4);
-            border: 1px solid var(--border-color);
-            border-radius: 18px;
-            padding: 30px;
-            margin-bottom: 35px;
-        }
-
-        @media(min-width: 1100px) { 
-            .hero-layout { grid-template-columns: 1.2fr 0.8fr; } 
-        }
-
-        .hero-tag {
-            display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px;
-            background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.4);
-            color: var(--text-main); font-size: 0.82rem; font-weight: 700; border-radius: 50px; margin-bottom: 18px;
-        }
-
-        .hero h1 {
-            font-size: 2.8rem; font-weight: 800; line-height: 1.15; margin-bottom: 12px;
-            background: linear-gradient(135deg, var(--text-main) 30%, var(--accent-glow-secondary) 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-
-        .typewriter-container { font-size: 1.3rem; color: var(--accent-glow); margin-bottom: 20px; height: 35px; font-weight: 600; }
-        .hero-p { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 25px; line-height: 1.7; }
-
-        .hero-visual-wrapper {
-            width: 100%; aspect-ratio: 16 / 9; border-radius: 14px; padding: 4px;
-            background: linear-gradient(135deg, rgba(56, 189, 248, 0.4) 0%, rgba(34, 211, 238, 0.1) 100%);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4); background-color: #060b14;
-        }
-        .hero-video-loop { width: 100%; height: 100%; border-radius: 10px; object-fit: cover; display: block; }
-
-        .hero-quote-bar {
-            background: rgba(13, 30, 54, 0.6);
-            border-left: 4px solid var(--accent-glow);
-            padding: 15px 25px;
-            border-radius: 8px;
-            margin-bottom: 35px;
-            font-style: italic;
-            color: var(--accent-glow);
-            font-size: 1.05rem;
-        }
-
-        .section-header { text-align: center; max-width: 750px; margin: 0 auto 40px auto; }
-        .section-header h2 {
-            font-size: 2.1rem; font-weight: 800; margin-bottom: 12px;
-            background: linear-gradient(135deg, var(--text-main) 50%, var(--accent-glow) 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        .section-header p { color: var(--text-muted); font-size: 1rem; }
-
-        .grid-ecosystem {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 22px;
-        }
-
-        .card-eco {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 25px;
-            transition: all 0.35s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: relative;
-            backdrop-filter: blur(8px);
-        }
-
-        .card-eco:hover {
-            transform: translateY(-4px);
-            border-color: var(--border-hover);
-            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.15);
-        }
-        
-        .card-eco h4 { color: var(--text-main); font-size: 1.1rem; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
-        .card-eco p { color: var(--text-muted); font-size: 0.92rem; margin-bottom: 18px; flex-grow: 1; line-height: 1.5; }
-
-        /* SKILL TREE E AVATAR */
-        .tree-layout { display: grid; grid-template-columns: 1fr; gap: 25px; align-items: start; }
-        @media(min-width: 1200px) { .tree-layout { grid-template-columns: 1fr 320px 1fr; } }
-
-        .tree-avatar-hub {
-            display: flex; flex-direction: column; align-items: center;
-            background: var(--bg-card); border: 1px solid var(--border-color);
-            padding: 25px 18px; border-radius: 18px; text-align: center;
-        }
-
-        .profile-frame {
-            position: relative; width: 150px; height: 150px; margin-bottom: 18px;
-        }
-        .profile-frame::before {
-            content: ''; position: absolute; inset: -5px; border-radius: 50%;
-            background: linear-gradient(135deg, var(--badge-core) 0%, var(--accent-glow) 50%, var(--badge-log) 100%);
-            animation: spinGlow 8s linear infinite; z-index: 1;
-        }
-        @keyframes spinGlow { 100% { transform: rotate(360deg); } }
-
-        .avatar-img {
-            width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
-            position: relative; z-index: 2; border: 4px solid var(--bg-deep);
-        }
-
-        .axis-summary-list { width: 100%; display: flex; flex-direction: column; gap: 8px; margin-top: 18px; }
-        .axis-badge-item {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 7px 12px; border-radius: 8px; background: rgba(13, 25, 47, 0.6);
-            border-left: 3px solid var(--accent-glow); font-size: 0.8rem; font-weight: 700;
-        }
-
-        .skill-group-box {
-            background: rgba(21, 41, 74, 0.4); border: 1px solid rgba(56, 189, 248, 0.15);
-            border-radius: 14px; padding: 18px; margin-bottom: 18px;
-        }
-        .group-box-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.08); }
-        .group-box-header i { font-size: 1.1rem; color: var(--accent-glow); }
-        .group-box-header h4 { font-size: 1rem; font-weight: 700; color: var(--text-main); }
-
-        .bar-item { margin-bottom: 10px; }
-        .bar-labels { display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--text-muted); margin-bottom: 4px; font-weight: 600; }
-        .bar-track { height: 6px; background: rgba(255, 255, 255, 0.08); border-radius: 10px; overflow: hidden; }
-        .bar-fill { height: 100%; background: var(--accent-glow); border-radius: 10px; width: 0%; transition: width 1.2s ease; }
-
-        /* TOAST */
-        .toast-notification {
-            position: fixed; bottom: -60px; right: 20px; background: rgba(13, 25, 47, 0.95);
-            border: 1px solid var(--accent-glow); color: var(--text-main); padding: 12px 24px;
-            border-radius: 8px; font-weight: 600; font-size: 0.9rem; box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            z-index: 2000; transition: bottom 0.4s ease;
-        }
-        .toast-notification.show { bottom: 20px; }
-
-        @media (max-width: 992px) {
-            aside.sidebar { transform: translateX(-100%); }
-            aside.sidebar.active { transform: translateX(0); }
-            main.main-content { margin-left: 0; width: 100vw; }
-            .mobile-toggle { display: block; }
-        }
-    </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Luciano P. de Moura",
+    "url": "https://luciano.cognivus.com.br/",
+    "jobTitle": "Desenvolvedor de sistemas de dados e IA",
+    "sameAs": [
+      "https://github.com/lucianoadm",
+      "https://www.linkedin.com/in/luciano-paiva-b0b01a19b/"
+    ],
+    "knowsAbout": ["Python", "Streamlit", "Firebase", "Jurimetria", "Business Intelligence", "Engenharia de prompts", "LGPD"]
+  }
+  </script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Pular para o conteúdo</a>
 
-    <div class="app-container">
-        
-        <!-- SIDEBAR -->
-        <aside class="sidebar" id="sidebar">
+  <!-- Ícones reutilizáveis -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  </svg>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="#topo">Luciano P. de Moura</a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Principal">
+        <ul>
+          <li><a href="#projetos">Projetos</a></li>
+          <li><a href="#como-trabalho">Como trabalho</a></li>
+          <li><a href="#competencias">Competências</a></li>
+          <li><a href="#formacao">Formação</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="btn" type="button" id="share-btn">
+          <svg aria-hidden="true"><use href="#i-share"/></svg>
+          Compartilhar
+        </button>
+        <button class="btn nav-toggle" type="button" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menu">
+          <svg aria-hidden="true"><use href="#i-menu"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero" id="topo" aria-labelledby="hero-title">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div>
+            <h1 id="hero-title">Do problema jurídico ao sistema no ar.</h1>
+            <p class="intro">
+              Sou <strong>Luciano P. de Moura</strong>: administrador com MBA, graduando em Direito e desenvolvedor Python.
+              Projeto e construo aplicações de dados e IA para o meio jurídico e corporativo, da interface à infraestrutura.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn--primary" href="#projetos">Ver projetos</a>
+              <a class="btn" href="#contato">Falar comigo</a>
+            </div>
+          </div>
+
+          <figure class="video-frame">
+            <video controls muted loop playsinline autoplay preload="metadata" aria-label="Demonstração da plataforma Cognivus">
+              <source src="cognivus.mp4" type="video/mp4">
+              Seu navegador não reproduz vídeo. Conheça a plataforma em cognivus.com.br.
+            </video>
+            <figcaption>A plataforma Cognivus em funcionamento.</figcaption>
+          </figure>
+        </div>
+
+        <dl class="facts" aria-label="Formação em resumo">
+          <div><dt>Administração</dt><dd>Bacharelado concluído</dd></div>
+          <div><dt>MBA Executivo</dt><dd>Gestão de Negócios e Marketing</dd></div>
+          <div><dt>Direito</dt><dd class="is-ongoing">Graduação em andamento</dd></div>
+          <div><dt>Jurimetria</dt><dd class="is-ongoing">Pós-graduação em andamento</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- PROJETOS -->
+    <section class="section" id="projetos" aria-labelledby="projetos-title">
+      <div class="wrap">
+        <h2 id="projetos-title">Projetos</h2>
+        <p class="lead">
+          Aplicações da plataforma <a href="https://cognivus.com.br/" target="_blank" rel="noopener">Cognivus</a>, cada uma com link para abrir e testar.
+        </p>
+
+        <div class="project-list">
+          <article class="project">
             <div>
-                <div class="sidebar-header">
-                    <i class="fa-solid fa-code"></i>
-                    <div class="sidebar-brand">
-                        LUCIANO P. DE MOURA
-                        <span>Estrategista & Desenvolvedor</span>
-                    </div>
-                </div>
-
-                <ul class="sidebar-menu">
-                    <<li><button class="menu-btn active" onclick="switchTab('tab-home', this)"><i class="fa-solid fa-house"></i> Visão Geral & Hero</button></li>
-                    <li><button class="menu-btn" onclick="switchTab('tab-skills', this)"><i class="fa-solid fa-sitemap"></i> Skill Tree Multidisciplinar</button></li>
-    
-                <!-- Novo acesso ao Dashboard Acadêmico -->
-                    <li><button class="menu-btn" onclick="window.location.href='dashboard.html'"><i class="fa-solid fa-graduation-cap"></i> Dashboard Acadêmico</button></li>
-                </ul>
+              <h3>Treinador de Termos</h3>
+              <ul class="tags" aria-label="Áreas">
+                <li>Direito</li><li>Aprendizagem adaptativa</li>
+              </ul>
             </div>
-
-            <div class="sidebar-footer">
-                <p><strong>© 2026 Luciano P. de Moura</strong></p>
-                <p style="font-size: 0.7rem; color: #6b7280; margin-top: 2px;">Todos os direitos reservados.</p>
+            <div>
+              <p>Quiz para dominar o vocabulário jurídico. Tem três níveis de dificuldade, modo &ldquo;Complete a Frase&rdquo;, curva de aprendizado e um dashboard analítico do desempenho.</p>
+              <a class="link" href="https://treinador-termos.cognivus.com.br/" target="_blank" rel="noopener">
+                Abrir o Treinador de Termos <svg aria-hidden="true"><use href="#i-external"/></svg>
+              </a>
             </div>
-        </aside>
+          </article>
 
-        <!-- MAIN CONTENT AREA -->
-        <main class="main-content">
-            
-            <!-- TOPBAR FIXA -->
-            <header class="topbar">
-                <div style="display: flex; align-items: center; gap: 15px;">
-                    <button class="mobile-toggle" onclick="toggleSidebar()"><i class="fa-solid fa-bars"></i></button>
-                    <span class="topbar-title" id="current-page-title">Visão Geral & Hero</span>
-                </div>
+          <article class="project">
+            <div>
+              <h3>LexMetric</h3>
+              <ul class="tags" aria-label="Áreas">
+                <li>Jurimetria</li><li>Repetição espaçada</li>
+              </ul>
+            </div>
+            <div>
+              <p>Quiz de jurimetria guiado por dados. Usa repetição espaçada para fixar conceitos jurídicos e estatísticos e mostra o seu nível em cada tema num radar de proficiência.</p>
+              <a class="link" href="https://lexmetric.cognivus.com.br/" target="_blank" rel="noopener">
+                Abrir o LexMetric <svg aria-hidden="true"><use href="#i-external"/></svg>
+              </a>
+            </div>
+          </article>
 
-                <div class="topbar-actions">
-                    <a href="https://github.com/lucianoadm" target="_blank" class="btn-topbar">
-                        <i class="fa-brands fa-github"></i> GitHub
-                    </a>
-                    <a href="https://www.linkedin.com/in/luciano-paiva-b0b01a19b/" target="_blank" class="btn-topbar">
-                        <i class="fa-brands fa-linkedin"></i> LinkedIn
-                    </a>
-                    <button class="btn-topbar" onclick="copyShareLink()">
-                        <i class="fa-solid fa-share-nodes"></i> Compartilhar
-                    </button>
-                </div>
-            </header>
+          <article class="project">
+            <div>
+              <h3>Axion Rhetorical</h3>
+              <ul class="tags" aria-label="Áreas">
+                <li>Argumentação</li><li>Raciocínio analítico</li>
+              </ul>
+            </div>
+            <div>
+              <p>Ecossistema para treinar raciocínio dialético e rigor analítico, pensado como uma &ldquo;esgrima intelectual&rdquo; para quem argumenta profissionalmente.</p>
+              <a class="link" href="https://axionrethorical.cognivus.com.br/" target="_blank" rel="noopener">
+                Abrir o Axion Rhetorical <svg aria-hidden="true"><use href="#i-external"/></svg>
+              </a>
+            </div>
+          </article>
 
-            <!-- ABA 1: HOME & HERO HI-C -->
-            <section id="tab-home" class="view-section active">
-                
-                <div class="kpi-matrix-grid">
-                    <div class="kpi-card-sm"><div class="kpi-icon-sm"><i class="fa-solid fa-cubes"></i></div><div class="kpi-text-sm"><h4>End-to-End</h4><p>Autonomia Absoluta</p></div></div>
-                    <div class="kpi-card-sm"><div class="kpi-icon-sm"><i class="fa-solid fa-code"></i></div><div class="kpi-text-sm"><h4>Python</h4><p>Núcleo Analítico</p></div></div>
-                    <div class="kpi-card-sm"><div class="kpi-icon-sm"><i class="fa-solid fa-shield-halved"></i></div><div class="kpi-text-sm"><h4>100%</h4><p>Privacy by Design</p></div></div>
-                    <div class="kpi-card-sm"><div class="kpi-icon-sm"><i class="fa-solid fa-robot"></i></div><div class="kpi-text-sm"><h4>Human/Loop</h4><p>Orquestração com IA</p></div></div>
-                </div>
+          <article class="project">
+            <div>
+              <h3>CoreMaster</h3>
+              <ul class="tags" aria-label="Áreas">
+                <li>Jurimetria</li><li>Automação</li>
+              </ul>
+            </div>
+            <div>
+              <p>Sistema modular de análise jurimétrica e automação de rotinas intelectuais, base para os demais módulos analíticos da Cognivus.</p>
+              <a class="link" href="https://coremaster.cognivus.com.br/" target="_blank" rel="noopener">
+                Abrir o CoreMaster <svg aria-hidden="true"><use href="#i-external"/></svg>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-                <!-- HERO BANNER (NOVA NARRATIVA HI-C) -->
-                <div class="hero-layout">
-                    <div>
-                        <div class="hero-tag"><i class="fa-solid fa-bolt"></i> HIGH IMPACT INDIVIDUAL CONTRIBUTOR (HI-C)</div>
-                        <h1 style="font-size: 2.3rem;">Estrategista & Arquiteto<br>End-to-End.</h1>
-                        <div class="typewriter-container">
-                            <span id="typewriter"></span><span>|</span>
-                        </div>
-                        <p class="hero-p">
-                            Unindo a visão estratégica de um MBA Executivo, o rigor regulatório do Bacharelado em Direito e a precisão da engenharia de software para arquitetar plataformas completas.<br><br>
-                            Atuo substituindo a fragmentação de equipes tradicionais: domino a <strong>interface do usuário</strong> (Streamlit), a <strong>infraestrutura de segurança</strong> (Firebase) e a <strong>inteligência do núcleo lógico</strong> (Python) para materializar ecossistemas corporativos autônomos.
-                        </p>
-                    </div>
+    <!-- COMO TRABALHO -->
+    <section class="section" id="como-trabalho" aria-labelledby="trabalho-title">
+      <div class="wrap">
+        <h2 id="trabalho-title">Como trabalho</h2>
+        <p class="lead">Atuo como contribuidor individual de alto impacto: assumo um produto do começo ao fim e me integro a equipes quando o escopo pede.</p>
 
-                    <div class="hero-visual-wrapper">
-                        <video class="hero-video-loop" autoplay loop muted playsinline preload="auto">
-                            <source src="cognivus.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                </div>
+        <div class="principles">
+          <div>
+            <h3>Ciclo completo</h3>
+            <p>Cuido da interface, da persistência de dados e da lógica analítica. Com Python, Streamlit e Firebase, um produto vai da ideia ao ar sem esperar por repasses entre áreas.</p>
+          </div>
+          <div>
+            <h3>IA com supervisão humana</h3>
+            <p>Uso IA como ferramenta de desenvolvimento e como parte dos produtos, sempre com revisão humana. Onde há dependência de APIs externas, desenho fallback para que a falha de um provedor não derrube o serviço.</p>
+          </div>
+          <div>
+            <h3>Começo pelo problema</h3>
+            <p>Administração, MBA e Direito me levam a partir da dor do negócio e do risco regulatório, e só depois escolher a tecnologia.</p>
+          </div>
+        </div>
 
-                <!-- SEÇÃO: ANATOMIA DA AUTONOMIA (HI-C) -->
-                <div style="margin-top: 40px; margin-bottom: 40px;">
-                    <div style="text-align: left; margin-bottom: 25px;">
-                        <h3 style="font-size: 1.5rem; font-weight: 800; color: var(--text-main);">
-                            <i class="fa-solid fa-microchip" style="color: var(--accent-glow); margin-right: 8px;"></i>
-                            A Anatomia da Autonomia
-                        </h3>
-                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 5px;">Como a mentalidade HI-C consolida a construção de ecossistemas complexos.</p>
-                    </div>
+        <blockquote class="pull-quote">
+          <p>O dado é passado, o processo é presente e a decisão é futuro.</p>
+        </blockquote>
+      </div>
+    </section>
 
-                    <div class="grid-ecosystem" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
-                        
-                        <div class="card-eco" style="padding: 20px;">
-                            <h4><i class="fa-solid fa-layer-group" style="color: #f43f5e;"></i> Autonomia Full-Stack</h4>
-                            <p style="font-size: 0.88rem;">Desenvolvimento solitário e gestão ponta a ponta. Orquestração completa de aplicações: criando a interface moderna, a segurança de infraestrutura e o núcleo analítico em Python.</p>
-                        </div>
-                        
-                        <div class="card-eco" style="padding: 20px;">
-                            <h4><i class="fa-solid fa-robot" style="color: #f59e0b;"></i> Alavancagem com IA</h4>
-                            <p style="font-size: 0.88rem;">A Inteligência Artificial como equipe estendida. Criação de agentes locais e engenharia de resiliência com arquitetura de fallback para contornar falhas de APIs externas e garantir alta disponibilidade.</p>
-                        </div>
-                        
-                        <div class="card-eco" style="padding: 20px;">
-                            <h4><i class="fa-solid fa-scale-balanced" style="color: #10b981;"></i> Conhecimento de Domínio</h4>
-                            <p style="font-size: 0.88rem;">Código que ataca dores reais corporativas. A fusão da visão estratégica do MBA com o rigor regulatório do Direito gera sistemas baseados em problemas de mercado.</p>
-                        </div>
+    <!-- COMPETÊNCIAS -->
+    <section class="section" id="competencias" aria-labelledby="comp-title">
+      <div class="wrap">
+        <h2 id="comp-title">Competências e como comprovo</h2>
+        <p class="lead">Cada área traz o que faço e onde há evidência: projeto no ar, curso com carga horária ou formação em curso.</p>
 
-                    </div>
-                </div>
+        <div class="matrix">
+          <article class="matrix-row">
+            <h3>Aplicações web e dados</h3>
+            <p><span class="label">O que faço</span>Python, Streamlit, Firebase/Firestore, HTML, CSS e JavaScript, integração de APIs.</p>
+            <p><span class="label">Evidência</span>Aplicações da Cognivus no ar e código no <a href="https://github.com/lucianoadm" target="_blank" rel="noopener">GitHub</a>.</p>
+          </article>
 
-                <div class="hero-quote-bar">
-                    <i class="fa-solid fa-quote-left" style="margin-right: 8px; opacity: 0.6;"></i>
-                    "O dado é passado, o processo é presente e a decisão é futuro."
-                </div>
-            </section>
+          <article class="matrix-row">
+            <h3>Entrega e infraestrutura</h3>
+            <p><span class="label">O que faço</span>Versionamento e deploy com GitHub e Vercel, domínios e DNS, chaves de API e webhooks.</p>
+            <p><span class="label">Evidência</span>Sites em subdomínios próprios de cognivus.com.br. Trilhas AWS de fundamentos de nuvem e IA.</p>
+          </article>
 
-            <!-- ABA 2: SKILL TREE -->
-            <section id="tab-skills" class="view-section">
-                <div class="section-header">
-                    <h2>Multidisciplinary Skill Tree</h2>
-                    <p>Mapeamento dinâmico de competências correlacionadas que alimentam a governança, a inteligência jurídica e o desenvolvimento analítico.</p>
-                </div>
+          <article class="matrix-row">
+            <h3>Dados e BI</h3>
+            <p><span class="label">O que faço</span>Power BI (ETL, DAX e dashboards), Excel avançado, R e estatística aplicada.</p>
+            <p><span class="label">Evidência</span>Power BI (72h), trilhas Alura (60h e 32h), Linguagem R (20h) e Estatística Geral (60h).</p>
+          </article>
 
-                <div class="tree-layout">
-                    <div>
-                        <div class="skill-group-box">
-                            <div class="group-box-header"><i class="fa-solid fa-chart-pie"></i><h4>Gestão, Processo e Otimização</h4></div>
-                            <div class="bar-item">
-                                <div class="bar-labels"><span>Administração Estratégica & Processos</span><span>100%</span></div>
-                                <div class="bar-track"><div class="bar-fill" style="width: 100%;"></div></div>
-                            </div>
-                            <div class="bar-item">
-                                <div class="bar-labels"><span>Análise de Processos e Alinhamento</span><span>92%</span></div>
-                                <div class="bar-track"><div class="bar-fill" style="width: 92%;"></div></div>
-                            </div>
-                        </div>
+          <article class="matrix-row">
+            <h3>IA e linguagem</h3>
+            <p><span class="label">O que faço</span>Engenharia de prompts, processamento de linguagem natural e uso responsável de LLMs.</p>
+            <p><span class="label">Evidência</span>Trilha de IA Generativa (28h), PLN (25h) e Fluência em IA na Anthropic Academy (8h).</p>
+          </article>
 
-                        <div class="skill-group-box">
-                            <div class="group-box-header"><i class="fa-solid fa-gavel"></i><h4>Direito e Compliance</h4></div>
-                            <div class="bar-item">
-                                <div class="bar-labels"><span>Direito Corporativo</span><span>100%</span></div>
-                                <div class="bar-track"><div class="bar-fill" style="width: 100%;"></div></div>
-                            </div>
-                            <div class="bar-item">
-                                <div class="bar-labels"><span>Análise Contratual e Riscos</span><span>95%</span></div>
-                                <div class="bar-track"><div class="bar-fill" style="width: 95%;"></div></div>
-                            </div>
-                        </div>
+          <article class="matrix-row">
+            <h3>Direito e conformidade</h3>
+            <p><span class="label">O que faço</span>LGPD, compliance e jurimetria aplicados a sistemas e processos.</p>
+            <p><span class="label">Evidência</span>Cursos de LGPD e compliance (ENAP, SENAI, PCRS), graduação e pós em andamento e estágio em Direito Público.</p>
+          </article>
 
-                        <div class="skill-group-box">
-                            <div class="group-box-header"><i class="fa-solid fa-chart-line"></i><h4>Jurimetria, BI & Analytics</h4></div>
-                            <div class="bar-item">
-                                <div class="bar-labels"><span>Power BI & Business Intelligence</span><span>78%</span></div>
-                                <div class="bar-track"><div class="bar-fill" style="width: 78%;"></div></div>
-                            </div>
-                            <div class="bar-item">
-                                <div class="bar-labels"><span>Jurimetria Estatística Aplicada</span><span>85%</span></div>
-                                <div class="bar-track"><div class="bar-fill" style="width: 85%;"></div></div>
-                            </div>
-                        </div>
-                    </div>
+          <article class="matrix-row">
+            <h3>Gestão e comunicação</h3>
+            <p><span class="label">O que faço</span>Análise de processos, gestão estratégica, oratória e storytelling com dados.</p>
+            <p><span class="label">Evidência</span>Bacharelado em Administração (3.150h), MBA (600h) e cursos de comunicação (ENAP, Bradesco, SENAC).</p>
+          </article>
+        </div>
 
-                    <div class="tree-avatar-hub">
-                        <div class="profile-frame">
-                            <img src="luciano.jpg" alt="Luciano P. de Moura" class="avatar-img">
-                        </div>
-                        <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--text-main);">Luciano P. de Moura</h3>
-                        <p style="font-size: 0.88rem; color: var(--accent-glow); font-weight: 700; margin-top: 3px;">Legal Data Science & Architecture</p>
+        <p class="more-link"><a href="dashboard.html">Ver todas as formações, com cargas horárias e status</a></p>
+      </div>
+    </section>
 
-                        <div class="axis-summary-list">
-                            <div class="axis-badge-item"><span><i class="fa-solid fa-briefcase"></i> ADM & MBA</span><span>100%</span></div>
-                            <div class="axis-badge-item"><span><i class="fa-solid fa-scale-balanced"></i> Direito, Compliance & LGPD</span><span>20%</span></div>
-                            <div class="axis-badge-item"><span><i class="fa-solid fa-chart-line"></i> Data Analysis, Jurimetria & BI</span><span>85%</span></div>
-                            <div class="axis-badge-item"><span><i class="fa-solid fa-robot"></i> Engenharia de IA</span><span>80%</span></div>
-                            <div class="axis-badge-item"><span><i class="fa-solid fa-code"></i> Data & Dev Stack</span><span>80%</span></div>
-                            <div class="axis-badge-item"><span><i class="fa-solid fa-bullhorn"></i> Relacionamento Social</span><span>72%</span></div>
-                        </div>
-                    </div>
+    <!-- FORMAÇÃO -->
+    <section class="section" id="formacao" aria-labelledby="formacao-title">
+      <div class="wrap">
+        <h2 id="formacao-title">Formação</h2>
+        <p class="lead">Formação acadêmica principal. O painel completo separa o que está concluído, o que está em andamento e o que é prática autodeclarada.</p>
 
-                    <div>
-                        <div class="skill-group-box">
-                            <div class="group-box-header"><i class="fa-solid fa-brain"></i><h4>IA, PLN & Engenharia de Prompts</h4></div>
-                            <div class="bar-item">
-                                <div class="bar-labels"><span>Engenharia de Prompts & LLMs</span><span>86%</span></div>
-                                <div class="bar-track"><div class="bar-fill" style="width: 86%;"></div></div>
-                            </div>
-                            <div class="bar-item">
-                                <div class="bar-labels"><span>IA Aplicada ao Direito</span><span>89%</span></div>
-                                <div class="bar-track"><div class="bar-fill" style="width: 89%;"></div></div>
-                            </div>
-                        </div>
+        <dl class="edu">
+          <div>
+            <dt>Bacharelado em Administração de Empresas</dt>
+            <dd>Faculdade Dehoniana &middot; <span class="status status--concluido">Concluído</span></dd>
+          </div>
+          <div>
+            <dt>MBA Executivo em Gestão de Negócios e Marketing</dt>
+            <dd>Faculdade Cândido Mendes &middot; <span class="status status--concluido">Concluído</span></dd>
+          </div>
+          <div>
+            <dt>Bacharelado em Direito</dt>
+            <dd>Faculdade Anhanguera de Taubaté &middot; <span class="status status--andamento">Em andamento</span></dd>
+          </div>
+          <div>
+            <dt>Pós-graduação em Jurimetria</dt>
+            <dd>Faculdade Unyleya &middot; <span class="status status--andamento">Em andamento</span></dd>
+          </div>
+        </dl>
+      </div>
+    </section>
 
-                        <div class="skill-group-box">
-                            <div class="group-box-header"><i class="fa-solid fa-database"></i><h4>Dev Stack & Arquitetura de Dados</h4></div>
-                            <div class="bar-item">
-                                <div class="bar-labels"><span>Python (Streamlit & Modelagem)</span><span>82%</span></div>
-                                <div class="bar-track"><div class="bar-fill" style="width: 82%;"></div></div>
-                            </div>
-                            <div class="bar-item">
-                                <div class="bar-labels"><span>Firebase & Infraestrutura</span><span>79%</span></div>
-                                <div class="bar-track"><div class="bar-fill" style="width: 79%;"></div></div>
-                            </div>
-                            <div class="bar-item">
-                                <div class="bar-labels"><span>Integração de APIs & Cloud</span><span>85%</span></div>
-                                <div class="bar-track"><div class="bar-fill" style="width: 85%;"></div></div>
-                            </div>
-                        </div>
+    <!-- CONTATO -->
+    <section class="section" id="contato" aria-labelledby="contato-title">
+      <div class="wrap">
+        <div class="contact">
+          <img src="luciano.jpg" width="320" height="320" alt="Retrato de Luciano P. de Moura" loading="lazy" decoding="async">
+          <div>
+            <h2 id="contato-title">Vamos conversar</h2>
+            <p>Para propostas de trabalho, projetos ou parcerias, me chame pelo LinkedIn. Para demandas de consultoria, use o contato da Cognivus.</p>
+            <div class="contact-actions">
+              <a class="btn btn--primary" href="https://www.linkedin.com/in/luciano-paiva-b0b01a19b/" target="_blank" rel="noopener">LinkedIn</a>
+              <a class="btn" href="https://github.com/lucianoadm" target="_blank" rel="noopener">GitHub</a>
+              <a class="btn" href="https://cognivus.com.br/consultoria.html" target="_blank" rel="noopener">Consultoria Cognivus</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-                        <div class="skill-group-box">
-                            <div class="group-box-header"><i class="fa-solid fa-comments"></i><h4>Comunicação & Storytelling</h4></div>
-                            <div class="bar-item">
-                                <div class="bar-labels"><span>Técnicas de Comunicação Institucional</span><span>77%</span></div>
-                                <div class="bar-track"><div class="bar-fill" style="width: 77%;"></div></div>
-                            </div>
-                            <div class="bar-item">
-                                <div class="bar-labels"><span>Comunicação Assertiva</span><span>73%</span></div>
-                                <div class="bar-track"><div class="bar-fill" style="width: 73%;"></div></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      <nav aria-label="Rodapé">
+        <ul>
+          <li><a href="https://cognivus.com.br/governanca.html" target="_blank" rel="noopener">Governança e privacidade</a></li>
+          <li><a href="dashboard.html">Painel de formação</a></li>
+          <li><a href="https://cognivus.com.br/" target="_blank" rel="noopener">Cognivus</a></li>
+        </ul>
+      </nav>
+      <p>&copy; 2026 Luciano P. de Moura. Todos os direitos reservados.</p>
+      <p>Este site grava, no Firebase (Google), apenas o nome da página e a data de cada acesso, sem dados pessoais no registro. Não carrega fontes nem ícones de terceiros. O registro é desativado se o seu navegador enviar o sinal &ldquo;Do Not Track&rdquo; ou &ldquo;Global Privacy Control&rdquo;.</p>
     </div>
+  </footer>
 
-    <!-- TOAST -->
-    <div id="share-toast" class="toast-notification">
-        Link copiado para a área de transferência!
-    </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-    <!-- JAVASCRIPT DE INTERAÇÃO -->
-    <script>
-        function switchTab(tabId, btnElement) {
-            document.querySelectorAll('.view-section').forEach(sec => sec.classList.remove('active'));
-            document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            if(btnElement) btnElement.classList.add('active');
-
-            const titles = {
-                'tab-home': 'Visão Geral & Hero',
-                'tab-skills': 'Skill Tree Multidisciplinar'
-            };
-            document.getElementById('current-page-title').innerText = titles[tabId];
-
-            if(window.innerWidth <= 992) {
-                document.getElementById('sidebar').classList.remove('active');
-            }
-        }
-
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('active');
-        }
-
-        function copyShareLink() {
-            const shareUrl = window.location.href;
-            navigator.clipboard.writeText(shareUrl).then(() => {
-                const toast = document.getElementById("share-toast");
-                toast.classList.add("show");
-                setTimeout(() => { toast.classList.remove("show"); }, 3000);
-            });
-        }
-
-        const words = [
-            "High Impact Individual Contributor (HI-C).",
-            "Estrategista End-to-End.",
-            "Arquitetura de Software e Negócios.",
-            "Privacy by Design & Compliance."
-        ];
-        let i = 0, wordIdx = 0, isDeleting = false;
-
-        function type() {
-            const current = words[i];
-            const elem = document.getElementById('typewriter');
-            
-            if (isDeleting) {
-                elem.innerText = current.substring(0, wordIdx--);
-            } else {
-                elem.innerText = current.substring(0, wordIdx++);
-            }
-
-            if (!isDeleting && wordIdx === current.length + 1) {
-                isDeleting = true;
-                setTimeout(type, 1800);
-            } else if (isDeleting && wordIdx === 0) {
-                isDeleting = false;
-                i = (i + 1) % words.length;
-                setTimeout(type, 400);
-            } else {
-                setTimeout(type, isDeleting ? 40 : 80);
-            }
-        }
-        document.addEventListener("DOMContentLoaded", type);
-    </script>
-
-    <!-- FIREBASE ANALYTICS -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyBWKSAiSyyMN0Z-fpGfxL0VNRaCBRpn_Ps",
-            authDomain: "cognivus-platform.firebaseapp.com",
-            projectId: "cognivus-platform",
-            storageBucket: "cognivus-platform.firebasestorage.app",
-            messagingSenderId: "517638561103",
-            appId: "1:517638561103:web:f1001fb054c961f109793a"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        try {
-            addDoc(collection(db, "visitas_site"), {
-                pagina: "portfolio_clean_view",
-                data_acesso: serverTimestamp()
-            });
-        } catch (e) {}
-    </script>
+  <script src="js/main.js" defer></script>
+  <script type="module" src="js/analytics.js"></script>
 </body>
 </html>

@@ -1,0 +1,24 @@
+// ATENÇÃO: o projeto Firebase "cognivus-platform" é compartilhado com outras
+// aplicações. NÃO substitua as regras inteiras por este arquivo: MESCLE apenas
+// o bloco `match /visitas_site/{doc}` nas regras existentes e teste no
+// "Playground de regras" do console antes de publicar.
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Contagem de acessos do portfólio: só permite CRIAR um documento com os
+    // dois campos esperados. Ninguém lê, altera ou apaga pelo navegador.
+    match /visitas_site/{doc} {
+      allow read, update, delete: if false;
+      allow create: if request.resource.data.keys().hasOnly(['pagina', 'data_acesso'])
+                    && request.resource.data.pagina is string
+                    && request.resource.data.pagina.size() <= 60
+                    && request.resource.data.data_acesso == request.time;
+    }
+
+    // Padrão seguro para todo o resto: negar. (Só mantenha esta linha se as suas
+    // outras coleções já tiverem blocos próprios, senão elas deixam de funcionar.)
+    // match /{document=**} { allow read, write: if false; }
+  }
+}

@@ -284,3 +284,28 @@ noscript p { color: var(--brass); padding-block: 1rem; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* ---------- Seletor de Idiomas ---------- */
+.lang-switcher {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-left: 0.5rem;
+  padding-left: 1rem;
+  border-left: 1px solid var(--line);
+}
+.lang-switcher a {
+  color: var(--muted);
+  text-decoration: none;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  transition: color 150ms ease;
+}
+.lang-switcher a:hover,
+.lang-switcher a.active {
+  color: var(--text);
+}
+@media (max-width: 860px) {
+  .lang-switcher { border-left: none; padding-left: 0; margin-left: 0; }
+}

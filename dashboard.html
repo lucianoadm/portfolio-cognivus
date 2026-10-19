@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
     SISTEMA: Painel de formação e prática
-    VERSÃO: v2.0.0 — totais calculados a partir dos dados (js/formacao-data.js)
+    VERSÃO: v2.0.2 — totais calculados a partir dos dados (js/formacao-data.js)
     AUTOR: Luciano P. de Moura
 -->
 <html lang="pt-BR">
@@ -9,7 +9,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Formação e prática | Luciano P. de Moura</title>
-  <meta name="description" content="Painel com formações concluídas, em andamento e prática autodeclarada de Luciano P. de Moura, em gestão, jurimetria, IA e engenharia de software.">
+  <meta name="description" content="Painel com formações concluídas, em andamento e prática autodeclarada de Luciano P. de Moura, especialista em jurimetria, gestão, IA e engenharia de software.">
   <link rel="canonical" href="https://luciano.cognivus.com.br/dashboard.html">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta name="theme-color" content="#071120">
@@ -30,12 +30,13 @@
   <main id="main" class="wrap">
     <div class="page-head">
       <h1>Formação e prática</h1>
-      <p>Engenharia de software, IA generativa, ciência de dados e ciências jurídicas, reunidas num só painel. Os totais abaixo são calculados a partir da lista.</p>
+      <p>Engenharia de software, IA generativa, jurimetria aplicada e ciências jurídicas, reunidas num só painel. Os totais abaixo são calculados a partir da lista.</p>
       <p class="role">Estagiário de Direito no setor público, Taubaté-SP.</p>
     </div>
 
     <dl class="kpis" id="kpis" aria-label="Totais"></dl>
 
+    <!-- OS FILTROS SÃO FIXOS NESTE HTML, O SCRIPT É QUE OS PODE ESCONDER SE NÃO ENCONTRAR DADOS -->
     <div class="filters" id="filters" role="group" aria-label="Filtrar por status">
       <button class="filter-btn" type="button" data-filter="todos" aria-pressed="true">Todos</button>
       <button class="filter-btn" type="button" data-filter="concluido" aria-pressed="false">Concluídos</button>

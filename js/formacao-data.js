@@ -26,7 +26,7 @@ window.FORMACAO_EIXOS = [
     id: 2,
     titulo: 'Jurimetria e Business Intelligence',
     itens: [
-      { nome: 'Pós-graduação (Especialização) em Jurimetria', inst: 'Faculdade Unyleya', h: 420, status: 'andamento', nota: 'carga total do curso', desc: 'Aplicação de Ciência de Dados e Estatística ao universo jurídico.' },
+      { nome: 'Pós-graduação (Especialização) em Jurimetria', inst: 'Faculdade Unyleya', h: 420, status: 'concluido', nota: 'carga total do curso', desc: 'Aplicação de Ciência de Dados e Estatística ao universo jurídico.' },
       { nome: 'Microsoft Power BI para Business Intelligence', inst: 'Data Science Academy', h: 72, status: 'concluido', desc: 'Arquitetura e modelagem de dados com dashboards dinâmicos.' },
       { nome: 'Trilha Data Science (Excel avançado e dashboards)', inst: 'Alura', h: 60, status: 'concluido', desc: 'Simulação de cenários, tabelas dinâmicas, lógica booleana e análise de padrões.' },
       { nome: 'Trilha Power BI (ETL, DAX e visualização)', inst: 'Alura', h: 32, status: 'concluido', desc: 'Dashboards ponta a ponta, ETL com Power Query e cálculos em DAX.' },

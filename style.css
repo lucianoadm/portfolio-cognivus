@@ -1,0 +1,211 @@
+:root {
+    --bg-dark: #0a1128;
+    --surface: rgba(16, 31, 66, 0.68);
+    --line: rgba(255, 255, 255, 0.12);
+    --ink: #f5f6fa;
+    --ink-soft: #e2e8f0;
+    --muted: #a9b6d3;
+    --gold: #d4af37;
+    --amber: #ff9f43;
+    --orange-soft: #f39c12;
+    --copper: #d35400;
+
+    --f-display: 'Cinzel', Georgia, serif;
+    --f-text: 'Playfair Display', Georgia, serif;
+    --f-ui: 'Inter', system-ui, sans-serif;
+    --measure: 38rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+    font-family: var(--f-ui);
+    background-color: var(--bg-dark);
+    color: var(--ink);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+
+.sr-only {
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+.skip {
+    position: absolute; left: 1rem; top: -4rem; z-index: 10;
+    background: var(--amber); color: #1a1100; padding: .6rem 1rem;
+    border-radius: 6px; font-weight: 600; transition: top .2s;
+}
+.skip:focus { top: 1rem; }
+
+/* ===== Fundo global: 2 camadas em crossfade ===== */
+.bg { position: fixed; inset: 0; z-index: -2; background: var(--bg-dark); }
+.bg-layer {
+    position: absolute; inset: 0; opacity: 0;
+    background-size: cover; background-position: center;
+    transition: opacity 2.5s ease-in-out;
+}
+.bg-layer.is-on { opacity: 1; }
+.bg-veil {
+    position: fixed; inset: 0; z-index: -1;
+    background: linear-gradient(rgba(10, 17, 40, .72), rgba(10, 17, 40, .84));
+}
+
+/* ===== Hero (única entrada animada da página) ===== */
+.hero {
+    min-height: min(88svh, 56rem);
+    display: grid; place-content: center; justify-items: center;
+    gap: 1.4rem; text-align: center; padding: 5rem 1.25rem 3rem;
+}
+.hero h1 {
+    font-family: var(--f-display); font-weight: 600;
+    font-size: clamp(2.3rem, 8vw, 4.8rem); line-height: 1.1;
+    letter-spacing: .05em; color: var(--ink);
+}
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+    .hero h1 {
+        background: linear-gradient(45deg, var(--ink) 35%, var(--gold));
+        -webkit-background-clip: text; background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}
+.subtitle {
+    font-family: var(--f-text); font-style: italic;
+    font-size: clamp(1.05rem, 2.4vw, 1.3rem);
+    color: var(--muted); max-width: 34rem;
+}
+.coin { display: flex; align-items: center; gap: 1rem; color: var(--gold); width: min(20rem, 70vw); }
+.coin span { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--copper)); }
+.coin span:last-child { background: linear-gradient(to left, transparent, var(--copper)); }
+
+.cta {
+    display: inline-block; padding: .8rem 2rem; border-radius: 6px;
+    border: 1.5px solid var(--orange-soft); color: var(--ink);
+    text-decoration: none; transition: background .3s, box-shadow .3s;
+}
+.cta:hover { background: rgba(243, 156, 18, .12); box-shadow: 0 0 15px rgba(243, 156, 18, .3); }
+
+.hero h1, .subtitle, .coin, .hero .cta { animation: rise 1.2s cubic-bezier(.2, .7, .2, 1) both; }
+.subtitle { animation-delay: .25s; }
+.coin { animation-delay: .5s; }
+.hero p:last-child { animation: rise 1.2s .75s cubic-bezier(.2, .7, .2, 1) both; }
+.hero .cta { animation: none; }
+@keyframes rise { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+
+/* ===== Manifesto: medida de leitura confortável, alinhado à esquerda ===== */
+.manifesto { max-width: var(--measure); margin: 0 auto; padding: 2rem 1.25rem 5rem; }
+.manifesto p {
+    font-family: var(--f-text);
+    font-size: clamp(1.1rem, 1rem + .5vw, 1.3rem);
+    line-height: 1.8; color: var(--ink-soft);
+    margin-bottom: 1.6rem; hyphens: auto;
+}
+strong { color: var(--amber); font-weight: 600; }
+
+/* ===== Hexalogia + player ===== */
+.hexalogia { max-width: 62rem; margin: 0 auto; padding: 1rem 1.25rem 5rem; scroll-margin-top: 1rem; }
+.hexalogia h2 {
+    font-family: var(--f-display); font-weight: 600; color: var(--gold);
+    font-size: clamp(1.7rem, 4.5vw, 2.3rem); text-align: center; margin-bottom: 1.2rem;
+}
+.hex-intro {
+    font-family: var(--f-text); font-size: clamp(1.05rem, 1rem + .35vw, 1.2rem);
+    line-height: 1.75; color: var(--ink-soft);
+    max-width: var(--measure); margin: 0 auto 2.2rem;
+}
+
+.player-card {
+    background: var(--surface); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--line); border-radius: 12px;
+    padding: clamp(1rem, 4vw, 2.5rem);
+    box-shadow: 0 20px 40px rgba(4, 7, 20, .5);
+}
+
+/* Palco: GIFs atrás, véu no meio, vídeo (legendas) na frente */
+.stage {
+    position: relative; isolation: isolate; /* o blend do vídeo só enxerga o palco */
+    aspect-ratio: 16 / 9; width: 100%; max-width: 50rem; margin: 0 auto;
+    border-radius: 8px; overflow: hidden; background: #000; cursor: pointer;
+}
+.stage-gif {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; z-index: 1; opacity: 0; transition: opacity .9s ease;
+}
+.stage-gif.is-on { opacity: 1; }
+.stage-veil { position: absolute; inset: 0; z-index: 2; background: rgba(0, 0, 0, .25); pointer-events: none; }
+.stage video {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: contain; z-index: 3;
+    mix-blend-mode: screen; /* fundo preto do MP4 vira transparente e deixa o GIF aparecer */
+    pointer-events: none;
+}
+
+.status { text-align: center; margin: 1rem 0 .6rem; font-family: var(--f-display); color: var(--ink); min-height: 1.7em; }
+.status.is-error { color: #ffb4a2; font-family: var(--f-ui); font-size: .95rem; }
+
+.controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1rem 1.5rem; margin-bottom: 2rem; }
+.transport { display: flex; align-items: center; gap: .75rem; }
+.timeline { order: 2; flex: 1 1 100%; display: grid; grid-template-columns: auto 1fr auto; gap: .75rem; align-items: center; color: var(--muted); font-size: .85rem; font-variant-numeric: tabular-nums; }
+.volume { display: flex; align-items: center; gap: .5rem; color: var(--muted); order: 3; }
+.volume input { width: 6rem; }
+input[type="range"] { accent-color: var(--amber); width: 100%; min-height: 1.5rem; cursor: pointer; }
+
+.icon-btn {
+    width: 2.9rem; height: 2.9rem; border-radius: 50%;
+    display: grid; place-items: center; cursor: pointer;
+    background: transparent; color: var(--ink); border: 1px solid var(--line);
+    transition: border-color .3s, color .3s;
+}
+.icon-btn:hover { border-color: var(--amber); color: var(--amber); }
+
+.btn-play {
+    display: inline-flex; align-items: center; gap: .7rem; cursor: pointer;
+    background: transparent; color: var(--ink); font: inherit; font-size: 1rem;
+    padding: .8rem 1.8rem; border-radius: 6px; border: 1.5px solid var(--orange-soft);
+    transition: background .3s, box-shadow .3s;
+}
+.btn-play:hover { background: rgba(243, 156, 18, .12); box-shadow: 0 0 15px rgba(243, 156, 18, .3); }
+
+/* Lista de faixas = player + descrição */
+.tracklist { list-style: none; display: grid; gap: .65rem; }
+.track {
+    display: grid; grid-template-columns: 2.6rem 1fr; gap: .9rem; width: 100%;
+    text-align: left; font: inherit; color: var(--ink-soft); cursor: pointer;
+    background: rgba(255, 255, 255, .03); border: 1px solid var(--line);
+    border-radius: 8px; padding: 1rem 1.1rem;
+    transition: background .25s, border-color .25s;
+}
+.track:hover { border-color: rgba(255, 159, 67, .55); }
+.track.is-active { background: rgba(255, 159, 67, .12); border-color: var(--amber); }
+.track-num { font-family: var(--f-display); font-size: 1.25rem; color: var(--gold); line-height: 1.5; }
+.track-title { display: block; font-family: var(--f-display); font-weight: 600; font-size: 1.1rem; color: var(--ink); }
+.track.is-active .track-title { color: var(--amber); }
+.track-desc { display: block; margin-top: .3rem; font-family: var(--f-text); font-size: 1rem; line-height: 1.6; color: var(--muted); }
+
+/* ===== Rodapé ===== */
+.valores { max-width: var(--measure); margin: 0 auto; padding: 3rem 1.25rem; text-align: center; border-top: 1px solid var(--line); }
+.valores p { font-family: var(--f-text); font-size: 1.15rem; color: var(--ink-soft); margin-bottom: 1.2rem; }
+.signature { font-family: var(--f-display); font-size: 1.2rem; color: var(--gold); letter-spacing: 2px; }
+
+.lexos-footer {
+    text-align: center; font-size: .875rem; color: #9aa4b8; /* contraste AA sobre #060b14 */
+    padding: 1.2rem 1rem; border-top: 1px solid var(--line); background: #060b14;
+}
+.lexos-footer .legal { font-size: .75rem; text-transform: uppercase; letter-spacing: .05em; margin-top: .25rem; }
+
+/* ===== Telas maiores / toque ===== */
+@media (min-width: 760px) {
+    .controls { flex-wrap: nowrap; justify-content: space-between; }
+    .timeline { order: 0; flex: 1; }
+    .volume { order: 0; }
+}
+@media (hover: none) { .volume { display: none; } } /* celulares ignoram o volume do site */
+
+/* Respeita quem pede menos movimento. !important é justificado: sobrepõe qualquer animação do site. */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
